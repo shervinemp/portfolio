@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:css": "npx postcss ./src/input.css -o ./dist/output.css"
+    "build:css": "npx postcss ./src/input.css -o ./dist/output.css --minify"
   },
   "keywords": [],
   "author": "",
