@@ -45,7 +45,7 @@
             </svg>
         </button>
 
-        <!-- Hero Section -->
+        <!-- Hero Section (No fade-in needed here) -->
         <section id="hero" class="container mx-auto px-4 py-20 text-center">
             <!-- Placeholder for Photo -->
             <img src="placeholder-photo.jpg" alt="Shervin Naseri"
@@ -61,46 +61,39 @@
             <div class="flex justify-center space-x-4">
                 <a href="#projects"
                     class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded transition duration-300">
-                    <!-- Adjusted button colors -->
                     View Projects
                 </a>
                 <a href="#skills"
                     class="bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-4 rounded transition duration-300">
-                    <!-- Adjusted button colors -->
                     Skills Overview
                 </a>
                 <a href="resume.pdf" download="Shervin_Naseri_Resume.pdf"
                     class="bg-gray-600 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded transition duration-300">
-                    <!-- Adjusted button colors -->
                     Download CV
                 </a>
                 <a href="#contact"
                     class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded transition duration-300">
-                    <!-- Adjusted button colors -->
                     Contact
                 </a>
             </div>
         </section>
 
         <!-- Featured Projects Section -->
-        <section id="projects" class="container mx-auto px-4 py-16">
+        <section id="projects"
+            class="container mx-auto px-4 py-16 opacity-0 transform transition-all duration-700 ease-out fade-in-section">
             <h2 class="text-2xl font-bold text-center text-gray-400 mb-16">Featured Projects</h2>
-            <!-- Adjusted text color -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <!-- Project Card 1: Plate Recognition -->
                 <div
                     class="bg-gray-800 p-6 rounded-lg shadow-md flex flex-col transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl border border-gray-700">
-                    <!-- Dark card bg, adjusted border/shadow -->
                     <img src="https://via.placeholder.com/400x200/4B5563/9CA3AF?text=Project+Visual"
                         alt="Vehicle Plate Recognition Visual" class="w-full h-40 object-cover rounded-md mb-4">
                     <h3 class="text-xl font-semibold mb-2 text-white">Vehicle Plate Recognition</h3>
-                    <!-- White heading -->
                     <p class="text-gray-400 mb-4 flex-grow">Designed and deployed a high-performance vehicle plate
                         recognition system
                         using Connectionist Temporal Classification (CTC), achieving near state-of-the-art results for
                         traffic analysis applications.</p>
                     <div class="flex flex-wrap gap-2">
-                        <!-- Adjusted tag colors -->
                         <span class="bg-blue-900 text-blue-300 text-xs font-medium px-2.5 py-0.5 rounded">Python</span>
                         <span
                             class="bg-orange-900 text-orange-300 text-xs font-medium px-2.5 py-0.5 rounded">TensorFlow/PyTorch</span>
@@ -170,14 +163,14 @@
         </section>
 
         <!-- Skills Visualization Section -->
-        <section id="skills" class="bg-gray-800 py-16"> <!-- Darker section background -->
+        <section id="skills"
+            class="bg-gray-800 py-16 opacity-0 transform transition-all duration-700 ease-out fade-in-section">
             <div class="container mx-auto px-4">
                 <h2 class="text-2xl font-bold text-center text-gray-400 mb-16">Core Competencies</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                     <!-- Category: Programming Languages -->
                     <div
                         class="bg-gray-700 p-6 rounded-lg shadow-sm border border-gray-600 transition duration-300 ease-in-out hover:shadow-md">
-                        <!-- Darker block bg -->
                         <h3 class="text-xl font-semibold mb-4 text-center text-white">Programming Languages</h3>
                         <ul class="list-disc list-inside space-y-2 text-gray-300">
                             <li>Python (Scikit-Learn, TensorFlow, PyTorch, OpenCV, SpaCy, NLTK, Pandas, PySpark)</li>
@@ -226,13 +219,13 @@
         </section>
 
         <!-- Work Experience Section -->
-        <section id="experience" class="container mx-auto px-4 py-16">
+        <section id="experience"
+            class="container mx-auto px-4 py-16 opacity-0 transform transition-all duration-700 ease-out fade-in-section">
             <h2 class="text-2xl font-bold text-center text-gray-400 mb-16">Professional Experience</h2>
             <div class="space-y-8 max-w-3xl mx-auto">
                 <!-- Job 1: Pardazesh Etelaat Kian -->
                 <div
                     class="bg-gray-800 p-6 rounded-lg shadow-sm border-l-4 border-blue-500 border border-gray-700 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl">
-                    <!-- Dark card bg -->
                     <div class="flex justify-between items-center mb-2">
                         <h3 class="text-xl font-semibold text-white">Senior ML Engineer / Data Scientist</h3>
                         <span class="text-sm text-gray-400">June 2020 - Sep 2021</span>
@@ -288,7 +281,8 @@
         </section>
 
         <!-- Education & Publications Section -->
-        <section id="education" class="bg-gray-800 py-16"> <!-- Darker section background -->
+        <section id="education"
+            class="bg-gray-800 py-16 opacity-0 transform transition-all duration-700 ease-out fade-in-section">
             <div class="container mx-auto px-4">
                 <h2 class="text-2xl font-bold text-center text-gray-400 mb-16">Education & Research</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
@@ -298,7 +292,6 @@
                         <!-- MSc UOttawa -->
                         <div
                             class="bg-gray-700 p-4 rounded-lg shadow-sm border border-gray-600 transition duration-300 ease-in-out hover:shadow-md">
-                            <!-- Darker block bg -->
                             <p class="font-semibold text-lg text-white">MSc. Computer Science</p>
                             <p class="text-gray-300">University of Ottawa</p>
                             <p class="text-sm text-gray-400">Sep 2021 - Dec 2024 | GPA: 8.5/10</p>
@@ -332,7 +325,7 @@
                         <h3 class="text-2xl font-semibold mb-4 text-white">Publications</h3>
                         <div
                             class="bg-gray-700 p-4 rounded-lg shadow-sm border border-gray-600 transition duration-300 ease-in-out hover:shadow-md">
-                            <p class="font-semibold text-gray-100">EMSE 2024</p> <!-- Slightly brighter title -->
+                            <p class="font-semibold text-gray-100">EMSE 2024</p>
                             <p class="text-sm text-gray-300">Mohammad Hossein Amini, Shervin Naseri, Shiva Nejati:
                                 Evaluating the impact of flaky simulators on testing autonomous driving systems.</p>
                         </div>
@@ -348,13 +341,13 @@
         </section>
 
         <!-- Personal Projects & Interests Section -->
-        <section id="personal-projects" class="container mx-auto px-4 py-16">
+        <section id="personal-projects"
+            class="container mx-auto px-4 py-16 opacity-0 transform transition-all duration-700 ease-out fade-in-section">
             <h2 class="text-2xl font-bold text-center text-gray-400 mb-16">Personal Explorations</h2>
             <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
                 <!-- Project: Texture Modding -->
                 <div
                     class="bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-700 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl">
-                    <!-- Dark card bg -->
                     <h3 class="text-xl font-semibold mb-2 text-white">Texture Modding Tools</h3>
                     <p class="text-gray-400">Automated Binary Domain texture modding using scripting and external tools
                         to
@@ -364,7 +357,7 @@
                 <div
                     class="bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-700 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl">
                     <h3 class="text-xl font-semibold mb-2 text-white">Video Compression Research <span
-                            class="text-sm font-normal text-orange-400">(WIP)</span></h3> <!-- Adjusted WIP color -->
+                            class="text-sm font-normal text-orange-400">(WIP)</span></h3>
                     <p class="text-gray-400">Exploring video compression techniques focusing on efficiency through
                         temporal
                         redundancy and bit-packing.</p>
@@ -394,7 +387,8 @@
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="bg-gray-800 py-20"> <!-- Darker section background -->
+        <section id="contact"
+            class="bg-gray-800 py-20 opacity-0 transform transition-all duration-700 ease-out fade-in-section">
             <div class="container mx-auto px-4 text-center">
                 <h2 class="text-2xl font-bold text-center text-gray-400 mb-16">Get In Touch</h2>
                 <p class="text-lg text-gray-400 mb-8">Feel free to reach out via email or connect with me on
@@ -403,7 +397,6 @@
                 <div class="flex justify-center items-center space-x-6">
                     <a href="mailto:shervin.naseri@gmail.com"
                         class="text-indigo-400 hover:text-indigo-300 hover:underline text-lg">
-                        <!-- Adjusted link colors -->
                         shervin.naseri@gmail.com
                     </a>
                     <a href="https://www.linkedin.com/in/shervin-naseri-b3a016b0/" target="_blank"
@@ -419,7 +412,7 @@
         <script src="src/script.js"></script>
 
         <!-- Footer -->
-        <footer class="bg-gray-800 text-center py-6 mt-16 border-t border-gray-700"> <!-- Dark footer -->
+        <footer class="bg-gray-800 text-center py-6 mt-16 border-t border-gray-700">
             <p class="text-gray-500 text-sm">&copy; <span id="current-year"></span> Shervin Naseri. All rights reserved.
             </p>
         </footer>

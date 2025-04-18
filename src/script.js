@@ -67,4 +67,30 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         console.warn("Menu toggle button, sidebar, or main content element not found.");
     }
+
+    // Fade-in animation on scroll
+    const observerOptions = {
+        root: null, // relative to document viewport
+        rootMargin: '0px',
+        threshold: 0.1 // trigger when 10% of the element is visible
+    };
+
+    const observerCallback = (entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.remove('opacity-0');
+                // Optional: Add a slight delay or other effects if needed
+                // entry.target.classList.add('translate-y-0'); // If using translate for animation start
+                observer.unobserve(entry.target); // Stop observing once faded in
+            }
+        });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    const sectionsToFade = document.querySelectorAll('.fade-in-section');
+    sectionsToFade.forEach(section => {
+        observer.observe(section);
+    });
+
 });
