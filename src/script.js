@@ -93,4 +93,43 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(section);
     });
 
+    // Active link highlighting on scroll
+    const sections = document.querySelectorAll('main section[id]'); // Get all sections in main with an ID
+    const navLinks = document.querySelectorAll('nav a[href^="#"]'); // Get all nav links pointing to an ID
+
+    const activeLinkObserverOptions = {
+        root: null, // viewport
+        rootMargin: '-50% 0px -50% 0px', // Trigger when section is in the middle 50% of the viewport
+        threshold: 0 // Trigger as soon as any part enters/leaves the rootMargin area
+    };
+
+    const removeActiveClasses = () => {
+        navLinks.forEach(link => {
+            link.classList.remove('text-white', 'font-semibold');
+            link.classList.add('text-gray-300');
+        });
+    };
+
+    const activeLinkObserverCallback = (entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                const correspondingLink = document.querySelector(`nav a[href="#${id}"]`);
+
+                removeActiveClasses(); // Remove active from all links first
+
+                if (correspondingLink) {
+                    correspondingLink.classList.add('text-white', 'font-semibold');
+                    correspondingLink.classList.remove('text-gray-300');
+                }
+            }
+        });
+    };
+
+    const activeLinkObserver = new IntersectionObserver(activeLinkObserverCallback, activeLinkObserverOptions);
+
+    sections.forEach(section => {
+        activeLinkObserver.observe(section);
+    });
+
 });
