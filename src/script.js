@@ -37,4 +37,34 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         console.warn("Footer year span not found.");
     }
+
+    // Hamburger menu toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    const sidebar = document.getElementById('sidebar');
+    const mainContent = document.getElementById('main-content');
+
+    if (menuToggle && sidebar && mainContent) {
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('hidden'); // Toggle sidebar visibility
+            // Optional: Adjust main content margin when sidebar is open/closed on mobile
+            // if (sidebar.classList.contains('hidden')) {
+            //     mainContent.classList.remove('ml-64'); // Example if sidebar pushes content
+            // } else {
+            //     mainContent.classList.add('ml-64'); // Example if sidebar pushes content
+            // }
+        });
+
+        // Close sidebar when a link is clicked (optional, good for SPA feel)
+        sidebar.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                // Only hide if on mobile view (where toggle is visible)
+                if (window.innerWidth < 768) { // Tailwind's 'md' breakpoint is 768px
+                    sidebar.classList.add('hidden');
+                }
+            });
+        });
+
+    } else {
+        console.warn("Menu toggle button, sidebar, or main content element not found.");
+    }
 });

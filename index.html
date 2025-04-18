@@ -14,10 +14,13 @@
     </script>
 </head>
 
-<body class="bg-gray-900 text-gray-300 font-sans flex leading-relaxed"> <!-- Dark background, light text -->
+<body class="bg-gray-900 text-gray-300 font-sans flex leading-relaxed">
+    <!-- Dark background, light text, flex layout -->
 
     <!-- Vertical Navigation Sidebar -->
-    <nav class="w-64 h-screen bg-gray-800 border-r border-gray-700 fixed top-0 left-0 p-6 flex flex-col space-y-6">
+    <!-- Hidden on small screens (md:flex shows it on medium and up), increased z-index -->
+    <nav id="sidebar"
+        class="w-64 h-screen bg-gray-800 border-r border-gray-700 fixed top-0 left-0 p-6 flex-col space-y-6 z-20 hidden md:flex">
         <a href="#hero" class="text-2xl font-bold text-white hover:text-gray-300 mb-6">Shervin Naseri</a>
         <a href="#projects" class="text-gray-300 hover:text-white hover:underline py-2">Projects</a>
         <a href="#skills" class="text-gray-300 hover:text-white hover:underline py-2">Skills</a>
@@ -26,11 +29,21 @@
         <a href="#personal-projects" class="text-gray-300 hover:text-white hover:underline py-2">Personal
             Projects</a>
         <a href="#contact" class="text-gray-300 hover:text-white hover:underline py-2">Contact</a>
+        <!-- Add more links if needed -->
     </nav>
 
     <!-- Main Content Area -->
-    <main class="flex-1 ml-64 overflow-y-auto">
+    <main id="main-content" class="flex-1 overflow-y-auto md:ml-64"> <!-- Adjusted margin for responsiveness -->
         <!-- Takes remaining space, adds left margin for sidebar, enables scrolling -->
+
+        <!-- Hamburger Button (Mobile) -->
+        <button id="menu-toggle"
+            class="md:hidden fixed top-4 left-4 z-30 p-2 bg-gray-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+            aria-label="Toggle Menu">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+            </svg>
+        </button>
 
         <!-- Hero Section -->
         <section id="hero" class="container mx-auto px-4 py-20 text-center">
@@ -78,9 +91,8 @@
                 <div
                     class="bg-gray-800 p-6 rounded-lg shadow-md flex flex-col transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl border border-gray-700">
                     <!-- Dark card bg, adjusted border/shadow -->
-                    <img src="https://via.placeholder.com/400x200/4B5563/9CA3AF?text=Project+Visual" <!-- Darker
-                        placeholder -->
-                    alt="Vehicle Plate Recognition Visual" class="w-full h-40 object-cover rounded-md mb-4">
+                    <img src="https://via.placeholder.com/400x200/4B5563/9CA3AF?text=Project+Visual"
+                        alt="Vehicle Plate Recognition Visual" class="w-full h-40 object-cover rounded-md mb-4">
                     <h3 class="text-xl font-semibold mb-2 text-white">Vehicle Plate Recognition</h3>
                     <!-- White heading -->
                     <p class="text-gray-400 mb-4 flex-grow">Designed and deployed a high-performance vehicle plate
