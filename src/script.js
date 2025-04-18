@@ -132,4 +132,29 @@ document.addEventListener('DOMContentLoaded', () => {
         activeLinkObserver.observe(section);
     });
 
+    // Back to Top Button Logic
+    const backToTopButton = document.getElementById('back-to-top');
+    const mainScrollArea = document.getElementById('main-content'); // Use the main content area for scroll events
+
+    if (backToTopButton && mainScrollArea) {
+        // Show/Hide button based on scroll position within the main content area
+        mainScrollArea.addEventListener('scroll', () => {
+            if (mainScrollArea.scrollTop > 300) { // Show button after scrolling 300px
+                backToTopButton.classList.remove('hidden');
+            } else {
+                backToTopButton.classList.add('hidden');
+            }
+        });
+
+        // Scroll to top when button is clicked
+        backToTopButton.addEventListener('click', () => {
+            mainScrollArea.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    } else {
+        console.warn("Back to top button or main scroll area not found.");
+    }
+
 });
