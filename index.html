@@ -29,29 +29,26 @@
     <meta property="og:url" content="https://shervinemp.github.io/portfolio/" />
 </head>
 
-<body class="bg-slate-900 text-gray-300 font-sans flex leading-relaxed"> <!-- Switched to slate -->
+<body class="bg-gray-900 text-gray-300 font-sans flex leading-relaxed">
     <!-- Dark background, light text, flex layout -->
 
     <!-- Vertical Navigation Sidebar -->
     <!-- Hidden on small screens (md:flex shows it on medium and up), increased z-index -->
     <nav id="sidebar"
-        class="w-64 h-screen bg-slate-800 border-r border-slate-700 fixed top-0 left-0 p-6 flex-col space-y-6 z-20 hidden md:flex">
-        <!-- Switched to slate -->
+        class="w-64 h-screen bg-gray-800 border-r border-gray-700 fixed top-0 left-0 p-6 flex-col space-y-6 z-20 hidden md:flex">
         <a href="#hero" class="text-2xl font-bold text-white hover:text-gray-300 mb-6">Shervin Naseri</a>
         <a href="#projects"
-            class="text-indigo-400 hover:text-indigo-300 hover:underline py-2 transition duration-200">Projects</a>
-        <!-- Adjusted link color -->
-        <a href="#skills"
-            class="text-indigo-400 hover:text-indigo-300 hover:underline py-2 transition duration-200">Skills</a>
+            class="text-gray-300 hover:text-white hover:underline py-2 transition duration-200">Projects</a>
+        <a href="#skills" class="text-gray-300 hover:text-white hover:underline py-2 transition duration-200">Skills</a>
         <a href="#experience"
-            class="text-indigo-400 hover:text-indigo-300 hover:underline py-2 transition duration-200">Experience</a>
+            class="text-gray-300 hover:text-white hover:underline py-2 transition duration-200">Experience</a>
         <a href="#education"
-            class="text-indigo-400 hover:text-indigo-300 hover:underline py-2 transition duration-200">Education</a>
+            class="text-gray-300 hover:text-white hover:underline py-2 transition duration-200">Education</a>
         <a href="#personal-projects"
-            class="text-indigo-400 hover:text-indigo-300 hover:underline py-2 transition duration-200">Personal
+            class="text-gray-300 hover:text-white hover:underline py-2 transition duration-200">Personal
             Projects</a>
         <a href="#contact"
-            class="text-indigo-400 hover:text-indigo-300 hover:underline py-2 transition duration-200">Contact</a>
+            class="text-gray-300 hover:text-white hover:underline py-2 transition duration-200">Contact</a>
         <!-- Add more links if needed -->
     </nav>
 
@@ -61,8 +58,8 @@
 
         <!-- Hamburger Button (Mobile) -->
         <button id="menu-toggle"
-            class="md:hidden fixed top-4 left-4 z-30 p-2 bg-slate-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
-            aria-label="Toggle Menu"> <!-- Adjusted bg -->
+            class="md:hidden fixed top-4 left-4 z-30 p-2 bg-gray-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+            aria-label="Toggle Menu">
             <svg class="h-6 w-6" fill="none" viewBox 0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
             </svg>
@@ -72,8 +69,8 @@
         <section id="hero" class="container mx-auto px-4 py-20 text-center">
             <!-- Placeholder for Photo -->
             <img src="placeholder-photo.jpg" alt="Shervin Naseri"
-                class="w-32 h-32 rounded-full mx-auto mb-6 shadow-md object-cover border-2 border-slate-700">
-            <!-- Adjusted border -->
+                class="w-32 h-32 rounded-full mx-auto mb-6 shadow-md object-cover border-2 border-gray-700">
+            <!-- Added border -->
             <h1 class="text-3xl md:text-4xl font-bold mb-4 text-white">Shervin Naseri | Machine Learning & Software
                 Engineering |
                 Ottawa, ON</h1>
@@ -83,23 +80,19 @@
             </p>
             <div class="flex justify-center space-x-4">
                 <a href="#projects"
-                    class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded transition duration-300">
-                    <!-- Adjusted button colors -->
+                    class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded transition duration-300">
                     View Projects
                 </a>
                 <a href="#skills"
-                    class="bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded transition duration-300">
-                    <!-- Adjusted button colors -->
+                    class="bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-4 rounded transition duration-300">
                     Skills Overview
                 </a>
                 <a href="resume.pdf" download="Shervin_Naseri_Resume.pdf"
-                    class="bg-slate-600 hover:bg-slate-500 text-white font-bold py-2 px-4 rounded transition duration-300">
-                    <!-- Adjusted button colors -->
+                    class="bg-gray-600 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded transition duration-300">
                     Download CV
                 </a>
                 <a href="#contact"
-                    class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded transition duration-300">
-                    <!-- Adjusted button colors -->
+                    class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded transition duration-300">
                     Contact
                 </a>
             </div>
@@ -108,47 +101,42 @@
         <!-- Featured Projects Section -->
         <section id="projects"
             class="container mx-auto px-4 py-16 opacity-0 transform transition-all duration-700 ease-out fade-in-section">
-            <h2 class="text-2xl font-bold text-center text-gray-200 mb-16">Featured Projects</h2>
-            <!-- Adjusted text color -->
+            <h2 class="text-2xl font-bold text-center text-gray-400 mb-16">Featured Projects</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <!-- Project Card 1: Plate Recognition -->
                 <div
-                    class="bg-slate-800 p-6 rounded-lg shadow-sm border-l-4 border-indigo-600 border border-slate-700 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl">
-                    <!-- Slate bg, Indigo border -->
+                    class="bg-gray-800 p-6 rounded-lg shadow-sm border-l-4 border-blue-500 border border-gray-700 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl">
                     <h3 class="text-xl font-semibold mb-2 text-white">Vehicle Plate Recognition</h3>
                     <p class="text-gray-400 mb-4 flex-grow">Designed and deployed a high-performance vehicle plate
                         recognition system
                         using Connectionist Temporal Classification (CTC), achieving near state-of-the-art results for
                         traffic analysis applications.</p>
                     <div class="flex flex-wrap gap-2">
-                        <!-- Adjusted tag colors for dark theme -->
-                        <span class="bg-blue-900 text-blue-200 text-xs font-medium px-2.5 py-0.5 rounded">Python</span>
+                        <span class="bg-blue-900 text-blue-300 text-xs font-medium px-2.5 py-0.5 rounded">Python</span>
                         <span
-                            class="bg-orange-900 text-orange-200 text-xs font-medium px-2.5 py-0.5 rounded">TensorFlow/PyTorch</span>
-                        <span class="bg-purple-900 text-purple-200 text-xs font-medium px-2.5 py-0.5 rounded">CTC</span>
-                        <span class="bg-green-900 text-green-200 text-xs font-medium px-2.5 py-0.5 rounded">Computer
+                            class="bg-orange-900 text-orange-300 text-xs font-medium px-2.5 py-0.5 rounded">TensorFlow/PyTorch</span>
+                        <span class="bg-purple-900 text-purple-300 text-xs font-medium px-2.5 py-0.5 rounded">CTC</span>
+                        <span class="bg-green-900 text-green-300 text-xs font-medium px-2.5 py-0.5 rounded">Computer
                             Vision</span>
                     </div>
                 </div>
                 <!-- Project Card 2: Farsi OCR -->
                 <div
-                    class="bg-slate-800 p-6 rounded-lg shadow-sm border-l-4 border-teal-600 border border-slate-700 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl">
-                    <!-- Slate bg, Teal border -->
+                    class="bg-gray-800 p-6 rounded-lg shadow-sm border-l-4 border-green-500 border border-gray-700 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl">
                     <h3 class="text-xl font-semibold mb-2 text-white">Farsi OCR System</h3>
                     <p class="text-gray-400 mb-4 flex-grow">Developed an OCR system for scanned Farsi documents,
                         including
                         paragraph/footer detection and handling unique poetic indentation styles.</p>
                     <div class="flex flex-wrap gap-2">
-                        <span class="bg-blue-900 text-blue-200 text-xs font-medium px-2.5 py-0.5 rounded">Python</span>
-                        <span class="bg-green-900 text-green-200 text-xs font-medium px-2.5 py-0.5 rounded">Computer
+                        <span class="bg-blue-900 text-blue-300 text-xs font-medium px-2.5 py-0.5 rounded">Python</span>
+                        <span class="bg-green-900 text-green-300 text-xs font-medium px-2.5 py-0.5 rounded">Computer
                             Vision</span>
-                        <span class="bg-yellow-900 text-yellow-200 text-xs font-medium px-2.5 py-0.5 rounded">OCR</span>
+                        <span class="bg-yellow-900 text-yellow-300 text-xs font-medium px-2.5 py-0.5 rounded">OCR</span>
                     </div>
                 </div>
                 <!-- Project Card 3: Predictive Models -->
                 <div
-                    class="bg-slate-800 p-6 rounded-lg shadow-sm border-l-4 border-indigo-600 border border-slate-700 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl">
-                    <!-- Slate bg, Indigo border -->
+                    class="bg-gray-800 p-6 rounded-lg shadow-sm border-l-4 border-purple-500 border border-gray-700 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl">
                     <h3 class="text-xl font-semibold mb-2 text-white">Predictive Models (Nikaat)</h3>
                     <p class="text-gray-400 mb-4 flex-grow">Researched and developed predictive models, including
                         menstrual
@@ -156,31 +144,30 @@
                         forecasting and currency exchange rate prediction, leveraging time-series deep learning
                         architectures.</p>
                     <div class="flex flex-wrap gap-2">
-                        <span class="bg-blue-900 text-blue-200 text-xs font-medium px-2.5 py-0.5 rounded">Python</span>
-                        <span class="bg-red-900 text-red-200 text-xs font-medium px-2.5 py-0.5 rounded">Deep
+                        <span class="bg-blue-900 text-blue-300 text-xs font-medium px-2.5 py-0.5 rounded">Python</span>
+                        <span class="bg-red-900 text-red-300 text-xs font-medium px-2.5 py-0.5 rounded">Deep
                             Learning</span>
-                        <span class="bg-slate-600 text-slate-200 text-xs font-medium px-2.5 py-0.5 rounded">Time
-                            Series</span> <!-- Adjusted gray tag -->
+                        <span class="bg-gray-700 text-gray-300 text-xs font-medium px-2.5 py-0.5 rounded">Time
+                            Series</span>
                         <span
-                            class="bg-indigo-900 text-indigo-200 text-xs font-medium px-2.5 py-0.5 rounded">Node.js</span>
+                            class="bg-indigo-900 text-indigo-300 text-xs font-medium px-2.5 py-0.5 rounded">Node.js</span>
                     </div>
                 </div>
                 <!-- Project Card 4: Content Recommendation -->
                 <div
-                    class="bg-slate-800 p-6 rounded-lg shadow-sm border-l-4 border-teal-600 border border-slate-700 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl">
-                    <!-- Slate bg, Teal border -->
+                    class="bg-gray-800 p-6 rounded-lg shadow-sm border-l-4 border-teal-500 border border-gray-700 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl">
                     <h3 class="text-xl font-semibold mb-2 text-white">Content Recommendation Engine (Vestaak)</h3>
                     <p class="text-gray-400 mb-4 flex-grow">Developed a personalized content recommendation engine using
                         Python and
                         Scikit-learn, utilizing data crawled from the Telegram API and implementing
                         collaborative/content-based filtering.</p>
                     <div class="flex flex-wrap gap-2">
-                        <span class="bg-blue-900 text-blue-200 text-xs font-medium px-2.5 py-0.5 rounded">Python</span>
+                        <span class="bg-blue-900 text-blue-300 text-xs font-medium px-2.5 py-0.5 rounded">Python</span>
                         <span
-                            class="bg-yellow-900 text-yellow-200 text-xs font-medium px-2.5 py-0.5 rounded">Scikit-learn</span>
-                        <span class="bg-pink-900 text-pink-200 text-xs font-medium px-2.5 py-0.5 rounded">Recommendation
+                            class="bg-yellow-900 text-yellow-300 text-xs font-medium px-2.5 py-0.5 rounded">Scikit-learn</span>
+                        <span class="bg-pink-900 text-pink-300 text-xs font-medium px-2.5 py-0.5 rounded">Recommendation
                             Systems</span>
-                        <span class="bg-teal-900 text-teal-200 text-xs font-medium px-2.5 py-0.5 rounded">API
+                        <span class="bg-teal-900 text-teal-300 text-xs font-medium px-2.5 py-0.5 rounded">API
                             Crawling</span>
                     </div>
                 </div>
@@ -188,14 +175,13 @@
         </section>
 
         <!-- Skills Visualization Section -->
-        <section id="skills" class="bg-slate-800 py-16"> <!-- Slate background -->
+        <section id="skills" class="bg-gray-800 py-16">
             <div class="container mx-auto px-4">
-                <h2 class="text-2xl font-bold text-center text-gray-200 mb-16">Core Competencies</h2>
+                <h2 class="text-2xl font-bold text-center text-gray-400 mb-16">Core Competencies</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                     <!-- Category: Programming Languages -->
                     <div
-                        class="bg-slate-700 p-6 rounded-lg shadow-sm border border-slate-600 transition duration-300 ease-in-out hover:shadow-md">
-                        <!-- Slate block bg -->
+                        class="bg-gray-700 p-6 rounded-lg shadow-sm border border-gray-600 transition duration-300 ease-in-out hover:shadow-md">
                         <h3 class="text-xl font-semibold mb-4 text-center text-white">Programming Languages</h3>
                         <ul class="list-disc list-inside space-y-2 text-gray-300">
                             <li>Python (Scikit-Learn, TensorFlow, PyTorch, OpenCV, SpaCy, NLTK, Pandas, PySpark)</li>
@@ -205,7 +191,7 @@
                     </div>
                     <!-- Category: ML/Data Science -->
                     <div
-                        class="bg-slate-700 p-6 rounded-lg shadow-sm border border-slate-600 transition duration-300 ease-in-out hover:shadow-md">
+                        class="bg-gray-700 p-6 rounded-lg shadow-sm border border-gray-600 transition duration-300 ease-in-out hover:shadow-md">
                         <h3 class="text-xl font-semibold mb-4 text-center text-white">ML / Data Science</h3>
                         <ul class="list-disc list-inside space-y-2 text-gray-300">
                             <li>Computer Vision</li>
@@ -217,7 +203,7 @@
                     </div>
                     <!-- Category: Backend & Databases -->
                     <div
-                        class="bg-slate-700 p-6 rounded-lg shadow-sm border border-slate-600 transition duration-300 ease-in-out hover:shadow-md">
+                        class="bg-gray-700 p-6 rounded-lg shadow-sm border border-gray-600 transition duration-300 ease-in-out hover:shadow-md">
                         <h3 class="text-xl font-semibold mb-4 text-center text-white">Backend & Databases</h3>
                         <ul class="list-disc list-inside space-y-2 text-gray-300">
                             <li>API Development</li>
@@ -229,7 +215,7 @@
                     </div>
                     <!-- Category: DevOps & Infrastructure -->
                     <div
-                        class="bg-slate-700 p-6 rounded-lg shadow-sm border border-slate-600 transition duration-300 ease-in-out hover:shadow-md">
+                        class="bg-gray-700 p-6 rounded-lg shadow-sm border border-gray-600 transition duration-300 ease-in-out hover:shadow-md">
                         <h3 class="text-xl font-semibold mb-4 text-center text-white">DevOps & Infrastructure</h3>
                         <ul class="list-disc list-inside space-y-2 text-gray-300">
                             <li>Docker & Docker Swarm</li>
@@ -245,13 +231,12 @@
 
         <!-- Work Experience Section -->
         <section id="experience" class="container mx-auto px-4 py-16">
-            <h2 class="text-2xl font-bold text-center text-gray-200 mb-16">Professional Experience</h2>
+            <h2 class="text-2xl font-bold text-center text-gray-400 mb-16">Professional Experience</h2>
             <div class="space-y-8 max-w-3xl mx-auto">
                 <!-- Job 1: Pardazesh Etelaat Kian -->
                 <div
-                    class="bg-slate-800 p-6 rounded-lg shadow-sm border-l-4 border-indigo-600 border border-slate-700 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl">
-                    <!-- Slate bg, Indigo border -->
-                    <h3 class="text-xl font-semibold text-white">Senior ML Engineer / Data Scientist</h3>
+                    class="bg-gray-800 p-6 rounded-lg shadow-sm border-l-4 border-blue-500 border border-gray-700 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl">
+                    <h3 class="text-xl font-semibold">Senior ML Engineer / Data Scientist</h3>
                     <p class="text-lg font-medium text-gray-300 mb-3">Pardazesh Etelaat Kian</p>
                     <ul class="list-disc list-inside space-y-1 text-gray-400">
                         <li>Designed and deployed ML pipelines for vehicle plate recognition (CTC), achieving near SOTA
@@ -266,9 +251,8 @@
                 </div>
                 <!-- Job 2: Nikaat Corp -->
                 <div
-                    class="bg-slate-800 p-6 rounded-lg shadow-sm border-l-4 border-teal-600 border border-slate-700 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl">
-                    <!-- Slate bg, Teal border -->
-                    <h3 class="text-xl font-semibold text-white">Senior Backend Engineer / Tech Lead</h3>
+                    class="bg-gray-800 p-6 rounded-lg shadow-sm border-l-4 border-green-500 border border-gray-700 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl">
+                    <h3 class="text-xl font-semibold">Senior Backend Engineer / Tech Lead</h3>
                     <p class="text-lg font-medium text-gray-300 mb-3">Nikaat Corp</p>
                     <ul class="list-disc list-inside space-y-1 text-gray-400">
                         <li>Contributed to design, development, deployment, and technical decisions in a fast-paced
@@ -283,9 +267,8 @@
                 </div>
                 <!-- Job 3: Vestaak -->
                 <div
-                    class="bg-slate-800 p-6 rounded-lg shadow-sm border-l-4 border-indigo-600 border border-slate-700 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl">
-                    <!-- Slate bg, Indigo border -->
-                    <h3 class="text-xl font-semibold text-white">Python Developer</h3>
+                    class="bg-gray-800 p-6 rounded-lg shadow-sm border-l-4 border-purple-500 border border-gray-700 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl">
+                    <h3 class="text-xl font-semibold">Python Developer</h3>
                     <p class="text-lg font-medium text-gray-300 mb-3">Vestaak</p>
                     <ul class="list-disc list-inside space-y-1 text-gray-400">
                         <li>Developed a personalized content recommendation engine (Python, Scikit-learn) using Telegram
@@ -299,17 +282,16 @@
         </section>
 
         <!-- Education & Publications Section -->
-        <section id="education" class="bg-slate-800 py-16"> <!-- Slate background -->
+        <section id="education" class="bg-gray-800 py-16">
             <div class="container mx-auto px-4">
-                <h2 class="text-2xl font-bold text-center text-gray-200 mb-16">Education & Research</h2>
+                <h2 class="text-2xl font-bold text-center text-gray-400 mb-16">Education & Research</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                     <!-- Education Column -->
                     <div class="space-y-6">
                         <h3 class="text-2xl font-semibold mb-4 text-white">Education</h3>
                         <!-- MSc UOttawa -->
                         <div
-                            class="bg-slate-700 p-4 rounded-lg shadow-sm border border-slate-600 transition duration-300 ease-in-out hover:shadow-md">
-                            <!-- Slate block bg -->
+                            class="bg-gray-700 p-4 rounded-lg shadow-sm border border-gray-600 transition duration-300 ease-in-out hover:shadow-md">
                             <p class="font-semibold text-lg text-white">MSc. Computer Science</p>
                             <p class="text-gray-300">University of Ottawa</p>
                             <p class="text-sm text-gray-400">Sep 2021 - Dec 2024 | GPA: 8.5/10</p>
@@ -318,7 +300,7 @@
                         </div>
                         <!-- MSc SUT -->
                         <div
-                            class="bg-slate-700 p-4 rounded-lg shadow-sm border border-slate-600 transition duration-300 ease-in-out hover:shadow-md">
+                            class="bg-gray-700 p-4 rounded-lg shadow-sm border border-gray-600 transition duration-300 ease-in-out hover:shadow-md">
                             <p class="font-semibold text-lg text-white">MSc. Software Engineering</p>
                             <p class="text-gray-300">Sharif University of Technology (SUT)</p>
                             <p class="text-sm text-gray-400">GPA: 16.37/20</p>
@@ -329,7 +311,7 @@
                         </div>
                         <!-- BSc AUT -->
                         <div
-                            class="bg-slate-700 p-4 rounded-lg shadow-sm border border-slate-600 transition duration-300 ease-in-out hover:shadow-md">
+                            class="bg-gray-700 p-4 rounded-lg shadow-sm border border-gray-600 transition duration-300 ease-in-out hover:shadow-md">
                             <p class="font-semibold text-lg text-white">BSc. Computer Science</p>
                             <p class="text-gray-300">Amirkabir University of Technology (AUT)</p>
                             <p class="text-sm text-gray-400">GPA: 16.11/20 (3.41/4.0)</p>
@@ -342,13 +324,13 @@
                     <div class="space-y-6">
                         <h3 class="text-2xl font-semibold mb-4 text-white">Publications</h3>
                         <div
-                            class="bg-slate-700 p-4 rounded-lg shadow-sm border border-slate-600 transition duration-300 ease-in-out hover:shadow-md">
+                            class="bg-gray-700 p-4 rounded-lg shadow-sm border border-gray-600 transition duration-300 ease-in-out hover:shadow-md">
                             <p class="font-semibold text-gray-100">EMSE 2024</p>
                             <p class="text-sm text-gray-300">Mohammad Hossein Amini, Shervin Naseri, Shiva Nejati:
                                 Evaluating the impact of flaky simulators on testing autonomous driving systems.</p>
                         </div>
                         <div
-                            class="bg-slate-700 p-4 rounded-lg shadow-sm border border-slate-600 transition duration-300 ease-in-out hover:shadow-md">
+                            class="bg-gray-700 p-4 rounded-lg shadow-sm border border-gray-600 transition duration-300 ease-in-out hover:shadow-md">
                             <p class="font-semibold text-gray-100">ICCG 2019</p>
                             <p class="text-sm text-gray-300">Zahed Rahmati, Sina Farahzad and Shervin Naseri, Counting
                                 Closed Billiard Paths.</p>
@@ -360,12 +342,11 @@
 
         <!-- Personal Projects & Interests Section -->
         <section id="personal-projects" class="container mx-auto px-4 py-16">
-            <h2 class="text-2xl font-bold text-center text-gray-200 mb-16">Personal Explorations</h2>
+            <h2 class="text-2xl font-bold text-center text-gray-400 mb-16">Personal Explorations</h2>
             <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
                 <!-- Project: Texture Modding -->
                 <div
-                    class="bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-700 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl">
-                    <!-- Slate bg -->
+                    class="bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-700 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl">
                     <h3 class="text-xl font-semibold mb-2 text-white">Texture Modding Tools</h3>
                     <p class="text-gray-400">Automated Binary Domain texture modding using scripting and external tools
                         to
@@ -373,7 +354,7 @@
                 </div>
                 <!-- Project: Video Compression -->
                 <div
-                    class="bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-700 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl">
+                    class="bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-700 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl">
                     <h3 class="text-xl font-semibold mb-2 text-white">Video Compression Research <span
                             class="text-sm font-normal text-orange-400">(WIP)</span></h3>
                     <p class="text-gray-400">Exploring video compression techniques focusing on efficiency through
@@ -382,14 +363,14 @@
                 </div>
                 <!-- Project: Large Model Training -->
                 <div
-                    class="bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-700 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl">
+                    class="bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-700 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl">
                     <h3 class="text-xl font-semibold mb-2 text-white">Large Model Training Research</h3>
                     <p class="text-gray-400">Investigating methods to enhance large model training convergence through
                         custom layer design.</p>
                 </div>
                 <!-- Project: Agent Interaction Language -->
                 <div
-                    class="bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-700 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl">
+                    class="bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-700 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl">
                     <h3 class="text-xl font-semibold mb-2 text-white">Agent Interaction Language Design <span
                             class="text-sm font-normal text-orange-400">(WIP)</span></h3>
                     <p class="text-gray-400">Designing a domain-specific language to define virtual agent interactions
@@ -405,9 +386,9 @@
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="bg-slate-800 py-20"> <!-- Slate background -->
+        <section id="contact" class="bg-gray-800 py-20">
             <div class="container mx-auto px-4 text-center">
-                <h2 class="text-2xl font-bold text-center text-gray-200 mb-16">Get In Touch</h2>
+                <h2 class="text-2xl font-bold text-center text-gray-400 mb-16">Get In Touch</h2>
                 <p class="text-lg text-gray-400 mb-8">Feel free to reach out via email or connect with me on
                     professional
                     platforms.</p>
@@ -429,7 +410,7 @@
         <script src="src/script.js"></script>
 
         <!-- Footer -->
-        <footer class="bg-slate-800 text-center py-6 mt-16 border-t border-slate-700"> <!-- Slate background -->
+        <footer class="bg-gray-800 text-center py-6 mt-16 border-t border-gray-700">
             <p class="text-gray-500 text-sm">&copy; <span id="current-year"></span> Shervin Naseri. All rights reserved.
             </p>
         </footer>
@@ -437,7 +418,6 @@
         <!-- Back to Top Button -->
         <button id="back-to-top" title="Back to Top"
             class="hidden fixed bottom-6 right-6 p-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full shadow-lg transition duration-300 z-10">
-            <!-- Adjusted button color -->
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
