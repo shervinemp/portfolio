@@ -8,19 +8,8 @@
         content="Portfolio website for Shervin Naseri, an experienced Machine Learning Engineer and Backend Developer based in Ottawa, ON. Showcasing projects in Computer Vision, NLP, and scalable systems.">
     <title>Shervin Naseri - Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        // Optional: Add dark mode preference via Tailwind config if needed later
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                },
-            }
-        }
-    </script>
+    <link rel="stylesheet" href="dist/output.css"> <!-- Link local build -->
+    <!-- Removed Tailwind CDN and config script -->
     <!-- SEO Meta Tags -->
     <meta property="og:title" content="Shervin Naseri - Portfolio" />
     <meta property="og:description"
@@ -29,45 +18,52 @@
     <meta property="og:url" content="https://shervinemp.github.io/portfolio/" />
 </head>
 
-<body class="bg-slate-900 text-gray-300 font-sans flex leading-relaxed"> <!-- Switched to slate -->
+<body class="bg-gradient-to-b from-slate-950 to-slate-800 text-gray-300 font-sans flex leading-relaxed">
+    <!-- Restored gradient -->
     <!-- Dark background, light text, flex layout -->
 
     <!-- Vertical Navigation Sidebar -->
     <!-- Hidden on small screens (md:flex shows it on medium and up), increased z-index -->
     <nav id="sidebar"
         class="w-64 h-screen bg-slate-800 border-r border-slate-700 fixed top-0 left-0 p-6 flex-col space-y-6 z-20 hidden md:flex">
+        <!-- Removed relative -->
         <!-- Switched to slate -->
-        <a href="#hero" class="text-2xl font-bold text-white hover:text-gray-300 mb-6">Shervin Naseri</a>
-        <a href="#projects"
-            class="text-indigo-400 hover:text-indigo-300 hover:underline py-2 transition duration-200">Projects</a>
-        <!-- Adjusted link color -->
+        <a href="#hero"
+            class="text-2xl font-bold text-white hover:text-gray-300 mb-6 transition transform hover:scale-105 duration-200 inline-block">Shervin
+            Naseri</a> <!-- Added transition/scale -->
         <a href="#skills"
-            class="text-indigo-400 hover:text-indigo-300 hover:underline py-2 transition duration-200">Skills</a>
+            class="text-indigo-400 hover:text-indigo-300 hover:underline py-2 transition transform hover:scale-105 duration-200 inline-block">Skills</a>
+        <!-- Added transition/scale -->
         <a href="#experience"
-            class="text-indigo-400 hover:text-indigo-300 hover:underline py-2 transition duration-200">Experience</a>
+            class="text-indigo-400 hover:text-indigo-300 hover:underline py-2 transition transform hover:scale-105 duration-200 inline-block">Experience</a>
+        <!-- Added transition/scale -->
         <a href="#education"
-            class="text-indigo-400 hover:text-indigo-300 hover:underline py-2 transition duration-200">Education</a>
+            class="text-indigo-400 hover:text-indigo-300 hover:underline py-2 transition transform hover:scale-105 duration-200 inline-block">Education</a>
+        <!-- Added transition/scale -->
+        <a href="#projects"
+            class="text-indigo-400 hover:text-indigo-300 hover:underline py-2 transition transform hover:scale-105 duration-200 inline-block">Projects</a>
+        <!-- Added transition/scale -->
         <a href="#personal-projects"
-            class="text-indigo-400 hover:text-indigo-300 hover:underline py-2 transition duration-200">Personal
-            Projects</a>
+            class="text-indigo-400 hover:text-indigo-300 hover:underline py-2 transition transform hover:scale-105 duration-200 inline-block">Personal
+            Projects</a> <!-- Added transition/scale -->
         <a href="#contact"
-            class="text-indigo-400 hover:text-indigo-300 hover:underline py-2 transition duration-200">Contact</a>
+            class="text-indigo-400 hover:text-indigo-300 hover:underline py-2 transition transform hover:scale-105 duration-200 inline-block">Contact</a>
+        <!-- Added transition/scale -->
         <!-- Add more links if needed -->
 
-        <!-- Scroll Indicator Placeholder -->
-        <div id="scroll-indicator" class="absolute right-0 top-0 w-1 bg-indigo-400 rounded-full opacity-75"
-            style="height: 50px;"></div> <!-- Initial style, JS will update height/top -->
+        <!-- Removed Scroll Indicator Placeholder -->
     </nav>
 
     <!-- Main Content Area -->
-    <main id="main-content" class="flex-1 overflow-y-auto md:ml-64"> <!-- Adjusted margin for responsiveness -->
+    <main id="main-content" class="flex-1 overflow-y-auto md:ml-64 px-4"> <!-- Added px-8 for side padding -->
         <!-- Takes remaining space, adds left margin for sidebar, enables scrolling -->
 
         <!-- Hamburger Button (Mobile) -->
         <button id="menu-toggle"
             class="md:hidden fixed top-4 left-4 z-30 p-2 bg-slate-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
             aria-label="Toggle Menu"> <!-- Adjusted bg -->
-            <svg class="h-6 w-6" fill="none" viewBox 0 0 24 24" stroke="currentColor">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <!-- Corrected viewBox syntax -->
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
             </svg>
         </button>
@@ -75,172 +71,135 @@
         <!-- Hero Section (No fade-in needed here) -->
         <section id="hero" class="container mx-auto px-4 py-20 text-center">
             <!-- Placeholder for Photo -->
-            <img src="placeholder-photo.jpg" alt="Shervin Naseri"
-                class="w-32 h-32 rounded-full mx-auto mb-6 shadow-md object-cover border-2 border-slate-700">
+            <img src="profile.jpg" alt="Shervin Naseri"
+                class="w-40 h-40 rounded-full mx-auto mb-6 shadow-md object-cover border-2 border-slate-700">
+            <!-- Increased image size -->
             <!-- Adjusted border -->
-            <h1 class="text-3xl md:text-4xl font-bold mb-4 text-white">Shervin Naseri | Machine Learning & Software
-                Engineering |
-                Ottawa, ON</h1>
-            <p class="text-lg mb-8 text-gray-400">Experienced ML Engineer and Backend Developer specializing in Computer
-                Vision and
-                Scalable Systems. Passionate about solving complex problems with technology. Currently based in Ottawa.
-            </p>
-            <div class="flex justify-center space-x-4">
-                <a href="#projects"
-                    class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded transition duration-300">
-                    <!-- Adjusted button colors -->
-                    View Projects
-                </a>
-                <a href="#skills"
-                    class="bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded transition duration-300">
-                    <!-- Adjusted button colors -->
-                    Skills Overview
-                </a>
+            <div class="max-w-3xl mx-auto"> <!-- Added wrapper to constrain text width -->
+                <h1 class="text-3xl md:text-4xl font-bold mb-4 text-white">Shervin Naseri | Machine Learning & Software
+                    Engineering |
+                    Ottawa, ON</h1>
+                <p class="text-lg mb-8 text-gray-400">Experienced ML Engineer and Backend Developer. Passionate about
+                    solving complex problems with technology.</p>
+                <!-- Toned down description -->
+            </div>
+            <div class="flex justify-center space-x-4 mt-8"> <!-- Added mt-8 for spacing -->
+                <!-- Removed View Projects and Skills Overview buttons -->
                 <a href="resume.pdf" download="Shervin_Naseri_Resume.pdf"
-                    class="bg-slate-600 hover:bg-slate-500 text-white font-bold py-2 px-4 rounded transition duration-300">
+                    class="bg-slate-600 hover:bg-slate-500 text-white font-bold py-2 px-4 rounded transition-all duration-300 transform hover:scale-105 hover:brightness-110 active:scale-95">
+                    <!-- Added active:scale-95 -->
+                    <!-- Added scale/brightness -->
                     <!-- Adjusted button colors -->
                     Download CV
                 </a>
                 <a href="#contact"
-                    class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded transition duration-300">
+                    class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded transition-all duration-300 transform hover:scale-105 hover:brightness-110 active:scale-95">
+                    <!-- Added active:scale-95 -->
+                    <!-- Added scale/brightness -->
                     <!-- Adjusted button colors -->
                     Contact
                 </a>
             </div>
         </section>
 
-        <!-- Featured Projects Section -->
-        <section id="projects"
-            class="container mx-auto px-4 py-16 opacity-0 transform transition-all duration-700 ease-out fade-in-section">
-            <h2 class="text-2xl font-bold text-center text-gray-200 mb-16">Featured Projects</h2>
-            <!-- Adjusted text color -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Project Card 1: Plate Recognition -->
-                <div
-                    class="bg-slate-800 p-6 rounded-lg shadow-sm border-l-4 border-indigo-600 border border-slate-700 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl">
-                    <!-- Slate bg, Indigo border -->
-                    <h3 class="text-xl font-semibold mb-2 text-white">Vehicle Plate Recognition</h3>
-                    <p class="text-gray-400 mb-4 flex-grow">Designed and deployed a high-performance vehicle plate
-                        recognition system
-                        using Connectionist Temporal Classification (CTC), achieving near state-of-the-art results for
-                        traffic analysis applications.</p>
-                    <div class="flex flex-wrap gap-2">
-                        <!-- Adjusted tag colors for dark theme -->
-                        <span class="bg-blue-900 text-blue-200 text-xs font-medium px-2.5 py-0.5 rounded">Python</span>
-                        <span
-                            class="bg-orange-900 text-orange-200 text-xs font-medium px-2.5 py-0.5 rounded">TensorFlow/PyTorch</span>
-                        <span class="bg-purple-900 text-purple-200 text-xs font-medium px-2.5 py-0.5 rounded">CTC</span>
-                        <span class="bg-green-900 text-green-200 text-xs font-medium px-2.5 py-0.5 rounded">Computer
-                            Vision</span>
-                    </div>
-                </div>
-                <!-- Project Card 2: Farsi OCR -->
-                <div
-                    class="bg-slate-800 p-6 rounded-lg shadow-sm border-l-4 border-teal-600 border border-slate-700 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl">
-                    <!-- Slate bg, Teal border -->
-                    <h3 class="text-xl font-semibold mb-2 text-white">Farsi OCR System</h3>
-                    <p class="text-gray-400 mb-4 flex-grow">Developed an OCR system for scanned Farsi documents,
-                        including
-                        paragraph/footer detection and handling unique poetic indentation styles.</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="bg-blue-900 text-blue-200 text-xs font-medium px-2.5 py-0.5 rounded">Python</span>
-                        <span class="bg-green-900 text-green-200 text-xs font-medium px-2.5 py-0.5 rounded">Computer
-                            Vision</span>
-                        <span class="bg-yellow-900 text-yellow-200 text-xs font-medium px-2.5 py-0.5 rounded">OCR</span>
-                    </div>
-                </div>
-                <!-- Project Card 3: Predictive Models -->
-                <div
-                    class="bg-slate-800 p-6 rounded-lg shadow-sm border-l-4 border-indigo-600 border border-slate-700 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl">
-                    <!-- Slate bg, Indigo border -->
-                    <h3 class="text-xl font-semibold mb-2 text-white">Predictive Models (Nikaat)</h3>
-                    <p class="text-gray-400 mb-4 flex-grow">Researched and developed predictive models, including
-                        menstrual
-                        cycle
-                        forecasting and currency exchange rate prediction, leveraging time-series deep learning
-                        architectures.</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="bg-blue-900 text-blue-200 text-xs font-medium px-2.5 py-0.5 rounded">Python</span>
-                        <span class="bg-red-900 text-red-200 text-xs font-medium px-2.5 py-0.5 rounded">Deep
-                            Learning</span>
-                        <span class="bg-slate-600 text-slate-200 text-xs font-medium px-2.5 py-0.5 rounded">Time
-                            Series</span> <!-- Adjusted gray tag -->
-                        <span
-                            class="bg-indigo-900 text-indigo-200 text-xs font-medium px-2.5 py-0.5 rounded">Node.js</span>
-                    </div>
-                </div>
-                <!-- Project Card 4: Content Recommendation -->
-                <div
-                    class="bg-slate-800 p-6 rounded-lg shadow-sm border-l-4 border-teal-600 border border-slate-700 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl">
-                    <!-- Slate bg, Teal border -->
-                    <h3 class="text-xl font-semibold mb-2 text-white">Content Recommendation Engine (Vestaak)</h3>
-                    <p class="text-gray-400 mb-4 flex-grow">Developed a personalized content recommendation engine using
-                        Python and
-                        Scikit-learn, utilizing data crawled from the Telegram API and implementing
-                        collaborative/content-based filtering.</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="bg-blue-900 text-blue-200 text-xs font-medium px-2.5 py-0.5 rounded">Python</span>
-                        <span
-                            class="bg-yellow-900 text-yellow-200 text-xs font-medium px-2.5 py-0.5 rounded">Scikit-learn</span>
-                        <span class="bg-pink-900 text-pink-200 text-xs font-medium px-2.5 py-0.5 rounded">Recommendation
-                            Systems</span>
-                        <span class="bg-teal-900 text-teal-200 text-xs font-medium px-2.5 py-0.5 rounded">API
-                            Crawling</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- Skills Visualization Section -->
-        <section id="skills" class="bg-slate-800 py-16"> <!-- Slate background -->
-            <div class="container mx-auto px-4">
-                <h2 class="text-2xl font-bold text-center text-gray-200 mb-16">Core Competencies</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <section id="skills" class="py-16 border-t border-slate-700 hover:bg-slate-800/50 transition-all duration-300">
+            <!-- Added hover:bg -->
+            <div class="container mx-auto px-6"> <!-- Changed px-4 to px-6 -->
+                <h2 class="text-2xl font-semibold text-center text-gray-200 mb-16"> <!-- Restored mb-16 -->
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="inline-block h-6 w-6 mr-2 align-middle">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M11.42 15.17 17.25 21A2.652 2.652 0 0 0 21 17.25l-5.877-5.877M11.42 15.17l-4.995-4.995a2.652 2.652 0 0 1 0-3.752l3.75-3.752a2.652 2.652 0 0 1 3.752 0l4.995 4.995M11.42 15.17 14.25 18l1.405-1.405" />
+                    </svg>
+                    Core Competencies
+                </h2>
+                <!-- font-bold to font-semibold -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"> <!-- Restored gap-8 -->
                     <!-- Category: Programming Languages -->
                     <div
-                        class="bg-slate-700 p-6 rounded-lg shadow-sm border border-slate-600 transition duration-300 ease-in-out hover:shadow-md">
+                        class="skill-block bg-slate-700 p-6 rounded-lg shadow-sm border border-slate-600 transition-all duration-300 ease-in-out hover:shadow-md hover:-translate-y-1 hover:bg-slate-600">
+                        <!-- Restored p-6, Added hover:bg -->
+                        <!-- Added skill-block, removed fade classes -->
                         <!-- Slate block bg -->
-                        <h3 class="text-xl font-semibold mb-4 text-center text-white">Programming Languages</h3>
+                        <h3
+                            class="fade-inner-item text-xl font-semibold mb-4 text-center text-white opacity-0 transition-all duration-500 ease-out">
+                            Programming Languages</h3> <!-- Added fade-inner-item, Restored duration-500 -->
+                        <!-- Already font-semibold -->
                         <ul class="list-disc list-inside space-y-2 text-gray-300">
-                            <li>Python (Scikit-Learn, TensorFlow, PyTorch, OpenCV, SpaCy, NLTK, Pandas, PySpark)</li>
-                            <li>JavaScript (Node.js, Angular, jQuery)</li>
-                            <li>C++ (Boost, OpenGL)</li>
+                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Python
+                                (Scikit-Learn, TensorFlow, PyTorch, OpenCV, SpaCy, NLTK, Pandas, PySpark)</li>
+                            <!-- Added fade-inner-item, Restored duration-500 -->
+                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">JavaScript
+                                (Node.js, Angular, jQuery)</li> <!-- Added fade-inner-item, Restored duration-500 -->
+                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">C++ (Boost,
+                                OpenGL)</li> <!-- Added fade-inner-item, Restored duration-500 -->
                         </ul>
                     </div>
                     <!-- Category: ML/Data Science -->
                     <div
-                        class="bg-slate-700 p-6 rounded-lg shadow-sm border border-slate-600 transition duration-300 ease-in-out hover:shadow-md">
-                        <h3 class="text-xl font-semibold mb-4 text-center text-white">ML / Data Science</h3>
+                        class="skill-block bg-slate-700 p-6 rounded-lg shadow-sm border border-slate-600 transition-all duration-300 ease-in-out hover:shadow-md hover:-translate-y-1 hover:bg-slate-600">
+                        <!-- Restored p-6, Added hover:bg -->
+                        <!-- Added skill-block, removed fade classes -->
+                        <h3
+                            class="fade-inner-item text-xl font-semibold mb-4 text-center text-white opacity-0 transition-all duration-500 ease-out">
+                            ML / Data Science</h3> <!-- Added fade-inner-item, Restored duration-500 -->
+                        <!-- Already font-semibold -->
                         <ul class="list-disc list-inside space-y-2 text-gray-300">
-                            <li>Computer Vision</li>
-                            <li>NLP (SpaCy, NLTK)</li>
-                            <li>Predictive Modeling</li>
-                            <li>Deep Learning (TensorFlow, PyTorch)</li>
-                            <li>Data Analysis (Pandas, PySpark)</li>
+                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Computer Vision
+                            </li> <!-- Added fade-inner-item, Restored duration-500 -->
+                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">NLP (SpaCy, NLTK)
+                            </li> <!-- Added fade-inner-item, Restored duration-500 -->
+                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Predictive
+                                Modeling</li> <!-- Added fade-inner-item, Restored duration-500 -->
+                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Deep Learning
+                                (TensorFlow, PyTorch)</li> <!-- Added fade-inner-item, Restored duration-500 -->
+                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Data Analysis
+                                (Pandas, PySpark)</li> <!-- Added fade-inner-item, Restored duration-500 -->
                         </ul>
                     </div>
                     <!-- Category: Backend & Databases -->
                     <div
-                        class="bg-slate-700 p-6 rounded-lg shadow-sm border border-slate-600 transition duration-300 ease-in-out hover:shadow-md">
-                        <h3 class="text-xl font-semibold mb-4 text-center text-white">Backend & Databases</h3>
+                        class="skill-block bg-slate-700 p-6 rounded-lg shadow-sm border border-slate-600 transition-all duration-300 ease-in-out hover:shadow-md hover:-translate-y-1 hover:bg-slate-600">
+                        <!-- Restored p-6, Added hover:bg -->
+                        <!-- Added skill-block, removed fade classes -->
+                        <h3
+                            class="fade-inner-item text-xl font-semibold mb-4 text-center text-white opacity-0 transition-all duration-500 ease-out">
+                            Backend & Databases</h3> <!-- Added fade-inner-item, Restored duration-500 -->
+                        <!-- Already font-semibold -->
                         <ul class="list-disc list-inside space-y-2 text-gray-300">
-                            <li>API Development</li>
-                            <li>Node.js</li>
-                            <li>SQL (MySQL)</li>
-                            <li>NoSQL (MongoDB, Redis)</li>
-                            <li>Search (ElasticSearch)</li>
+                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">API Development
+                            </li> <!-- Added fade-inner-item, Restored duration-500 -->
+                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Node.js</li>
+                            <!-- Added fade-inner-item, Restored duration-500 -->
+                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">SQL (MySQL)</li>
+                            <!-- Added fade-inner-item, Restored duration-500 -->
+                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">NoSQL (MongoDB,
+                                Redis)</li> <!-- Added fade-inner-item, Restored duration-500 -->
+                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Search
+                                (ElasticSearch)</li> <!-- Added fade-inner-item, Restored duration-500 -->
                         </ul>
                     </div>
                     <!-- Category: DevOps & Infrastructure -->
                     <div
-                        class="bg-slate-700 p-6 rounded-lg shadow-sm border border-slate-600 transition duration-300 ease-in-out hover:shadow-md">
-                        <h3 class="text-xl font-semibold mb-4 text-center text-white">DevOps & Infrastructure</h3>
+                        class="skill-block bg-slate-700 p-6 rounded-lg shadow-sm border border-slate-600 transition-all duration-300 ease-in-out hover:shadow-md hover:-translate-y-1 hover:bg-slate-600">
+                        <!-- Restored p-6, Added hover:bg -->
+                        <!-- Added skill-block, removed fade classes -->
+                        <h3
+                            class="fade-inner-item text-xl font-semibold mb-4 text-center text-white opacity-0 transition-all duration-500 ease-out">
+                            DevOps & Infrastructure</h3> <!-- Added fade-inner-item, Restored duration-500 -->
+                        <!-- Already font-semibold -->
                         <ul class="list-disc list-inside space-y-2 text-gray-300">
-                            <li>Docker & Docker Swarm</li>
-                            <li>Nginx</li>
-                            <li>Ansible</li>
-                            <li>Apache Spark</li>
-                            <li>CI/CD (Implied)</li>
+                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Docker & Docker
+                                Swarm</li> <!-- Added fade-inner-item, Restored duration-500 -->
+                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Nginx</li>
+                            <!-- Added fade-inner-item, Restored duration-500 -->
+                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Ansible</li>
+                            <!-- Added fade-inner-item, Restored duration-500 -->
+                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Apache Spark</li>
+                            <!-- Added fade-inner-item, Restored duration-500 -->
+                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">CI/CD (Implied)
+                            </li> <!-- Added fade-inner-item, Restored duration-500 -->
                         </ul>
                     </div>
                 </div>
@@ -248,183 +207,498 @@
         </section>
 
         <!-- Work Experience Section -->
-        <section id="experience" class="container mx-auto px-4 py-16">
-            <h2 class="text-2xl font-bold text-center text-gray-200 mb-16">Professional Experience</h2>
-            <div class="space-y-8 max-w-3xl mx-auto">
-                <!-- Job 1: Pardazesh Etelaat Kian -->
-                <div
-                    class="bg-slate-800 p-6 rounded-lg shadow-sm border-l-4 border-indigo-600 border border-slate-700 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl">
-                    <!-- Slate bg, Indigo border -->
-                    <h3 class="text-xl font-semibold text-white">Senior ML Engineer / Data Scientist</h3>
-                    <p class="text-lg font-medium text-gray-300 mb-3">Pardazesh Etelaat Kian</p>
-                    <ul class="list-disc list-inside space-y-1 text-gray-400">
-                        <li>Designed and deployed ML pipelines for vehicle plate recognition (CTC), achieving near SOTA
-                            results.</li>
-                        <li>Developed a Farsi OCR system handling complex document layouts and styles.</li>
-                        <li>Built a large-scale image retrieval system using perceptual similarity.</li>
-                        <li>Engineered car detection and multi-object tracking algorithms for traffic analysis.</li>
-                        <li>Implemented perspective-robust YOLOv4-based vehicle plate detection.</li>
-                        <li>Developed iterative watershed process for document de-warping.</li>
-                        <li>Led hiring processes and mentored junior data scientists.</li>
-                    </ul>
+        <section id="experience"
+            class="py-16 border-t border-slate-700 hover:bg-slate-800/50 transition-all duration-300">
+            <!-- Added hover:bg -->
+            <div class="container mx-auto px-6"> <!-- Changed px-4 to px-6 --> <!-- Moved container inside -->
+                <h2 class="text-2xl font-semibold text-center text-gray-200 mb-16"> <!-- Restored mb-16 -->
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="inline-block h-6 w-6 mr-2 align-middle">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M8.25 21h7.5M12 6v9" />
+                    </svg>
+                    Professional Experience
+                </h2>
+                <!-- font-bold to font-semibold -->
+                <div class="space-y-8 max-w-3xl mx-auto"> <!-- Restored space-y-8 -->
+                    <!-- Job 1: Pardazesh Etelaat Kian -->
+                    <div
+                        class="experience-entry bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-700 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl hover:bg-slate-700">
+                        <!-- Restored p-6, Removed border-l, Added hover:bg -->
+                        <!-- Added experience-entry, removed fade classes -->
+                        <!-- Slate bg, Indigo border -->
+                        <h3
+                            class="fade-inner-item text-xl font-semibold text-white opacity-0 transition-all duration-500 ease-out">
+                            Senior ML Engineer / Data Scientist</h3>
+                        <!-- Added fade-inner-item, Restored duration-500 -->
+                        <!-- Already font-semibold -->
+                        <p
+                            class="fade-inner-item text-lg font-medium text-gray-300 mb-3 opacity-0 transition-all duration-500 ease-out">
+                            Pardazesh Etelaat Kian</p> <!-- Added fade-inner-item, Restored duration-500 -->
+                        <ul class="list-disc list-inside space-y-1 text-gray-400">
+                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Designed and
+                                deployed ML pipelines for vehicle plate recognition (CTC), achieving near SOTA results.
+                            </li> <!-- Added fade-inner-item, Restored duration-500 -->
+                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Developed a Farsi
+                                OCR system handling complex document layouts and styles.</li>
+                            <!-- Added fade-inner-item, Restored duration-500 -->
+                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Built a
+                                large-scale image retrieval system using perceptual similarity.</li>
+                            <!-- Added fade-inner-item, Restored duration-500 -->
+                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Engineered car
+                                detection and multi-object tracking algorithms for traffic analysis.</li>
+                            <!-- Added fade-inner-item, Restored duration-500 -->
+                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Implemented
+                                perspective-robust YOLOv4-based vehicle plate detection.</li>
+                            <!-- Added fade-inner-item, Restored duration-500 -->
+                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Developed
+                                iterative watershed process for document de-warping.</li>
+                            <!-- Added fade-inner-item, Restored duration-500 -->
+                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Led hiring
+                                processes and mentored junior data scientists.</li>
+                            <!-- Added fade-inner-item, Restored duration-500 -->
+                        </ul>
+                    </div>
+                    <!-- Job 2: Nikaat Corp -->
+                    <div
+                        class="experience-entry bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-700 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl hover:bg-slate-700">
+                        <!-- Restored p-6, Removed border-l, Added hover:bg -->
+                        <!-- Added experience-entry, removed fade classes -->
+                        <!-- Slate bg, Teal border -->
+                        <h3
+                            class="fade-inner-item text-xl font-semibold text-white opacity-0 transition-all duration-500 ease-out">
+                            Senior Backend Engineer / Tech Lead</h3>
+                        <!-- Added fade-inner-item, Restored duration-500 -->
+                        <!-- Already font-semibold -->
+                        <p
+                            class="fade-inner-item text-lg font-medium text-gray-300 mb-3 opacity-0 transition-all duration-500 ease-out">
+                            Nikaat Corp</p> <!-- Added fade-inner-item, Restored duration-500 -->
+                        <ul class="list-disc list-inside space-y-1 text-gray-400">
+                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Contributed to
+                                design, development, deployment, and technical decisions in a fast-paced startup.</li>
+                            <!-- Added fade-inner-item, Restored duration-500 -->
+                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Developed web
+                                services and APIs (MEAN stack) for applications like Skenas, Atron, Mint, Phosphor.</li>
+                            <!-- Added fade-inner-item, Restored duration-500 -->
+                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Researched and
+                                developed predictive models (e.g., menstrual cycle, currency rates) using time-series
+                                deep learning.</li> <!-- Added fade-inner-item, Restored duration-500 -->
+                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Managed DevOps
+                                workflows and ensured scalable system deployments.</li>
+                            <!-- Added fade-inner-item, Restored duration-500 -->
+                        </ul>
+                    </div>
+                    <!-- Job 3: Vestaak -->
+                    <div
+                        class="experience-entry bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-700 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl hover:bg-slate-700">
+                        <!-- Restored p-6, Removed border-l, Added hover:bg -->
+                        <!-- Added experience-entry, removed fade classes -->
+                        <!-- Slate bg, Indigo border -->
+                        <h3
+                            class="fade-inner-item text-xl font-semibold text-white opacity-0 transition-all duration-500 ease-out">
+                            Python Developer</h3> <!-- Added fade-inner-item, Restored duration-500 -->
+                        <!-- Already font-semibold -->
+                        <p
+                            class="fade-inner-item text-lg font-medium text-gray-300 mb-3 opacity-0 transition-all duration-500 ease-out">
+                            Vestaak</p> <!-- Added fade-inner-item, Restored duration-500 -->
+                        <ul class="list-disc list-inside space-y-1 text-gray-400">
+                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Developed a
+                                personalized content recommendation engine (Python, Scikit-learn) using Telegram API
+                                data.</li> <!-- Added fade-inner-item, Restored duration-500 -->
+                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Implemented
+                                collaborative filtering and content-based filtering algorithms.</li>
+                            <!-- Added fade-inner-item, Restored duration-500 -->
+                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Assisted in
+                                designing and developing RESTful APIs (Python, Flask).</li>
+                            <!-- Added fade-inner-item, Restored duration-500 -->
+                        </ul>
+                    </div>
                 </div>
-                <!-- Job 2: Nikaat Corp -->
-                <div
-                    class="bg-slate-800 p-6 rounded-lg shadow-sm border-l-4 border-teal-600 border border-slate-700 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl">
-                    <!-- Slate bg, Teal border -->
-                    <h3 class="text-xl font-semibold text-white">Senior Backend Engineer / Tech Lead</h3>
-                    <p class="text-lg font-medium text-gray-300 mb-3">Nikaat Corp</p>
-                    <ul class="list-disc list-inside space-y-1 text-gray-400">
-                        <li>Contributed to design, development, deployment, and technical decisions in a fast-paced
-                            startup.
-                        </li>
-                        <li>Developed web services and APIs (MEAN stack) for applications like Skenas, Atron, Mint,
-                            Phosphor.</li>
-                        <li>Researched and developed predictive models (e.g., menstrual cycle, currency rates) using
-                            time-series deep learning.</li>
-                        <li>Managed DevOps workflows and ensured scalable system deployments.</li>
-                    </ul>
-                </div>
-                <!-- Job 3: Vestaak -->
-                <div
-                    class="bg-slate-800 p-6 rounded-lg shadow-sm border-l-4 border-indigo-600 border border-slate-700 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl">
-                    <!-- Slate bg, Indigo border -->
-                    <h3 class="text-xl font-semibold text-white">Python Developer</h3>
-                    <p class="text-lg font-medium text-gray-300 mb-3">Vestaak</p>
-                    <ul class="list-disc list-inside space-y-1 text-gray-400">
-                        <li>Developed a personalized content recommendation engine (Python, Scikit-learn) using Telegram
-                            API
-                            data.</li>
-                        <li>Implemented collaborative filtering and content-based filtering algorithms.</li>
-                        <li>Assisted in designing and developing RESTful APIs (Python, Flask).</li>
-                    </ul>
-                </div>
-            </div>
+            </div> <!-- Close space-y -->
+            </div> <!-- Close container -->
         </section>
 
         <!-- Education & Publications Section -->
-        <section id="education" class="bg-slate-800 py-16"> <!-- Slate background -->
-            <div class="container mx-auto px-4">
-                <h2 class="text-2xl font-bold text-center text-gray-200 mb-16">Education & Research</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <section id="education"
+            class="py-16 border-t border-slate-700 hover:bg-slate-800/50 transition-all duration-300">
+            <!-- Added hover:bg, removed brightness -->
+            <div class="container mx-auto px-6"> <!-- Changed px-4 to px-6 -->
+                <h2 class="text-2xl font-semibold text-center text-gray-200 mb-16"> <!-- Restored mb-16 -->
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="inline-block h-6 w-6 mr-2 align-middle">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" />
+                    </svg>
+                    Education & Research
+                </h2>
+                <!-- font-bold to font-semibold -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto"> <!-- Restored gap-8 -->
                     <!-- Education Column -->
-                    <div class="space-y-6">
-                        <h3 class="text-2xl font-semibold mb-4 text-white">Education</h3>
+                    <div class="space-y-6"> <!-- Restored space-y-6 -->
+                        <h3
+                            class="fade-inner-item text-2xl font-semibold mb-4 text-white opacity-0 transition-all duration-500 ease-out">
+                            Education</h3> <!-- Added fade-inner-item, Restored duration-500 -->
                         <!-- MSc UOttawa -->
                         <div
-                            class="bg-slate-700 p-4 rounded-lg shadow-sm border border-slate-600 transition duration-300 ease-in-out hover:shadow-md">
+                            class="education-entry bg-slate-700 p-6 rounded-lg shadow-sm border border-slate-600 transition-all duration-300 ease-in-out hover:shadow-md hover:-translate-y-1 hover:bg-slate-600">
+                            <!-- Restored p-6, Added hover:bg -->
+                            <!-- Added education-entry, removed fade classes -->
                             <!-- Slate block bg -->
-                            <p class="font-semibold text-lg text-white">MSc. Computer Science</p>
-                            <p class="text-gray-300">University of Ottawa</p>
-                            <p class="text-sm text-gray-400">Sep 2021 - Dec 2024 | GPA: 8.5/10</p>
-                            <p class="text-sm text-gray-300 mt-1">Project Highlight: Evaluating flaky simulators in
-                                autonomous driving testing.</p>
+                            <p
+                                class="fade-inner-item font-semibold text-lg text-white opacity-0 transition-all duration-500 ease-out">
+                                MSc. Computer Science</p> <!-- Added fade-inner-item, Restored duration-500 -->
+                            <!-- Already font-semibold -->
+                            <p class="fade-inner-item text-gray-300 opacity-0 transition-all duration-500 ease-out">
+                                University of Ottawa</p> <!-- Added fade-inner-item, Restored duration-500 -->
+                            <p
+                                class="fade-inner-item text-sm text-gray-400 opacity-0 transition-all duration-500 ease-out">
+                                Sep 2021 - Dec 2024 | GPA: 8.5/10</p>
+                            <!-- Added fade-inner-item, Restored duration-500 -->
+                            <p
+                                class="fade-inner-item text-sm text-gray-300 mt-1 opacity-0 transition-all duration-500 ease-out">
+                                Project Highlight: Evaluating flaky simulators in autonomous driving testing.</p>
+                            <!-- Added fade-inner-item, Restored duration-500 -->
                         </div>
                         <!-- MSc SUT -->
                         <div
-                            class="bg-slate-700 p-4 rounded-lg shadow-sm border border-slate-600 transition duration-300 ease-in-out hover:shadow-md">
-                            <p class="font-semibold text-lg text-white">MSc. Software Engineering</p>
-                            <p class="text-gray-300">Sharif University of Technology (SUT)</p>
-                            <p class="text-sm text-gray-400">GPA: 16.37/20</p>
-                            <p class="text-sm text-gray-300 mt-1">Thesis: Estimating Protein-Protein Interaction Network
-                                similarity.</p>
-                            <p class="text-sm text-gray-300 mt-1">Project: StackOverflow response time prediction using
-                                BERT.</p>
+                            class="education-entry bg-slate-700 p-6 rounded-lg shadow-sm border border-slate-600 transition-all duration-300 ease-in-out hover:shadow-md hover:-translate-y-1 hover:bg-slate-600">
+                            <!-- Restored p-6, Added hover:bg -->
+                            <!-- Added education-entry, removed fade classes -->
+                            <p
+                                class="fade-inner-item font-semibold text-lg text-white opacity-0 transition-all duration-500 ease-out">
+                                MSc. Software Engineering</p> <!-- Added fade-inner-item, Restored duration-500 -->
+                            <!-- Already font-semibold -->
+                            <p class="fade-inner-item text-gray-300 opacity-0 transition-all duration-500 ease-out">
+                                Sharif University of Technology (SUT)</p>
+                            <!-- Added fade-inner-item, Restored duration-500 -->
+                            <p
+                                class="fade-inner-item text-sm text-gray-400 opacity-0 transition-all duration-500 ease-out">
+                                GPA: 16.37/20</p> <!-- Added fade-inner-item, Restored duration-500 -->
+                            <p
+                                class="fade-inner-item text-sm text-gray-300 mt-1 opacity-0 transition-all duration-500 ease-out">
+                                Thesis: Estimating Protein-Protein Interaction Network similarity.</p>
+                            <!-- Added fade-inner-item, Restored duration-500 -->
+                            <p
+                                class="fade-inner-item text-sm text-gray-300 mt-1 opacity-0 transition-all duration-500 ease-out">
+                                Project: StackOverflow response time prediction using BERT.</p>
+                            <!-- Added fade-inner-item, Restored duration-500 -->
                         </div>
                         <!-- BSc AUT -->
                         <div
-                            class="bg-slate-700 p-4 rounded-lg shadow-sm border border-slate-600 transition duration-300 ease-in-out hover:shadow-md">
-                            <p class="font-semibold text-lg text-white">BSc. Computer Science</p>
-                            <p class="text-gray-300">Amirkabir University of Technology (AUT)</p>
-                            <p class="text-sm text-gray-400">GPA: 16.11/20 (3.41/4.0)</p>
-                            <p class="text-sm text-gray-300 mt-1">Project: Information Retrieval using
-                                Word2Vec/Sent2Vec.
-                            </p>
+                            class="education-entry bg-slate-700 p-6 rounded-lg shadow-sm border border-slate-600 transition-all duration-300 ease-in-out hover:shadow-md hover:-translate-y-1 hover:bg-slate-600">
+                            <!-- Restored p-6, Added hover:bg -->
+                            <!-- Added education-entry, removed fade classes -->
+                            <p
+                                class="fade-inner-item font-semibold text-lg text-white opacity-0 transition-all duration-500 ease-out">
+                                BSc. Computer Science</p> <!-- Added fade-inner-item, Restored duration-500 -->
+                            <!-- Already font-semibold -->
+                            <p class="fade-inner-item text-gray-300 opacity-0 transition-all duration-500 ease-out">
+                                Amirkabir University of Technology (AUT)</p>
+                            <!-- Added fade-inner-item, Restored duration-500 -->
+                            <p
+                                class="fade-inner-item text-sm text-gray-400 opacity-0 transition-all duration-500 ease-out">
+                                GPA: 16.11/20 (3.41/4.0)</p> <!-- Added fade-inner-item, Restored duration-500 -->
+                            <p
+                                class="fade-inner-item text-sm text-gray-300 mt-1 opacity-0 transition-all duration-500 ease-out">
+                                Project: Information Retrieval using Word2Vec/Sent2Vec.</p>
+                            <!-- Added fade-inner-item, Restored duration-500 -->
                         </div>
                     </div>
                     <!-- Publications Column -->
-                    <div class="space-y-6">
-                        <h3 class="text-2xl font-semibold mb-4 text-white">Publications</h3>
+                    <div class="space-y-6"> <!-- Restored space-y-6 -->
+                        <h3
+                            class="fade-inner-item text-2xl font-semibold mb-4 text-white opacity-0 transition-all duration-500 ease-out">
+                            Publications</h3> <!-- Added fade-inner-item, Restored duration-500 -->
+                        <!-- Already font-semibold -->
                         <div
-                            class="bg-slate-700 p-4 rounded-lg shadow-sm border border-slate-600 transition duration-300 ease-in-out hover:shadow-md">
-                            <p class="font-semibold text-gray-100">EMSE 2024</p>
-                            <p class="text-sm text-gray-300">Mohammad Hossein Amini, Shervin Naseri, Shiva Nejati:
-                                Evaluating the impact of flaky simulators on testing autonomous driving systems.</p>
+                            class="publication-entry bg-slate-700 p-6 rounded-lg shadow-sm border border-slate-600 transition-all duration-300 ease-in-out hover:shadow-md hover:-translate-y-1 hover:bg-slate-600">
+                            <!-- Restored p-6, Added hover:bg -->
+                            <!-- Added publication-entry, removed fade classes -->
+                            <p
+                                class="fade-inner-item font-semibold text-gray-100 opacity-0 transition-all duration-500 ease-out">
+                                EMSE 2024</p> <!-- Added fade-inner-item, Restored duration-500 -->
+                            <p
+                                class="fade-inner-item text-sm text-gray-300 opacity-0 transition-all duration-500 ease-out">
+                                Mohammad Hossein Amini, Shervin Naseri, Shiva Nejati: Evaluating the impact of flaky
+                                simulators on testing autonomous driving systems.</p>
+                            <!-- Added fade-inner-item, Restored duration-500 -->
                         </div>
                         <div
-                            class="bg-slate-700 p-4 rounded-lg shadow-sm border border-slate-600 transition duration-300 ease-in-out hover:shadow-md">
-                            <p class="font-semibold text-gray-100">ICCG 2019</p>
-                            <p class="text-sm text-gray-300">Zahed Rahmati, Sina Farahzad and Shervin Naseri, Counting
-                                Closed Billiard Paths.</p>
+                            class="publication-entry bg-slate-700 p-6 rounded-lg shadow-sm border border-slate-600 transition-all duration-300 ease-in-out hover:shadow-md hover:-translate-y-1 hover:bg-slate-600">
+                            <!-- Restored p-6, Added hover:bg -->
+                            <!-- Added publication-entry, removed fade classes -->
+                            <p
+                                class="fade-inner-item font-semibold text-gray-100 opacity-0 transition-all duration-500 ease-out">
+                                ICCG 2019</p> <!-- Added fade-inner-item, Restored duration-500 -->
+                            <p
+                                class="fade-inner-item text-sm text-gray-300 opacity-0 transition-all duration-500 ease-out">
+                                Zahed Rahmati, Sina Farahzad and Shervin Naseri, Counting Closed Billiard Paths.</p>
+                            <!-- Added fade-inner-item, Restored duration-500 -->
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- Featured Projects Section (Moved Down) -->
+        <section id="projects"
+            class="py-16 border-t border-slate-700 hover:bg-slate-800/50 transition-all duration-300">
+            <!-- Added hover:bg, removed brightness -->
+            <div class="container mx-auto px-6"> <!-- Changed px-4 to px-6 -->
+                <h2 class="text-2xl font-semibold text-center text-gray-200 mb-16"> <!-- Restored mb-16 -->
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="inline-block h-6 w-6 mr-2 align-middle">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M20.25 14.15v4.07a2.25 2.25 0 0 1-2.25 2.25h-13.5a2.25 2.25 0 0 1-2.25-2.25v-4.07m18-4.07-9 5.25-9-5.25m18 0v-4.07a2.25 2.25 0 0 0-2.25-2.25h-13.5a2.25 2.25 0 0 0-2.25 2.25v4.07m18 0-9 5.25-9-5.25" />
+                    </svg>
+                    Featured Projects
+                </h2>
+                <!-- font-bold to font-semibold -->
+                <!-- Adjusted text color -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8"> <!-- Restored gap-8 -->
+                    <!-- Project Card 1: Plate Recognition -->
+                    <div
+                        class="project-card bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-700 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl hover:bg-slate-700">
+                        <!-- Restored p-6, Removed border-l, Added hover:bg -->
+                        <!-- Added project-card class -->
+                        <!-- Slate bg, Indigo border -->
+                        <h3
+                            class="fade-inner-item text-xl font-semibold mb-2 text-white opacity-0 transition-all duration-500 ease-out">
+                            Vehicle Plate Recognition</h3> <!-- Added fade-inner-item, Restored duration-500 -->
+                        <!-- Already font-semibold -->
+                        <p
+                            class="fade-inner-item text-gray-400 mb-4 flex-grow opacity-0 transition-all duration-500 ease-out">
+                            Designed and deployed a high-performance vehicle plate recognition system using
+                            Connectionist Temporal Classification (CTC), achieving near state-of-the-art results for
+                            traffic analysis applications.</p> <!-- Added fade-inner-item, Restored duration-500 -->
+                        <div
+                            class="fade-inner-item flex flex-wrap gap-2 opacity-0 transition-all duration-500 ease-out">
+                            <!-- Added fade-inner-item, Restored duration-500 -->
+                            <!-- Adjusted tag colors for dark theme -->
+                            <span
+                                class="bg-blue-800 text-blue-300 text-xs font-medium px-2.5 py-0.5 rounded">Python</span>
+                            <span
+                                class="bg-orange-800 text-orange-300 text-xs font-medium px-2.5 py-0.5 rounded">TensorFlow/PyTorch</span>
+                            <span
+                                class="bg-purple-800 text-purple-300 text-xs font-medium px-2.5 py-0.5 rounded">CTC</span>
+                            <span class="bg-green-800 text-green-300 text-xs font-medium px-2.5 py-0.5 rounded">Computer
+                                Vision</span>
+                        </div>
+                    </div>
+                    <!-- Project Card 2: Farsi OCR -->
+                    <div
+                        class="project-card bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-700 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl hover:bg-slate-700">
+                        <!-- Restored p-6, Removed border-l, Added hover:bg -->
+                        <!-- Added project-card class -->
+                        <!-- Slate bg, Teal border -->
+                        <h3
+                            class="fade-inner-item text-xl font-semibold mb-2 text-white opacity-0 transition-all duration-500 ease-out">
+                            Farsi OCR System</h3> <!-- Added fade-inner-item, Restored duration-500 -->
+                        <!-- Already font-semibold -->
+                        <p
+                            class="fade-inner-item text-gray-400 mb-4 flex-grow opacity-0 transition-all duration-500 ease-out">
+                            Developed an OCR system for scanned Farsi documents, including paragraph/footer detection
+                            and handling unique poetic indentation styles.</p>
+                        <!-- Added fade-inner-item, Restored duration-500 -->
+                        <div
+                            class="fade-inner-item flex flex-wrap gap-2 opacity-0 transition-all duration-500 ease-out">
+                            <!-- Added fade-inner-item, Restored duration-500 -->
+                            <span
+                                class="bg-blue-800 text-blue-300 text-xs font-medium px-2.5 py-0.5 rounded">Python</span>
+                            <span class="bg-green-800 text-green-300 text-xs font-medium px-2.5 py-0.5 rounded">Computer
+                                Vision</span>
+                            <span
+                                class="bg-yellow-800 text-yellow-300 text-xs font-medium px-2.5 py-0.5 rounded">OCR</span>
+                        </div>
+                    </div>
+                    <!-- Project Card 3: Predictive Models -->
+                    <div
+                        class="project-card bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-700 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl hover:bg-slate-700">
+                        <!-- Restored p-6, Removed border-l, Added hover:bg -->
+                        <!-- Added project-card class -->
+                        <!-- Slate bg, Indigo border -->
+                        <h3
+                            class="fade-inner-item text-xl font-semibold mb-2 text-white opacity-0 transition-all duration-500 ease-out">
+                            Predictive Models (Nikaat)</h3> <!-- Added fade-inner-item, Restored duration-500 -->
+                        <!-- Already font-semibold -->
+                        <p
+                            class="fade-inner-item text-gray-400 mb-4 flex-grow opacity-0 transition-all duration-500 ease-out">
+                            Researched and developed predictive models, including menstrual cycle forecasting and
+                            currency exchange rate prediction, leveraging time-series deep learning architectures.</p>
+                        <!-- Added fade-inner-item, Restored duration-500 -->
+                        <div
+                            class="fade-inner-item flex flex-wrap gap-2 opacity-0 transition-all duration-500 ease-out">
+                            <!-- Added fade-inner-item, Restored duration-500 -->
+                            <span
+                                class="bg-blue-800 text-blue-300 text-xs font-medium px-2.5 py-0.5 rounded">Python</span>
+                            <span class="bg-red-800 text-red-300 text-xs font-medium px-2.5 py-0.5 rounded">Deep
+                                Learning</span>
+                            <span class="bg-slate-700 text-slate-300 text-xs font-medium px-2.5 py-0.5 rounded">Time
+                                Series</span> <!-- Adjusted gray tag -->
+                            <span
+                                class="bg-indigo-800 text-indigo-300 text-xs font-medium px-2.5 py-0.5 rounded">Node.js</span>
+                        </div>
+                    </div>
+                    <!-- Project Card 4: Content Recommendation -->
+                    <div
+                        class="project-card bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-700 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl hover:bg-slate-700">
+                        <!-- Restored p-6, Removed border-l, Added hover:bg -->
+                        <!-- Added project-card class -->
+                        <!-- Slate bg, Teal border -->
+                        <h3
+                            class="fade-inner-item text-xl font-semibold mb-2 text-white opacity-0 transition-all duration-500 ease-out">
+                            Content Recommendation Engine (Vestaak)</h3>
+                        <!-- Added fade-inner-item, Restored duration-500 -->
+                        <!-- Already font-semibold -->
+                        <p
+                            class="fade-inner-item text-gray-400 mb-4 flex-grow opacity-0 transition-all duration-500 ease-out">
+                            Developed a personalized content recommendation engine using Python and Scikit-learn,
+                            utilizing data crawled from the Telegram API and implementing collaborative/content-based
+                            filtering.</p> <!-- Added fade-inner-item, Restored duration-500 -->
+                        <div
+                            class="fade-inner-item flex flex-wrap gap-2 opacity-0 transition-all duration-500 ease-out">
+                            <!-- Added fade-inner-item, Restored duration-500 -->
+                            <span
+                                class="bg-blue-800 text-blue-300 text-xs font-medium px-2.5 py-0.5 rounded">Python</span>
+                            <span
+                                class="bg-yellow-800 text-yellow-300 text-xs font-medium px-2.5 py-0.5 rounded">Scikit-learn</span>
+                            <span
+                                class="bg-pink-800 text-pink-300 text-xs font-medium px-2.5 py-0.5 rounded">Recommendation
+                                Systems</span>
+                            <span class="bg-teal-800 text-teal-300 text-xs font-medium px-2.5 py-0.5 rounded">API
+                                Crawling</span>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- Close grid -->
+            </div> <!-- Close container -->
+        </section>
+
         <!-- Personal Projects & Interests Section -->
-        <section id="personal-projects" class="container mx-auto px-4 py-16">
-            <h2 class="text-2xl font-bold text-center text-gray-200 mb-16">Personal Explorations</h2>
-            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Project: Texture Modding -->
-                <div
-                    class="bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-700 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl">
-                    <!-- Slate bg -->
-                    <h3 class="text-xl font-semibold mb-2 text-white">Texture Modding Tools</h3>
-                    <p class="text-gray-400">Automated Binary Domain texture modding using scripting and external tools
-                        to
-                        streamline content creation.</p>
+        <section id="personal-projects"
+            class="py-16 border-t border-slate-700 hover:bg-slate-800/50 transition-all duration-300">
+            <!-- Added hover:bg, removed brightness -->
+            <div class="container mx-auto px-6"> <!-- Changed px-4 to px-6 --> <!-- Moved container inside -->
+                <h2 class="text-2xl font-semibold text-center text-gray-200 mb-16"> <!-- Restored mb-16 -->
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="inline-block h-6 w-6 mr-2 align-middle">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M9.75 3.104v5.714a2.25 2.25 0 0 1-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 0 1 4.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0 1 12 15a9.065 9.065 0 0 0-6.23-.693L4.2 15.3a2.25 2.25 0 0 0-1.152 1.943l-.003.012A2.25 2.25 0 0 0 4.2 19.5h15.6a2.25 2.25 0 0 0 1.153-1.943l-.003-.012a2.25 2.25 0 0 0-1.152-1.943M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                    </svg>
+                    Personal Explorations
+                </h2>
+                <!-- font-bold to font-semibold -->
+                <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8"> <!-- Restored gap-8 -->
+                    <!-- Project: Texture Modding -->
+                    <div
+                        class="personal-project-card bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-700 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl hover:bg-slate-700">
+                        <!-- Restored p-6, Added hover:bg -->
+                        <!-- Added personal-project-card, removed fade classes -->
+                        <!-- Slate bg -->
+                        <h3
+                            class="fade-inner-item text-xl font-semibold mb-2 text-white opacity-0 transition-all duration-500 ease-out">
+                            <!-- Restored duration-500 -->
+                            Texture Modding Tools
+                        </h3> <!-- Added fade-inner-item -->
+                        <!-- Already font-semibold -->
+                        <p class="fade-inner-item text-gray-400 opacity-0 transition-all duration-500 ease-out">
+                            <!-- Restored duration-500 -->
+                            Automated Binary Domain texture modding using scripting and external tools to streamline
+                            content creation.
+                        </p> <!-- Added fade-inner-item -->
+                    </div>
+                    <!-- Project: Video Compression -->
+                    <div
+                        class="personal-project-card bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-700 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl hover:bg-slate-700">
+                        <!-- Restored p-6, Added hover:bg -->
+                        <!-- Added personal-project-card, removed fade classes -->
+                        <h3
+                            class="fade-inner-item text-xl font-semibold mb-2 text-white opacity-0 transition-all duration-500 ease-out">
+                            <!-- Restored duration-500 -->
+                            Video Compression Research <span class="text-sm font-normal text-orange-400">(WIP)</span>
+                        </h3> <!-- Added fade-inner-item -->
+                        <!-- Already font-semibold -->
+                        <p class="fade-inner-item text-gray-400 opacity-0 transition-all duration-500 ease-out">
+                            <!-- Restored duration-500 -->
+                            Exploring video compression techniques focusing on efficiency through temporal redundancy
+                            and bit-packing.
+                        </p> <!-- Added fade-inner-item -->
+                    </div>
+                    <!-- Project: Large Model Training -->
+                    <div
+                        class="personal-project-card bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-700 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl hover:bg-slate-700">
+                        <!-- Restored p-6, Added hover:bg -->
+                        <!-- Added personal-project-card, removed fade classes -->
+                        <h3
+                            class="fade-inner-item text-xl font-semibold mb-2 text-white opacity-0 transition-all duration-500 ease-out">
+                            <!-- Restored duration-500 -->
+                            Large Model Training Research
+                        </h3> <!-- Added fade-inner-item -->
+                        <!-- Already font-semibold -->
+                        <p class="fade-inner-item text-gray-400 opacity-0 transition-all duration-500 ease-out">
+                            <!-- Restored duration-500 -->
+                            Investigating methods to enhance large model training convergence through custom layer
+                            design.
+                        </p> <!-- Added fade-inner-item -->
+                    </div>
+                    <!-- Project: Agent Interaction Language -->
+                    <div
+                        class="personal-project-card bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-700 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl hover:bg-slate-700">
+                        <!-- Restored p-6, Added hover:bg -->
+                        <!-- Added personal-project-card, removed fade classes -->
+                        <h3
+                            class="fade-inner-item text-xl font-semibold mb-2 text-white opacity-0 transition-all duration-500 ease-out">
+                            <!-- Restored duration-500 -->
+                            Agent Interaction Language Design <span
+                                class="text-sm font-normal text-orange-400">(WIP)</span>
+                        </h3>
+                        <!-- Added fade-inner-item -->
+                        <!-- Already font-semibold -->
+                        <p class="fade-inner-item text-gray-400 opacity-0 transition-all duration-500 ease-out">
+                            <!-- Restored duration-500 -->
+                            Designing a domain-specific language to define virtual agent interactions for improved
+                            software interoperability.
+                        </p> <!-- Added fade-inner-item -->
+                    </div>
                 </div>
-                <!-- Project: Video Compression -->
-                <div
-                    class="bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-700 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl">
-                    <h3 class="text-xl font-semibold mb-2 text-white">Video Compression Research <span
-                            class="text-sm font-normal text-orange-400">(WIP)</span></h3>
-                    <p class="text-gray-400">Exploring video compression techniques focusing on efficiency through
-                        temporal
-                        redundancy and bit-packing.</p>
+                <div class="text-center mt-10">
+                    <h3 class="text-xl font-semibold mb-3 text-gray-300">Core Interests</h3>
+                    <p class="text-gray-400">Software Engineering, Algorithms, Machine Learning, Computer Graphics,
+                        Problem-Solving</p>
                 </div>
-                <!-- Project: Large Model Training -->
-                <div
-                    class="bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-700 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl">
-                    <h3 class="text-xl font-semibold mb-2 text-white">Large Model Training Research</h3>
-                    <p class="text-gray-400">Investigating methods to enhance large model training convergence through
-                        custom layer design.</p>
-                </div>
-                <!-- Project: Agent Interaction Language -->
-                <div
-                    class="bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-700 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl">
-                    <h3 class="text-xl font-semibold mb-2 text-white">Agent Interaction Language Design <span
-                            class="text-sm font-normal text-orange-400">(WIP)</span></h3>
-                    <p class="text-gray-400">Designing a domain-specific language to define virtual agent interactions
-                        for
-                        improved software interoperability.</p>
-                </div>
-            </div>
-            <div class="text-center mt-10">
-                <h3 class="text-xl font-semibold mb-3 text-gray-300">Core Interests</h3>
-                <p class="text-gray-400">Software Engineering, Algorithms, Machine Learning, Computer Graphics,
-                    Problem-Solving</p>
-            </div>
+            </div> <!-- Close container -->
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="bg-slate-800 py-20"> <!-- Slate background -->
-            <div class="container mx-auto px-4 text-center">
-                <h2 class="text-2xl font-bold text-center text-gray-200 mb-16">Get In Touch</h2>
+        <section id="contact" class="py-16 border-t border-slate-700 hover:bg-slate-800/50 transition-all duration-300">
+            <!-- Added hover:bg, removed brightness -->
+            <!-- Removed sticky classes -->
+            <div class="container mx-auto px-6"> <!-- Changed px-4 to px-6 -->
+                <h2 class="text-2xl font-semibold text-center text-gray-200 mb-16"> <!-- Restored mb-16 -->
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="inline-block h-6 w-6 mr-2 align-middle">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                    </svg>
+                    Get In Touch
+                </h2>
+                <!-- font-bold to font-semibold -->
                 <p class="text-lg text-gray-400 mb-8">Feel free to reach out via email or connect with me on
                     professional
                     platforms.</p>
                 <div class="flex justify-center items-center space-x-6">
                     <a href="mailto:shervin.naseri@gmail.com"
-                        class="text-indigo-400 hover:text-indigo-300 hover:underline text-lg">
+                        class="text-indigo-400 hover:text-indigo-300 hover:underline text-lg transition transform hover:scale-105 duration-200 inline-block">
+                        <!-- Added transition/scale -->
                         shervin.naseri@gmail.com
                     </a>
                     <a href="https://www.linkedin.com/in/shervin-naseri-b3a016b0/" target="_blank"
                         rel="noopener noreferrer"
-                        class="text-indigo-400 hover:text-indigo-300 hover:underline text-lg">LinkedIn</a>
+                        class="text-indigo-400 hover:text-indigo-300 hover:underline text-lg transition transform hover:scale-105 duration-200 inline-block">LinkedIn</a>
+                    <!-- Added transition/scale -->
                     <a href="https://github.com/shervinemp" target="_blank" rel="noopener noreferrer"
-                        class="text-indigo-400 hover:text-indigo-300 hover:underline text-lg">GitHub</a>
+                        class="text-indigo-400 hover:text-indigo-300 hover:underline text-lg transition transform hover:scale-105 duration-200 inline-block">GitHub</a>
+                    <!-- Added transition/scale -->
                 </div>
             </div>
         </section>
@@ -440,7 +714,9 @@
 
         <!-- Back to Top Button -->
         <button id="back-to-top" title="Back to Top"
-            class="hidden fixed bottom-6 right-6 p-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full shadow-lg transition duration-300 z-10">
+            class="hidden fixed bottom-6 right-6 p-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full shadow-lg transition-all duration-300 z-10 transform hover:scale-110 active:scale-100">
+            <!-- Added active:scale-100 -->
+            <!-- Added scale -->
             <!-- Adjusted button color -->
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor" stroke-width="2">

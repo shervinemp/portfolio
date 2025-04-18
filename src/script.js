@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.getElementById('menu-toggle');
     const sidebar = document.getElementById('sidebar');
     const mainContent = document.getElementById('main-content');
+    const sidebarNav = document.getElementById('sidebar'); // Define sidebarNav once here
 
     if (menuToggle && sidebar && mainContent) {
         menuToggle.addEventListener('click', () => {
@@ -71,26 +72,35 @@ document.addEventListener('DOMContentLoaded', () => {
     // Fade-in animation on scroll
     const observerOptions = {
         root: null, // relative to document viewport
-        rootMargin: '0px',
-        threshold: 0.1 // trigger when 10% of the element is visible
+        rootMargin: '0px', // Removed negative margin
+        threshold: 0.1 // trigger when 10% of the element is visible (Reverted from 0.25)
     };
+
+    // Removed delay counter logic
 
     const observerCallback = (entries, observer) => {
         entries.forEach(entry => {
+            const target = entry.target;
             if (entry.isIntersecting) {
-                entry.target.classList.remove('opacity-0');
-                // Optional: Add a slight delay or other effects if needed
-                // entry.target.classList.add('translate-y-0'); // If using translate for animation start
-                observer.unobserve(entry.target); // Stop observing once faded in
+                // Element is entering the viewport - Fade In
+                target.style.transitionDelay = '0ms'; // Ensure no residual delay
+                target.classList.remove('opacity-0');
+                // Optional: Add translate effect if desired, e.g., target.classList.add('translate-y-0');
+                // We don't unobserve anymore to allow fade-out
+            } else {
+                // Element is leaving the viewport - Fade Out
+                target.classList.add('opacity-0');
+                target.style.transitionDelay = '0ms'; // Reset delay on fade out
+                // Optional: Reset translate effect if used, e.g., target.classList.remove('translate-y-0');
             }
         });
     };
 
     const observer = new IntersectionObserver(observerCallback, observerOptions);
 
-    const sectionsToFade = document.querySelectorAll('.fade-in-section');
-    sectionsToFade.forEach(section => {
-        observer.observe(section);
+    const itemsToFade = document.querySelectorAll('.fade-inner-item'); // Target inner items
+    itemsToFade.forEach(item => {
+        observer.observe(item);
     });
 
     // Active link highlighting on scroll
@@ -132,68 +142,44 @@ document.addEventListener('DOMContentLoaded', () => {
         activeLinkObserver.observe(section);
     });
 
-    // Back to Top Button Logic
+    // Back to Top Button Logic & Sidebar Scroll Effect
     const backToTopButton = document.getElementById('back-to-top');
     const mainScrollArea = document.getElementById('main-content'); // Use the main content area for scroll events
+    // sidebarNav is already defined above
 
-    if (backToTopButton && mainScrollArea) {
-        // Show/Hide button based on scroll position within the main content area
-        mainScrollArea.addEventListener('scroll', () => {
-            if (mainScrollArea.scrollTop > 300) { // Show button after scrolling 300px
+    if (backToTopButton && mainScrollArea && sidebarNav) { // Use the existing sidebarNav variable
+        // Show/Hide button and apply sidebar scroll effect based on scroll position
+        // --- Attach listener to window instead of mainScrollArea ---
+        window.addEventListener('scroll', () => {
+            const isScrolled = window.scrollY > 10; // Use window.scrollY
+
+            // Back to top button visibility
+            if (window.scrollY > 300) { // Use window.scrollY
                 backToTopButton.classList.remove('hidden');
             } else {
                 backToTopButton.classList.add('hidden');
+            }
+
+            // Sidebar scroll effect class
+            if (isScrolled) {
+                sidebarNav.classList.add('scrolled');
+            } else {
+                sidebarNav.classList.remove('scrolled');
             }
         });
 
         // Scroll to top when button is clicked
         backToTopButton.addEventListener('click', () => {
+            // --- Scroll the main content area, not the window ---
             mainScrollArea.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
         });
     } else {
-        console.warn("Back to top button or main scroll area not found.");
+        console.warn("Back to top button, main scroll area, or sidebar element not found."); // Updated warning
     }
 
-    // Sidebar Scroll Indicator Logic
-    const scrollIndicator = document.getElementById('scroll-indicator');
-    const sidebarNav = document.getElementById('sidebar'); // Assuming sidebar has id="sidebar"
-
-    if (scrollIndicator && mainScrollArea && sidebarNav) {
-        const updateScrollIndicator = () => {
-            const scrollableHeight = mainScrollArea.scrollHeight - mainScrollArea.clientHeight;
-            const sidebarHeight = sidebarNav.clientHeight;
-            const indicatorMinHeight = 20; // Minimum height in pixels
-
-            if (scrollableHeight <= 0) {
-                scrollIndicator.style.height = `${sidebarHeight}px`; // Full height if no scroll needed
-                scrollIndicator.style.top = '0px';
-                return;
-            }
-
-            // Calculate indicator height based on viewport/content ratio
-            let indicatorHeight = (mainScrollArea.clientHeight / mainScrollArea.scrollHeight) * sidebarHeight;
-            indicatorHeight = Math.max(indicatorHeight, indicatorMinHeight); // Ensure minimum height
-
-            // Calculate indicator top position based on scroll progress
-            const scrollPercentage = mainScrollArea.scrollTop / scrollableHeight;
-            let indicatorTop = scrollPercentage * (sidebarHeight - indicatorHeight);
-
-            // Ensure indicator stays within bounds
-            indicatorTop = Math.max(0, Math.min(indicatorTop, sidebarHeight - indicatorHeight));
-
-            scrollIndicator.style.height = `${indicatorHeight}px`;
-            scrollIndicator.style.top = `${indicatorTop}px`;
-        };
-
-        // Update on scroll and initial load
-        mainScrollArea.addEventListener('scroll', updateScrollIndicator);
-        window.addEventListener('resize', updateScrollIndicator); // Update on resize too
-        updateScrollIndicator(); // Initial calculation
-    } else {
-        console.warn("Scroll indicator, main scroll area, or sidebar element not found.");
-    }
+    // Removed Sidebar Scroll Indicator Logic
 
 });
