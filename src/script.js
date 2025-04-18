@@ -121,9 +121,31 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const activeLinkObserverCallback = (entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const id = entry.target.getAttribute('id');
+        // Check if scrolled to the bottom (or very close)
+        const nearBottom = (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 10; // 10px tolerance
+
+        if (nearBottom) {
+            // If near bottom, force highlight #contact
+            removeActiveClasses();
+            const contactLink = document.querySelector('nav a[href="#contact"]');
+            if (contactLink) {
+                contactLink.classList.add('text-white', 'font-semibold');
+                contactLink.classList.remove('text-gray-300');
+            }
+        } else {
+            // Otherwise, use the standard intersection logic
+            let latestIntersectingEntry = null;
+            entries.forEach(entry => {
+                // Find the entry that is currently intersecting and potentially lowest on the screen
+                if (entry.isIntersecting) {
+                    if (!latestIntersectingEntry || entry.boundingClientRect.top > latestIntersectingEntry.boundingClientRect.top) {
+                        latestIntersectingEntry = entry;
+                    }
+                }
+            });
+
+            if (latestIntersectingEntry) {
+                const id = latestIntersectingEntry.target.getAttribute('id');
                 const correspondingLink = document.querySelector(`nav a[href="#${id}"]`);
 
                 removeActiveClasses(); // Remove active from all links first
@@ -133,7 +155,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     correspondingLink.classList.remove('text-gray-300');
                 }
             }
-        });
+            // If nothing is intersecting according to the observer (e.g., between sections),
+            // the active class remains removed from the previous step.
+        }
     };
 
     const activeLinkObserver = new IntersectionObserver(activeLinkObserverCallback, activeLinkObserverOptions);

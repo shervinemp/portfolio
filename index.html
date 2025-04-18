@@ -18,37 +18,41 @@
     <meta property="og:url" content="https://shervinemp.github.io/portfolio/" />
 </head>
 
-<body class="bg-gradient-to-b from-slate-950 to-slate-800 text-gray-300 font-sans flex leading-relaxed">
+<body class="bg-gradient-to-b from-slate-800 to-slate-950 text-gray-300 font-sans flex leading-relaxed">
     <!-- Restored gradient -->
     <!-- Dark background, light text, flex layout -->
 
     <!-- Vertical Navigation Sidebar -->
     <!-- Hidden on small screens (md:flex shows it on medium and up), increased z-index -->
     <nav id="sidebar"
-        class="w-64 h-screen bg-slate-800 border-r border-slate-700 fixed top-0 left-0 p-6 flex-col space-y-6 z-20 hidden md:flex">
+        class="w-64 h-screen bg-slate-800 border-r border-slate-700 fixed top-0 left-0 p-6 flex flex-col z-20 hidden md:flex">
+        <!-- Removed space-y-6 from nav -->
         <!-- Removed relative -->
         <!-- Switched to slate -->
         <a href="#hero"
             class="text-2xl font-bold text-white hover:text-gray-300 mb-6 transition transform hover:scale-105 duration-200 inline-block">Shervin
             Naseri</a> <!-- Added transition/scale -->
-        <a href="#skills"
-            class="text-indigo-400 hover:text-indigo-300 hover:underline py-2 transition transform hover:scale-105 duration-200 inline-block">Skills</a>
-        <!-- Added transition/scale -->
-        <a href="#experience"
-            class="text-indigo-400 hover:text-indigo-300 hover:underline py-2 transition transform hover:scale-105 duration-200 inline-block">Experience</a>
-        <!-- Added transition/scale -->
-        <a href="#education"
-            class="text-indigo-400 hover:text-indigo-300 hover:underline py-2 transition transform hover:scale-105 duration-200 inline-block">Education</a>
-        <!-- Added transition/scale -->
-        <a href="#projects"
-            class="text-indigo-400 hover:text-indigo-300 hover:underline py-2 transition transform hover:scale-105 duration-200 inline-block">Projects</a>
-        <!-- Added transition/scale -->
-        <a href="#personal-projects"
-            class="text-indigo-400 hover:text-indigo-300 hover:underline py-2 transition transform hover:scale-105 duration-200 inline-block">Personal
-            Projects</a> <!-- Added transition/scale -->
-        <a href="#contact"
-            class="text-indigo-400 hover:text-indigo-300 hover:underline py-2 transition transform hover:scale-105 duration-200 inline-block">Contact</a>
-        <!-- Added transition/scale -->
+        <!-- Wrapper div for nav links -->
+        <div class="flex flex-col space-y-6"> <!-- Added wrapper and applied flex/space here -->
+            <a href="#skills"
+                class="text-indigo-400 hover:text-indigo-300 hover:underline py-2 transition transform hover:scale-105 duration-200 inline-block">Skills</a>
+            <!-- Added transition/scale -->
+            <a href="#experience"
+                class="text-indigo-400 hover:text-indigo-300 hover:underline py-2 transition transform hover:scale-105 duration-200 inline-block">Experience</a>
+            <!-- Added transition/scale -->
+            <a href="#education"
+                class="text-indigo-400 hover:text-indigo-300 hover:underline py-2 transition transform hover:scale-105 duration-200 inline-block">Education</a>
+            <!-- Added transition/scale -->
+            <a href="#projects"
+                class="text-indigo-400 hover:text-indigo-300 hover:underline py-2 transition transform hover:scale-105 duration-200 inline-block">Projects</a>
+            <!-- Added transition/scale -->
+            <a href="#personal-projects"
+                class="text-indigo-400 hover:text-indigo-300 hover:underline py-2 transition transform hover:scale-105 duration-200 inline-block">Personal
+                Projects</a> <!-- Added transition/scale -->
+            <a href="#contact"
+                class="text-indigo-400 hover:text-indigo-300 hover:underline py-2 transition transform hover:scale-105 duration-200 inline-block">Contact</a>
+            <!-- Added transition/scale -->
+        </div>
         <!-- Add more links if needed -->
 
         <!-- Removed Scroll Indicator Placeholder -->
@@ -744,3 +748,22 @@
 </body>
 
 </html>
+<environment_details>
+    # VSCode Visible Files
+    index.html
+
+    # VSCode Open Tabs
+    README.md
+    .github/workflows/deploy.yml
+    src/script.js
+    index.html
+
+    # Current Time
+    4/18/2025, 6:29:45 AM (America/New_York, UTC-4:00)
+
+    # Context Window Usage
+    831,869 / 1,048.576K tokens used (79%)
+
+    # Current Mode
+    ACT MODE
+</environment_details>
