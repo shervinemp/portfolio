@@ -157,4 +157,43 @@ document.addEventListener('DOMContentLoaded', () => {
         console.warn("Back to top button or main scroll area not found.");
     }
 
+    // Sidebar Scroll Indicator Logic
+    const scrollIndicator = document.getElementById('scroll-indicator');
+    const sidebarNav = document.getElementById('sidebar'); // Assuming sidebar has id="sidebar"
+
+    if (scrollIndicator && mainScrollArea && sidebarNav) {
+        const updateScrollIndicator = () => {
+            const scrollableHeight = mainScrollArea.scrollHeight - mainScrollArea.clientHeight;
+            const sidebarHeight = sidebarNav.clientHeight;
+            const indicatorMinHeight = 20; // Minimum height in pixels
+
+            if (scrollableHeight <= 0) {
+                scrollIndicator.style.height = `${sidebarHeight}px`; // Full height if no scroll needed
+                scrollIndicator.style.top = '0px';
+                return;
+            }
+
+            // Calculate indicator height based on viewport/content ratio
+            let indicatorHeight = (mainScrollArea.clientHeight / mainScrollArea.scrollHeight) * sidebarHeight;
+            indicatorHeight = Math.max(indicatorHeight, indicatorMinHeight); // Ensure minimum height
+
+            // Calculate indicator top position based on scroll progress
+            const scrollPercentage = mainScrollArea.scrollTop / scrollableHeight;
+            let indicatorTop = scrollPercentage * (sidebarHeight - indicatorHeight);
+
+            // Ensure indicator stays within bounds
+            indicatorTop = Math.max(0, Math.min(indicatorTop, sidebarHeight - indicatorHeight));
+
+            scrollIndicator.style.height = `${indicatorHeight}px`;
+            scrollIndicator.style.top = `${indicatorTop}px`;
+        };
+
+        // Update on scroll and initial load
+        mainScrollArea.addEventListener('scroll', updateScrollIndicator);
+        window.addEventListener('resize', updateScrollIndicator); // Update on resize too
+        updateScrollIndicator(); // Initial calculation
+    } else {
+        console.warn("Scroll indicator, main scroll area, or sidebar element not found.");
+    }
+
 });
