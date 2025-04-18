@@ -40,9 +40,10 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload necessary files for deployment
-          path: |
-            .
-            !node_modules/* # Exclude node_modules
+          path: .
+          retention-days: 1
+          excludes: |
+            node_modules/*
 
   # Deployment job
   deploy:
