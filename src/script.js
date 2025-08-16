@@ -119,32 +119,28 @@ document.addEventListener('DOMContentLoaded', () => {
         let bestScore = Infinity;
         let bestSectionId = null;
 
-        const pageHeight = document.documentElement.scrollHeight;
-        const viewHeight = window.innerHeight;
-        const scrollableHeight = pageHeight - viewHeight;
-        const scrollPercentage = scrollableHeight > 0 ? window.scrollY / scrollableHeight : 0;
+        const viewport_height = window.innerHeight;
+        const scrollable_height = document.documentElement.scrollHeight - viewport_height;
+        const scroll_percent = scrollable_height > 0 ? window.scrollY / scrollable_height : 0;
+
+        // Per the formula: `abs(section_mid_y - (viewport_top_y + scroll_percent * viewport_height))`
+        // where viewport_top_y is 0.
+        const target_y = scroll_percent * viewport_height;
 
         visibleSections.forEach(sectionId => {
             const section = document.getElementById(sectionId);
             if (!section) return;
 
             const rect = section.getBoundingClientRect();
-            const pos_top_browser_y = rect.top;
+            const section_mid_y = rect.top + (rect.height / 2);
 
-            // User's formula: (pos_top_browser_y + percent_scrolled * browser_view_height) / page_height
-            const score = Math.abs((pos_top_browser_y + (scrollPercentage * viewHeight)) / pageHeight);
+            const score = Math.abs(section_mid_y - target_y);
 
             if (score < bestScore) {
                 bestScore = score;
                 bestSectionId = sectionId;
             }
         });
-
-        // As a fallback for the very bottom, if the last section is visible, make it active.
-        const nearBottom = (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 2;
-        if (nearBottom) {
-            bestSectionId = 'contact';
-        }
 
         removeActiveClasses();
         if (bestSectionId) {
@@ -164,8 +160,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 visibleSections.delete(entry.target.id);
             }
         });
+        // Initial run when visibility changes
         handleScrollHighlighting();
-    }, { threshold: 0 });
+    }, {
+        // Observe a wide band to ensure sections are always in the `visibleSections` set
+        // when they are near the middle of the screen.
+        rootMargin: '100% 0px 100% 0px',
+        threshold: 0
+    });
 
     sections.forEach(section => {
         visibilityObserver.observe(section);
