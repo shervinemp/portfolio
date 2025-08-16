@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:css": "npx postcss ./src/input.css -o ./dist/output.css --minify",
+    "build:css": "postcss ./src/input.css -o ./dist/output.css --minify",
     "build:blog": "node build.js",
     "build": "npm run build:css && npm run build:blog",
     "build:dev": "cross-env NODE_ENV=development npm run build"
