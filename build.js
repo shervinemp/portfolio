@@ -4,6 +4,7 @@ const fm = require('front-matter');
 const { marked } = require('marked');
 
 const POSTS_DIR = path.join(__dirname, 'posts');
+const PLACEHOLDER_POSTS_DIR = path.join(__dirname, 'posts-placeholders');
 const DIST_DIR = path.join(__dirname, 'dist/blog');
 
 // Function to create a slug from a filename
@@ -120,17 +121,30 @@ const main = async () => {
         // Create dist directory if it doesn't exist
         await fs.mkdir(DIST_DIR, { recursive: true });
 
-        const files = await fs.readdir(POSTS_DIR);
+        const postFiles = [];
+        // Read real posts if the directory exists
+        if (await fs.access(POSTS_DIR).then(() => true).catch(() => false)) {
+            const files = await fs.readdir(POSTS_DIR);
+            postFiles.push(...files.map(file => path.join(POSTS_DIR, file)));
+        }
+
+        // In development, also read placeholder posts
+        if (process.env.NODE_ENV === 'development') {
+            if (await fs.access(PLACEHOLDER_POSTS_DIR).then(() => true).catch(() => false)) {
+                const placeholderFiles = await fs.readdir(PLACEHOLDER_POSTS_DIR);
+                postFiles.push(...placeholderFiles.map(file => path.join(PLACEHOLDER_POSTS_DIR, file)));
+            }
+        }
+
         const posts = [];
 
-        for (const file of files) {
-            if (path.extname(file) === '.md') {
-                const filePath = path.join(POSTS_DIR, file);
+        for (const filePath of postFiles) {
+            if (path.extname(filePath) === '.md') {
                 const fileContent = await fs.readFile(filePath, 'utf8');
 
                 const { attributes, body } = fm(fileContent);
                 const htmlContent = marked(body);
-                const slug = createSlug(file);
+                const slug = createSlug(path.basename(filePath));
 
                 // Create individual post page
                 const postPageHtml = createPostHtml({ attributes, body: htmlContent });
