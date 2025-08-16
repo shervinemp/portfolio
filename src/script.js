@@ -116,38 +116,35 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const handleScrollHighlighting = () => {
-        let bestScore = -1;
+        let bestScore = Infinity;
         let bestSectionId = null;
 
-        const scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+        const pageHeight = document.documentElement.scrollHeight;
+        const viewHeight = window.innerHeight;
+        const scrollableHeight = pageHeight - viewHeight;
+        const scrollPercentage = scrollableHeight > 0 ? window.scrollY / scrollableHeight : 0;
 
         visibleSections.forEach(sectionId => {
             const section = document.getElementById(sectionId);
             if (!section) return;
 
             const rect = section.getBoundingClientRect();
-            const viewHeight = window.innerHeight;
+            const pos_top_browser_y = rect.top;
 
-            // Score based on proximity to the top of the viewport
-            const proximityScore = Math.max(0, 1 - (rect.top / viewHeight));
+            // User's formula: (pos_top_browser_y + percent_scrolled * browser_view_height) / page_height
+            const score = Math.abs((pos_top_browser_y + (scrollPercentage * viewHeight)) / pageHeight);
 
-            // Bonus for being in the top half of the screen
-            const positionBonus = rect.top < viewHeight / 2 ? 1.5 : 1;
-
-            // Combine scores
-            let score = proximityScore * positionBonus;
-
-            // Special handling for the last section when at the bottom of the page
-            const isLastSection = sectionId === 'contact';
-            if (isLastSection && scrollPercentage > 95) {
-                score = 100; // Give 'contact' a huge score when at the very bottom
-            }
-
-            if (score > bestScore) {
+            if (score < bestScore) {
                 bestScore = score;
                 bestSectionId = sectionId;
             }
         });
+
+        // As a fallback for the very bottom, if the last section is visible, make it active.
+        const nearBottom = (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 2;
+        if (nearBottom) {
+            bestSectionId = 'contact';
+        }
 
         removeActiveClasses();
         if (bestSectionId) {
@@ -167,8 +164,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 visibleSections.delete(entry.target.id);
             }
         });
-        handleScrollHighlighting(); // Run evaluation whenever a section enters/leaves view
-    }, { rootMargin: '0px 0px -100% 0px' }); // Observes sections as they enter/leave the viewport from top/bottom
+        handleScrollHighlighting();
+    }, { threshold: 0 });
 
     sections.forEach(section => {
         visibilityObserver.observe(section);

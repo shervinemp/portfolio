@@ -17,3 +17,14 @@
     /* Optionally add other styles like increased border opacity or shadow */
     /* @apply shadow-md; */
 }
+
+@layer utilities {
+    .body-sticky-footer {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    .main-flex-grow {
+        flex-grow: 1;
+    }
+}
