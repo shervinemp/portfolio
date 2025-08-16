@@ -7,7 +7,8 @@
     "build:css": "postcss ./src/input.css -o ./dist/output.css --minify",
     "build:blog": "node build.js",
     "build": "npm run build:css && npm run build:blog",
-    "build:dev": "cross-env NODE_ENV=development npm run build"
+    "build:dev": "cross-env NODE_ENV=development npm run build",
+    "start": "serve ."
   },
   "keywords": [],
   "author": "",
@@ -20,6 +21,7 @@
     "marked": "^16.1.2",
     "postcss": "^8.5.3",
     "postcss-cli": "^11.0.0",
+    "serve": "^14.2.4",
     "tailwindcss": "^3.4.4"
   }
 }
