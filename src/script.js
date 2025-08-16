@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const activeLinkObserverOptions = {
         root: null, // viewport
-        rootMargin: '-50% 0px -50% 0px', // Trigger when section is in the middle 50% of the viewport
+        rootMargin: '-20% 0px -15% 0px', // Defines a horizontal band from 20% to 85% of the viewport height
         threshold: 0 // Trigger as soon as any part enters/leaves the rootMargin area
     };
 
@@ -121,42 +121,26 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const activeLinkObserverCallback = (entries, observer) => {
-        // Check if scrolled to the bottom (or very close)
-        const nearBottom = (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 10; // 10px tolerance
-
-        if (nearBottom) {
-            // If near bottom, force highlight #contact
-            removeActiveClasses();
-            const contactLink = document.querySelector('nav a[href="#contact"]');
-            if (contactLink) {
-                contactLink.classList.add('text-white', 'font-semibold');
-                contactLink.classList.remove('text-gray-300');
-            }
-        } else {
-            // Otherwise, use the standard intersection logic
-            let latestIntersectingEntry = null;
-            entries.forEach(entry => {
-                // Find the entry that is currently intersecting and potentially lowest on the screen
-                if (entry.isIntersecting) {
-                    if (!latestIntersectingEntry || entry.boundingClientRect.top > latestIntersectingEntry.boundingClientRect.top) {
-                        latestIntersectingEntry = entry;
-                    }
-                }
-            });
-
-            if (latestIntersectingEntry) {
-                const id = latestIntersectingEntry.target.getAttribute('id');
-                const correspondingLink = document.querySelector(`nav a[href="#${id}"]`);
-
-                removeActiveClasses(); // Remove active from all links first
-
-                if (correspondingLink) {
-                    correspondingLink.classList.add('text-white', 'font-semibold');
-                    correspondingLink.classList.remove('text-gray-300');
+        // Find the entry that is currently intersecting and is lowest on the screen
+        let latestIntersectingEntry = null;
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                if (!latestIntersectingEntry || entry.boundingClientRect.top > latestIntersectingEntry.boundingClientRect.top) {
+                    latestIntersectingEntry = entry;
                 }
             }
-            // If nothing is intersecting according to the observer (e.g., between sections),
-            // the active class remains removed from the previous step.
+        });
+
+        if (latestIntersectingEntry) {
+            const id = latestIntersectingEntry.target.getAttribute('id');
+            const correspondingLink = document.querySelector(`nav a[href="#${id}"]`);
+
+            removeActiveClasses(); // Remove active from all links first
+
+            if (correspondingLink) {
+                correspondingLink.classList.add('text-white', 'font-semibold');
+                correspondingLink.classList.remove('text-gray-300');
+            }
         }
     };
 
