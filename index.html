@@ -29,13 +29,9 @@
         <!-- Removed space-y-6 from nav -->
         <!-- Removed relative -->
         <!-- Switched to slate -->
-        <div class="mb-6">
-            <a href="#hero"
-                class="text-2xl font-bold text-white hover:text-gray-300 transition transform hover:scale-105 duration-200 inline-block">Shervin
-                Naseri</a>
-            <a href="blog.html"
-                class="text-sm font-medium text-indigo-400 hover:text-indigo-300 hover:underline transition-all duration-200 block mt-1">Blog</a>
-        </div>
+        <a href="#hero"
+            class="text-2xl font-bold text-white hover:text-gray-300 mb-6 transition transform hover:scale-105 duration-200 inline-block">Shervin
+            Naseri</a> <!-- Added transition/scale -->
         <!-- Wrapper div for nav links -->
         <div class="flex flex-col space-y-6"> <!-- Added wrapper and applied flex/space here -->
             <a href="#skills"
@@ -65,6 +61,11 @@
     <!-- Main Content Area -->
     <main id="main-content" class="flex-1 overflow-y-auto md:ml-64 px-2"> <!-- Added px-2 for side padding -->
         <!-- Takes remaining space, adds left margin for sidebar, enables scrolling -->
+
+        <!-- Blog Link (Top Right) -->
+        <div class="w-full flex justify-end p-4">
+            <a href="blog.html" class="text-indigo-400 hover:text-indigo-300 hover:underline font-semibold">Blog</a>
+        </div>
 
         <!-- Hamburger Button (Mobile) -->
         <button id="menu-toggle"

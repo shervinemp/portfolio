@@ -24,7 +24,7 @@ const createPostHtml = (post) => `
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../output.css">
 </head>
-<body class="bg-gradient-to-b from-slate-800 to-slate-950 text-gray-300 font-sans leading-relaxed">
+<body class="bg-gradient-to-b from-slate-800 to-slate-950 text-gray-300 font-sans leading-relaxed flex flex-col min-h-screen">
 
     <!-- Header -->
     <header class="bg-slate-800/80 backdrop-blur-sm sticky top-0 z-20 border-b border-slate-700">
@@ -37,7 +37,7 @@ const createPostHtml = (post) => `
     </header>
 
     <!-- Main Content Area -->
-    <main class="container mx-auto px-6 py-12">
+    <main class="container mx-auto px-6 py-12 flex-grow">
         <article class="max-w-4xl mx-auto">
             <h1 class="text-4xl font-bold text-white mb-4">${post.attributes.title}</h1>
             <p class="text-sm text-gray-400 mb-8">Published on <time datetime="${post.attributes.date}">${new Date(post.attributes.date).toDateString()}</time></p>
@@ -73,7 +73,7 @@ const createBlogIndexHtml = (posts) => `
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="dist/output.css">
 </head>
-<body class="bg-gradient-to-b from-slate-800 to-slate-950 text-gray-300 font-sans leading-relaxed">
+<body class="bg-gradient-to-b from-slate-800 to-slate-950 text-gray-300 font-sans leading-relaxed flex flex-col min-h-screen">
 
     <!-- Header -->
     <header class="bg-slate-800/80 backdrop-blur-sm sticky top-0 z-20 border-b border-slate-700">
@@ -86,7 +86,7 @@ const createBlogIndexHtml = (posts) => `
     </header>
 
     <!-- Main Content Area -->
-    <main class="container mx-auto px-6 py-12">
+    <main class="container mx-auto px-6 py-12 flex-grow">
         <h1 class="text-4xl font-bold text-center text-white mb-12">Technical Blog</h1>
         <div class="space-y-16 max-w-4xl mx-auto">
             ${posts.map(post => `

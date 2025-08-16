@@ -104,14 +104,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Active link highlighting on scroll
-    const sections = document.querySelectorAll('main section[id]'); // Get all sections in main with an ID
-    const navLinks = document.querySelectorAll('nav a[href^="#"]'); // Get all nav links pointing to an ID
-
-    const activeLinkObserverOptions = {
-        root: null, // viewport
-        rootMargin: '-20% 0px -15% 0px', // Defines a horizontal band from 20% to 85% of the viewport height
-        threshold: 0 // Trigger as soon as any part enters/leaves the rootMargin area
-    };
+    const sections = document.querySelectorAll('main section[id]');
+    const navLinks = document.querySelectorAll('nav a[href^="#"]');
+    const visibleSections = new Set();
 
     const removeActiveClasses = () => {
         navLinks.forEach(link => {
@@ -120,23 +115,43 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    const activeLinkObserverCallback = (entries, observer) => {
-        // Find the entry that is currently intersecting and is lowest on the screen
-        let latestIntersectingEntry = null;
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                if (!latestIntersectingEntry || entry.boundingClientRect.top > latestIntersectingEntry.boundingClientRect.top) {
-                    latestIntersectingEntry = entry;
-                }
+    const handleScrollHighlighting = () => {
+        let bestScore = -1;
+        let bestSectionId = null;
+
+        const scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+
+        visibleSections.forEach(sectionId => {
+            const section = document.getElementById(sectionId);
+            if (!section) return;
+
+            const rect = section.getBoundingClientRect();
+            const viewHeight = window.innerHeight;
+
+            // Score based on proximity to the top of the viewport
+            const proximityScore = Math.max(0, 1 - (rect.top / viewHeight));
+
+            // Bonus for being in the top half of the screen
+            const positionBonus = rect.top < viewHeight / 2 ? 1.5 : 1;
+
+            // Combine scores
+            let score = proximityScore * positionBonus;
+
+            // Special handling for the last section when at the bottom of the page
+            const isLastSection = sectionId === 'contact';
+            if (isLastSection && scrollPercentage > 95) {
+                score = 100; // Give 'contact' a huge score when at the very bottom
+            }
+
+            if (score > bestScore) {
+                bestScore = score;
+                bestSectionId = sectionId;
             }
         });
 
-        if (latestIntersectingEntry) {
-            const id = latestIntersectingEntry.target.getAttribute('id');
-            const correspondingLink = document.querySelector(`nav a[href="#${id}"]`);
-
-            removeActiveClasses(); // Remove active from all links first
-
+        removeActiveClasses();
+        if (bestSectionId) {
+            const correspondingLink = document.querySelector(`nav a[href="#${bestSectionId}"]`);
             if (correspondingLink) {
                 correspondingLink.classList.add('text-white', 'font-semibold');
                 correspondingLink.classList.remove('text-gray-300');
@@ -144,10 +159,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    const activeLinkObserver = new IntersectionObserver(activeLinkObserverCallback, activeLinkObserverOptions);
+    const visibilityObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                visibleSections.add(entry.target.id);
+            } else {
+                visibleSections.delete(entry.target.id);
+            }
+        });
+        handleScrollHighlighting(); // Run evaluation whenever a section enters/leaves view
+    }, { rootMargin: '0px 0px -100% 0px' }); // Observes sections as they enter/leave the viewport from top/bottom
 
     sections.forEach(section => {
-        activeLinkObserver.observe(section);
+        visibilityObserver.observe(section);
     });
 
     // Back to Top Button Logic & Sidebar Scroll Effect
@@ -174,6 +198,9 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 sidebarNav.classList.remove('scrolled');
             }
+
+            // Handle active link highlighting on every scroll frame
+            handleScrollHighlighting();
         });
 
         // Scroll to top when button is clicked
