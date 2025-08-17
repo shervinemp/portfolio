@@ -31,7 +31,7 @@ const createPostHtml = (post) => `
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="../../index.html" class="text-2xl font-bold text-white hover:text-gray-300 transition transform hover:scale-105 duration-200 inline-block">Shervin Naseri</a>
             <nav>
-                <a href="../../blog.html" class="text-indigo-400 hover:text-indigo-300 hover:underline">Blog</a>
+                <a href="../../blog.html" class="text-indigo-400 hover:text-indigo-300 hover:underline">Back to Blog</a>
             </nav>
         </div>
     </header>
@@ -79,6 +79,9 @@ const createBlogIndexHtml = (posts) => `
     <header class="bg-slate-800/80 backdrop-blur-sm sticky top-0 z-20 border-b border-slate-700">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="index.html" class="text-2xl font-bold text-white hover:text-gray-300 transition transform hover:scale-105 duration-200 inline-block">Shervin Naseri</a>
+            <nav>
+                <!-- Empty nav for consistency -->
+            </nav>
         </div>
     </header>
 
