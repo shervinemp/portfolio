@@ -19,8 +19,13 @@
 </head>
 
 <body class="bg-gradient-to-b from-slate-800 to-slate-950 text-gray-300 font-sans flex leading-relaxed">
-    <!-- Restored gradient -->
-    <!-- Dark background, light text, flex layout -->
+
+    <!-- Fixed Blog Link -->
+    <div class="fixed top-4 right-4 z-40">
+        <div class="blog-link-container">
+            <a href="blog.html" class="text-lg text-indigo-300 hover:text-white font-semibold transition-colors">Blog</a>
+        </div>
+    </div>
 
     <!-- Vertical Navigation Sidebar -->
     <!-- Hidden on small screens (md:flex shows it on medium and up), increased z-index -->
@@ -61,13 +66,6 @@
     <!-- Main Content Area -->
     <main id="main-content" class="flex-1 overflow-y-auto md:ml-64 px-2"> <!-- Added px-2 for side padding -->
         <!-- Takes remaining space, adds left margin for sidebar, enables scrolling -->
-
-        <!-- Blog Link (Top Right) -->
-        <div class="w-full flex justify-end p-2">
-            <div class="blog-link-container">
-                <a href="blog.html" class="text-lg text-indigo-300 hover:text-white font-semibold transition-colors">Blog</a>
-            </div>
-        </div>
 
         <!-- Hamburger Button (Mobile) -->
         <button id="menu-toggle"
