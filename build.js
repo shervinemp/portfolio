@@ -29,7 +29,7 @@ const createPostHtml = (post) => `
     <!-- Header -->
     <header class="bg-slate-800/80 backdrop-blur-sm sticky top-0 z-20 border-b border-slate-700">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="../../index.html" class="text-2xl font-bold text-white hover:text-gray-300">Shervin Naseri</a>
+            <a href="../../index.html" class="text-2xl font-bold text-white hover:text-gray-300 transition transform hover:scale-105 duration-200 inline-block">Shervin Naseri</a>
             <nav>
                 <a href="../../blog.html" class="text-indigo-400 hover:text-indigo-300 hover:underline">Blog</a>
             </nav>
@@ -68,7 +68,7 @@ const createBlogIndexHtml = (posts) => `
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Technical blog of Shervin Naseri.">
+    <meta name="description" content="Technical blog of Shervin Naseri">
     <title>Shervin Naseri - Blog</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="dist/output.css">
@@ -78,16 +78,12 @@ const createBlogIndexHtml = (posts) => `
     <!-- Header -->
     <header class="bg-slate-800/80 backdrop-blur-sm sticky top-0 z-20 border-b border-slate-700">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold text-white hover:text-gray-300">Shervin Naseri</a>
-            <nav>
-                <a href="index.html#contact" class="text-indigo-400 hover:text-indigo-300 hover:underline">Contact</a>
-            </nav>
+            <a href="index.html" class="text-2xl font-bold text-white hover:text-gray-300 transition transform hover:scale-105 duration-200 inline-block">Shervin Naseri</a>
         </div>
     </header>
 
     <!-- Main Content Area -->
     <main class="container mx-auto px-6 py-12 flex-grow">
-        <h1 class="text-4xl font-bold text-center text-white mb-12">Technical Blog</h1>
         <div class="space-y-16 max-w-4xl mx-auto">
             ${posts.map(post => `
             <article class="bg-slate-800 p-8 rounded-lg shadow-lg border border-slate-700 hover:bg-slate-700/50 transition-all duration-300">
