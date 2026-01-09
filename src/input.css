@@ -5,15 +5,25 @@
 /* Custom styles */
 #sidebar {
     @apply transition-all duration-300 ease-in-out;
-    /* Apply transition to all properties */
-    /* Add transition for smooth effect */
 }
 
 #sidebar.scrolled {
     @apply bg-slate-900 border-r-indigo-400 shadow-lg;
-    /* Reverted to @apply with intended styles */
-    /* Darker background, brighter border, and shadow when scrolled */
-    /* Optionally add other styles like increased border opacity or shadow */
-    /* Optionally add other styles like increased border opacity or shadow */
-    /* @apply shadow-md; */
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    @apply bg-slate-900;
+}
+
+::-webkit-scrollbar-thumb {
+    @apply bg-slate-700 rounded-full border-2 border-slate-900;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    @apply bg-slate-600;
 }
