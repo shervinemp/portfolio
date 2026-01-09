@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth"> <!-- Added scroll-smooth for better JS fallback -->
+<html lang="en" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
@@ -7,100 +7,72 @@
     <meta name="description"
         content="Portfolio website for Shervin Naseri, an experienced Machine Learning Engineer and Backend Developer based in Ottawa, ON. Showcasing projects in Computer Vision, NLP, and scalable systems.">
     <title>Shervin Naseri - Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="dist/output.css"> <!-- Link local build -->
-    <!-- Removed Tailwind CDN and config script -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="dist/output.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <!-- SEO Meta Tags -->
     <meta property="og:title" content="Shervin Naseri - Portfolio" />
     <meta property="og:description"
         content="Portfolio website for Shervin Naseri, showcasing Machine Learning and Software Engineering projects." />
-    <meta property="og:image" content="URL_TO_YOUR_PROFILE_IMAGE" /> <!-- TODO: Replace with actual image URL -->
+    <meta property="og:image" content="https://shervinemp.github.io/portfolio/profile.jpg" />
     <meta property="og:url" content="https://shervinemp.github.io/portfolio/" />
 </head>
 
-<body class="bg-gradient-to-b from-slate-800 to-slate-950 text-gray-300 font-sans flex leading-relaxed">
-    <!-- Restored gradient -->
-    <!-- Dark background, light text, flex layout -->
+<body class="bg-gradient-to-b from-slate-900 to-black text-gray-100 font-sans flex leading-relaxed">
 
     <!-- Vertical Navigation Sidebar -->
-    <!-- Hidden on small screens (md:flex shows it on medium and up), increased z-index -->
     <nav id="sidebar"
         class="w-64 h-screen bg-slate-800 border-r border-slate-700 fixed top-0 left-0 p-6 flex flex-col z-20 hidden md:flex">
-        <!-- Removed space-y-6 from nav -->
-        <!-- Removed relative -->
-        <!-- Switched to slate -->
         <a href="#hero"
-            class="text-2xl font-bold text-white hover:text-gray-300 mb-6 transition transform hover:scale-105 duration-200 inline-block">Shervin
-            Naseri</a> <!-- Added transition/scale -->
-        <!-- Wrapper div for nav links -->
-        <div class="flex flex-col space-y-6"> <!-- Added wrapper and applied flex/space here -->
+            class="font-display text-2xl font-bold text-white hover:text-gray-300 mb-6 transition transform hover:scale-105 duration-200 inline-block">Shervin
+            Naseri</a>
+        <div class="flex flex-col space-y-6">
             <a href="#skills"
-                class="text-indigo-400 hover:text-indigo-300 hover:underline py-2 transition transform hover:scale-105 duration-200 inline-block">Skills</a>
-            <!-- Added transition/scale -->
+                class="text-indigo-300 hover:text-indigo-200 hover:underline py-2 transition transform hover:scale-105 duration-200 inline-block">Skills</a>
             <a href="#experience"
-                class="text-indigo-400 hover:text-indigo-300 hover:underline py-2 transition transform hover:scale-105 duration-200 inline-block">Experience</a>
-            <!-- Added transition/scale -->
+                class="text-indigo-300 hover:text-indigo-200 hover:underline py-2 transition transform hover:scale-105 duration-200 inline-block">Experience</a>
             <a href="#education"
-                class="text-indigo-400 hover:text-indigo-300 hover:underline py-2 transition transform hover:scale-105 duration-200 inline-block">Education</a>
-            <!-- Added transition/scale -->
+                class="text-indigo-300 hover:text-indigo-200 hover:underline py-2 transition transform hover:scale-105 duration-200 inline-block">Education</a>
             <a href="#projects"
-                class="text-indigo-400 hover:text-indigo-300 hover:underline py-2 transition transform hover:scale-105 duration-200 inline-block">Projects</a>
-            <!-- Added transition/scale -->
+                class="text-indigo-300 hover:text-indigo-200 hover:underline py-2 transition transform hover:scale-105 duration-200 inline-block">Projects</a>
             <a href="#personal-projects"
-                class="text-indigo-400 hover:text-indigo-300 hover:underline py-2 transition transform hover:scale-105 duration-200 inline-block">Personal
-                Projects</a> <!-- Added transition/scale -->
+                class="text-indigo-300 hover:text-indigo-200 hover:underline py-2 transition transform hover:scale-105 duration-200 inline-block">Personal
+                Projects</a>
             <a href="#contact"
-                class="text-indigo-400 hover:text-indigo-300 hover:underline py-2 transition transform hover:scale-105 duration-200 inline-block">Contact</a>
-            <!-- Added transition/scale -->
+                class="text-indigo-300 hover:text-indigo-200 hover:underline py-2 transition transform hover:scale-105 duration-200 inline-block">Contact</a>
         </div>
-        <!-- Add more links if needed -->
-
-        <!-- Removed Scroll Indicator Placeholder -->
     </nav>
 
     <!-- Main Content Area -->
-    <main id="main-content" class="flex-1 overflow-y-auto md:ml-64 px-2"> <!-- Added px-2 for side padding -->
-        <!-- Takes remaining space, adds left margin for sidebar, enables scrolling -->
+    <main id="main-content" class="flex-1 md:ml-64 px-2">
 
         <!-- Hamburger Button (Mobile) -->
         <button id="menu-toggle"
             class="md:hidden fixed top-4 left-4 z-30 p-2 bg-slate-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
-            aria-label="Toggle Menu"> <!-- Adjusted bg -->
+            aria-label="Toggle Menu">
             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <!-- Corrected viewBox syntax -->
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
             </svg>
         </button>
 
-        <!-- Hero Section (No fade-in needed here) -->
+        <!-- Hero Section -->
         <section id="hero" class="container mx-auto py-20 text-center">
-            <!-- Placeholder for Photo -->
-            <img src="profile.jpg" alt="Shervin Naseri"
-                class="w-40 h-40 rounded-full mx-auto mb-6 shadow-md object-cover border-2 border-slate-700">
-            <!-- Increased image size -->
-            <!-- Adjusted border -->
-            <div class="max-w-3xl mx-auto"> <!-- Added wrapper to constrain text width -->
-                <h1 class="text-3xl md:text-4xl font-bold mb-4 text-white">Shervin Naseri | Machine Learning & Software
+            <img src="./profile.jpg" alt="Shervin Naseri"
+                class="w-40 h-40 rounded-full mx-auto mb-6 shadow-md object-cover border-2 border-indigo-500">
+            <div class="max-w-3xl mx-auto">
+                <h1 class="font-display text-3xl md:text-4xl font-bold mb-4 text-white">Shervin Naseri | Machine Learning & Software
                     Engineering |
                     Ottawa, ON</h1>
-                <p class="text-lg mb-8 text-gray-400">Experienced ML Engineer and Backend Developer. Passionate about
+                <p class="text-lg mb-8 text-gray-200">Experienced ML Engineer and Backend Developer. Passionate about
                     solving complex problems with technology.</p>
-                <!-- Toned down description -->
             </div>
-            <div class="flex justify-center space-x-4 mt-8"> <!-- Added mt-8 for spacing -->
-                <!-- Removed View Projects and Skills Overview buttons -->
+            <div class="flex justify-center space-x-4 mt-8">
                 <a href="resume.pdf" download="Shervin_Naseri_Resume.pdf"
                     class="bg-slate-600 hover:bg-slate-500 text-white font-bold py-2 px-4 rounded transition-all duration-300 transform hover:scale-105 hover:brightness-110 active:scale-95">
-                    <!-- Added active:scale-95 -->
-                    <!-- Added scale/brightness -->
-                    <!-- Adjusted button colors -->
                     Download CV
                 </a>
                 <a href="#contact"
                     class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded transition-all duration-300 transform hover:scale-105 hover:brightness-110 active:scale-95">
-                    <!-- Added active:scale-95 -->
-                    <!-- Added scale/brightness -->
-                    <!-- Adjusted button colors -->
                     Contact
                 </a>
             </div>
@@ -108,9 +80,8 @@
 
         <!-- Skills Visualization Section -->
         <section id="skills" class="py-16 border-t border-slate-700 hover:bg-slate-800/50 transition-all duration-300">
-            <!-- Added hover:bg -->
-            <div class="container mx-auto px-6"> <!-- Changed px-4 to px-6 -->
-                <h2 class="text-2xl font-semibold text-center text-gray-200 mb-16"> <!-- Restored mb-16 -->
+            <div class="container mx-auto px-6">
+                <h2 class="font-display text-2xl font-semibold text-center text-gray-200 mb-16">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="inline-block h-6 w-6 mr-2 align-middle">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -118,92 +89,72 @@
                     </svg>
                     Core Competencies
                 </h2>
-                <!-- font-bold to font-semibold -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"> <!-- Restored gap-8 -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                     <!-- Category: Programming Languages -->
                     <div
-                        class="skill-block bg-slate-700 p-6 rounded-lg shadow-sm border border-slate-600 transition-all duration-300 ease-in-out hover:shadow-md hover:-translate-y-1 hover:bg-slate-600">
-                        <!-- Restored p-6, Added hover:bg -->
-                        <!-- Added skill-block, removed fade classes -->
-                        <!-- Slate block bg -->
+                        class="skill-block h-full bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-700 transition-all duration-300 ease-in-out hover:shadow-md hover:-translate-y-1 hover:bg-slate-700">
                         <h3
-                            class="fade-inner-item text-xl font-semibold mb-4 text-center text-white opacity-0 transition-all duration-500 ease-out">
-                            Programming Languages</h3> <!-- Added fade-inner-item, Restored duration-500 -->
-                        <!-- Already font-semibold -->
+                            class="font-display fade-inner-item text-xl font-semibold mb-4 text-center text-white opacity-0 transition-all duration-500 ease-out">
+                            Programming Languages</h3>
                         <ul class="list-disc list-inside space-y-2 text-gray-300">
                             <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Python
                                 (Scikit-Learn, TensorFlow, PyTorch, OpenCV, SpaCy, NLTK, Pandas, PySpark)</li>
-                            <!-- Added fade-inner-item, Restored duration-500 -->
                             <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">JavaScript
-                                (Node.js, Angular, jQuery)</li> <!-- Added fade-inner-item, Restored duration-500 -->
+                                (Node.js, Angular, jQuery)</li>
                             <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">C++ (Boost,
-                                OpenGL)</li> <!-- Added fade-inner-item, Restored duration-500 -->
+                                OpenGL)</li>
                         </ul>
                     </div>
                     <!-- Category: ML/Data Science -->
                     <div
-                        class="skill-block bg-slate-700 p-6 rounded-lg shadow-sm border border-slate-600 transition-all duration-300 ease-in-out hover:shadow-md hover:-translate-y-1 hover:bg-slate-600">
-                        <!-- Restored p-6, Added hover:bg -->
-                        <!-- Added skill-block, removed fade classes -->
+                        class="skill-block h-full bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-700 transition-all duration-300 ease-in-out hover:shadow-md hover:-translate-y-1 hover:bg-slate-700">
                         <h3
-                            class="fade-inner-item text-xl font-semibold mb-4 text-center text-white opacity-0 transition-all duration-500 ease-out">
-                            ML / Data Science</h3> <!-- Added fade-inner-item, Restored duration-500 -->
-                        <!-- Already font-semibold -->
+                            class="font-display fade-inner-item text-xl font-semibold mb-4 text-center text-white opacity-0 transition-all duration-500 ease-out">
+                            ML / Data Science</h3>
                         <ul class="list-disc list-inside space-y-2 text-gray-300">
                             <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Computer Vision
-                            </li> <!-- Added fade-inner-item, Restored duration-500 -->
+                            </li>
                             <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">NLP (SpaCy, NLTK)
-                            </li> <!-- Added fade-inner-item, Restored duration-500 -->
+                            </li>
                             <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Predictive
-                                Modeling</li> <!-- Added fade-inner-item, Restored duration-500 -->
+                                Modeling</li>
                             <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Deep Learning
-                                (TensorFlow, PyTorch)</li> <!-- Added fade-inner-item, Restored duration-500 -->
+                                (TensorFlow, PyTorch)</li>
                             <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Data Analysis
-                                (Pandas, PySpark)</li> <!-- Added fade-inner-item, Restored duration-500 -->
+                                (Pandas, PySpark)</li>
                         </ul>
                     </div>
                     <!-- Category: Backend & Databases -->
                     <div
-                        class="skill-block bg-slate-700 p-6 rounded-lg shadow-sm border border-slate-600 transition-all duration-300 ease-in-out hover:shadow-md hover:-translate-y-1 hover:bg-slate-600">
-                        <!-- Restored p-6, Added hover:bg -->
-                        <!-- Added skill-block, removed fade classes -->
+                        class="skill-block h-full bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-700 transition-all duration-300 ease-in-out hover:shadow-md hover:-translate-y-1 hover:bg-slate-700">
                         <h3
-                            class="fade-inner-item text-xl font-semibold mb-4 text-center text-white opacity-0 transition-all duration-500 ease-out">
-                            Backend & Databases</h3> <!-- Added fade-inner-item, Restored duration-500 -->
-                        <!-- Already font-semibold -->
+                            class="font-display fade-inner-item text-xl font-semibold mb-4 text-center text-white opacity-0 transition-all duration-500 ease-out">
+                            Backend & Databases</h3>
                         <ul class="list-disc list-inside space-y-2 text-gray-300">
                             <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">API Development
-                            </li> <!-- Added fade-inner-item, Restored duration-500 -->
+                            </li>
                             <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Node.js</li>
-                            <!-- Added fade-inner-item, Restored duration-500 -->
                             <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">SQL (MySQL)</li>
-                            <!-- Added fade-inner-item, Restored duration-500 -->
                             <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">NoSQL (MongoDB,
-                                Redis)</li> <!-- Added fade-inner-item, Restored duration-500 -->
+                                Redis)</li>
                             <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Search
-                                (ElasticSearch)</li> <!-- Added fade-inner-item, Restored duration-500 -->
+                                (ElasticSearch)</li>
                         </ul>
                     </div>
                     <!-- Category: DevOps & Infrastructure -->
                     <div
-                        class="skill-block bg-slate-700 p-6 rounded-lg shadow-sm border border-slate-600 transition-all duration-300 ease-in-out hover:shadow-md hover:-translate-y-1 hover:bg-slate-600">
-                        <!-- Restored p-6, Added hover:bg -->
-                        <!-- Added skill-block, removed fade classes -->
+                        class="skill-block h-full bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-700 transition-all duration-300 ease-in-out hover:shadow-md hover:-translate-y-1 hover:bg-slate-700">
                         <h3
-                            class="fade-inner-item text-xl font-semibold mb-4 text-center text-white opacity-0 transition-all duration-500 ease-out">
-                            DevOps & Infrastructure</h3> <!-- Added fade-inner-item, Restored duration-500 -->
-                        <!-- Already font-semibold -->
+                            class="font-display fade-inner-item text-xl font-semibold mb-4 text-center text-white opacity-0 transition-all duration-500 ease-out">
+                            DevOps & Infrastructure</h3>
                         <ul class="list-disc list-inside space-y-2 text-gray-300">
                             <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Docker & Docker
-                                Swarm</li> <!-- Added fade-inner-item, Restored duration-500 -->
+                                Swarm</li>
                             <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Nginx</li>
-                            <!-- Added fade-inner-item, Restored duration-500 -->
                             <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Ansible</li>
-                            <!-- Added fade-inner-item, Restored duration-500 -->
                             <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Apache Spark</li>
-                            <!-- Added fade-inner-item, Restored duration-500 -->
                             <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">CI/CD (Implied)
-                            </li> <!-- Added fade-inner-item, Restored duration-500 -->
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -213,9 +164,8 @@
         <!-- Work Experience Section -->
         <section id="experience"
             class="py-16 border-t border-slate-700 hover:bg-slate-800/50 transition-all duration-300">
-            <!-- Added hover:bg -->
-            <div class="container mx-auto px-6"> <!-- Changed px-4 to px-6 --> <!-- Moved container inside -->
-                <h2 class="text-2xl font-semibold text-center text-gray-200 mb-16"> <!-- Restored mb-16 -->
+            <div class="container mx-auto px-6">
+                <h2 class="font-display text-2xl font-semibold text-center text-gray-200 mb-16">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="inline-block h-6 w-6 mr-2 align-middle">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -223,111 +173,83 @@
                     </svg>
                     Professional Experience
                 </h2>
-                <!-- font-bold to font-semibold -->
-                <div class="space-y-8 max-w-3xl mx-auto"> <!-- Restored space-y-8 -->
+                <div class="space-y-8 max-w-3xl mx-auto">
                     <!-- Job 1: Pardazesh Etelaat Kian -->
                     <div
                         class="experience-entry bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-700 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl hover:bg-slate-700">
-                        <!-- Restored p-6, Removed border-l, Added hover:bg -->
-                        <!-- Added experience-entry, removed fade classes -->
-                        <!-- Slate bg, Indigo border -->
                         <h3
-                            class="fade-inner-item text-xl font-semibold text-white opacity-0 transition-all duration-500 ease-out">
+                            class="font-display fade-inner-item text-xl font-semibold text-white opacity-0 transition-all duration-500 ease-out">
                             Senior ML Engineer / Data Scientist</h3>
-                        <!-- Added fade-inner-item, Restored duration-500 -->
-                        <!-- Already font-semibold -->
                         <p
                             class="fade-inner-item text-lg font-medium text-gray-300 mb-3 opacity-0 transition-all duration-500 ease-out">
-                            Pardazesh Etelaat Kian</p> <!-- Added fade-inner-item, Restored duration-500 -->
-                        <ul class="list-disc list-inside space-y-1 text-gray-400">
+                            Pardazesh Etelaat Kian</p>
+                        <ul class="list-disc list-inside space-y-1 text-gray-300">
                             <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Designed and
                                 deployed ML pipelines for vehicle plate recognition (CTC), achieving near SOTA results.
-                            </li> <!-- Added fade-inner-item, Restored duration-500 -->
+                            </li>
                             <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Developed a Farsi
                                 OCR system handling complex document layouts and styles.</li>
-                            <!-- Added fade-inner-item, Restored duration-500 -->
                             <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Built a
                                 large-scale image retrieval system using perceptual similarity.</li>
-                            <!-- Added fade-inner-item, Restored duration-500 -->
                             <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Engineered car
                                 detection and multi-object tracking algorithms for traffic analysis.</li>
-                            <!-- Added fade-inner-item, Restored duration-500 -->
                             <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Implemented
                                 perspective-robust YOLOv4-based vehicle plate detection.</li>
-                            <!-- Added fade-inner-item, Restored duration-500 -->
                             <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Developed
                                 iterative watershed process for document de-warping.</li>
-                            <!-- Added fade-inner-item, Restored duration-500 -->
                             <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Led hiring
                                 processes and mentored junior data scientists.</li>
-                            <!-- Added fade-inner-item, Restored duration-500 -->
                         </ul>
                     </div>
                     <!-- Job 2: Nikaat Corp -->
                     <div
                         class="experience-entry bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-700 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl hover:bg-slate-700">
-                        <!-- Restored p-6, Removed border-l, Added hover:bg -->
-                        <!-- Added experience-entry, removed fade classes -->
-                        <!-- Slate bg, Teal border -->
                         <h3
-                            class="fade-inner-item text-xl font-semibold text-white opacity-0 transition-all duration-500 ease-out">
+                            class="font-display fade-inner-item text-xl font-semibold text-white opacity-0 transition-all duration-500 ease-out">
                             Senior Backend Engineer / Tech Lead</h3>
-                        <!-- Added fade-inner-item, Restored duration-500 -->
-                        <!-- Already font-semibold -->
                         <p
                             class="fade-inner-item text-lg font-medium text-gray-300 mb-3 opacity-0 transition-all duration-500 ease-out">
-                            Nikaat Corp</p> <!-- Added fade-inner-item, Restored duration-500 -->
-                        <ul class="list-disc list-inside space-y-1 text-gray-400">
+                            Nikaat Corp</p>
+                        <ul class="list-disc list-inside space-y-1 text-gray-300">
                             <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Contributed to
                                 design, development, deployment, and technical decisions in a fast-paced startup.</li>
-                            <!-- Added fade-inner-item, Restored duration-500 -->
                             <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Developed web
                                 services and APIs (MEAN stack) for applications like Skenas, Atron, Mint, Phosphor.</li>
-                            <!-- Added fade-inner-item, Restored duration-500 -->
                             <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Researched and
                                 developed predictive models (e.g., menstrual cycle, currency rates) using time-series
-                                deep learning.</li> <!-- Added fade-inner-item, Restored duration-500 -->
+                                deep learning.</li>
                             <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Managed DevOps
                                 workflows and ensured scalable system deployments.</li>
-                            <!-- Added fade-inner-item, Restored duration-500 -->
                         </ul>
                     </div>
                     <!-- Job 3: Vestaak -->
                     <div
                         class="experience-entry bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-700 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl hover:bg-slate-700">
-                        <!-- Restored p-6, Removed border-l, Added hover:bg -->
-                        <!-- Added experience-entry, removed fade classes -->
-                        <!-- Slate bg, Indigo border -->
                         <h3
-                            class="fade-inner-item text-xl font-semibold text-white opacity-0 transition-all duration-500 ease-out">
-                            Python Developer</h3> <!-- Added fade-inner-item, Restored duration-500 -->
-                        <!-- Already font-semibold -->
+                            class="font-display fade-inner-item text-xl font-semibold text-white opacity-0 transition-all duration-500 ease-out">
+                            Python Developer</h3>
                         <p
                             class="fade-inner-item text-lg font-medium text-gray-300 mb-3 opacity-0 transition-all duration-500 ease-out">
-                            Vestaak</p> <!-- Added fade-inner-item, Restored duration-500 -->
-                        <ul class="list-disc list-inside space-y-1 text-gray-400">
+                            Vestaak</p>
+                        <ul class="list-disc list-inside space-y-1 text-gray-300">
                             <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Developed a
                                 personalized content recommendation engine (Python, Scikit-learn) using Telegram API
-                                data.</li> <!-- Added fade-inner-item, Restored duration-500 -->
+                                data.</li>
                             <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Implemented
                                 collaborative filtering and content-based filtering algorithms.</li>
-                            <!-- Added fade-inner-item, Restored duration-500 -->
                             <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Assisted in
                                 designing and developing RESTful APIs (Python, Flask).</li>
-                            <!-- Added fade-inner-item, Restored duration-500 -->
                         </ul>
                     </div>
                 </div>
-            </div> <!-- Close space-y -->
-            </div> <!-- Close container -->
+            </div>
         </section>
 
         <!-- Education & Publications Section -->
         <section id="education"
             class="py-16 border-t border-slate-700 hover:bg-slate-800/50 transition-all duration-300">
-            <!-- Added hover:bg, removed brightness -->
-            <div class="container mx-auto px-6"> <!-- Changed px-4 to px-6 -->
-                <h2 class="text-2xl font-semibold text-center text-gray-200 mb-16"> <!-- Restored mb-16 -->
+            <div class="container mx-auto px-6">
+                <h2 class="font-display text-2xl font-semibold text-center text-gray-200 mb-16">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="inline-block h-6 w-6 mr-2 align-middle">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -335,121 +257,95 @@
                     </svg>
                     Education & Research
                 </h2>
-                <!-- font-bold to font-semibold -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto"> <!-- Restored gap-8 -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                     <!-- Education Column -->
-                    <div class="space-y-6"> <!-- Restored space-y-6 -->
+                    <div class="space-y-6">
                         <h3
-                            class="fade-inner-item text-2xl font-semibold mb-4 text-white opacity-0 transition-all duration-500 ease-out">
-                            Education</h3> <!-- Added fade-inner-item, Restored duration-500 -->
+                            class="font-display fade-inner-item text-2xl font-semibold mb-4 text-white opacity-0 transition-all duration-500 ease-out">
+                            Education</h3>
                         <!-- MSc UOttawa -->
                         <div
-                            class="education-entry bg-slate-700 p-6 rounded-lg shadow-sm border border-slate-600 transition-all duration-300 ease-in-out hover:shadow-md hover:-translate-y-1 hover:bg-slate-600">
-                            <!-- Restored p-6, Added hover:bg -->
-                            <!-- Added education-entry, removed fade classes -->
-                            <!-- Slate block bg -->
+                            class="education-entry bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-700 transition-all duration-300 ease-in-out hover:shadow-md hover:-translate-y-1 hover:bg-slate-700">
                             <p
                                 class="fade-inner-item font-semibold text-lg text-white opacity-0 transition-all duration-500 ease-out">
-                                MSc. Computer Science</p> <!-- Added fade-inner-item, Restored duration-500 -->
-                            <!-- Already font-semibold -->
+                                MSc. Computer Science</p>
                             <p class="fade-inner-item text-gray-300 opacity-0 transition-all duration-500 ease-out">
-                                University of Ottawa</p> <!-- Added fade-inner-item, Restored duration-500 -->
+                                University of Ottawa</p>
                             <p
                                 class="fade-inner-item text-sm text-gray-400 opacity-0 transition-all duration-500 ease-out">
                                 Sep 2021 - Dec 2024 | GPA: 8.5/10</p>
-                            <!-- Added fade-inner-item, Restored duration-500 -->
                             <p
                                 class="fade-inner-item text-sm text-gray-300 mt-1 opacity-0 transition-all duration-500 ease-out">
                                 Project Highlight: Evaluating flaky simulators in autonomous driving testing.</p>
-                            <!-- Added fade-inner-item, Restored duration-500 -->
                         </div>
                         <!-- MSc SUT -->
                         <div
-                            class="education-entry bg-slate-700 p-6 rounded-lg shadow-sm border border-slate-600 transition-all duration-300 ease-in-out hover:shadow-md hover:-translate-y-1 hover:bg-slate-600">
-                            <!-- Restored p-6, Added hover:bg -->
-                            <!-- Added education-entry, removed fade classes -->
+                            class="education-entry bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-700 transition-all duration-300 ease-in-out hover:shadow-md hover:-translate-y-1 hover:bg-slate-700">
                             <p
                                 class="fade-inner-item font-semibold text-lg text-white opacity-0 transition-all duration-500 ease-out">
-                                MSc. Software Engineering</p> <!-- Added fade-inner-item, Restored duration-500 -->
-                            <!-- Already font-semibold -->
+                                MSc. Software Engineering</p>
                             <p class="fade-inner-item text-gray-300 opacity-0 transition-all duration-500 ease-out">
                                 Sharif University of Technology (SUT)</p>
-                            <!-- Added fade-inner-item, Restored duration-500 -->
                             <p
                                 class="fade-inner-item text-sm text-gray-400 opacity-0 transition-all duration-500 ease-out">
-                                GPA: 16.37/20</p> <!-- Added fade-inner-item, Restored duration-500 -->
+                                GPA: 16.37/20</p>
                             <p
                                 class="fade-inner-item text-sm text-gray-300 mt-1 opacity-0 transition-all duration-500 ease-out">
                                 Thesis: Estimating Protein-Protein Interaction Network similarity.</p>
-                            <!-- Added fade-inner-item, Restored duration-500 -->
                             <p
                                 class="fade-inner-item text-sm text-gray-300 mt-1 opacity-0 transition-all duration-500 ease-out">
                                 Project: StackOverflow response time prediction using BERT.</p>
-                            <!-- Added fade-inner-item, Restored duration-500 -->
                         </div>
                         <!-- BSc AUT -->
                         <div
                             class="education-entry bg-slate-700 p-6 rounded-lg shadow-sm border border-slate-600 transition-all duration-300 ease-in-out hover:shadow-md hover:-translate-y-1 hover:bg-slate-600">
-                            <!-- Restored p-6, Added hover:bg -->
-                            <!-- Added education-entry, removed fade classes -->
                             <p
                                 class="fade-inner-item font-semibold text-lg text-white opacity-0 transition-all duration-500 ease-out">
-                                BSc. Computer Science</p> <!-- Added fade-inner-item, Restored duration-500 -->
-                            <!-- Already font-semibold -->
+                                BSc. Computer Science</p>
                             <p class="fade-inner-item text-gray-300 opacity-0 transition-all duration-500 ease-out">
                                 Amirkabir University of Technology (AUT)</p>
-                            <!-- Added fade-inner-item, Restored duration-500 -->
                             <p
                                 class="fade-inner-item text-sm text-gray-400 opacity-0 transition-all duration-500 ease-out">
-                                GPA: 16.11/20 (3.41/4.0)</p> <!-- Added fade-inner-item, Restored duration-500 -->
+                                GPA: 16.11/20 (3.41/4.0)</p>
                             <p
                                 class="fade-inner-item text-sm text-gray-300 mt-1 opacity-0 transition-all duration-500 ease-out">
                                 Project: Information Retrieval using Word2Vec/Sent2Vec.</p>
-                            <!-- Added fade-inner-item, Restored duration-500 -->
                         </div>
                     </div>
                     <!-- Publications Column -->
-                    <div class="space-y-6"> <!-- Restored space-y-6 -->
+                    <div class="space-y-6">
                         <h3
-                            class="fade-inner-item text-2xl font-semibold mb-4 text-white opacity-0 transition-all duration-500 ease-out">
-                            Publications</h3> <!-- Added fade-inner-item, Restored duration-500 -->
-                        <!-- Already font-semibold -->
+                            class="font-display fade-inner-item text-2xl font-semibold mb-4 text-white opacity-0 transition-all duration-500 ease-out">
+                            Publications</h3>
                         <div
-                            class="publication-entry bg-slate-700 p-6 rounded-lg shadow-sm border border-slate-600 transition-all duration-300 ease-in-out hover:shadow-md hover:-translate-y-1 hover:bg-slate-600">
-                            <!-- Restored p-6, Added hover:bg -->
-                            <!-- Added publication-entry, removed fade classes -->
+                            class="publication-entry bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-700 transition-all duration-300 ease-in-out hover:shadow-md hover:-translate-y-1 hover:bg-slate-700">
                             <p
                                 class="fade-inner-item font-semibold text-gray-100 opacity-0 transition-all duration-500 ease-out">
-                                EMSE 2024</p> <!-- Added fade-inner-item, Restored duration-500 -->
+                                EMSE 2024</p>
                             <p
                                 class="fade-inner-item text-sm text-gray-300 opacity-0 transition-all duration-500 ease-out">
                                 Mohammad Hossein Amini, Shervin Naseri, Shiva Nejati: Evaluating the impact of flaky
                                 simulators on testing autonomous driving systems.</p>
-                            <!-- Added fade-inner-item, Restored duration-500 -->
                         </div>
                         <div
                             class="publication-entry bg-slate-700 p-6 rounded-lg shadow-sm border border-slate-600 transition-all duration-300 ease-in-out hover:shadow-md hover:-translate-y-1 hover:bg-slate-600">
-                            <!-- Restored p-6, Added hover:bg -->
-                            <!-- Added publication-entry, removed fade classes -->
                             <p
                                 class="fade-inner-item font-semibold text-gray-100 opacity-0 transition-all duration-500 ease-out">
-                                ICCG 2019</p> <!-- Added fade-inner-item, Restored duration-500 -->
+                                ICCG 2019</p>
                             <p
                                 class="fade-inner-item text-sm text-gray-300 opacity-0 transition-all duration-500 ease-out">
                                 Zahed Rahmati, Sina Farahzad and Shervin Naseri, Counting Closed Billiard Paths.</p>
-                            <!-- Added fade-inner-item, Restored duration-500 -->
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Featured Projects Section (Moved Down) -->
+        <!-- Featured Projects Section -->
         <section id="projects"
             class="py-16 border-t border-slate-700 hover:bg-slate-800/50 transition-all duration-300">
-            <!-- Added hover:bg, removed brightness -->
-            <div class="container mx-auto px-6"> <!-- Changed px-4 to px-6 -->
-                <h2 class="text-2xl font-semibold text-center text-gray-200 mb-16"> <!-- Restored mb-16 -->
+            <div class="container mx-auto px-6">
+                <h2 class="font-display text-2xl font-semibold text-center text-gray-200 mb-16">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="inline-block h-6 w-6 mr-2 align-middle">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -457,28 +353,21 @@
                     </svg>
                     Featured Projects
                 </h2>
-                <!-- font-bold to font-semibold -->
-                <!-- Adjusted text color -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8"> <!-- Restored gap-8 -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <!-- Project Card 1: Plate Recognition -->
                     <div
-                        class="project-card bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-700 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl hover:bg-slate-700">
-                        <!-- Restored p-6, Removed border-l, Added hover:bg -->
-                        <!-- Added project-card class -->
-                        <!-- Slate bg, Indigo border -->
+                        class="project-card flex flex-col h-full bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-700 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl hover:bg-slate-700">
                         <h3
-                            class="fade-inner-item text-xl font-semibold mb-2 text-white opacity-0 transition-all duration-500 ease-out">
-                            Vehicle Plate Recognition</h3> <!-- Added fade-inner-item, Restored duration-500 -->
-                        <!-- Already font-semibold -->
+                            class="font-display fade-inner-item text-xl font-semibold mb-2 text-white opacity-0 transition-all duration-500 ease-out">
+                            <!-- TODO: Update href with actual repository URL -->
+                            <a href="#" class="text-white hover:text-indigo-400 transition-colors">Vehicle Plate Recognition</a></h3>
                         <p
-                            class="fade-inner-item text-gray-400 mb-4 flex-grow opacity-0 transition-all duration-500 ease-out">
+                            class="fade-inner-item text-gray-300 mb-4 flex-grow opacity-0 transition-all duration-500 ease-out">
                             Designed and deployed a high-performance vehicle plate recognition system using
                             Connectionist Temporal Classification (CTC), achieving near state-of-the-art results for
-                            traffic analysis applications.</p> <!-- Added fade-inner-item, Restored duration-500 -->
+                            traffic analysis applications.</p>
                         <div
                             class="fade-inner-item flex flex-wrap gap-2 opacity-0 transition-all duration-500 ease-out">
-                            <!-- Added fade-inner-item, Restored duration-500 -->
-                            <!-- Adjusted tag colors for dark theme -->
                             <span
                                 class="bg-blue-800 text-blue-300 text-xs font-medium px-2.5 py-0.5 rounded">Python</span>
                             <span
@@ -491,22 +380,17 @@
                     </div>
                     <!-- Project Card 2: Farsi OCR -->
                     <div
-                        class="project-card bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-700 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl hover:bg-slate-700">
-                        <!-- Restored p-6, Removed border-l, Added hover:bg -->
-                        <!-- Added project-card class -->
-                        <!-- Slate bg, Teal border -->
+                        class="project-card flex flex-col h-full bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-700 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl hover:bg-slate-700">
                         <h3
-                            class="fade-inner-item text-xl font-semibold mb-2 text-white opacity-0 transition-all duration-500 ease-out">
-                            Farsi OCR System</h3> <!-- Added fade-inner-item, Restored duration-500 -->
-                        <!-- Already font-semibold -->
+                            class="font-display fade-inner-item text-xl font-semibold mb-2 text-white opacity-0 transition-all duration-500 ease-out">
+                            <!-- TODO: Update href with actual repository URL -->
+                            <a href="#" class="text-white hover:text-indigo-400 transition-colors">Farsi OCR System</a></h3>
                         <p
-                            class="fade-inner-item text-gray-400 mb-4 flex-grow opacity-0 transition-all duration-500 ease-out">
+                            class="fade-inner-item text-gray-300 mb-4 flex-grow opacity-0 transition-all duration-500 ease-out">
                             Developed an OCR system for scanned Farsi documents, including paragraph/footer detection
                             and handling unique poetic indentation styles.</p>
-                        <!-- Added fade-inner-item, Restored duration-500 -->
                         <div
                             class="fade-inner-item flex flex-wrap gap-2 opacity-0 transition-all duration-500 ease-out">
-                            <!-- Added fade-inner-item, Restored duration-500 -->
                             <span
                                 class="bg-blue-800 text-blue-300 text-xs font-medium px-2.5 py-0.5 rounded">Python</span>
                             <span class="bg-green-800 text-green-300 text-xs font-medium px-2.5 py-0.5 rounded">Computer
@@ -517,51 +401,41 @@
                     </div>
                     <!-- Project Card 3: Predictive Models -->
                     <div
-                        class="project-card bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-700 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl hover:bg-slate-700">
-                        <!-- Restored p-6, Removed border-l, Added hover:bg -->
-                        <!-- Added project-card class -->
-                        <!-- Slate bg, Indigo border -->
+                        class="project-card flex flex-col h-full bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-700 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl hover:bg-slate-700">
                         <h3
-                            class="fade-inner-item text-xl font-semibold mb-2 text-white opacity-0 transition-all duration-500 ease-out">
-                            Predictive Models (Nikaat)</h3> <!-- Added fade-inner-item, Restored duration-500 -->
-                        <!-- Already font-semibold -->
+                            class="font-display fade-inner-item text-xl font-semibold mb-2 text-white opacity-0 transition-all duration-500 ease-out">
+                            <!-- TODO: Update href with actual repository URL -->
+                            <a href="#" class="text-white hover:text-indigo-400 transition-colors">Predictive Models (Nikaat)</a></h3>
                         <p
-                            class="fade-inner-item text-gray-400 mb-4 flex-grow opacity-0 transition-all duration-500 ease-out">
+                            class="fade-inner-item text-gray-300 mb-4 flex-grow opacity-0 transition-all duration-500 ease-out">
                             Researched and developed predictive models, including menstrual cycle forecasting and
                             currency exchange rate prediction, leveraging time-series deep learning architectures.</p>
-                        <!-- Added fade-inner-item, Restored duration-500 -->
                         <div
                             class="fade-inner-item flex flex-wrap gap-2 opacity-0 transition-all duration-500 ease-out">
-                            <!-- Added fade-inner-item, Restored duration-500 -->
                             <span
                                 class="bg-blue-800 text-blue-300 text-xs font-medium px-2.5 py-0.5 rounded">Python</span>
                             <span class="bg-red-800 text-red-300 text-xs font-medium px-2.5 py-0.5 rounded">Deep
                                 Learning</span>
                             <span class="bg-slate-700 text-slate-300 text-xs font-medium px-2.5 py-0.5 rounded">Time
-                                Series</span> <!-- Adjusted gray tag -->
+                                Series</span>
                             <span
                                 class="bg-indigo-800 text-indigo-300 text-xs font-medium px-2.5 py-0.5 rounded">Node.js</span>
                         </div>
                     </div>
                     <!-- Project Card 4: Content Recommendation -->
                     <div
-                        class="project-card bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-700 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl hover:bg-slate-700">
-                        <!-- Restored p-6, Removed border-l, Added hover:bg -->
-                        <!-- Added project-card class -->
-                        <!-- Slate bg, Teal border -->
+                        class="project-card flex flex-col h-full bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-700 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl hover:bg-slate-700">
                         <h3
-                            class="fade-inner-item text-xl font-semibold mb-2 text-white opacity-0 transition-all duration-500 ease-out">
-                            Content Recommendation Engine (Vestaak)</h3>
-                        <!-- Added fade-inner-item, Restored duration-500 -->
-                        <!-- Already font-semibold -->
+                            class="font-display fade-inner-item text-xl font-semibold mb-2 text-white opacity-0 transition-all duration-500 ease-out">
+                            <!-- TODO: Update href with actual repository URL -->
+                            <a href="#" class="text-white hover:text-indigo-400 transition-colors">Content Recommendation Engine (Vestaak)</a></h3>
                         <p
-                            class="fade-inner-item text-gray-400 mb-4 flex-grow opacity-0 transition-all duration-500 ease-out">
+                            class="fade-inner-item text-gray-300 mb-4 flex-grow opacity-0 transition-all duration-500 ease-out">
                             Developed a personalized content recommendation engine using Python and Scikit-learn,
                             utilizing data crawled from the Telegram API and implementing collaborative/content-based
-                            filtering.</p> <!-- Added fade-inner-item, Restored duration-500 -->
+                            filtering.</p>
                         <div
                             class="fade-inner-item flex flex-wrap gap-2 opacity-0 transition-all duration-500 ease-out">
-                            <!-- Added fade-inner-item, Restored duration-500 -->
                             <span
                                 class="bg-blue-800 text-blue-300 text-xs font-medium px-2.5 py-0.5 rounded">Python</span>
                             <span
@@ -574,16 +448,14 @@
                         </div>
                     </div>
                 </div>
-            </div> <!-- Close grid -->
-            </div> <!-- Close container -->
+            </div>
         </section>
 
         <!-- Personal Projects & Interests Section -->
         <section id="personal-projects"
             class="py-16 border-t border-slate-700 hover:bg-slate-800/50 transition-all duration-300">
-            <!-- Added hover:bg, removed brightness -->
-            <div class="container mx-auto px-6"> <!-- Changed px-4 to px-6 --> <!-- Moved container inside -->
-                <h2 class="text-2xl font-semibold text-center text-gray-200 mb-16"> <!-- Restored mb-16 -->
+            <div class="container mx-auto px-6">
+                <h2 class="font-display text-2xl font-semibold text-center text-gray-200 mb-16">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="inline-block h-6 w-6 mr-2 align-middle">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -591,94 +463,69 @@
                     </svg>
                     Personal Explorations
                 </h2>
-                <!-- font-bold to font-semibold -->
-                <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8"> <!-- Restored gap-8 -->
+                <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
                     <!-- Project: Texture Modding -->
                     <div
-                        class="personal-project-card bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-700 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl hover:bg-slate-700">
-                        <!-- Restored p-6, Added hover:bg -->
-                        <!-- Added personal-project-card, removed fade classes -->
-                        <!-- Slate bg -->
+                        class="personal-project-card flex flex-col h-full bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-700 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl hover:bg-slate-700">
                         <h3
-                            class="fade-inner-item text-xl font-semibold mb-2 text-white opacity-0 transition-all duration-500 ease-out">
-                            <!-- Restored duration-500 -->
+                            class="font-display fade-inner-item text-xl font-semibold mb-2 text-white opacity-0 transition-all duration-500 ease-out">
                             Texture Modding Tools
-                        </h3> <!-- Added fade-inner-item -->
-                        <!-- Already font-semibold -->
-                        <p class="fade-inner-item text-gray-400 opacity-0 transition-all duration-500 ease-out">
-                            <!-- Restored duration-500 -->
+                        </h3>
+                        <p class="fade-inner-item flex-grow text-gray-400 opacity-0 transition-all duration-500 ease-out">
                             Automated Binary Domain texture modding using scripting and external tools to streamline
                             content creation.
-                        </p> <!-- Added fade-inner-item -->
+                        </p>
                     </div>
                     <!-- Project: Video Compression -->
                     <div
-                        class="personal-project-card bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-700 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl hover:bg-slate-700">
-                        <!-- Restored p-6, Added hover:bg -->
-                        <!-- Added personal-project-card, removed fade classes -->
+                        class="personal-project-card flex flex-col h-full bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-700 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl hover:bg-slate-700">
                         <h3
-                            class="fade-inner-item text-xl font-semibold mb-2 text-white opacity-0 transition-all duration-500 ease-out">
-                            <!-- Restored duration-500 -->
+                            class="font-display fade-inner-item text-xl font-semibold mb-2 text-white opacity-0 transition-all duration-500 ease-out">
                             Video Compression Research <span class="text-sm font-normal text-orange-400">(WIP)</span>
-                        </h3> <!-- Added fade-inner-item -->
-                        <!-- Already font-semibold -->
-                        <p class="fade-inner-item text-gray-400 opacity-0 transition-all duration-500 ease-out">
-                            <!-- Restored duration-500 -->
+                        </h3>
+                        <p class="fade-inner-item flex-grow text-gray-400 opacity-0 transition-all duration-500 ease-out">
                             Exploring video compression techniques focusing on efficiency through temporal redundancy
                             and bit-packing.
-                        </p> <!-- Added fade-inner-item -->
+                        </p>
                     </div>
                     <!-- Project: Large Model Training -->
                     <div
-                        class="personal-project-card bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-700 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl hover:bg-slate-700">
-                        <!-- Restored p-6, Added hover:bg -->
-                        <!-- Added personal-project-card, removed fade classes -->
+                        class="personal-project-card flex flex-col h-full bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-700 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl hover:bg-slate-700">
                         <h3
-                            class="fade-inner-item text-xl font-semibold mb-2 text-white opacity-0 transition-all duration-500 ease-out">
-                            <!-- Restored duration-500 -->
+                            class="font-display fade-inner-item text-xl font-semibold mb-2 text-white opacity-0 transition-all duration-500 ease-out">
                             Large Model Training Research
-                        </h3> <!-- Added fade-inner-item -->
-                        <!-- Already font-semibold -->
-                        <p class="fade-inner-item text-gray-400 opacity-0 transition-all duration-500 ease-out">
-                            <!-- Restored duration-500 -->
+                        </h3>
+                        <p class="fade-inner-item flex-grow text-gray-400 opacity-0 transition-all duration-500 ease-out">
                             Investigating methods to enhance large model training convergence through custom layer
                             design.
-                        </p> <!-- Added fade-inner-item -->
+                        </p>
                     </div>
                     <!-- Project: Agent Interaction Language -->
                     <div
-                        class="personal-project-card bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-700 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl hover:bg-slate-700">
-                        <!-- Restored p-6, Added hover:bg -->
-                        <!-- Added personal-project-card, removed fade classes -->
+                        class="personal-project-card flex flex-col h-full bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-700 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl hover:bg-slate-700">
                         <h3
-                            class="fade-inner-item text-xl font-semibold mb-2 text-white opacity-0 transition-all duration-500 ease-out">
-                            <!-- Restored duration-500 -->
+                            class="font-display fade-inner-item text-xl font-semibold mb-2 text-white opacity-0 transition-all duration-500 ease-out">
                             Agent Interaction Language Design <span
                                 class="text-sm font-normal text-orange-400">(WIP)</span>
                         </h3>
-                        <!-- Added fade-inner-item -->
-                        <!-- Already font-semibold -->
-                        <p class="fade-inner-item text-gray-400 opacity-0 transition-all duration-500 ease-out">
-                            <!-- Restored duration-500 -->
+                        <p class="fade-inner-item flex-grow text-gray-400 opacity-0 transition-all duration-500 ease-out">
                             Designing a domain-specific language to define virtual agent interactions for improved
                             software interoperability.
-                        </p> <!-- Added fade-inner-item -->
+                        </p>
                     </div>
                 </div>
                 <div class="text-center mt-10">
-                    <h3 class="text-xl font-semibold mb-3 text-gray-300">Core Interests</h3>
+                    <h3 class="font-display text-xl font-semibold mb-3 text-gray-300">Core Interests</h3>
                     <p class="text-gray-400">Software Engineering, Algorithms, Machine Learning, Computer Graphics,
                         Problem-Solving</p>
                 </div>
-            </div> <!-- Close container -->
+            </div>
         </section>
 
         <!-- Contact Section -->
         <section id="contact" class="py-12 border-t border-slate-700 hover:bg-slate-800/50 transition-all duration-300">
-            <!-- Reduced padding, Added hover:bg, removed brightness -->
-            <!-- Removed sticky classes -->
-            <div class="container mx-auto px-6"> <!-- Changed px-4 to px-6 -->
-                <h2 class="text-2xl font-semibold text-center text-gray-200 mb-12"> <!-- Reduced mb-16 to mb-12 -->
+            <div class="container mx-auto px-6">
+                <h2 class="font-display text-2xl font-semibold text-center text-gray-200 mb-12">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="inline-block h-6 w-6 mr-2 align-middle">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -686,13 +533,9 @@
                     </svg>
                     Get In Touch
                 </h2>
-                <!-- font-bold to font-semibold -->
-                <!-- Removed introductory paragraph -->
                 <div class="flex justify-center items-center space-x-6 mt-8">
-                    <!-- Added mt-8 for spacing after removing paragraph -->
                     <a href="mailto:shervin.naseri@gmail.com"
                         class="text-indigo-400 hover:text-indigo-300 hover:underline text-lg transition transform hover:scale-105 duration-200 inline-flex items-center">
-                        <!-- Changed to inline-flex -->
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-5 h-5 mr-1">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -703,7 +546,6 @@
                     <a href="https://www.linkedin.com/in/shervin-naseri-b3a016b0/" target="_blank"
                         rel="noopener noreferrer"
                         class="text-indigo-400 hover:text-indigo-300 hover:underline text-lg transition transform hover:scale-105 duration-200 inline-flex items-center">
-                        <!-- Changed to inline-flex -->
                         <svg class="w-5 h-5 mr-1 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                             <path
                                 d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 53.79-54.3c29.7 0 53.79 24.7 53.79 54.3a53.79 53.79 0 0 1-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z" />
@@ -712,7 +554,6 @@
                     </a>
                     <a href="https://github.com/shervinemp" target="_blank" rel="noopener noreferrer"
                         class="text-indigo-400 hover:text-indigo-300 hover:underline text-lg transition transform hover:scale-105 duration-200 inline-flex items-center">
-                        <!-- Changed to inline-flex -->
                         <svg class="w-5 h-5 mr-1 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512">
                             <path
                                 d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z" />
@@ -723,7 +564,6 @@
             </div>
         </section>
 
-        <!-- Add JS script tag later if needed -->
         <script src="src/script.js"></script>
 
         <!-- Footer -->
@@ -735,16 +575,13 @@
         <!-- Back to Top Button -->
         <button id="back-to-top" title="Back to Top"
             class="hidden fixed bottom-6 right-6 p-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full shadow-lg transition-all duration-300 z-10 transform hover:scale-110 active:scale-100">
-            <!-- Added active:scale-100 -->
-            <!-- Added scale -->
-            <!-- Adjusted button color -->
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
             </svg>
         </button>
 
-    </main> <!-- End Main Content Area -->
+    </main>
 </body>
 
 </html>
