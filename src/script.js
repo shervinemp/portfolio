@@ -1,34 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     console.log("Portfolio script loaded.");
 
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            // Check if the link is just '#' (e.g., a placeholder)
-            if (this.getAttribute('href') === '#') {
-                return; // Do nothing for placeholder links
-            }
-
-            // Check if the link is for downloading a file
-            if (this.hasAttribute('download')) {
-                return; // Do not prevent default for download links
-            }
-
-            e.preventDefault(); // Prevent default jump
-
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-
-            if (targetElement) {
-                targetElement.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start' // Align to the top of the target element
-                });
-            } else {
-                console.warn(`Smooth scroll target not found: ${targetId}`);
-            }
-        });
-    });
+    // Smooth scrolling logic removed in favor of CSS scroll-smooth
 
     // Set current year in footer
     const yearSpan = document.getElementById('current-year');
@@ -47,12 +20,20 @@ document.addEventListener('DOMContentLoaded', () => {
     if (menuToggle && sidebar && mainContent) {
         menuToggle.addEventListener('click', () => {
             sidebar.classList.toggle('hidden'); // Toggle sidebar visibility
-            // Optional: Adjust main content margin when sidebar is open/closed on mobile
-            // if (sidebar.classList.contains('hidden')) {
-            //     mainContent.classList.remove('ml-64'); // Example if sidebar pushes content
-            // } else {
-            //     mainContent.classList.add('ml-64'); // Example if sidebar pushes content
-            // }
+
+            if (sidebar.classList.contains('hidden')) {
+                document.body.classList.remove('overflow-hidden');
+            } else {
+                document.body.classList.add('overflow-hidden');
+            }
+        });
+
+        // Close sidebar on window resize if greater than md breakpoint
+        window.addEventListener('resize', () => {
+             if (window.innerWidth >= 768) {
+                 sidebar.classList.add('hidden'); // Reset to hidden (desktop view controls display via CSS)
+                 document.body.classList.remove('overflow-hidden');
+             }
         });
 
         // Close sidebar when a link is clicked (optional, good for SPA feel)
@@ -83,15 +64,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const target = entry.target;
             if (entry.isIntersecting) {
                 // Element is entering the viewport - Fade In
-                target.style.transitionDelay = '0ms'; // Ensure no residual delay
+                // Stagger delay is handled via inline style set during observation setup
                 target.classList.remove('opacity-0');
-                // Optional: Add translate effect if desired, e.g., target.classList.add('translate-y-0');
-                // We don't unobserve anymore to allow fade-out
             } else {
                 // Element is leaving the viewport - Fade Out
                 target.classList.add('opacity-0');
-                target.style.transitionDelay = '0ms'; // Reset delay on fade out
-                // Optional: Reset translate effect if used, e.g., target.classList.remove('translate-y-0');
+                // Keep delay for re-entry or reset if needed.
+                // For simplicity, we let the stagger apply on re-entry or keep it.
+                // If we want to remove delay on exit:
+                // target.style.transitionDelay = '0ms';
             }
         });
     };
@@ -99,8 +80,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const observer = new IntersectionObserver(observerCallback, observerOptions);
 
     const itemsToFade = document.querySelectorAll('.fade-inner-item'); // Target inner items
-    itemsToFade.forEach(item => {
-        observer.observe(item);
+
+    // Check for reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    itemsToFade.forEach((item, index) => {
+        if (!prefersReducedMotion) {
+             // Dynamic stagger: 100ms per item index (looping 0-9 for visual variety or global index)
+             // Using global index might be too much if there are many items.
+             // Let's use a modulo or just a small delay based on index relative to parent if possible,
+             // but global index is simplest for "stagger effect".
+             item.style.transitionDelay = `${(index % 10) * 100}ms`;
+             observer.observe(item);
+        } else {
+            // If reduced motion, show immediately without fade animation logic (or just ensure opacity is 1)
+            item.classList.remove('opacity-0');
+            item.style.transition = 'none';
+        }
     });
 
     // Active link highlighting on scroll
@@ -168,12 +164,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Back to Top Button Logic & Sidebar Scroll Effect
     const backToTopButton = document.getElementById('back-to-top');
-    const mainScrollArea = document.getElementById('main-content'); // Use the main content area for scroll events
     // sidebarNav is already defined above
 
-    if (backToTopButton && mainScrollArea && sidebarNav) { // Use the existing sidebarNav variable
+    if (backToTopButton && sidebarNav) { // Use the existing sidebarNav variable
         // Show/Hide button and apply sidebar scroll effect based on scroll position
-        // --- Attach listener to window instead of mainScrollArea ---
+        // --- Attach listener to window ---
         window.addEventListener('scroll', () => {
             const isScrolled = window.scrollY > 10; // Use window.scrollY
 
@@ -194,14 +189,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Scroll to top when button is clicked
         backToTopButton.addEventListener('click', () => {
-            // --- Scroll the main content area, not the window ---
-            mainScrollArea.scrollTo({
+            // --- Scroll the window ---
+            window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
         });
     } else {
-        console.warn("Back to top button, main scroll area, or sidebar element not found."); // Updated warning
+        console.warn("Back to top button or sidebar element not found."); // Updated warning
     }
 
     // Removed Sidebar Scroll Indicator Logic
