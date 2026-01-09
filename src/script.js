@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
              // Using global index might be too much if there are many items.
              // Let's use a modulo or just a small delay based on index relative to parent if possible,
              // but global index is simplest for "stagger effect".
-             item.style.transitionDelay = `${(index % 10) * 100}ms`;
+             item.style.transitionDelay = `${(index % 5) * 50}ms`;
              observer.observe(item);
         } else {
             // If reduced motion, show immediately without fade animation logic (or just ensure opacity is 1)
