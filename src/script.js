@@ -1,159 +1,231 @@
-/**
- * Initializes the current year in the footer element.
- */
-const initFooterYear = () => {
-    const yearElement = document.getElementById('current-year');
-    if (yearElement) {
-        yearElement.textContent = new Date().getFullYear();
-    }
-};
+document.addEventListener('DOMContentLoaded', () => {
+    console.log("Portfolio script loaded.");
 
-/**
- * Initializes the mobile hamburger menu toggle functionality.
- */
-const initMobileMenu = () => {
-    const menuToggle = document.getElementById('menu-toggle');
-    const sidebar = document.getElementById('sidebar');
-
-    if (!menuToggle || !sidebar) return;
-
-    menuToggle.addEventListener('click', () => {
-        sidebar.classList.toggle('hidden');
-        document.body.classList.toggle('overflow-hidden', !sidebar.classList.contains('hidden'));
-    });
-
-    // Close sidebar on window resize if greater than md breakpoint (768px)
-    window.addEventListener('resize', () => {
-        if (window.innerWidth >= 768) {
-            sidebar.classList.add('hidden');
-            document.body.classList.remove('overflow-hidden');
+    // ==========================================
+    // Blog Link Dynamic Visibility
+    // ==========================================
+    const blogLinkWrapper = document.getElementById('blog-link-wrapper');
+    // Check if the global variable exists and if posts were generated
+    if (blogLinkWrapper && typeof window.BLOG_META !== 'undefined') {
+        if (window.BLOG_META.postCount > 0) {
+            blogLinkWrapper.classList.remove('hidden');
         }
-    });
+    }
 
-    // Close sidebar when a navigation link is clicked (mobile view only)
-    sidebar.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            if (window.innerWidth < 768) {
-                sidebar.classList.add('hidden');
-                document.body.classList.remove('overflow-hidden');
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            // Check if the link is just '#' (e.g., a placeholder)
+            if (this.getAttribute('href') === '#') {
+                return; // Do nothing for placeholder links
+            }
+
+            // Check if the link is for downloading a file
+            if (this.hasAttribute('download')) {
+                return; // Do not prevent default for download links
+            }
+
+            e.preventDefault(); // Prevent default jump
+
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start' // Align to the top of the target element
+                });
+            } else {
+                console.warn(`Smooth scroll target not found: ${targetId}`);
             }
         });
     });
-};
 
-/**
- * Initializes intersection observers for fade-in animations on scroll.
- */
-const initFadeInAnimations = () => {
-    const itemsToFade = document.querySelectorAll('.fade-inner-item');
-    if (!itemsToFade.length) return;
-
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    if (prefersReducedMotion) {
-        itemsToFade.forEach(item => {
-            item.classList.remove('opacity-0');
-            item.style.transition = 'none';
-        });
-        return;
+    // Set current year in footer
+    const yearSpan = document.getElementById('current-year');
+    if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+    } else {
+        console.warn("Footer year span not found.");
     }
 
+    // Hamburger menu toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    const sidebar = document.getElementById('sidebar');
+    const mainContent = document.getElementById('main-content');
+    const sidebarNav = document.getElementById('sidebar'); // Define sidebarNav once here
+
+    if (menuToggle && sidebar && mainContent) {
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('hidden'); // Toggle sidebar visibility
+            // Optional: Adjust main content margin when sidebar is open/closed on mobile
+            // if (sidebar.classList.contains('hidden')) {
+            //     mainContent.classList.remove('ml-64'); // Example if sidebar pushes content
+            // } else {
+            //     mainContent.classList.add('ml-64'); // Example if sidebar pushes content
+            // }
+        });
+
+        // Close sidebar when a link is clicked (optional, good for SPA feel)
+        sidebar.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                // Only hide if on mobile view (where toggle is visible)
+                if (window.innerWidth < 768) { // Tailwind's 'md' breakpoint is 768px
+                    sidebar.classList.add('hidden');
+                }
+            });
+        });
+
+    } else {
+        console.warn("Menu toggle button, sidebar, or main content element not found.");
+    }
+
+    // Fade-in animation on scroll
     const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
+        root: null, // relative to document viewport
+        rootMargin: '0px', // Removed negative margin
+        threshold: 0.1 // trigger when 10% of the element is visible (Reverted from 0.25)
     };
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            entry.target.classList.toggle('opacity-0', !entry.isIntersecting);
-        });
-    }, observerOptions);
+    // Removed delay counter logic
 
-    itemsToFade.forEach((item, index) => {
-        item.style.transitionDelay = `${(index % 5) * 50}ms`;
+    const observerCallback = (entries, observer) => {
+        entries.forEach(entry => {
+            const target = entry.target;
+            if (entry.isIntersecting) {
+                // Element is entering the viewport - Fade In
+                target.style.transitionDelay = '0ms'; // Ensure no residual delay
+                target.classList.remove('opacity-0');
+                // Optional: Add translate effect if desired, e.g., target.classList.add('translate-y-0');
+                // We don't unobserve anymore to allow fade-out
+            } else {
+                // Element is leaving the viewport - Fade Out
+                target.classList.add('opacity-0');
+                target.style.transitionDelay = '0ms'; // Reset delay on fade out
+                // Optional: Reset translate effect if used, e.g., target.classList.remove('translate-y-0');
+            }
+        });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    const itemsToFade = document.querySelectorAll('.fade-inner-item'); // Target inner items
+    itemsToFade.forEach(item => {
         observer.observe(item);
     });
-};
 
-/**
- * Initializes scroll spy functionality to highlight active navigation links.
- */
-const initScrollSpy = () => {
+    // Active link highlighting on scroll
     const sections = document.querySelectorAll('main section[id]');
     const navLinks = document.querySelectorAll('nav a[href^="#"]');
+    const visibleSections = new Set();
 
-    if (!sections.length || !navLinks.length) return;
-
-    const resetActiveLinks = () => {
+    const removeActiveClasses = () => {
         navLinks.forEach(link => {
             link.classList.remove('text-white', 'font-semibold');
             link.classList.add('text-gray-300');
         });
     };
 
-    const setActiveLink = (href) => {
-        resetActiveLinks();
-        const activeLink = document.querySelector(`nav a[href="${href}"]`);
-        if (activeLink) {
-            activeLink.classList.add('text-white', 'font-semibold');
-            activeLink.classList.remove('text-gray-300');
-        }
-    };
+    const handleScrollHighlighting = () => {
+        let bestScore = Infinity;
+        let bestSectionId = null;
 
-    const observerOptions = {
-        root: null,
-        rootMargin: '-50% 0px -50% 0px',
-        threshold: 0
-    };
+        const viewport_height = window.innerHeight;
+        const scrollable_height = document.documentElement.scrollHeight - viewport_height;
+        const scroll_percent = scrollable_height > 0 ? window.scrollY / scrollable_height : 0;
 
-    const observer = new IntersectionObserver((entries) => {
-        const isNearBottom = (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 10;
+        // Per the formula: `abs(section_mid_y - (viewport_top_y + scroll_percent * viewport_height))`
+        // where viewport_top_y is 0.
+        const target_y = scroll_percent * viewport_height;
 
-        if (isNearBottom) {
-            setActiveLink('#contact');
-            return;
-        }
+        visibleSections.forEach(sectionId => {
+            const section = document.getElementById(sectionId);
+            if (!section) return;
 
-        // Find the topmost intersecting section
-        let activeEntry = null;
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                if (!activeEntry || entry.boundingClientRect.top > activeEntry.boundingClientRect.top) {
-                    activeEntry = entry;
-                }
+            const rect = section.getBoundingClientRect();
+            const section_mid_y = rect.top + (rect.height / 2);
+
+            const score = Math.abs(section_mid_y - target_y);
+
+            if (score < bestScore) {
+                bestScore = score;
+                bestSectionId = sectionId;
             }
         });
 
-        if (activeEntry) {
-            setActiveLink(`#${activeEntry.target.id}`);
+        removeActiveClasses();
+        if (bestSectionId) {
+            const correspondingLink = document.querySelector(`nav a[href="#${bestSectionId}"]`);
+            if (correspondingLink) {
+                correspondingLink.classList.add('text-white', 'font-semibold');
+                correspondingLink.classList.remove('text-gray-300');
+            }
         }
-    }, observerOptions);
+    };
 
-    sections.forEach(section => observer.observe(section));
-};
+    const visibilityObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                visibleSections.add(entry.target.id);
+            } else {
+                visibleSections.delete(entry.target.id);
+            }
+        });
+        // Initial run when visibility changes
+        handleScrollHighlighting();
+    }, {
+        // Observe a wide band to ensure sections are always in the `visibleSections` set
+        // when they are near the middle of the screen.
+        rootMargin: '100% 0px 100% 0px',
+        threshold: 0
+    });
 
-/**
- * Initializes back-to-top button and sidebar scroll effects.
- */
-const initScrollEffects = () => {
+    sections.forEach(section => {
+        visibilityObserver.observe(section);
+    });
+
+    // Back to Top Button Logic & Sidebar Scroll Effect
     const backToTopButton = document.getElementById('back-to-top');
-    const sidebarNav = document.getElementById('sidebar');
+    const mainScrollArea = document.getElementById('main-content'); // Use the main content area for scroll events
+    // sidebarNav is already defined above
 
-    if (!backToTopButton || !sidebarNav) return;
+    if (backToTopButton && mainScrollArea && sidebarNav) { // Use the existing sidebarNav variable
+        // Show/Hide button and apply sidebar scroll effect based on scroll position
+        // --- Attach listener to window instead of mainScrollArea ---
+        window.addEventListener('scroll', () => {
+            const isScrolled = window.scrollY > 10; // Use window.scrollY
 
-    window.addEventListener('scroll', () => {
-        const isScrolled = window.scrollY > 10;
-        const showBackToTop = window.scrollY > 300;
+            // Back to top button visibility
+            if (window.scrollY > 300) { // Use window.scrollY
+                backToTopButton.classList.remove('hidden');
+            } else {
+                backToTopButton.classList.add('hidden');
+            }
 
-        backToTopButton.classList.toggle('hidden', !showBackToTop);
-        sidebarNav.classList.toggle('scrolled', isScrolled);
-    });
+            // Sidebar scroll effect class
+            if (isScrolled) {
+                sidebarNav.classList.add('scrolled');
+            } else {
+                sidebarNav.classList.remove('scrolled');
+            }
 
-    backToTopButton.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-};
+            // Handle active link highlighting on every scroll frame
+            handleScrollHighlighting();
+        });
+
+        // Scroll to top when button is clicked
+        backToTopButton.addEventListener('click', () => {
+            // --- Scroll the main content area, not the window ---
+            mainScrollArea.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    } else {
+        console.warn("Back to top button, main scroll area, or sidebar element not found."); // Updated warning
+    }
+
+    // Removed Sidebar Scroll Indicator Logic
 
 /**
  * Main initialization wrapper.
