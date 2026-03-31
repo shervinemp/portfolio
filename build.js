@@ -25,14 +25,14 @@ const createPostHtml = (post) => `
     <link rel="stylesheet" href="../output.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
 </head>
-<body class="bg-gradient-to-b from-slate-800 to-slate-950 text-gray-300 font-sans leading-relaxed flex flex-col min-h-screen">
+<body class="bg-gradient-to-b from-slate-900 to-black text-slate-200 font-sans leading-relaxed flex flex-col min-h-screen">
 
     <!-- Header -->
     <header class="bg-slate-800/80 backdrop-blur-sm sticky top-0 z-20 border-b border-slate-700">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="../../index.html" class="text-2xl font-bold text-white hover:text-gray-300 transition transform hover:scale-105 duration-200 inline-block">Shervin Naseri</a>
+            <a href="../../index.html" class="text-2xl font-bold text-white hover:text-slate-200 transition transform hover:scale-105 duration-200 inline-block">Shervin Naseri</a>
             <nav>
-                <a href="../../blog.html" class="text-indigo-400 hover:text-indigo-300 hover:underline">Back to Blog</a>
+                <a href="../../blog.html" class="text-indigo-500 hover:text-indigo-300 hover:underline">Back to Blog</a>
             </nav>
         </div>
     </header>
@@ -41,9 +41,9 @@ const createPostHtml = (post) => `
     <main class="container mx-auto px-6 py-12 flex-grow">
         <article class="max-w-4xl mx-auto">
             <h1 class="text-4xl font-bold text-white mb-4">${post.attributes.title}</h1>
-            <p class="text-sm text-gray-400 mb-8">Published on <time datetime="${post.attributes.date}">${new Date(post.attributes.date).toDateString()}</time></p>
+            <p class="text-sm text-slate-400 mb-8">Published on <time datetime="${post.attributes.date}">${new Date(post.attributes.date).toDateString()}</time></p>
 
-            <div class="prose prose-invert max-w-none text-gray-300">
+            <div class="prose prose-invert max-w-none text-slate-200">
                 ${post.body}
             </div>
 
@@ -77,32 +77,32 @@ const createTagPageHtml = (tag, posts) => `
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../output.css">
 </head>
-<body class="bg-gradient-to-b from-slate-800 to-slate-950 text-gray-300 font-sans leading-relaxed flex flex-col min-h-screen">
+<body class="bg-gradient-to-b from-slate-900 to-black text-slate-200 font-sans leading-relaxed flex flex-col min-h-screen">
 
     <!-- Header -->
     <header class="bg-slate-800/80 backdrop-blur-sm sticky top-0 z-20 border-b border-slate-700">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="../../index.html" class="text-2xl font-bold text-white hover:text-gray-300 transition transform hover:scale-105 duration-200 inline-block">Shervin Naseri</a>
+            <a href="../../index.html" class="text-2xl font-bold text-white hover:text-slate-200 transition transform hover:scale-105 duration-200 inline-block">Shervin Naseri</a>
             <nav>
-                 <a href="../../blog.html" class="text-indigo-400 hover:text-indigo-300 hover:underline">Back to Blog</a>
+                 <a href="../../blog.html" class="text-indigo-500 hover:text-indigo-300 hover:underline">Back to Blog</a>
             </nav>
         </div>
     </header>
 
     <!-- Main Content Area -->
     <main class="container mx-auto px-6 py-12 flex-grow">
-        <h1 class="text-4xl font-bold text-center text-white mb-4">Posts tagged with <span class="text-indigo-400">"${tag}"</span></h1>
-        <p class="text-center text-gray-400 mb-12">${posts.length} post${posts.length === 1 ? '' : 's'} found.</p>
+        <h1 class="text-4xl font-bold text-center text-white mb-4">Posts tagged with <span class="text-indigo-500">"${tag}"</span></h1>
+        <p class="text-center text-slate-400 mb-12">${posts.length} post${posts.length === 1 ? '' : 's'} found.</p>
         <div class="space-y-16 max-w-4xl mx-auto">
             ${posts.map(post => `
-            <article class="bg-slate-800 p-8 rounded-lg shadow-lg border border-slate-700 hover:bg-slate-700/50 transition-all duration-300">
+            <article class="glass-card-glow">
                 <h2 class="text-3xl font-semibold text-white mb-2">
                     <a href="../blog/${post.slug}.html" class="hover:underline">${post.attributes.title}</a>
                 </h2>
-                <p class="text-sm text-gray-400 mb-4">Published on <time datetime="${post.attributes.date}">${new Date(post.attributes.date).toDateString()}</time></p>
-                <p class="text-gray-300 mb-4">${post.attributes.snippet}</p>
+                <p class="text-sm text-slate-400 mb-4">Published on <time datetime="${post.attributes.date}">${new Date(post.attributes.date).toDateString()}</time></p>
+                <p class="text-slate-200 mb-4">${post.attributes.snippet}</p>
                  <div class="flex justify-between items-center">
-                    <a href="../blog/${post.slug}.html" class="text-indigo-400 hover:underline font-semibold">Read more...</a>
+                    <a href="../blog/${post.slug}.html" class="text-indigo-500 hover:underline font-semibold">Read more...</a>
                     <div class="flex items-center gap-2">
                         ${post.attributes.tags.map(t => {
                             const tagSlug = t.toLowerCase().replace(/\s+/g, '-');
@@ -136,12 +136,12 @@ const createBlogIndexHtml = (posts) => `
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="dist/output.css">
 </head>
-<body class="bg-gradient-to-b from-slate-800 to-slate-950 text-gray-300 font-sans leading-relaxed flex flex-col min-h-screen">
+<body class="bg-gradient-to-b from-slate-900 to-black text-slate-200 font-sans leading-relaxed flex flex-col min-h-screen">
 
     <!-- Header -->
     <header class="bg-slate-800/80 backdrop-blur-sm sticky top-0 z-20 border-b border-slate-700">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold text-white hover:text-gray-300 transition transform hover:scale-105 duration-200 inline-block">Shervin Naseri</a>
+            <a href="index.html" class="text-2xl font-bold text-white hover:text-slate-200 transition transform hover:scale-105 duration-200 inline-block">Shervin Naseri</a>
             <nav>
                 <!-- Empty nav for consistency -->
             </nav>
@@ -153,14 +153,14 @@ const createBlogIndexHtml = (posts) => `
         <h1 class="text-4xl font-bold text-center text-white mb-12">Technical Blog</h1>
         <div class="space-y-16 max-w-4xl mx-auto">
             ${posts.map(post => `
-            <article class="bg-slate-800 p-8 rounded-lg shadow-lg border border-slate-700 hover:bg-slate-700/50 transition-all duration-300">
+            <article class="glass-card-glow">
                 <h2 class="text-3xl font-semibold text-white mb-2">
                     <a href="dist/blog/${post.slug}.html" class="hover:underline">${post.attributes.title}</a>
                 </h2>
-                <p class="text-sm text-gray-400 mb-4">Published on <time datetime="${post.attributes.date}">${new Date(post.attributes.date).toDateString()}</time></p>
-                <p class="text-gray-300 mb-4">${post.attributes.snippet}</p>
+                <p class="text-sm text-slate-400 mb-4">Published on <time datetime="${post.attributes.date}">${new Date(post.attributes.date).toDateString()}</time></p>
+                <p class="text-slate-200 mb-4">${post.attributes.snippet}</p>
                 <div class="flex justify-between items-center">
-                    <a href="dist/blog/${post.slug}.html" class="text-indigo-400 hover:underline font-semibold">Read more...</a>
+                    <a href="dist/blog/${post.slug}.html" class="text-indigo-500 hover:underline font-semibold">Read more...</a>
                     <div class="flex items-center gap-2">
                         ${post.attributes.tags.map(tag => {
                             const tagSlug = tag.toLowerCase().replace(/\s+/g, '-');
