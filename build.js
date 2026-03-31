@@ -1,7 +1,6 @@
 const fs = require('fs/promises');
 const path = require('path');
 const fm = require('front-matter');
-const { marked } = require('marked');
 const hljs = require('highlight.js');
 
 const POSTS_DIR = path.join(__dirname, 'posts');
@@ -185,6 +184,9 @@ const createBlogIndexHtml = (posts) => `
 
 const main = async () => {
     try {
+        // Dynamically import marked (ES Module)
+        const { marked } = await import('marked');
+
         // Custom renderer for marked
         const renderer = new marked.Renderer();
         renderer.code = (codeBlock) => {
