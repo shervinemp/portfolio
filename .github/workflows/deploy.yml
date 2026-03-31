@@ -34,8 +34,8 @@ jobs:
           cache: "npm"
       - name: Install dependencies
         run: npm ci # Use ci for faster, deterministic installs in workflows
-      - name: Build CSS
-        run: npm run build:css # Assumes your build script is correct
+      - name: Build Site Assets
+        run: npm run build # This executes both build:css and build:blog
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

@@ -1,0 +1,278 @@
+const fs = require('fs/promises');
+const path = require('path');
+const fm = require('front-matter');
+const { marked } = require('marked');
+const hljs = require('highlight.js');
+
+const POSTS_DIR = path.join(__dirname, 'posts');
+const PLACEHOLDER_POSTS_DIR = path.join(__dirname, 'posts-placeholders');
+const DIST_DIR = path.join(__dirname, 'dist/blog');
+
+// Function to create a slug from a filename
+const createSlug = (filename) => {
+    return path.basename(filename, path.extname(filename));
+};
+
+// HTML template for a single blog post
+const createPostHtml = (post) => `
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="${post.attributes.snippet}">
+    <title>${post.attributes.title} - Shervin Naseri</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../output.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+</head>
+<body class="bg-gradient-to-b from-slate-800 to-slate-950 text-gray-300 font-sans leading-relaxed flex flex-col min-h-screen">
+
+    <!-- Header -->
+    <header class="bg-slate-800/80 backdrop-blur-sm sticky top-0 z-20 border-b border-slate-700">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="../../index.html" class="text-2xl font-bold text-white hover:text-gray-300 transition transform hover:scale-105 duration-200 inline-block">Shervin Naseri</a>
+            <nav>
+                <a href="../../blog.html" class="text-indigo-400 hover:text-indigo-300 hover:underline">Back to Blog</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="container mx-auto px-6 py-12 flex-grow">
+        <article class="max-w-4xl mx-auto">
+            <h1 class="text-4xl font-bold text-white mb-4">${post.attributes.title}</h1>
+            <p class="text-sm text-gray-400 mb-8">Published on <time datetime="${post.attributes.date}">${new Date(post.attributes.date).toDateString()}</time></p>
+
+            <div class="prose prose-invert max-w-none text-gray-300">
+                ${post.body}
+            </div>
+
+            <div class="mt-8">
+                ${post.attributes.tags.map(tag => {
+                    const tagSlug = tag.toLowerCase().replace(/\s+/g, '-');
+                    return `<a href="../tags/${tagSlug}.html" class="inline-block bg-slate-700 text-indigo-300 text-xs font-medium mr-2 px-2.5 py-0.5 rounded hover:bg-slate-600 hover:text-indigo-200 transition-colors duration-200">${tag}</a>`;
+                }).join('')}
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center py-6 mt-16 border-t border-slate-700">
+        <p class="text-gray-500 text-sm">&copy; ${new Date().getFullYear()} Shervin Naseri. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
+`;
+
+// HTML template for a tag page
+const createTagPageHtml = (tag, posts) => `
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Posts tagged with ${tag} on the technical blog of Shervin Naseri.">
+    <title>Posts tagged with "${tag}" - Shervin Naseri</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../output.css">
+</head>
+<body class="bg-gradient-to-b from-slate-800 to-slate-950 text-gray-300 font-sans leading-relaxed flex flex-col min-h-screen">
+
+    <!-- Header -->
+    <header class="bg-slate-800/80 backdrop-blur-sm sticky top-0 z-20 border-b border-slate-700">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="../../index.html" class="text-2xl font-bold text-white hover:text-gray-300 transition transform hover:scale-105 duration-200 inline-block">Shervin Naseri</a>
+            <nav>
+                 <a href="../../blog.html" class="text-indigo-400 hover:text-indigo-300 hover:underline">Back to Blog</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="container mx-auto px-6 py-12 flex-grow">
+        <h1 class="text-4xl font-bold text-center text-white mb-4">Posts tagged with <span class="text-indigo-400">"${tag}"</span></h1>
+        <p class="text-center text-gray-400 mb-12">${posts.length} post${posts.length === 1 ? '' : 's'} found.</p>
+        <div class="space-y-16 max-w-4xl mx-auto">
+            ${posts.map(post => `
+            <article class="bg-slate-800 p-8 rounded-lg shadow-lg border border-slate-700 hover:bg-slate-700/50 transition-all duration-300">
+                <h2 class="text-3xl font-semibold text-white mb-2">
+                    <a href="../blog/${post.slug}.html" class="hover:underline">${post.attributes.title}</a>
+                </h2>
+                <p class="text-sm text-gray-400 mb-4">Published on <time datetime="${post.attributes.date}">${new Date(post.attributes.date).toDateString()}</time></p>
+                <p class="text-gray-300 mb-4">${post.attributes.snippet}</p>
+                 <div class="flex justify-between items-center">
+                    <a href="../blog/${post.slug}.html" class="text-indigo-400 hover:underline font-semibold">Read more...</a>
+                    <div class="flex items-center gap-2">
+                        ${post.attributes.tags.map(t => {
+                            const tagSlug = t.toLowerCase().replace(/\s+/g, '-');
+                            return `<a href="${tagSlug}.html" class="inline-block bg-slate-700 text-indigo-300 text-xs font-medium px-2.5 py-0.5 rounded hover:bg-slate-600 hover:text-indigo-200 transition-colors duration-200">${t}</a>`;
+                        }).join('')}
+                    </div>
+                </div>
+            </article>
+            `).join('')}
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center py-6 mt-16 border-t border-slate-700">
+        <p class="text-gray-500 text-sm">&copy; ${new Date().getFullYear()} Shervin Naseri. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
+`;
+
+// HTML template for the blog index page
+const createBlogIndexHtml = (posts) => `
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Technical blog of Shervin Naseri.">
+    <title>Shervin Naseri - Blog</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="dist/output.css">
+</head>
+<body class="bg-gradient-to-b from-slate-800 to-slate-950 text-gray-300 font-sans leading-relaxed flex flex-col min-h-screen">
+
+    <!-- Header -->
+    <header class="bg-slate-800/80 backdrop-blur-sm sticky top-0 z-20 border-b border-slate-700">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-white hover:text-gray-300 transition transform hover:scale-105 duration-200 inline-block">Shervin Naseri</a>
+            <nav>
+                <!-- Empty nav for consistency -->
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="container mx-auto px-6 py-12 flex-grow">
+        <h1 class="text-4xl font-bold text-center text-white mb-12">Technical Blog</h1>
+        <div class="space-y-16 max-w-4xl mx-auto">
+            ${posts.map(post => `
+            <article class="bg-slate-800 p-8 rounded-lg shadow-lg border border-slate-700 hover:bg-slate-700/50 transition-all duration-300">
+                <h2 class="text-3xl font-semibold text-white mb-2">
+                    <a href="dist/blog/${post.slug}.html" class="hover:underline">${post.attributes.title}</a>
+                </h2>
+                <p class="text-sm text-gray-400 mb-4">Published on <time datetime="${post.attributes.date}">${new Date(post.attributes.date).toDateString()}</time></p>
+                <p class="text-gray-300 mb-4">${post.attributes.snippet}</p>
+                <div class="flex justify-between items-center">
+                    <a href="dist/blog/${post.slug}.html" class="text-indigo-400 hover:underline font-semibold">Read more...</a>
+                    <div class="flex items-center gap-2">
+                        ${post.attributes.tags.map(tag => {
+                            const tagSlug = tag.toLowerCase().replace(/\s+/g, '-');
+                            return `<a href="dist/tags/${tagSlug}.html" class="inline-block bg-slate-700 text-indigo-300 text-xs font-medium px-2.5 py-0.5 rounded hover:bg-slate-600 hover:text-indigo-200 transition-colors duration-200">${tag}</a>`;
+                        }).join('')}
+                    </div>
+                </div>
+            </article>
+            `).join('')}
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center py-6 mt-16 border-t border-slate-700">
+        <p class="text-gray-500 text-sm">&copy; ${new Date().getFullYear()} Shervin Naseri. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
+`;
+
+const main = async () => {
+    try {
+        // Custom renderer for marked
+        const renderer = new marked.Renderer();
+        renderer.code = (codeBlock) => {
+            const code = codeBlock.text;
+            const lang = codeBlock.lang;
+            const language = hljs.getLanguage(lang) ? lang : 'plaintext';
+            const highlightedCode = hljs.highlight(code, { language }).value;
+            // Create a code block with language class for styling
+            return `<pre><code class="hljs language-${language}">${highlightedCode}</code></pre>`;
+        };
+
+        // Create dist directory if it doesn't exist
+        await fs.mkdir(DIST_DIR, { recursive: true });
+
+        const postFiles = [];
+        // Read real posts if the directory exists
+        if (await fs.access(POSTS_DIR).then(() => true).catch(() => false)) {
+            const files = await fs.readdir(POSTS_DIR);
+            postFiles.push(...files.map(file => path.join(POSTS_DIR, file)));
+        }
+
+        // In development, also read placeholder posts
+        if (process.env.NODE_ENV === 'development') {
+            if (await fs.access(PLACEHOLDER_POSTS_DIR).then(() => true).catch(() => false)) {
+                const placeholderFiles = await fs.readdir(PLACEHOLDER_POSTS_DIR);
+                postFiles.push(...placeholderFiles.map(file => path.join(PLACEHOLDER_POSTS_DIR, file)));
+            }
+        }
+
+        const posts = [];
+        const allTags = new Set();
+
+        for (const filePath of postFiles) {
+            if (path.extname(filePath) === '.md') {
+                const fileContent = await fs.readFile(filePath, 'utf8');
+
+                const { attributes, body } = fm(fileContent);
+                const htmlContent = marked(body, { renderer });
+                const slug = createSlug(path.basename(filePath));
+
+                // Create individual post page
+                const postPageHtml = createPostHtml({ attributes, body: htmlContent });
+                await fs.writeFile(path.join(DIST_DIR, `${slug}.html`), postPageHtml);
+                console.log(`Successfully built post: ${slug}.html`);
+
+                // Collect post data for the index page
+                posts.push({ attributes, slug });
+
+                // Collect all unique tags
+                attributes.tags.forEach(tag => allTags.add(tag));
+            }
+        }
+
+        // Sort posts by date, newest first
+        posts.sort((a, b) => new Date(b.attributes.date) - new Date(a.attributes.date));
+
+        // --- TAG PAGE GENERATION ---
+        const TAGS_DIST_DIR = path.join(__dirname, 'dist/tags');
+        await fs.mkdir(TAGS_DIST_DIR, { recursive: true });
+
+        for (const tag of allTags) {
+            const postsWithTag = posts.filter(post => post.attributes.tags.includes(tag));
+            const tagSlug = tag.toLowerCase().replace(/\s+/g, '-'); // Simple slugification
+
+            const tagPageHtml = createTagPageHtml(tag, postsWithTag);
+            await fs.writeFile(path.join(TAGS_DIST_DIR, `${tagSlug}.html`), tagPageHtml);
+            console.log(`Successfully built tag page: ${tagSlug}.html`);
+        }
+
+        // Generate and write the blog index page
+        const blogIndexHtml = createBlogIndexHtml(posts);
+        await fs.writeFile(path.join(__dirname, 'blog.html'), blogIndexHtml);
+        console.log('Successfully built blog index page: blog.html');
+
+        // ==========================================
+        // NEW ADDITION: Generate Blog Metadata for Frontend
+        // ==========================================
+        const ROOT_DIST_DIR = path.join(__dirname, 'dist');
+        await fs.mkdir(ROOT_DIST_DIR, { recursive: true }); // Ensure dist/ exists
+
+        const metaContent = `window.BLOG_META = { postCount: ${posts.length} };\n`;
+        await fs.writeFile(path.join(ROOT_DIST_DIR, 'blog-meta.js'), metaContent);
+        console.log('Successfully built blog metadata: dist/blog-meta.js');
+        // ==========================================
+
+    } catch (error) {
+        console.error("Error during build process:", error);
+    }
+};
+
+main();
