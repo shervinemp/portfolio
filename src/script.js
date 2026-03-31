@@ -166,7 +166,7 @@ function initScrollSpy() {
     const removeActiveClasses = () => {
         navLinks.forEach(link => {
             link.classList.remove('text-white', 'font-semibold');
-            link.classList.add('text-gray-300');
+            link.classList.add('text-slate-200');
         });
     };
 
@@ -202,7 +202,7 @@ function initScrollSpy() {
             const correspondingLink = document.querySelector(`nav a[href="#${bestSectionId}"]`);
             if (correspondingLink) {
                 correspondingLink.classList.add('text-white', 'font-semibold');
-                correspondingLink.classList.remove('text-gray-300');
+                correspondingLink.classList.remove('text-slate-200');
             }
         }
     };
