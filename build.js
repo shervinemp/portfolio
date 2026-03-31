@@ -95,7 +95,7 @@ const createTagPageHtml = (tag, posts) => `
         <p class="text-center text-slate-400 mb-12">${posts.length} post${posts.length === 1 ? '' : 's'} found.</p>
         <div class="space-y-16 max-w-4xl mx-auto">
             ${posts.map(post => `
-            <article class="bg-slate-900/60 backdrop-blur-md border border-slate-800 p-8 rounded-lg shadow-lg hover:bg-slate-800/80 hover:shadow-indigo-500/20 transition-all duration-300">
+            <article class="glass-card-glow">
                 <h2 class="text-3xl font-semibold text-white mb-2">
                     <a href="../blog/${post.slug}.html" class="hover:underline">${post.attributes.title}</a>
                 </h2>
@@ -153,7 +153,7 @@ const createBlogIndexHtml = (posts) => `
         <h1 class="text-4xl font-bold text-center text-white mb-12">Technical Blog</h1>
         <div class="space-y-16 max-w-4xl mx-auto">
             ${posts.map(post => `
-            <article class="bg-slate-900/60 backdrop-blur-md border border-slate-800 p-8 rounded-lg shadow-lg hover:bg-slate-800/80 hover:shadow-indigo-500/20 transition-all duration-300">
+            <article class="glass-card-glow">
                 <h2 class="text-3xl font-semibold text-white mb-2">
                     <a href="dist/blog/${post.slug}.html" class="hover:underline">${post.attributes.title}</a>
                 </h2>
