@@ -1,6 +1,6 @@
-document.addEventListener('DOMContentLoaded', () => {
-    console.log("Portfolio script loaded.");
+console.log("Portfolio script loaded.");
 
+function initBlogLinkVisibility() {
     // ==========================================
     // Blog Link Dynamic Visibility
     // ==========================================
@@ -11,7 +11,9 @@ document.addEventListener('DOMContentLoaded', () => {
             blogLinkWrapper.classList.remove('hidden');
         }
     }
+}
 
+function initScrollEffects() {
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -41,6 +43,42 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Back to Top Button Logic & Sidebar Scroll Effect
+    const backToTopButton = document.getElementById('back-to-top');
+    const mainScrollArea = document.getElementById('main-content');
+    const sidebarNav = document.getElementById('sidebar');
+
+    if (backToTopButton && mainScrollArea && sidebarNav) {
+        window.addEventListener('scroll', () => {
+            const isScrolled = window.scrollY > 10;
+
+            if (window.scrollY > 300) {
+                backToTopButton.classList.remove('hidden');
+            } else {
+                backToTopButton.classList.add('hidden');
+            }
+
+            if (isScrolled) {
+                sidebarNav.classList.add('scrolled');
+            } else {
+                sidebarNav.classList.remove('scrolled');
+            }
+
+            // Note: handleScrollHighlighting() is now called via initScrollSpy
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            mainScrollArea.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    } else {
+        console.warn("Back to top button, main scroll area, or sidebar element not found.");
+    }
+}
+
+function initFooterYear() {
     // Set current year in footer
     const yearSpan = document.getElementById('current-year');
     if (yearSpan) {
@@ -48,7 +86,9 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         console.warn("Footer year span not found.");
     }
+}
 
+function initMobileMenu() {
     // Hamburger menu toggle
     const menuToggle = document.getElementById('menu-toggle');
     const sidebar = document.getElementById('sidebar');
@@ -79,7 +119,9 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         console.warn("Menu toggle button, sidebar, or main content element not found.");
     }
+}
 
+function initFadeInAnimations() {
     // Fade-in animation on scroll
     const observerOptions = {
         root: null, // relative to document viewport
@@ -109,11 +151,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const observer = new IntersectionObserver(observerCallback, observerOptions);
 
-    const itemsToFade = document.querySelectorAll('.fade-inner-item'); // Target inner items
+    const itemsToFade = document.querySelectorAll('.fade-inner-item');
     itemsToFade.forEach(item => {
         observer.observe(item);
     });
+}
 
+function initScrollSpy() {
     // Active link highlighting on scroll
     const sections = document.querySelectorAll('main section[id]');
     const navLinks = document.querySelectorAll('nav a[href^="#"]');
@@ -184,64 +228,15 @@ document.addEventListener('DOMContentLoaded', () => {
         visibilityObserver.observe(section);
     });
 
-    // Back to Top Button Logic & Sidebar Scroll Effect
-    const backToTopButton = document.getElementById('back-to-top');
-    const mainScrollArea = document.getElementById('main-content'); // Use the main content area for scroll events
-    // sidebarNav is already defined above
-
-    if (backToTopButton && mainScrollArea && sidebarNav) { // Use the existing sidebarNav variable
-        // Show/Hide button and apply sidebar scroll effect based on scroll position
-        // --- Attach listener to window instead of mainScrollArea ---
-        window.addEventListener('scroll', () => {
-            const isScrolled = window.scrollY > 10; // Use window.scrollY
-
-            // Back to top button visibility
-            if (window.scrollY > 300) { // Use window.scrollY
-                backToTopButton.classList.remove('hidden');
-            } else {
-                backToTopButton.classList.add('hidden');
-            }
-
-            // Sidebar scroll effect class
-            if (isScrolled) {
-                sidebarNav.classList.add('scrolled');
-            } else {
-                sidebarNav.classList.remove('scrolled');
-            }
-
-            // Handle active link highlighting on every scroll frame
-            handleScrollHighlighting();
-        });
-
-        // Scroll to top when button is clicked
-        backToTopButton.addEventListener('click', () => {
-            // --- Scroll the main content area, not the window ---
-            mainScrollArea.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-    } else {
-        console.warn("Back to top button, main scroll area, or sidebar element not found."); // Updated warning
-    }
-
-    // Removed Sidebar Scroll Indicator Logic
+    // Bind scroll handler
+    window.addEventListener('scroll', handleScrollHighlighting);
+}
 
 /**
  * Main initialization wrapper.
  */
 document.addEventListener('DOMContentLoaded', () => {
-    // ==========================================
-    // Blog Link Dynamic Visibility
-    // ==========================================
-    const blogLinkWrapper = document.getElementById('blog-link-wrapper');
-    // Check if the global variable exists and if posts were generated
-    if (blogLinkWrapper && typeof window.BLOG_META !== 'undefined') {
-        if (window.BLOG_META.postCount > 0) {
-            blogLinkWrapper.classList.remove('hidden');
-        }
-    }
-
+    initBlogLinkVisibility();
     initFooterYear();
     initMobileMenu();
     initFadeInAnimations();
