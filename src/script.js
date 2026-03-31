@@ -227,4 +227,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Removed Sidebar Scroll Indicator Logic
 
+/**
+ * Main initialization wrapper.
+ */
+document.addEventListener('DOMContentLoaded', () => {
+    // ==========================================
+    // Blog Link Dynamic Visibility
+    // ==========================================
+    const blogLinkWrapper = document.getElementById('blog-link-wrapper');
+    // Check if the global variable exists and if posts were generated
+    if (blogLinkWrapper && typeof window.BLOG_META !== 'undefined') {
+        if (window.BLOG_META.postCount > 0) {
+            blogLinkWrapper.classList.remove('hidden');
+        }
+    }
+
+    initFooterYear();
+    initMobileMenu();
+    initFadeInAnimations();
+    initScrollSpy();
+    initScrollEffects();
 });
