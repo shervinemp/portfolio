@@ -1,41 +1,60 @@
-# Shervin Naseri - Portfolio Website
+# portfolio
 
-This is my personal portfolio website, showcasing my skills and experience in Machine Learning and Software Engineering.
+Personal portfolio and technical blog for Shervin Naseri. Built with vanilla HTML, Tailwind CSS, and a static blog generator.
 
-## Technologies Used
+## tech
 
-* HTML
-* Tailwind CSS
-* PostCSS (for processing Tailwind)
-* JavaScript (Vanilla)
-* Node.js/npm (for build process)
-* GitHub Pages (for deployment)
+- **HTML** -- semantic, responsive markup
+- **Tailwind CSS 3** -- utility-first CSS via PostCSS
+- **JavaScript** -- vanilla ES6, IntersectionObserver-based animations
+- **Node.js** -- blog build pipeline (`marked` + `highlight.js`)
+- **GitHub Pages** -- CI/CD deployment via Actions
 
-## Setup
+## structure
 
-1. Clone the repository:
-
-    ```bash
-    git clone https://github.com/shervinemp/portfolio.git
-    cd portfolio
-    ```
-
-2. Install dependencies:
-
-    ```bash
-    npm install
-    ```
-
-## Build
-
-To compile the Tailwind CSS into `dist/output.css`:
-
-```bash
-npm run build:css
+```
+├── index.html              # main portfolio page
+├── blog.html               # blog index (auto-generated on build)
+├── src/
+│   ├── input.css           # Tailwind source + custom design system
+│   └── script.js           # animations, scroll spy, mobile menu
+├── build.js                # blog static site generator
+├── posts/                  # markdown blog posts (front matter)
+├── dist/
+│   ├── output.css          # compiled Tailwind
+│   ├── blog-meta.js        # post count for blog link visibility
+│   ├── blog/               # generated individual post pages
+│   └── tags/               # generated tag-filtered pages
+└── .github/workflows/      # GitHub Pages deploy
 ```
 
-This command uses PostCSS and Tailwind CLI to process the styles defined in `src/input.css` and the classes used in `index.html`. The `--minify` flag is included for production builds.
+## quick start
 
-## Attribution
+```bash
+npm install
+npm run build:css   # compile Tailwind
+npm run build:blog  # generate blog from posts/*.md
+npm run build       # both, in sequence
+npm start           # serve locally
+```
 
-This website was created with the assistance of Cline and Gemini.
+## blog posts
+
+Add `.md` files to `posts/` with YAML front matter:
+
+```markdown
+---
+title: "Post Title"
+date: 2026-05-17
+snippet: "Short description for index cards."
+tags: [tag1, tag2]
+---
+
+Post body in markdown. Code blocks get syntax highlighting via highlight.js.
+```
+
+Run `npm run build:blog` to generate individual post pages, tag pages, and update the blog index.
+
+## design
+
+Dark theme with indigo/purple gradient accents, glassmorphism cards, animated scroll progress, section reveal on scroll, timeline layout for experience, skill bars with shimmer animation, and a noise texture overlay. Reduced motion respected via `prefers-reduced-motion`.
