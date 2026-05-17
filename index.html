@@ -1,762 +1,389 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth"> <!-- Added scroll-smooth for better JS fallback -->
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Portfolio website for Shervin Naseri, an experienced Machine Learning Engineer and Backend Developer based in Ottawa, ON. Showcasing projects in Computer Vision, NLP, and scalable systems.">
+    <meta name="description" content="Portfolio website for Shervin Naseri, an experienced Machine Learning Engineer and Backend Developer based in Ottawa, ON. Showcasing projects in Computer Vision, NLP, and scalable systems.">
+    <meta name="theme-color" content="#0f172a">
+    <meta property="og:title" content="Shervin Naseri - Portfolio">
+    <meta property="og:description" content="ML Engineer & Backend Developer specializing in Computer Vision, NLP, and scalable systems.">
+    <meta property="og:url" content="https://shervinemp.github.io/portfolio/">
     <title>Shervin Naseri - Portfolio</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="dist/output.css"> <!-- Link local build -->
-    <!-- Removed Tailwind CDN and config script -->
-    <!-- SEO Meta Tags -->
-    <meta property="og:title" content="Shervin Naseri - Portfolio" />
-    <meta property="og:description"
-        content="Portfolio website for Shervin Naseri, showcasing Machine Learning and Software Engineering projects." />
-    <meta property="og:image" content="URL_TO_YOUR_PROFILE_IMAGE" /> <!-- TODO: Replace with actual image URL -->
-    <meta property="og:url" content="https://shervinemp.github.io/portfolio/" />
+    <link rel="stylesheet" href="dist/output.css">
 </head>
+<body class="bg-slate-950 text-slate-200 font-sans leading-relaxed">
 
-<body class="bg-gradient-to-b from-slate-900 to-slate-950 text-slate-200 font-sans flex leading-relaxed">
+    <div id="scroll-progress"></div>
 
-    <!-- Fixed Blog Link -->
+    <!-- Blog Link (visible when posts exist) -->
     <div id="blog-link-wrapper" class="fixed top-4 right-4 z-40 hidden">
-        <div class="blog-link-container">
-            <a href="blog.html" class="text-lg text-indigo-300 hover:text-white font-semibold transition-colors">Blog</a>
-        </div>
+        <a href="blog.html" class="text-sm text-indigo-400 hover:text-white font-semibold transition-colors bg-slate-900/80 backdrop-blur-sm border border-slate-700/50 px-4 py-2 rounded-full shadow-lg">Blog</a>
     </div>
 
-    <!-- Fixed Blog Link -->
-    <div id="blog-link-wrapper" class="fixed top-4 right-4 z-40 hidden">
-        <div class="blog-link-container">
-            <a href="blog.html" class="text-lg text-indigo-300 hover:text-white font-semibold transition-colors">Blog</a>
-        </div>
+    <div id="blog-link-wrapper-mobile" class="fixed top-4 right-4 z-30 hidden md:hidden">
+        <a href="blog.html" class="text-xs text-indigo-400 font-semibold bg-slate-900/80 backdrop-blur-sm border border-slate-700/50 px-3 py-1.5 rounded-full">Blog</a>
     </div>
 
-    <!-- Vertical Navigation Sidebar -->
-    <!-- Hidden on small screens (md:flex shows it on medium and up), increased z-index -->
-    <nav id="sidebar"
-        class="w-64 h-screen bg-slate-800 border-r border-slate-700 fixed top-0 left-0 p-6 flex flex-col z-20 hidden md:flex">
-        <!-- Removed space-y-6 from nav -->
-        <!-- Removed relative -->
-        <!-- Switched to slate -->
-        <a href="#hero"
-            class="text-2xl font-bold text-white hover:text-slate-200 mb-6 transition transform hover:scale-105 duration-200 inline-block">Shervin
-            Naseri</a> <!-- Added transition/scale -->
-        <!-- Wrapper div for nav links -->
-        <div class="flex flex-col space-y-6"> <!-- Added wrapper and applied flex/space here -->
-            <a href="#skills"
-                class="nav-link">Skills</a>
-            <!-- Added transition/scale -->
-            <a href="#experience"
-                class="nav-link">Experience</a>
-            <!-- Added transition/scale -->
-            <a href="#education"
-                class="nav-link">Education</a>
-            <!-- Added transition/scale -->
-            <a href="#projects"
-                class="nav-link">Projects</a>
-            <!-- Added transition/scale -->
-            <a href="#personal-projects"
-                class="nav-link">Personal
-                Projects</a> <!-- Added transition/scale -->
-            <a href="#contact"
-                class="nav-link">Contact</a>
-            <!-- Added transition/scale -->
-        </div>
-        <!-- Add more links if needed -->
+    <!-- Mobile Overlay -->
+    <div id="mobile-overlay"></div>
 
-        <!-- Removed Scroll Indicator Placeholder -->
+    <!-- Sidebar -->
+    <nav id="sidebar" class="w-64 h-screen bg-slate-900/80 backdrop-blur-md border-r border-slate-800 fixed top-0 left-0 p-8 flex flex-col z-20">
+        <a href="#hero" class="text-2xl font-bold text-white hover:text-indigo-400 mb-8 transition-colors">Shervin Naseri</a>
+        <div class="flex flex-col space-y-5">
+            <a href="#skills" class="nav-link">Skills</a>
+            <a href="#experience" class="nav-link">Experience</a>
+            <a href="#education" class="nav-link">Education</a>
+            <a href="#projects" class="nav-link">Projects</a>
+            <a href="#personal-projects" class="nav-link">Explorations</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </div>
     </nav>
 
-    <!-- Main Content Area -->
-    <main id="main-content" class="flex-1 overflow-y-auto md:ml-64 px-2"> <!-- Added px-2 for side padding -->
-        <!-- Takes remaining space, adds left margin for sidebar, enables scrolling -->
+    <!-- Main Content -->
+    <main id="main-content" class="md:ml-64">
 
-        <!-- Hamburger Button (Mobile) -->
-        <button id="menu-toggle"
-            class="md:hidden fixed top-4 left-4 z-30 p-2 bg-slate-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
-            aria-label="Toggle Menu"> <!-- Adjusted bg -->
-            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <!-- Corrected viewBox syntax -->
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+        <!-- Hamburger (Mobile) -->
+        <button id="menu-toggle" class="md:hidden fixed top-4 left-4 z-30 p-2.5 bg-slate-800/90 backdrop-blur-sm border border-slate-700/50 text-white rounded-lg focus:outline-none" aria-label="Toggle Menu">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path class="hamburger-line" d="M4 6h16" />
+                <path class="hamburger-line" d="M4 12h16" />
+                <path class="hamburger-line" d="M4 18h16" />
             </svg>
         </button>
 
-        <!-- Hero Section (No fade-in needed here) -->
-        <section id="hero" class="container mx-auto py-20 text-center">
-            <!-- Placeholder for Photo -->
-            <img src="profile.jpg" alt="Shervin Naseri"
-                class="w-40 h-40 rounded-full mx-auto mb-6 shadow-md object-cover border-2 border-slate-700 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-indigo-500/50 hover:border-indigo-500">
-            <!-- Increased image size -->
-            <!-- Adjusted border -->
-            <div class="max-w-3xl mx-auto"> <!-- Added wrapper to constrain text width -->
-                <h1 class="text-3xl md:text-4xl font-bold mb-4 text-white">Shervin Naseri | Machine Learning & Software
-                    Engineering |
-                    Ottawa, ON</h1>
-                <p class="text-lg mb-8 text-slate-400">Experienced ML Engineer and Backend Developer. Passionate about
-                    solving complex problems with technology.</p>
-                <!-- Toned down description -->
-            </div>
-            <div class="flex justify-center space-x-4 mt-8"> <!-- Added mt-8 for spacing -->
-                <!-- Removed View Projects and Skills Overview buttons -->
-                <a href="resume.pdf" download="Shervin_Naseri_Resume.pdf"
-                    class="btn-secondary">
-                    <!-- Added active:scale-95 -->
-                    <!-- Added scale/brightness -->
-                    <!-- Adjusted button colors -->
-                    Download CV
-                </a>
-                <a href="#contact"
-                    class="btn-primary">
-                    <!-- Added active:scale-95 -->
-                    <!-- Added scale/brightness -->
-                    <!-- Adjusted button colors -->
-                    Contact
-                </a>
+        <!-- Hero -->
+        <section id="hero" class="relative min-h-screen flex items-center justify-center py-24 px-6 overflow-hidden">
+            <div class="hero-glow"></div>
+            <div class="text-center max-w-3xl relative z-10">
+                <div class="profile-glow mx-auto mb-8">
+                    <img src="profile.jpg" alt="Shervin Naseri" class="w-40 h-40 rounded-full object-cover border-2 border-slate-800 relative z-10" loading="lazy">
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
+                    Shervin Naseri
+                    <span class="subtitle-reveal block mt-3">
+                        <span class="text-2xl md:text-3xl text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400">ML Engineer</span>
+                        <span class="text-2xl md:text-3xl text-slate-500 mx-2">&amp;</span>
+                        <span class="text-2xl md:text-3xl text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400">Software Developer</span>
+                    </span>
+                </h1>
+                <p class="text-lg text-slate-400 mb-10 max-w-xl mx-auto leading-relaxed">Based in Ottawa, ON. Passionate about solving complex problems with machine learning, computer vision, and scalable systems.</p>
+                <div class="flex justify-center gap-4">
+                    <a href="resume.pdf" download="Shervin_Naseri_Resume.pdf" class="group inline-flex items-center gap-2 bg-indigo-500 hover:bg-indigo-400 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 active:scale-95 shadow-lg shadow-indigo-500/25">
+                        <svg class="w-4 h-4 transition-transform duration-300 group-hover:-translate-y-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                        Download CV
+                    </a>
+                    <a href="#contact" class="group inline-flex items-center gap-2 bg-slate-800/80 hover:bg-slate-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 active:scale-95 border border-slate-700/50 backdrop-blur-sm">
+                        <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                        Contact
+                    </a>
+                </div>
             </div>
         </section>
 
-        <!-- Skills Visualization Section -->
-        <section id="skills" class="py-16 border-t border-slate-700 section-hover">
-            <!-- Added hover:bg -->
-            <div class="container mx-auto px-6"> <!-- Changed px-4 to px-6 -->
-                <h2 class="text-2xl font-semibold text-center text-gray-200 mb-16"> <!-- Restored mb-16 -->
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="inline-block h-6 w-6 mr-2 align-middle">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M11.42 15.17 17.25 21A2.652 2.652 0 0 0 21 17.25l-5.877-5.877M11.42 15.17l-4.995-4.995a2.652 2.652 0 0 1 0-3.752l3.75-3.752a2.652 2.652 0 0 1 3.752 0l4.995 4.995M11.42 15.17 14.25 18l1.405-1.405" />
-                    </svg>
+        <!-- Skills -->
+        <section id="skills" class="py-20 px-6 section-reveal">
+            <div class="container mx-auto max-w-6xl">
+                <div class="gradient-divider mb-12"></div>
+                <h2 class="text-3xl font-bold text-center text-white mb-16 flex items-center justify-center gap-3">
+                    <svg class="w-6 h-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l-4.995-4.995a2.652 2.652 0 010-3.752l3.75-3.752a2.652 2.652 0 013.752 0l4.995 4.995M11.42 15.17L14.25 18l1.405-1.405" /></svg>
                     Core Competencies
                 </h2>
-                <!-- font-bold to font-semibold -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"> <!-- Restored gap-8 -->
-                    <!-- Category: Programming Languages -->
-                    <div
-                        class="skill-block glass-card">
-                        <!-- Restored p-6, Added hover:bg -->
-                        <!-- Added skill-block, removed fade classes -->
-                        <!-- Slate block bg -->
-                        <h3
-                            class="fade-inner-item text-xl font-semibold mb-4 text-center text-white opacity-0 transition-all duration-500 ease-out">
-                            Programming Languages</h3> <!-- Added fade-inner-item, Restored duration-500 -->
-                        <!-- Already font-semibold -->
-                        <ul class="list-disc list-inside space-y-2 text-slate-200">
-                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Python
-                                (Scikit-Learn, TensorFlow, PyTorch, OpenCV, SpaCy, NLTK, Pandas, PySpark)</li>
-                            <!-- Added fade-inner-item, Restored duration-500 -->
-                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">JavaScript
-                                (Node.js, Angular, jQuery)</li> <!-- Added fade-inner-item, Restored duration-500 -->
-                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">C++ (Boost,
-                                OpenGL)</li> <!-- Added fade-inner-item, Restored duration-500 -->
-                        </ul>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 stagger-children">
+                    <div class="card-enhanced p-6">
+                        <h3 class="text-lg font-semibold text-white mb-5 text-center">Programming Languages</h3>
+                        <div class="space-y-4">
+                            <div><div class="flex justify-between text-sm text-slate-400 mb-1"><span>Python</span><span>95%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="95%"></div></div></div>
+                            <div><div class="flex justify-between text-sm text-slate-400 mb-1"><span>JavaScript</span><span>80%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="80%"></div></div></div>
+                            <div><div class="flex justify-between text-sm text-slate-400 mb-1"><span>C++</span><span>70%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="70%"></div></div></div>
+                        </div>
                     </div>
-                    <!-- Category: ML/Data Science -->
-                    <div
-                        class="skill-block glass-card">
-                        <!-- Restored p-6, Added hover:bg -->
-                        <!-- Added skill-block, removed fade classes -->
-                        <h3
-                            class="fade-inner-item text-xl font-semibold mb-4 text-center text-white opacity-0 transition-all duration-500 ease-out">
-                            ML / Data Science</h3> <!-- Added fade-inner-item, Restored duration-500 -->
-                        <!-- Already font-semibold -->
-                        <ul class="list-disc list-inside space-y-2 text-slate-200">
-                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Computer Vision
-                            </li> <!-- Added fade-inner-item, Restored duration-500 -->
-                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">NLP (SpaCy, NLTK)
-                            </li> <!-- Added fade-inner-item, Restored duration-500 -->
-                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Predictive
-                                Modeling</li> <!-- Added fade-inner-item, Restored duration-500 -->
-                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Deep Learning
-                                (TensorFlow, PyTorch)</li> <!-- Added fade-inner-item, Restored duration-500 -->
-                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Data Analysis
-                                (Pandas, PySpark)</li> <!-- Added fade-inner-item, Restored duration-500 -->
-                        </ul>
+                    <div class="card-enhanced p-6">
+                        <h3 class="text-lg font-semibold text-white mb-5 text-center">ML / Data Science</h3>
+                        <div class="space-y-4">
+                            <div><div class="flex justify-between text-sm text-slate-400 mb-1"><span>Computer Vision</span><span>90%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="90%"></div></div></div>
+                            <div><div class="flex justify-between text-sm text-slate-400 mb-1"><span>NLP</span><span>85%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="85%"></div></div></div>
+                            <div><div class="flex justify-between text-sm text-slate-400 mb-1"><span>Deep Learning</span><span>85%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="85%"></div></div></div>
+                            <div><div class="flex justify-between text-sm text-slate-400 mb-1"><span>Data Analysis</span><span>80%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="80%"></div></div></div>
+                            <div><div class="flex justify-between text-sm text-slate-400 mb-1"><span>Predictive Modeling</span><span>85%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="85%"></div></div></div>
+                        </div>
                     </div>
-                    <!-- Category: Backend & Databases -->
-                    <div
-                        class="skill-block glass-card">
-                        <!-- Restored p-6, Added hover:bg -->
-                        <!-- Added skill-block, removed fade classes -->
-                        <h3
-                            class="fade-inner-item text-xl font-semibold mb-4 text-center text-white opacity-0 transition-all duration-500 ease-out">
-                            Backend & Databases</h3> <!-- Added fade-inner-item, Restored duration-500 -->
-                        <!-- Already font-semibold -->
-                        <ul class="list-disc list-inside space-y-2 text-slate-200">
-                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">API Development
-                            </li> <!-- Added fade-inner-item, Restored duration-500 -->
-                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Node.js</li>
-                            <!-- Added fade-inner-item, Restored duration-500 -->
-                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">SQL (MySQL)</li>
-                            <!-- Added fade-inner-item, Restored duration-500 -->
-                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">NoSQL (MongoDB,
-                                Redis)</li> <!-- Added fade-inner-item, Restored duration-500 -->
-                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Search
-                                (ElasticSearch)</li> <!-- Added fade-inner-item, Restored duration-500 -->
-                        </ul>
+                    <div class="card-enhanced p-6">
+                        <h3 class="text-lg font-semibold text-white mb-5 text-center">Backend &amp; Databases</h3>
+                        <div class="space-y-4">
+                            <div><div class="flex justify-between text-sm text-slate-400 mb-1"><span>API Development</span><span>90%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="90%"></div></div></div>
+                            <div><div class="flex justify-between text-sm text-slate-400 mb-1"><span>Node.js</span><span>85%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="85%"></div></div></div>
+                            <div><div class="flex justify-between text-sm text-slate-400 mb-1"><span>SQL</span><span>80%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="80%"></div></div></div>
+                            <div><div class="flex justify-between text-sm text-slate-400 mb-1"><span>NoSQL</span><span>75%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="75%"></div></div></div>
+                            <div><div class="flex justify-between text-sm text-slate-400 mb-1"><span>ElasticSearch</span><span>70%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="70%"></div></div></div>
+                        </div>
                     </div>
-                    <!-- Category: DevOps & Infrastructure -->
-                    <div
-                        class="skill-block glass-card">
-                        <!-- Restored p-6, Added hover:bg -->
-                        <!-- Added skill-block, removed fade classes -->
-                        <h3
-                            class="fade-inner-item text-xl font-semibold mb-4 text-center text-white opacity-0 transition-all duration-500 ease-out">
-                            DevOps & Infrastructure</h3> <!-- Added fade-inner-item, Restored duration-500 -->
-                        <!-- Already font-semibold -->
-                        <ul class="list-disc list-inside space-y-2 text-slate-200">
-                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Docker & Docker
-                                Swarm</li> <!-- Added fade-inner-item, Restored duration-500 -->
-                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Nginx</li>
-                            <!-- Added fade-inner-item, Restored duration-500 -->
-                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Ansible</li>
-                            <!-- Added fade-inner-item, Restored duration-500 -->
-                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Apache Spark</li>
-                            <!-- Added fade-inner-item, Restored duration-500 -->
-                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">CI/CD (Implied)
-                            </li> <!-- Added fade-inner-item, Restored duration-500 -->
-                        </ul>
+                    <div class="card-enhanced p-6">
+                        <h3 class="text-lg font-semibold text-white mb-5 text-center">DevOps &amp; Infrastructure</h3>
+                        <div class="space-y-4">
+                            <div><div class="flex justify-between text-sm text-slate-400 mb-1"><span>Docker</span><span>85%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="85%"></div></div></div>
+                            <div><div class="flex justify-between text-sm text-slate-400 mb-1"><span>Nginx</span><span>75%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="75%"></div></div></div>
+                            <div><div class="flex justify-between text-sm text-slate-400 mb-1"><span>Ansible</span><span>70%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="70%"></div></div></div>
+                            <div><div class="flex justify-between text-sm text-slate-400 mb-1"><span>Apache Spark</span><span>65%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="65%"></div></div></div>
+                            <div><div class="flex justify-between text-sm text-slate-400 mb-1"><span>CI/CD</span><span>80%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="80%"></div></div></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Work Experience Section -->
-        <section id="experience"
-            class="py-16 border-t border-slate-700 section-hover">
-            <!-- Added hover:bg -->
-            <div class="container mx-auto px-6"> <!-- Changed px-4 to px-6 --> <!-- Moved container inside -->
-                <h2 class="text-2xl font-semibold text-center text-gray-200 mb-16"> <!-- Restored mb-16 -->
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="inline-block h-6 w-6 mr-2 align-middle">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M8.25 21h7.5M12 6v9" />
-                    </svg>
+        <!-- Experience -->
+        <section id="experience" class="py-20 px-6 section-reveal">
+            <div class="container mx-auto max-w-4xl">
+                <div class="gradient-divider mb-12"></div>
+                <h2 class="text-3xl font-bold text-center text-white mb-16 flex items-center justify-center gap-3">
+                    <svg class="w-6 h-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M8.25 21h7.5M12 6v9" /></svg>
                     Professional Experience
                 </h2>
-                <!-- font-bold to font-semibold -->
-                <div class="space-y-8 max-w-3xl mx-auto"> <!-- Restored space-y-8 -->
-                    <!-- Job 1: Pardazesh Etelaat Kian -->
-                    <div
-                        class="experience-entry glass-card-glow">
-                        <!-- Restored p-6, Removed border-l, Added hover:bg -->
-                        <!-- Added experience-entry, removed fade classes -->
-                        <!-- Slate bg, Indigo border -->
-                        <h3
-                            class="fade-inner-item text-xl font-semibold text-white opacity-0 transition-all duration-500 ease-out">
-                            Senior ML Engineer / Data Scientist</h3>
-                        <!-- Added fade-inner-item, Restored duration-500 -->
-                        <!-- Already font-semibold -->
-                        <p
-                            class="fade-inner-item text-lg font-medium text-slate-200 mb-3 opacity-0 transition-all duration-500 ease-out">
-                            Pardazesh Etelaat Kian</p> <!-- Added fade-inner-item, Restored duration-500 -->
-                        <ul class="list-disc list-inside space-y-1 text-slate-400">
-                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Designed and
-                                deployed ML pipelines for vehicle plate recognition (CTC), achieving near SOTA results.
-                            </li> <!-- Added fade-inner-item, Restored duration-500 -->
-                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Developed a Farsi
-                                OCR system handling complex document layouts and styles.</li>
-                            <!-- Added fade-inner-item, Restored duration-500 -->
-                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Built a
-                                large-scale image retrieval system using perceptual similarity.</li>
-                            <!-- Added fade-inner-item, Restored duration-500 -->
-                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Engineered car
-                                detection and multi-object tracking algorithms for traffic analysis.</li>
-                            <!-- Added fade-inner-item, Restored duration-500 -->
-                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Implemented
-                                perspective-robust YOLOv4-based vehicle plate detection.</li>
-                            <!-- Added fade-inner-item, Restored duration-500 -->
-                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Developed
-                                iterative watershed process for document de-warping.</li>
-                            <!-- Added fade-inner-item, Restored duration-500 -->
-                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Led hiring
-                                processes and mentored junior data scientists.</li>
-                            <!-- Added fade-inner-item, Restored duration-500 -->
-                        </ul>
-                    </div>
-                    <!-- Job 2: Nikaat Corp -->
-                    <div
-                        class="experience-entry glass-card-glow">
-                        <!-- Restored p-6, Removed border-l, Added hover:bg -->
-                        <!-- Added experience-entry, removed fade classes -->
-                        <!-- Slate bg, Teal border -->
-                        <h3
-                            class="fade-inner-item text-xl font-semibold text-white opacity-0 transition-all duration-500 ease-out">
-                            Senior Backend Engineer / Tech Lead</h3>
-                        <!-- Added fade-inner-item, Restored duration-500 -->
-                        <!-- Already font-semibold -->
-                        <p
-                            class="fade-inner-item text-lg font-medium text-slate-200 mb-3 opacity-0 transition-all duration-500 ease-out">
-                            Nikaat Corp</p> <!-- Added fade-inner-item, Restored duration-500 -->
-                        <ul class="list-disc list-inside space-y-1 text-slate-400">
-                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Contributed to
-                                design, development, deployment, and technical decisions in a fast-paced startup.</li>
-                            <!-- Added fade-inner-item, Restored duration-500 -->
-                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Developed web
-                                services and APIs (MEAN stack) for applications like Skenas, Atron, Mint, Phosphor.</li>
-                            <!-- Added fade-inner-item, Restored duration-500 -->
-                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Researched and
-                                developed predictive models (e.g., menstrual cycle, currency rates) using time-series
-                                deep learning.</li> <!-- Added fade-inner-item, Restored duration-500 -->
-                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Managed DevOps
-                                workflows and ensured scalable system deployments.</li>
-                            <!-- Added fade-inner-item, Restored duration-500 -->
-                        </ul>
-                    </div>
-                    <!-- Job 3: Vestaak -->
-                    <div
-                        class="experience-entry glass-card-glow">
-                        <!-- Restored p-6, Removed border-l, Added hover:bg -->
-                        <!-- Added experience-entry, removed fade classes -->
-                        <!-- Slate bg, Indigo border -->
-                        <h3
-                            class="fade-inner-item text-xl font-semibold text-white opacity-0 transition-all duration-500 ease-out">
-                            Python Developer</h3> <!-- Added fade-inner-item, Restored duration-500 -->
-                        <!-- Already font-semibold -->
-                        <p
-                            class="fade-inner-item text-lg font-medium text-slate-200 mb-3 opacity-0 transition-all duration-500 ease-out">
-                            Vestaak</p> <!-- Added fade-inner-item, Restored duration-500 -->
-                        <ul class="list-disc list-inside space-y-1 text-slate-400">
-                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Developed a
-                                personalized content recommendation engine (Python, Scikit-learn) using Telegram API
-                                data.</li> <!-- Added fade-inner-item, Restored duration-500 -->
-                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Implemented
-                                collaborative filtering and content-based filtering algorithms.</li>
-                            <!-- Added fade-inner-item, Restored duration-500 -->
-                            <li class="fade-inner-item opacity-0 transition-all duration-500 ease-out">Assisted in
-                                designing and developing RESTful APIs (Python, Flask).</li>
-                            <!-- Added fade-inner-item, Restored duration-500 -->
-                        </ul>
-                    </div>
-                </div>
-            </div> <!-- Close space-y -->
-            </div> <!-- Close container -->
-        </section>
-
-        <!-- Education & Publications Section -->
-        <section id="education"
-            class="py-16 border-t border-slate-700 section-hover">
-            <!-- Added hover:bg, removed brightness -->
-            <div class="container mx-auto px-6"> <!-- Changed px-4 to px-6 -->
-                <h2 class="text-2xl font-semibold text-center text-gray-200 mb-16"> <!-- Restored mb-16 -->
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="inline-block h-6 w-6 mr-2 align-middle">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" />
-                    </svg>
-                    Education & Research
-                </h2>
-                <!-- font-bold to font-semibold -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto"> <!-- Restored gap-8 -->
-                    <!-- Education Column -->
-                    <div class="space-y-6"> <!-- Restored space-y-6 -->
-                        <h3
-                            class="fade-inner-item text-2xl font-semibold mb-4 text-white opacity-0 transition-all duration-500 ease-out">
-                            Education</h3> <!-- Added fade-inner-item, Restored duration-500 -->
-                        <!-- MSc UOttawa -->
-                        <div
-                            class="education-entry glass-card">
-                            <!-- Restored p-6, Added hover:bg -->
-                            <!-- Added education-entry, removed fade classes -->
-                            <!-- Slate block bg -->
-                            <p
-                                class="fade-inner-item font-semibold text-lg text-white opacity-0 transition-all duration-500 ease-out">
-                                MSc. Computer Science</p> <!-- Added fade-inner-item, Restored duration-500 -->
-                            <!-- Already font-semibold -->
-                            <p class="fade-inner-item text-slate-200 opacity-0 transition-all duration-500 ease-out">
-                                University of Ottawa</p> <!-- Added fade-inner-item, Restored duration-500 -->
-                            <p
-                                class="fade-inner-item text-sm text-slate-400 opacity-0 transition-all duration-500 ease-out">
-                                Sep 2021 - Dec 2024 | GPA: 8.5/10</p>
-                            <!-- Added fade-inner-item, Restored duration-500 -->
-                            <p
-                                class="fade-inner-item text-sm text-slate-200 mt-1 opacity-0 transition-all duration-500 ease-out">
-                                Project Highlight: Evaluating flaky simulators in autonomous driving testing.</p>
-                            <!-- Added fade-inner-item, Restored duration-500 -->
+                <div class="space-y-10 stagger-children">
+                    <div class="flex gap-5 timeline-wrapper">
+                        <div class="flex flex-col items-center">
+                            <div class="timeline-dot"></div>
                         </div>
-                        <!-- MSc SUT -->
-                        <div
-                            class="education-entry glass-card">
-                            <!-- Restored p-6, Added hover:bg -->
-                            <!-- Added education-entry, removed fade classes -->
-                            <p
-                                class="fade-inner-item font-semibold text-lg text-white opacity-0 transition-all duration-500 ease-out">
-                                MSc. Software Engineering</p> <!-- Added fade-inner-item, Restored duration-500 -->
-                            <!-- Already font-semibold -->
-                            <p class="fade-inner-item text-slate-200 opacity-0 transition-all duration-500 ease-out">
-                                Sharif University of Technology (SUT)</p>
-                            <!-- Added fade-inner-item, Restored duration-500 -->
-                            <p
-                                class="fade-inner-item text-sm text-slate-400 opacity-0 transition-all duration-500 ease-out">
-                                GPA: 16.37/20</p> <!-- Added fade-inner-item, Restored duration-500 -->
-                            <p
-                                class="fade-inner-item text-sm text-slate-200 mt-1 opacity-0 transition-all duration-500 ease-out">
-                                Thesis: Estimating Protein-Protein Interaction Network similarity.</p>
-                            <!-- Added fade-inner-item, Restored duration-500 -->
-                            <p
-                                class="fade-inner-item text-sm text-slate-200 mt-1 opacity-0 transition-all duration-500 ease-out">
-                                Project: StackOverflow response time prediction using BERT.</p>
-                            <!-- Added fade-inner-item, Restored duration-500 -->
-                        </div>
-                        <!-- BSc AUT -->
-                        <div
-                            class="education-entry glass-card">
-                            <!-- Restored p-6, Added hover:bg -->
-                            <!-- Added education-entry, removed fade classes -->
-                            <p
-                                class="fade-inner-item font-semibold text-lg text-white opacity-0 transition-all duration-500 ease-out">
-                                BSc. Computer Science</p> <!-- Added fade-inner-item, Restored duration-500 -->
-                            <!-- Already font-semibold -->
-                            <p class="fade-inner-item text-slate-200 opacity-0 transition-all duration-500 ease-out">
-                                Amirkabir University of Technology (AUT)</p>
-                            <!-- Added fade-inner-item, Restored duration-500 -->
-                            <p
-                                class="fade-inner-item text-sm text-slate-400 opacity-0 transition-all duration-500 ease-out">
-                                GPA: 16.11/20 (3.41/4.0)</p> <!-- Added fade-inner-item, Restored duration-500 -->
-                            <p
-                                class="fade-inner-item text-sm text-slate-200 mt-1 opacity-0 transition-all duration-500 ease-out">
-                                Project: Information Retrieval using Word2Vec/Sent2Vec.</p>
-                            <!-- Added fade-inner-item, Restored duration-500 -->
+                        <div class="card-enhanced p-6 flex-1">
+                            <div class="mb-3">
+                                <h3 class="text-xl font-semibold text-white">Senior ML Engineer / Data Scientist</h3>
+                                <p class="text-indigo-400 font-medium">Pardazesh Etelaat Kian</p>
+                            </div>
+                            <ul class="space-y-2.5 text-slate-400">
+                                <li class="flex gap-3 text-sm leading-relaxed"><span class="text-indigo-400 mt-2 w-1.5 h-1.5 rounded-full bg-indigo-400/60 shrink-0"></span>Designed and deployed ML pipelines for vehicle plate recognition (CTC), achieving near SOTA results.</li>
+                                <li class="flex gap-3 text-sm leading-relaxed"><span class="text-indigo-400 mt-2 w-1.5 h-1.5 rounded-full bg-indigo-400/60 shrink-0"></span>Developed a Farsi OCR system handling complex document layouts and styles.</li>
+                                <li class="flex gap-3 text-sm leading-relaxed"><span class="text-indigo-400 mt-2 w-1.5 h-1.5 rounded-full bg-indigo-400/60 shrink-0"></span>Built a large-scale image retrieval system using perceptual similarity.</li>
+                                <li class="flex gap-3 text-sm leading-relaxed"><span class="text-indigo-400 mt-2 w-1.5 h-1.5 rounded-full bg-indigo-400/60 shrink-0"></span>Engineered car detection and multi-object tracking algorithms for traffic analysis.</li>
+                                <li class="flex gap-3 text-sm leading-relaxed"><span class="text-indigo-400 mt-2 w-1.5 h-1.5 rounded-full bg-indigo-400/60 shrink-0"></span>Implemented perspective-robust YOLOv4-based vehicle plate detection.</li>
+                                <li class="flex gap-3 text-sm leading-relaxed"><span class="text-indigo-400 mt-2 w-1.5 h-1.5 rounded-full bg-indigo-400/60 shrink-0"></span>Developed iterative watershed process for document de-warping.</li>
+                                <li class="flex gap-3 text-sm leading-relaxed"><span class="text-indigo-400 mt-2 w-1.5 h-1.5 rounded-full bg-indigo-400/60 shrink-0"></span>Led hiring processes and mentored junior data scientists.</li>
+                            </ul>
                         </div>
                     </div>
-                    <!-- Publications Column -->
-                    <div class="space-y-6"> <!-- Restored space-y-6 -->
-                        <h3
-                            class="fade-inner-item text-2xl font-semibold mb-4 text-white opacity-0 transition-all duration-500 ease-out">
-                            Publications</h3> <!-- Added fade-inner-item, Restored duration-500 -->
-                        <!-- Already font-semibold -->
-                        <div
-                            class="publication-entry glass-card">
-                            <!-- Restored p-6, Added hover:bg -->
-                            <!-- Added publication-entry, removed fade classes -->
-                            <p
-                                class="fade-inner-item font-semibold text-gray-100 opacity-0 transition-all duration-500 ease-out">
-                                EMSE 2024</p> <!-- Added fade-inner-item, Restored duration-500 -->
-                            <p
-                                class="fade-inner-item text-sm text-slate-200 opacity-0 transition-all duration-500 ease-out">
-                                Mohammad Hossein Amini, Shervin Naseri, Shiva Nejati: Evaluating the impact of flaky
-                                simulators on testing autonomous driving systems.</p>
-                            <!-- Added fade-inner-item, Restored duration-500 -->
+                    <div class="flex gap-5">
+                        <div class="flex flex-col items-center">
+                            <div class="timeline-dot"></div>
                         </div>
-                        <div
-                            class="publication-entry glass-card">
-                            <!-- Restored p-6, Added hover:bg -->
-                            <!-- Added publication-entry, removed fade classes -->
-                            <p
-                                class="fade-inner-item font-semibold text-gray-100 opacity-0 transition-all duration-500 ease-out">
-                                ICCG 2019</p> <!-- Added fade-inner-item, Restored duration-500 -->
-                            <p
-                                class="fade-inner-item text-sm text-slate-200 opacity-0 transition-all duration-500 ease-out">
-                                Zahed Rahmati, Sina Farahzad and Shervin Naseri, Counting Closed Billiard Paths.</p>
-                            <!-- Added fade-inner-item, Restored duration-500 -->
+                        <div class="card-enhanced p-6 flex-1">
+                            <div class="mb-3">
+                                <h3 class="text-xl font-semibold text-white">Senior Backend Engineer / Tech Lead</h3>
+                                <p class="text-indigo-400 font-medium">Nikaat Corp</p>
+                            </div>
+                            <ul class="space-y-2.5 text-slate-400">
+                                <li class="flex gap-3 text-sm leading-relaxed"><span class="text-indigo-400 mt-2 w-1.5 h-1.5 rounded-full bg-indigo-400/60 shrink-0"></span>Contributed to design, development, deployment, and technical decisions in a fast-paced startup.</li>
+                                <li class="flex gap-3 text-sm leading-relaxed"><span class="text-indigo-400 mt-2 w-1.5 h-1.5 rounded-full bg-indigo-400/60 shrink-0"></span>Developed web services and APIs (MEAN stack) for applications like Skenas, Atron, Mint, Phosphor.</li>
+                                <li class="flex gap-3 text-sm leading-relaxed"><span class="text-indigo-400 mt-2 w-1.5 h-1.5 rounded-full bg-indigo-400/60 shrink-0"></span>Researched and developed predictive models using time-series deep learning.</li>
+                                <li class="flex gap-3 text-sm leading-relaxed"><span class="text-indigo-400 mt-2 w-1.5 h-1.5 rounded-full bg-indigo-400/60 shrink-0"></span>Managed DevOps workflows and ensured scalable system deployments.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="flex gap-5">
+                        <div class="flex flex-col items-center">
+                            <div class="timeline-dot"></div>
+                        </div>
+                        <div class="card-enhanced p-6 flex-1">
+                            <div class="mb-3">
+                                <h3 class="text-xl font-semibold text-white">Python Developer</h3>
+                                <p class="text-indigo-400 font-medium">Vestaak</p>
+                            </div>
+                            <ul class="space-y-2.5 text-slate-400">
+                                <li class="flex gap-3 text-sm leading-relaxed"><span class="text-indigo-400 mt-2 w-1.5 h-1.5 rounded-full bg-indigo-400/60 shrink-0"></span>Developed a personalized content recommendation engine using Telegram API data.</li>
+                                <li class="flex gap-3 text-sm leading-relaxed"><span class="text-indigo-400 mt-2 w-1.5 h-1.5 rounded-full bg-indigo-400/60 shrink-0"></span>Implemented collaborative filtering and content-based filtering algorithms.</li>
+                                <li class="flex gap-3 text-sm leading-relaxed"><span class="text-indigo-400 mt-2 w-1.5 h-1.5 rounded-full bg-indigo-400/60 shrink-0"></span>Assisted in designing and developing RESTful APIs (Python, Flask).</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Featured Projects Section (Moved Down) -->
-        <section id="projects"
-            class="py-16 border-t border-slate-700 section-hover">
-            <!-- Added hover:bg, removed brightness -->
-            <div class="container mx-auto px-6"> <!-- Changed px-4 to px-6 -->
-                <h2 class="text-2xl font-semibold text-center text-gray-200 mb-16"> <!-- Restored mb-16 -->
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="inline-block h-6 w-6 mr-2 align-middle">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M20.25 14.15v4.07a2.25 2.25 0 0 1-2.25 2.25h-13.5a2.25 2.25 0 0 1-2.25-2.25v-4.07m18-4.07-9 5.25-9-5.25m18 0v-4.07a2.25 2.25 0 0 0-2.25-2.25h-13.5a2.25 2.25 0 0 0-2.25 2.25v4.07m18 0-9 5.25-9-5.25" />
-                    </svg>
+        <!-- Education -->
+        <section id="education" class="py-20 px-6 section-reveal">
+            <div class="container mx-auto max-w-5xl">
+                <div class="gradient-divider mb-12"></div>
+                <h2 class="text-3xl font-bold text-center text-white mb-16 flex items-center justify-center gap-3">
+                    <svg class="w-6 h-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 00-.491 6.347A48.62 48.62 0 0112 20.904a48.62 48.62 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.636 50.636 0 00-2.658-.813A59.906 59.906 0 0112 3.493a59.903 59.903 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5" /></svg>
+                    Education &amp; Research
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 stagger-children">
+                    <div class="space-y-6">
+                        <h3 class="text-2xl font-semibold text-white mb-4">Education</h3>
+                        <div class="card-enhanced p-6">
+                            <p class="font-semibold text-lg text-white">MSc. Computer Science</p>
+                            <p class="text-slate-300">University of Ottawa</p>
+                            <p class="text-sm text-slate-500 mt-1">Sep 2021 - Dec 2024 | GPA: 8.5/10</p>
+                            <p class="text-sm text-slate-400 mt-2">Project: Evaluating flaky simulators in autonomous driving testing.</p>
+                        </div>
+                        <div class="card-enhanced p-6">
+                            <p class="font-semibold text-lg text-white">MSc. Software Engineering</p>
+                            <p class="text-slate-300">Sharif University of Technology</p>
+                            <p class="text-sm text-slate-500 mt-1">GPA: 16.37/20</p>
+                            <p class="text-sm text-slate-400 mt-2">Thesis: Estimating Protein-Protein Interaction Network similarity.</p>
+                            <p class="text-sm text-slate-400">Project: StackOverflow response time prediction using BERT.</p>
+                        </div>
+                        <div class="card-enhanced p-6">
+                            <p class="font-semibold text-lg text-white">BSc. Computer Science</p>
+                            <p class="text-slate-300">Amirkabir University of Technology</p>
+                            <p class="text-sm text-slate-500 mt-1">GPA: 16.11/20 (3.41/4.0)</p>
+                            <p class="text-sm text-slate-400 mt-2">Project: Information Retrieval using Word2Vec/Sent2Vec.</p>
+                        </div>
+                    </div>
+                    <div class="space-y-6">
+                        <h3 class="text-2xl font-semibold text-white mb-4">Publications</h3>
+                        <div class="card-enhanced p-6">
+                            <p class="font-semibold text-indigo-400">EMSE 2024</p>
+                            <p class="text-sm text-slate-300 mt-1">Mohammad Hossein Amini, Shervin Naseri, Shiva Nejati: Evaluating the impact of flaky simulators on testing autonomous driving systems.</p>
+                        </div>
+                        <div class="card-enhanced p-6">
+                            <p class="font-semibold text-indigo-400">ICCG 2019</p>
+                            <p class="text-sm text-slate-300 mt-1">Zahed Rahmati, Sina Farahzad and Shervin Naseri: Counting Closed Billiard Paths.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects -->
+        <section id="projects" class="py-20 px-6 section-reveal">
+            <div class="container mx-auto max-w-6xl">
+                <div class="gradient-divider mb-12"></div>
+                <h2 class="text-3xl font-bold text-center text-white mb-16 flex items-center justify-center gap-3">
+                    <svg class="w-6 h-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v4.07a2.25 2.25 0 01-2.25 2.25h-13.5a2.25 2.25 0 01-2.25-2.25v-4.07m18-4.07l-9 5.25-9-5.25m18 0v-4.07a2.25 2.25 0 00-2.25-2.25h-13.5a2.25 2.25 0 00-2.25 2.25v4.07m18 0l-9 5.25-9-5.25" /></svg>
                     Featured Projects
                 </h2>
-                <!-- font-bold to font-semibold -->
-                <!-- Adjusted text color -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8"> <!-- Restored gap-8 -->
-                    <!-- Project Card 1: Plate Recognition -->
-                    <div
-                        class="project-card glass-card-glow">
-                        <!-- Restored p-6, Removed border-l, Added hover:bg -->
-                        <!-- Added project-card class -->
-                        <!-- Slate bg, Indigo border -->
-                        <h3
-                            class="fade-inner-item text-xl font-semibold mb-2 text-white opacity-0 transition-all duration-500 ease-out">
-                            Vehicle Plate Recognition</h3> <!-- Added fade-inner-item, Restored duration-500 -->
-                        <!-- Already font-semibold -->
-                        <p
-                            class="fade-inner-item text-slate-400 mb-4 flex-grow opacity-0 transition-all duration-500 ease-out">
-                            Designed and deployed a high-performance vehicle plate recognition system using
-                            Connectionist Temporal Classification (CTC), achieving near state-of-the-art results for
-                            traffic analysis applications.</p> <!-- Added fade-inner-item, Restored duration-500 -->
-                        <div
-                            class="fade-inner-item flex flex-wrap gap-2 opacity-0 transition-all duration-500 ease-out">
-                            <!-- Added fade-inner-item, Restored duration-500 -->
-                            <!-- Adjusted tag colors for dark theme -->
-                            <span
-                                class="bg-blue-800 text-blue-300 text-xs font-medium px-2.5 py-0.5 rounded">Python</span>
-                            <span
-                                class="bg-orange-800 text-orange-300 text-xs font-medium px-2.5 py-0.5 rounded">TensorFlow/PyTorch</span>
-                            <span
-                                class="bg-purple-800 text-purple-300 text-xs font-medium px-2.5 py-0.5 rounded">CTC</span>
-                            <span class="bg-green-800 text-green-300 text-xs font-medium px-2.5 py-0.5 rounded">Computer
-                                Vision</span>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 stagger-children">
+                    <div class="card-enhanced p-6 flex flex-col">
+                        <h3 class="text-xl font-semibold text-white mb-2">Vehicle Plate Recognition</h3>
+                        <p class="text-slate-400 mb-4 flex-grow">Designed and deployed a high-performance vehicle plate recognition system using Connectionist Temporal Classification (CTC), achieving near state-of-the-art results for traffic analysis.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag bg-blue-900/50 text-blue-300 border border-blue-800/50">Python</span>
+                            <span class="tag bg-orange-900/50 text-orange-300 border border-orange-800/50">TensorFlow/PyTorch</span>
+                            <span class="tag bg-purple-900/50 text-purple-300 border border-purple-800/50">CTC</span>
+                            <span class="tag bg-green-900/50 text-green-300 border border-green-800/50">Computer Vision</span>
                         </div>
                     </div>
-                    <!-- Project Card 2: Farsi OCR -->
-                    <div
-                        class="project-card glass-card-glow">
-                        <!-- Restored p-6, Removed border-l, Added hover:bg -->
-                        <!-- Added project-card class -->
-                        <!-- Slate bg, Teal border -->
-                        <h3
-                            class="fade-inner-item text-xl font-semibold mb-2 text-white opacity-0 transition-all duration-500 ease-out">
-                            Farsi OCR System</h3> <!-- Added fade-inner-item, Restored duration-500 -->
-                        <!-- Already font-semibold -->
-                        <p
-                            class="fade-inner-item text-slate-400 mb-4 flex-grow opacity-0 transition-all duration-500 ease-out">
-                            Developed an OCR system for scanned Farsi documents, including paragraph/footer detection
-                            and handling unique poetic indentation styles.</p>
-                        <!-- Added fade-inner-item, Restored duration-500 -->
-                        <div
-                            class="fade-inner-item flex flex-wrap gap-2 opacity-0 transition-all duration-500 ease-out">
-                            <!-- Added fade-inner-item, Restored duration-500 -->
-                            <span
-                                class="bg-blue-800 text-blue-300 text-xs font-medium px-2.5 py-0.5 rounded">Python</span>
-                            <span class="bg-green-800 text-green-300 text-xs font-medium px-2.5 py-0.5 rounded">Computer
-                                Vision</span>
-                            <span
-                                class="bg-yellow-800 text-yellow-300 text-xs font-medium px-2.5 py-0.5 rounded">OCR</span>
+                    <div class="card-enhanced p-6 flex flex-col">
+                        <h3 class="text-xl font-semibold text-white mb-2">Farsi OCR System</h3>
+                        <p class="text-slate-400 mb-4 flex-grow">Developed an OCR system for scanned Farsi documents, including paragraph/footer detection and handling unique poetic indentation styles.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag bg-blue-900/50 text-blue-300 border border-blue-800/50">Python</span>
+                            <span class="tag bg-green-900/50 text-green-300 border border-green-800/50">Computer Vision</span>
+                            <span class="tag bg-yellow-900/50 text-yellow-300 border border-yellow-800/50">OCR</span>
                         </div>
                     </div>
-                    <!-- Project Card 3: Predictive Models -->
-                    <div
-                        class="project-card glass-card-glow">
-                        <!-- Restored p-6, Removed border-l, Added hover:bg -->
-                        <!-- Added project-card class -->
-                        <!-- Slate bg, Indigo border -->
-                        <h3
-                            class="fade-inner-item text-xl font-semibold mb-2 text-white opacity-0 transition-all duration-500 ease-out">
-                            Predictive Models (Nikaat)</h3> <!-- Added fade-inner-item, Restored duration-500 -->
-                        <!-- Already font-semibold -->
-                        <p
-                            class="fade-inner-item text-slate-400 mb-4 flex-grow opacity-0 transition-all duration-500 ease-out">
-                            Researched and developed predictive models, including menstrual cycle forecasting and
-                            currency exchange rate prediction, leveraging time-series deep learning architectures.</p>
-                        <!-- Added fade-inner-item, Restored duration-500 -->
-                        <div
-                            class="fade-inner-item flex flex-wrap gap-2 opacity-0 transition-all duration-500 ease-out">
-                            <!-- Added fade-inner-item, Restored duration-500 -->
-                            <span
-                                class="bg-blue-800 text-blue-300 text-xs font-medium px-2.5 py-0.5 rounded">Python</span>
-                            <span class="bg-red-800 text-red-300 text-xs font-medium px-2.5 py-0.5 rounded">Deep
-                                Learning</span>
-                            <span class="bg-slate-700 text-slate-300 text-xs font-medium px-2.5 py-0.5 rounded">Time
-                                Series</span> <!-- Adjusted gray tag -->
-                            <span
-                                class="bg-indigo-800 text-indigo-300 text-xs font-medium px-2.5 py-0.5 rounded">Node.js</span>
+                    <div class="card-enhanced p-6 flex flex-col">
+                        <h3 class="text-xl font-semibold text-white mb-2">Predictive Models (Nikaat)</h3>
+                        <p class="text-slate-400 mb-4 flex-grow">Researched and developed predictive models, including menstrual cycle forecasting and currency exchange rate prediction, leveraging time-series deep learning architectures.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag bg-blue-900/50 text-blue-300 border border-blue-800/50">Python</span>
+                            <span class="tag bg-red-900/50 text-red-300 border border-red-800/50">Deep Learning</span>
+                            <span class="tag bg-slate-700/50 text-slate-300 border border-slate-600/50">Time Series</span>
+                            <span class="tag bg-indigo-900/50 text-indigo-300 border border-indigo-800/50">Node.js</span>
                         </div>
                     </div>
-                    <!-- Project Card 4: Content Recommendation -->
-                    <div
-                        class="project-card glass-card-glow">
-                        <!-- Restored p-6, Removed border-l, Added hover:bg -->
-                        <!-- Added project-card class -->
-                        <!-- Slate bg, Teal border -->
-                        <h3
-                            class="fade-inner-item text-xl font-semibold mb-2 text-white opacity-0 transition-all duration-500 ease-out">
-                            Content Recommendation Engine (Vestaak)</h3>
-                        <!-- Added fade-inner-item, Restored duration-500 -->
-                        <!-- Already font-semibold -->
-                        <p
-                            class="fade-inner-item text-slate-400 mb-4 flex-grow opacity-0 transition-all duration-500 ease-out">
-                            Developed a personalized content recommendation engine using Python and Scikit-learn,
-                            utilizing data crawled from the Telegram API and implementing collaborative/content-based
-                            filtering.</p> <!-- Added fade-inner-item, Restored duration-500 -->
-                        <div
-                            class="fade-inner-item flex flex-wrap gap-2 opacity-0 transition-all duration-500 ease-out">
-                            <!-- Added fade-inner-item, Restored duration-500 -->
-                            <span
-                                class="bg-blue-800 text-blue-300 text-xs font-medium px-2.5 py-0.5 rounded">Python</span>
-                            <span
-                                class="bg-yellow-800 text-yellow-300 text-xs font-medium px-2.5 py-0.5 rounded">Scikit-learn</span>
-                            <span
-                                class="bg-pink-800 text-pink-300 text-xs font-medium px-2.5 py-0.5 rounded">Recommendation
-                                Systems</span>
-                            <span class="bg-teal-800 text-teal-300 text-xs font-medium px-2.5 py-0.5 rounded">API
-                                Crawling</span>
+                    <div class="card-enhanced p-6 flex flex-col">
+                        <h3 class="text-xl font-semibold text-white mb-2">Content Recommendation Engine</h3>
+                        <p class="text-slate-400 mb-4 flex-grow">Developed a personalized content recommendation engine using Python and Scikit-learn, utilizing data crawled from the Telegram API and implementing collaborative/content-based filtering.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag bg-blue-900/50 text-blue-300 border border-blue-800/50">Python</span>
+                            <span class="tag bg-yellow-900/50 text-yellow-300 border border-yellow-800/50">Scikit-learn</span>
+                            <span class="tag bg-pink-900/50 text-pink-300 border border-pink-800/50">Recommendation Systems</span>
+                            <span class="tag bg-teal-900/50 text-teal-300 border border-teal-800/50">API Crawling</span>
                         </div>
                     </div>
-                </div>
-            </div> <!-- Close grid -->
-            </div> <!-- Close container -->
-        </section>
-
-        <!-- Personal Projects & Interests Section -->
-        <section id="personal-projects"
-            class="py-16 border-t border-slate-700 section-hover">
-            <!-- Added hover:bg, removed brightness -->
-            <div class="container mx-auto px-6"> <!-- Changed px-4 to px-6 --> <!-- Moved container inside -->
-                <h2 class="text-2xl font-semibold text-center text-gray-200 mb-16"> <!-- Restored mb-16 -->
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="inline-block h-6 w-6 mr-2 align-middle">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M9.75 3.104v5.714a2.25 2.25 0 0 1-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 0 1 4.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0 1 12 15a9.065 9.065 0 0 0-6.23-.693L4.2 15.3a2.25 2.25 0 0 0-1.152 1.943l-.003.012A2.25 2.25 0 0 0 4.2 19.5h15.6a2.25 2.25 0 0 0 1.153-1.943l-.003-.012a2.25 2.25 0 0 0-1.152-1.943M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                    </svg>
-                    Personal Explorations
-                </h2>
-                <!-- font-bold to font-semibold -->
-                <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8"> <!-- Restored gap-8 -->
-                    <!-- Project: Texture Modding -->
-                    <div
-                        class="personal-project-card glass-card-glow">
-                        <!-- Restored p-6, Added hover:bg -->
-                        <!-- Added personal-project-card, removed fade classes -->
-                        <!-- Slate bg -->
-                        <h3
-                            class="fade-inner-item text-xl font-semibold mb-2 text-white opacity-0 transition-all duration-500 ease-out">
-                            <!-- Restored duration-500 -->
-                            Texture Modding Tools
-                        </h3> <!-- Added fade-inner-item -->
-                        <!-- Already font-semibold -->
-                        <p class="fade-inner-item text-slate-400 opacity-0 transition-all duration-500 ease-out">
-                            <!-- Restored duration-500 -->
-                            Automated Binary Domain texture modding using scripting and external tools to streamline
-                            content creation.
-                        </p> <!-- Added fade-inner-item -->
-                    </div>
-                    <!-- Project: Video Compression -->
-                    <div
-                        class="personal-project-card glass-card-glow">
-                        <!-- Restored p-6, Added hover:bg -->
-                        <!-- Added personal-project-card, removed fade classes -->
-                        <h3
-                            class="fade-inner-item text-xl font-semibold mb-2 text-white opacity-0 transition-all duration-500 ease-out">
-                            <!-- Restored duration-500 -->
-                            Video Compression Research <span class="text-sm font-normal text-orange-400">(WIP)</span>
-                        </h3> <!-- Added fade-inner-item -->
-                        <!-- Already font-semibold -->
-                        <p class="fade-inner-item text-slate-400 opacity-0 transition-all duration-500 ease-out">
-                            <!-- Restored duration-500 -->
-                            Exploring video compression techniques focusing on efficiency through temporal redundancy
-                            and bit-packing.
-                        </p> <!-- Added fade-inner-item -->
-                    </div>
-                    <!-- Project: Large Model Training -->
-                    <div
-                        class="personal-project-card glass-card-glow">
-                        <!-- Restored p-6, Added hover:bg -->
-                        <!-- Added personal-project-card, removed fade classes -->
-                        <h3
-                            class="fade-inner-item text-xl font-semibold mb-2 text-white opacity-0 transition-all duration-500 ease-out">
-                            <!-- Restored duration-500 -->
-                            Large Model Training Research
-                        </h3> <!-- Added fade-inner-item -->
-                        <!-- Already font-semibold -->
-                        <p class="fade-inner-item text-slate-400 opacity-0 transition-all duration-500 ease-out">
-                            <!-- Restored duration-500 -->
-                            Investigating methods to enhance large model training convergence through custom layer
-                            design.
-                        </p> <!-- Added fade-inner-item -->
-                    </div>
-                    <!-- Project: Agent Interaction Language -->
-                    <div
-                        class="personal-project-card glass-card-glow">
-                        <!-- Restored p-6, Added hover:bg -->
-                        <!-- Added personal-project-card, removed fade classes -->
-                        <h3
-                            class="fade-inner-item text-xl font-semibold mb-2 text-white opacity-0 transition-all duration-500 ease-out">
-                            <!-- Restored duration-500 -->
-                            Agent Interaction Language Design <span
-                                class="text-sm font-normal text-orange-400">(WIP)</span>
-                        </h3>
-                        <!-- Added fade-inner-item -->
-                        <!-- Already font-semibold -->
-                        <p class="fade-inner-item text-slate-400 opacity-0 transition-all duration-500 ease-out">
-                            <!-- Restored duration-500 -->
-                            Designing a domain-specific language to define virtual agent interactions for improved
-                            software interoperability.
-                        </p> <!-- Added fade-inner-item -->
-                    </div>
-                </div>
-                <div class="text-center mt-10">
-                    <h3 class="text-xl font-semibold mb-3 text-slate-200">Core Interests</h3>
-                    <p class="text-slate-400">Software Engineering, Algorithms, Machine Learning, Computer Graphics,
-                        Problem-Solving</p>
-                </div>
-            </div> <!-- Close container -->
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="py-12 border-t border-slate-700 section-hover">
-            <!-- Reduced padding, Added hover:bg, removed brightness -->
-            <!-- Removed sticky classes -->
-            <div class="container mx-auto px-6"> <!-- Changed px-4 to px-6 -->
-                <h2 class="text-2xl font-semibold text-center text-gray-200 mb-12"> <!-- Reduced mb-16 to mb-12 -->
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="inline-block h-6 w-6 mr-2 align-middle">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
-                    </svg>
-                    Get In Touch
-                </h2>
-                <!-- font-bold to font-semibold -->
-                <!-- Removed introductory paragraph -->
-                <div class="flex justify-center items-center space-x-6 mt-8">
-                    <!-- Added mt-8 for spacing after removing paragraph -->
-                    <a href="mailto:shervin.naseri@gmail.com"
-                        class="text-indigo-500 hover:text-indigo-300 hover:underline text-lg transition transform hover:scale-105 duration-200 inline-flex items-center">
-                        <!-- Changed to inline-flex -->
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="w-5 h-5 mr-1">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
-                        </svg>
-                        shervin.naseri@gmail.com
-                    </a>
-                    <a href="https://www.linkedin.com/in/shervin-naseri-b3a016b0/" target="_blank"
-                        rel="noopener noreferrer"
-                        class="text-indigo-500 hover:text-indigo-300 hover:underline text-lg transition transform hover:scale-105 duration-200 inline-flex items-center">
-                        <!-- Changed to inline-flex -->
-                        <svg class="w-5 h-5 mr-1 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                            <path
-                                d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 53.79-54.3c29.7 0 53.79 24.7 53.79 54.3a53.79 53.79 0 0 1-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z" />
-                        </svg>
-                        LinkedIn
-                    </a>
-                    <a href="https://github.com/shervinemp" target="_blank" rel="noopener noreferrer"
-                        class="text-indigo-500 hover:text-indigo-300 hover:underline text-lg transition transform hover:scale-105 duration-200 inline-flex items-center">
-                        <!-- Changed to inline-flex -->
-                        <svg class="w-5 h-5 mr-1 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512">
-                            <path
-                                d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z" />
-                        </svg>
-                        GitHub
-                    </a>
                 </div>
             </div>
         </section>
 
-        <script src="dist/blog-meta.js"></script>
-        <script src="src/script.js"></script>
+        <!-- Personal Projects -->
+        <section id="personal-projects" class="py-20 px-6 section-reveal">
+            <div class="container mx-auto max-w-5xl">
+                <div class="gradient-divider mb-12"></div>
+                <h2 class="text-3xl font-bold text-center text-white mb-16 flex items-center justify-center gap-3">
+                    <svg class="w-6 h-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23-.693L4.2 15.3a2.25 2.25 0 00-1.152 1.943l-.003.012A2.25 2.25 0 004.2 19.5h15.6a2.25 2.25 0 001.153-1.943l-.003-.012a2.25 2.25 0 00-1.152-1.943M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                    Personal Explorations
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 stagger-children">
+                    <div class="card-enhanced p-6">
+                        <h3 class="text-lg font-semibold text-white mb-2">Texture Modding Tools</h3>
+                        <p class="text-slate-400 text-sm">Automated Binary Domain texture modding using scripting and external tools to streamline content creation.</p>
+                    </div>
+                    <div class="card-enhanced p-6">
+                        <h3 class="text-lg font-semibold text-white mb-2">Video Compression Research <span class="text-sm font-normal text-orange-400">(WIP)</span></h3>
+                        <p class="text-slate-400 text-sm">Exploring video compression techniques focusing on efficiency through temporal redundancy and bit-packing.</p>
+                    </div>
+                    <div class="card-enhanced p-6">
+                        <h3 class="text-lg font-semibold text-white mb-2">Large Model Training Research</h3>
+                        <p class="text-slate-400 text-sm">Investigating methods to enhance large model training convergence through custom layer design.</p>
+                    </div>
+                    <div class="card-enhanced p-6">
+                        <h3 class="text-lg font-semibold text-white mb-2">Agent Interaction Language Design <span class="text-sm font-normal text-orange-400">(WIP)</span></h3>
+                        <p class="text-slate-400 text-sm">Designing a domain-specific language to define virtual agent interactions for improved software interoperability.</p>
+                    </div>
+                </div>
+                <div class="text-center mt-12">
+                    <h3 class="text-xl font-semibold text-white mb-3">Core Interests</h3>
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <span class="tag bg-slate-800/50 text-slate-300 border border-slate-700/50">Software Engineering</span>
+                        <span class="tag bg-slate-800/50 text-slate-300 border border-slate-700/50">Algorithms</span>
+                        <span class="tag bg-slate-800/50 text-slate-300 border border-slate-700/50">Machine Learning</span>
+                        <span class="tag bg-slate-800/50 text-slate-300 border border-slate-700/50">Computer Graphics</span>
+                        <span class="tag bg-slate-800/50 text-slate-300 border border-slate-700/50">Problem-Solving</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact" class="py-20 px-6 section-reveal">
+            <div class="container mx-auto max-w-3xl">
+                <div class="gradient-divider mb-12"></div>
+                <h2 class="text-3xl font-bold text-center text-white mb-12 flex items-center justify-center gap-3">
+                    <svg class="w-6 h-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" /></svg>
+                    Get In Touch
+                </h2>
+                <div class="contact-card p-10 md:p-12 text-center">
+                    <p class="text-slate-400 mb-10 max-w-lg mx-auto leading-relaxed">I'm always open to discussing new projects, research collaborations, or opportunities. Feel free to reach out!</p>
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <a href="mailto:shervin.naseri@gmail.com" class="contact-link">
+                            <svg class="ci-email w-5 h-5 text-indigo-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" /></svg>
+                            <span>Email</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/shervin-naseri-b3a016b0/" target="_blank" rel="noopener noreferrer" class="contact-link">
+                            <svg class="ci-linkedin w-5 h-5 text-indigo-400 shrink-0" viewBox="0 0 448 512" fill="currentColor"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0153.79-54.3c29.7 0 53.79 24.7 53.79 54.3a53.79 53.79 0 01-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"/></svg>
+                            <span>LinkedIn</span>
+                        </a>
+                        <a href="https://github.com/shervinemp" target="_blank" rel="noopener noreferrer" class="contact-link">
+                            <svg class="ci-github w-5 h-5 text-indigo-400 shrink-0" viewBox="0 0 496 512" fill="currentColor"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+                            <span>GitHub</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- Footer -->
-        <footer class="text-center py-6 mt-16 border-t border-slate-700">
-            <p class="text-gray-500 text-sm">&copy; <span id="current-year"></span> Shervin Naseri. All rights reserved.
-            </p>
+        <footer class="text-center py-10 px-6 border-t border-slate-800/50" style="border-image: linear-gradient(90deg, transparent, rgba(99,102,241,0.15), rgba(139,92,246,0.15), transparent) 1;">
+            <div class="flex flex-wrap justify-center gap-8 mb-4">
+                <a href="mailto:shervin.naseri@gmail.com" class="text-slate-500 hover:text-indigo-400 transition-colors text-sm tracking-wide">Email</a>
+                <a href="https://www.linkedin.com/in/shervin-naseri-b3a016b0/" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-indigo-400 transition-colors text-sm tracking-wide">LinkedIn</a>
+                <a href="https://github.com/shervinemp" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-indigo-400 transition-colors text-sm tracking-wide">GitHub</a>
+                <a href="blog.html" class="text-slate-500 hover:text-indigo-400 transition-colors text-sm tracking-wide">Blog</a>
+            </div>
+            <p class="text-slate-600 text-xs tracking-wide">&copy; <span id="current-year"></span> Shervin Naseri. All rights reserved.</p>
         </footer>
 
-        <!-- Back to Top Button -->
-        <button id="back-to-top" title="Back to Top"
-            class="hidden fixed bottom-6 right-6 p-3 bg-indigo-500 hover:bg-indigo-600 text-white rounded-full shadow-lg transition-all duration-300 z-10 transform hover:scale-110 hover:shadow-lg hover:shadow-indigo-500/50 active:scale-100">
-            <!-- Added active:scale-100 -->
-            <!-- Added scale -->
-            <!-- Adjusted button color -->
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
-            </svg>
+        <!-- Back to Top -->
+        <button id="back-to-top" title="Back to Top">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" /></svg>
         </button>
 
-    </main> <!-- End Main Content Area -->
-</body>
+    </main>
 
+    <script src="dist/blog-meta.js"></script>
+    <script src="src/script.js"></script>
+</body>
 </html>

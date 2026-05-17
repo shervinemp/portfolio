@@ -15,29 +15,28 @@ const createSlug = (filename) => {
 // HTML template for a single blog post
 const createPostHtml = (post) => `
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="${post.attributes.snippet}">
     <title>${post.attributes.title} - Shervin Naseri</title>
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../output.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
 </head>
-<body class="bg-gradient-to-b from-slate-900 to-black text-slate-200 font-sans leading-relaxed flex flex-col min-h-screen">
+<body class="bg-slate-950 text-slate-200 font-sans leading-relaxed flex flex-col min-h-screen">
 
-    <!-- Header -->
-    <header class="bg-slate-800/80 backdrop-blur-sm sticky top-0 z-20 border-b border-slate-700">
+    <header class="bg-slate-900/80 backdrop-blur-md sticky top-0 z-20 border-b border-slate-800">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="../../index.html" class="text-2xl font-bold text-white hover:text-slate-200 transition transform hover:scale-105 duration-200 inline-block">Shervin Naseri</a>
+            <a href="../../index.html" class="text-2xl font-bold text-white hover:text-indigo-400 transition-colors">Shervin Naseri</a>
             <nav>
-                <a href="../../blog.html" class="text-indigo-500 hover:text-indigo-300 hover:underline">Back to Blog</a>
+                <a href="../../blog.html" class="text-slate-400 hover:text-white transition-colors text-sm">Back to Blog</a>
             </nav>
         </div>
     </header>
 
-    <!-- Main Content Area -->
     <main class="container mx-auto px-6 py-12 flex-grow">
         <article class="max-w-4xl mx-auto">
             <h1 class="text-4xl font-bold text-white mb-4">${post.attributes.title}</h1>
@@ -47,18 +46,17 @@ const createPostHtml = (post) => `
                 ${post.body}
             </div>
 
-            <div class="mt-8">
+            <div class="mt-8 flex flex-wrap gap-2">
                 ${post.attributes.tags.map(tag => {
                     const tagSlug = tag.toLowerCase().replace(/\s+/g, '-');
-                    return `<a href="../tags/${tagSlug}.html" class="inline-block bg-slate-700 text-indigo-300 text-xs font-medium mr-2 px-2.5 py-0.5 rounded hover:bg-slate-600 hover:text-indigo-200 transition-colors duration-200">${tag}</a>`;
+                    return `<a href="../tags/${tagSlug}.html" class="tag bg-slate-800/50 text-indigo-300 border border-slate-700/50 hover:bg-slate-700/50 hover:text-indigo-200">${tag}</a>`;
                 }).join('')}
             </div>
         </article>
     </main>
 
-    <!-- Footer -->
-    <footer class="text-center py-6 mt-16 border-t border-slate-700">
-        <p class="text-gray-500 text-sm">&copy; ${new Date().getFullYear()} Shervin Naseri. All rights reserved.</p>
+    <footer class="text-center py-8 px-6 border-t border-slate-800/50">
+        <p class="text-slate-600 text-sm">&copy; ${new Date().getFullYear()} Shervin Naseri. All rights reserved.</p>
     </footer>
 
 </body>
@@ -68,45 +66,44 @@ const createPostHtml = (post) => `
 // HTML template for a tag page
 const createTagPageHtml = (tag, posts) => `
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Posts tagged with ${tag} on the technical blog of Shervin Naseri.">
     <title>Posts tagged with "${tag}" - Shervin Naseri</title>
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../output.css">
 </head>
-<body class="bg-gradient-to-b from-slate-900 to-black text-slate-200 font-sans leading-relaxed flex flex-col min-h-screen">
+<body class="bg-slate-950 text-slate-200 font-sans leading-relaxed flex flex-col min-h-screen">
 
-    <!-- Header -->
-    <header class="bg-slate-800/80 backdrop-blur-sm sticky top-0 z-20 border-b border-slate-700">
+    <header class="bg-slate-900/80 backdrop-blur-md sticky top-0 z-20 border-b border-slate-800">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="../../index.html" class="text-2xl font-bold text-white hover:text-slate-200 transition transform hover:scale-105 duration-200 inline-block">Shervin Naseri</a>
+            <a href="../../index.html" class="text-2xl font-bold text-white hover:text-indigo-400 transition-colors">Shervin Naseri</a>
             <nav>
-                 <a href="../../blog.html" class="text-indigo-500 hover:text-indigo-300 hover:underline">Back to Blog</a>
+                 <a href="../../blog.html" class="text-slate-400 hover:text-white transition-colors text-sm">Back to Blog</a>
             </nav>
         </div>
     </header>
 
-    <!-- Main Content Area -->
     <main class="container mx-auto px-6 py-12 flex-grow">
-        <h1 class="text-4xl font-bold text-center text-white mb-4">Posts tagged with <span class="text-indigo-500">"${tag}"</span></h1>
-        <p class="text-center text-slate-400 mb-12">${posts.length} post${posts.length === 1 ? '' : 's'} found.</p>
-        <div class="space-y-16 max-w-4xl mx-auto">
+        <h1 class="text-4xl font-bold text-center text-white mb-4">Posts tagged with <span class="text-indigo-400">"${tag}"</span></h1>
+        <p class="text-center text-slate-500 mb-12">${posts.length} post${posts.length === 1 ? '' : 's'} found.</p>
+        <div class="space-y-8 max-w-4xl mx-auto">
             ${posts.map(post => `
-            <article class="glass-card-glow">
-                <h2 class="text-3xl font-semibold text-white mb-2">
-                    <a href="../blog/${post.slug}.html" class="hover:underline">${post.attributes.title}</a>
+            <article class="card-enhanced p-6">
+                <h2 class="text-2xl font-semibold text-white mb-2">
+                    <a href="../blog/${post.slug}.html" class="hover:text-indigo-400 transition-colors">${post.attributes.title}</a>
                 </h2>
-                <p class="text-sm text-slate-400 mb-4">Published on <time datetime="${post.attributes.date}">${new Date(post.attributes.date).toDateString()}</time></p>
-                <p class="text-slate-200 mb-4">${post.attributes.snippet}</p>
-                 <div class="flex justify-between items-center">
-                    <a href="../blog/${post.slug}.html" class="text-indigo-500 hover:underline font-semibold">Read more...</a>
+                <p class="text-sm text-slate-500 mb-3">Published on <time datetime="${post.attributes.date}">${new Date(post.attributes.date).toDateString()}</time></p>
+                <p class="text-slate-400 mb-4">${post.attributes.snippet}</p>
+                 <div class="flex flex-wrap items-center justify-between gap-4">
+                    <a href="../blog/${post.slug}.html" class="text-indigo-400 hover:text-indigo-300 font-semibold text-sm transition-colors">Read more &rarr;</a>
                     <div class="flex items-center gap-2">
                         ${post.attributes.tags.map(t => {
                             const tagSlug = t.toLowerCase().replace(/\s+/g, '-');
-                            return `<a href="${tagSlug}.html" class="inline-block bg-slate-700 text-indigo-300 text-xs font-medium px-2.5 py-0.5 rounded hover:bg-slate-600 hover:text-indigo-200 transition-colors duration-200">${t}</a>`;
+                            return `<a href="${tagSlug}.html" class="tag bg-slate-800/50 text-indigo-300 border border-slate-700/50 hover:bg-slate-700/50 hover:text-indigo-200">${t}</a>`;
                         }).join('')}
                     </div>
                 </div>
@@ -115,9 +112,8 @@ const createTagPageHtml = (tag, posts) => `
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="text-center py-6 mt-16 border-t border-slate-700">
-        <p class="text-gray-500 text-sm">&copy; ${new Date().getFullYear()} Shervin Naseri. All rights reserved.</p>
+    <footer class="text-center py-8 px-6 border-t border-slate-800/50">
+        <p class="text-slate-600 text-sm">&copy; ${new Date().getFullYear()} Shervin Naseri. All rights reserved.</p>
     </footer>
 
 </body>
@@ -127,44 +123,44 @@ const createTagPageHtml = (tag, posts) => `
 // HTML template for the blog index page
 const createBlogIndexHtml = (posts) => `
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Technical blog of Shervin Naseri.">
+    <meta name="theme-color" content="#0f172a">
     <title>Shervin Naseri - Blog</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="dist/output.css">
 </head>
-<body class="bg-gradient-to-b from-slate-900 to-black text-slate-200 font-sans leading-relaxed flex flex-col min-h-screen">
+<body class="bg-slate-950 text-slate-200 font-sans leading-relaxed flex flex-col min-h-screen">
 
-    <!-- Header -->
-    <header class="bg-slate-800/80 backdrop-blur-sm sticky top-0 z-20 border-b border-slate-700">
+    <header class="bg-slate-900/80 backdrop-blur-md sticky top-0 z-20 border-b border-slate-800">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold text-white hover:text-slate-200 transition transform hover:scale-105 duration-200 inline-block">Shervin Naseri</a>
+            <a href="index.html" class="text-2xl font-bold text-white hover:text-indigo-400 transition-colors">Shervin Naseri</a>
             <nav>
-                <!-- Empty nav for consistency -->
+                <a href="index.html" class="text-slate-400 hover:text-white transition-colors text-sm">Portfolio</a>
             </nav>
         </div>
     </header>
 
-    <!-- Main Content Area -->
     <main class="container mx-auto px-6 py-12 flex-grow">
         <h1 class="text-4xl font-bold text-center text-white mb-12">Technical Blog</h1>
-        <div class="space-y-16 max-w-4xl mx-auto">
+        <div class="space-y-8 max-w-4xl mx-auto">
             ${posts.map(post => `
-            <article class="glass-card-glow">
-                <h2 class="text-3xl font-semibold text-white mb-2">
-                    <a href="dist/blog/${post.slug}.html" class="hover:underline">${post.attributes.title}</a>
+            <article class="card-enhanced p-6">
+                <h2 class="text-2xl font-semibold text-white mb-2">
+                    <a href="dist/blog/${post.slug}.html" class="hover:text-indigo-400 transition-colors">${post.attributes.title}</a>
                 </h2>
-                <p class="text-sm text-slate-400 mb-4">Published on <time datetime="${post.attributes.date}">${new Date(post.attributes.date).toDateString()}</time></p>
-                <p class="text-slate-200 mb-4">${post.attributes.snippet}</p>
-                <div class="flex justify-between items-center">
-                    <a href="dist/blog/${post.slug}.html" class="text-indigo-500 hover:underline font-semibold">Read more...</a>
+                <p class="text-sm text-slate-500 mb-3">Published on <time datetime="${post.attributes.date}">${new Date(post.attributes.date).toDateString()}</time></p>
+                <p class="text-slate-400 mb-4">${post.attributes.snippet}</p>
+                <div class="flex flex-wrap items-center justify-between gap-4">
+                    <a href="dist/blog/${post.slug}.html" class="text-indigo-400 hover:text-indigo-300 font-semibold text-sm transition-colors">Read more &rarr;</a>
                     <div class="flex items-center gap-2">
                         ${post.attributes.tags.map(tag => {
                             const tagSlug = tag.toLowerCase().replace(/\s+/g, '-');
-                            return `<a href="dist/tags/${tagSlug}.html" class="inline-block bg-slate-700 text-indigo-300 text-xs font-medium px-2.5 py-0.5 rounded hover:bg-slate-600 hover:text-indigo-200 transition-colors duration-200">${tag}</a>`;
+                            return `<a href="dist/tags/${tagSlug}.html" class="tag bg-slate-800/50 text-indigo-300 border border-slate-700/50 hover:bg-slate-700/50 hover:text-indigo-200">${tag}</a>`;
                         }).join('')}
                     </div>
                 </div>
@@ -173,9 +169,8 @@ const createBlogIndexHtml = (posts) => `
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="text-center py-6 mt-16 border-t border-slate-700">
-        <p class="text-gray-500 text-sm">&copy; ${new Date().getFullYear()} Shervin Naseri. All rights reserved.</p>
+    <footer class="text-center py-8 px-6 border-t border-slate-800/50">
+        <p class="text-slate-600 text-sm">&copy; ${new Date().getFullYear()} Shervin Naseri. All rights reserved.</p>
     </footer>
 
 </body>
