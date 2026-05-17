@@ -7,7 +7,6 @@
     "build:css": "postcss ./src/input.css -o ./dist/output.css --minify",
     "build:blog": "node build.js",
     "build": "npm run build:css && npm run build:blog",
-    "build:dev": "cross-env NODE_ENV=development npm run build",
     "start": "serve ."
   },
   "keywords": [],
@@ -15,8 +14,8 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.19",
     "autoprefixer": "^10.4.21",
-    "cross-env": "^10.0.0",
     "front-matter": "^4.0.2",
     "highlight.js": "^11.11.1",
     "marked": "^16.1.2",
