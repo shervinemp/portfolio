@@ -9,14 +9,85 @@ const DIST_DIR = path.join(__dirname, 'dist/blog');
 
 const createSlug = (filename) => path.basename(filename, path.extname(filename));
 
+const escapeHtml = (value = '') => String(value).replace(/[&<>"']/g, (char) => ({
+  '&': '&amp;',
+  '<': '&lt;',
+  '>': '&gt;',
+  '"': '&quot;',
+  "'": '&#39;',
+}[char]));
+
+const createTagSlug = (tag) => String(tag)
+  .trim()
+  .toLowerCase()
+  .replace(/[^a-z0-9]+/g, '-')
+  .replace(/^-+|-+$/g, '') || 'tag';
+
+const normalizeDate = (value, filePath) => {
+  if (!value) {
+    throw new Error(`Missing required "date" in ${path.basename(filePath)}`);
+  }
+
+  if (value instanceof Date && !Number.isNaN(value.getTime())) {
+    const iso = value.toISOString().slice(0, 10);
+    const [year, month, day] = iso.split('-').map(Number);
+    const localDate = new Date(year, month - 1, day);
+    return {
+      iso,
+      label: localDate.toDateString(),
+      sortTime: localDate.getTime(),
+    };
+  }
+
+  const raw = String(value).trim();
+  const dateParts = raw.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (dateParts) {
+    const [, year, month, day] = dateParts;
+    const localDate = new Date(Number(year), Number(month) - 1, Number(day));
+    return {
+      iso: `${year}-${month}-${day}`,
+      label: localDate.toDateString(),
+      sortTime: localDate.getTime(),
+    };
+  }
+
+  const parsed = new Date(raw);
+  if (Number.isNaN(parsed.getTime())) {
+    throw new Error(`Invalid "date" in ${path.basename(filePath)}: ${raw}`);
+  }
+
+  return {
+    iso: parsed.toISOString().slice(0, 10),
+    label: parsed.toDateString(),
+    sortTime: parsed.getTime(),
+  };
+};
+
+const normalizeAttributes = (attributes, filePath) => {
+  const date = normalizeDate(attributes.date, filePath);
+  const rawTags = Array.isArray(attributes.tags)
+    ? attributes.tags
+    : attributes.tags
+      ? [attributes.tags]
+      : [];
+
+  return {
+    title: String(attributes.title || createSlug(path.basename(filePath))).trim(),
+    date: date.iso,
+    dateLabel: date.label,
+    sortTime: date.sortTime,
+    snippet: String(attributes.snippet || '').trim(),
+    tags: rawTags.map(tag => String(tag).trim()).filter(Boolean),
+  };
+};
+
 const readingTime = (text) => {
   const wpm = 200;
   const words = text.trim().split(/\s+/).length;
   return Math.max(1, Math.ceil(words / wpm));
 };
 
-const shell = (title, desc, extraCss) => `
-<!DOCTYPE html>
+const shell = (title, desc, extraCss) => `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -61,56 +132,60 @@ window.addEventListener('scroll',function(){tb.classList.toggle('hidden',window.
 tb.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
 </script>
 </body>
-</html>`;
+</html>
+`;
 
 const createPostHtml = (post, prev, next) => {
+  const title = escapeHtml(post.attributes.title);
+  const snippet = escapeHtml(post.attributes.snippet);
   const body = `
     <article class="max-w-4xl mx-auto">
-        <h1 class="text-4xl font-bold text-white mb-3">${post.attributes.title}</h1>
+        <h1 class="text-4xl font-bold text-white mb-3">${title}</h1>
         <div class="flex flex-wrap items-center gap-4 text-sm text-slate-500 mb-8">
-            <time datetime="${post.attributes.date}">${new Date(post.attributes.date).toDateString()}</time>
+            <time datetime="${escapeHtml(post.attributes.date)}">${escapeHtml(post.attributes.dateLabel)}</time>
             <span class="w-1 h-1 rounded-full bg-slate-600"></span>
             <span class="reading-time"><svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>${post.readingTime} min read</span>
         </div>
         <div class="prose-custom">${post.body}</div>
         <div class="flex flex-wrap gap-2 mt-8">
             ${post.attributes.tags.map(tag => {
-                const tagSlug = tag.toLowerCase().replace(/\s+/g, '-');
-                return `<a href="../tags/${tagSlug}.html" class="tag">${tag}</a>`;
+                const tagSlug = createTagSlug(tag);
+                return `<a href="../tags/${tagSlug}.html" class="tag">${escapeHtml(tag)}</a>`;
             }).join('')}
         </div>
         <div class="post-nav">
-            ${prev ? `<a href="../blog/${prev.slug}.html">&larr; ${prev.attributes.title}</a>` : '<span></span>'}
-            ${next ? `<a href="../blog/${next.slug}.html">${next.attributes.title} &rarr;</a>` : '<span></span>'}
+            ${prev ? `<a href="../blog/${prev.slug}.html">&larr; ${escapeHtml(prev.attributes.title)}</a>` : '<span></span>'}
+            ${next ? `<a href="../blog/${next.slug}.html">${escapeHtml(next.attributes.title)} &rarr;</a>` : '<span></span>'}
         </div>
     </article>`;
 
   return shell(
-    post.attributes.title,
-    post.attributes.snippet,
+    title,
+    snippet,
     '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">'
   ).replace('{{BODY}}', body);
 };
 
 const createTagPageHtml = (tag, posts) => {
+  const safeTag = escapeHtml(tag);
   const body = `
     <div class="max-w-4xl mx-auto">
-        <h1 class="text-4xl font-bold text-center text-white mb-4">Posts tagged with <span class="text-indigo-400">"${tag}"</span></h1>
+        <h1 class="text-4xl font-bold text-center text-white mb-4">Posts tagged with <span class="text-indigo-400">"${safeTag}"</span></h1>
         <p class="text-center text-slate-500 mb-12">${posts.length} post${posts.length === 1 ? '' : 's'} found.</p>
         <div class="space-y-8">
             ${posts.map(post => `
             <article class="card-enhanced p-6">
                 <h2 class="text-2xl font-semibold text-white mb-2">
-                    <a href="../blog/${post.slug}.html" class="hover:text-indigo-400 transition-colors">${post.attributes.title}</a>
+                    <a href="../blog/${post.slug}.html" class="hover:text-indigo-400 transition-colors">${escapeHtml(post.attributes.title)}</a>
                 </h2>
-                <p class="text-sm text-slate-500 mb-3">Published on <time datetime="${post.attributes.date}">${new Date(post.attributes.date).toDateString()}</time></p>
-                <p class="text-slate-400 mb-4">${post.attributes.snippet}</p>
+                <p class="text-sm text-slate-500 mb-3">Published on <time datetime="${escapeHtml(post.attributes.date)}">${escapeHtml(post.attributes.dateLabel)}</time></p>
+                <p class="text-slate-400 mb-4">${escapeHtml(post.attributes.snippet)}</p>
                 <div class="flex flex-wrap items-center justify-between gap-4">
                     <a href="../blog/${post.slug}.html" class="text-indigo-400 hover:text-indigo-300 font-semibold text-sm transition-colors">Read more &rarr;</a>
                     <div class="flex items-center gap-2">
                         ${post.attributes.tags.map(t => {
-                            const tagSlug = t.toLowerCase().replace(/\s+/g, '-');
-                            return `<a href="${tagSlug}.html" class="tag">${t}</a>`;
+                            const tagSlug = createTagSlug(t);
+                            return `<a href="${tagSlug}.html" class="tag">${escapeHtml(t)}</a>`;
                         }).join('')}
                     </div>
                 </div>
@@ -119,13 +194,12 @@ const createTagPageHtml = (tag, posts) => {
     </div>`;
 
   return shell(
-    `Posts tagged with "${tag}"`,
-    `Posts tagged with ${tag} on the technical blog of Shervin Naseri.`
+    `Posts tagged with "${safeTag}"`,
+    `Posts tagged with ${safeTag} on the technical blog of Shervin Naseri.`
   ).replace('{{BODY}}', body);
 };
 
-const createBlogIndexHtml = (posts) => `
-<!DOCTYPE html>
+const createBlogIndexHtml = (posts) => `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -156,20 +230,20 @@ const createBlogIndexHtml = (posts) => `
         ${posts.length ? posts.map(post => `
         <article class="card-enhanced p-6">
             <h2 class="text-2xl font-semibold text-white mb-2">
-                <a href="dist/blog/${post.slug}.html" class="hover:text-indigo-400 transition-colors">${post.attributes.title}</a>
+                <a href="dist/blog/${post.slug}.html" class="hover:text-indigo-400 transition-colors">${escapeHtml(post.attributes.title)}</a>
             </h2>
             <div class="flex flex-wrap items-center gap-3 text-sm text-slate-500 mb-3">
-                <time datetime="${post.attributes.date}">${new Date(post.attributes.date).toDateString()}</time>
+                <time datetime="${escapeHtml(post.attributes.date)}">${escapeHtml(post.attributes.dateLabel)}</time>
                 <span class="w-1 h-1 rounded-full bg-slate-600"></span>
                 <span class="reading-time"><svg class="w-3.5 h-3.5 inline mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>${post.readingTime} min read</span>
             </div>
-            <p class="text-slate-400 mb-4">${post.attributes.snippet}</p>
+            <p class="text-slate-400 mb-4">${escapeHtml(post.attributes.snippet)}</p>
             <div class="flex flex-wrap items-center justify-between gap-4">
                 <a href="dist/blog/${post.slug}.html" class="text-indigo-400 hover:text-indigo-300 font-semibold text-sm transition-colors">Read more &rarr;</a>
                 <div class="flex items-center gap-2">
                     ${post.attributes.tags.map(tag => {
-                        const tagSlug = tag.toLowerCase().replace(/\s+/g, '-');
-                        return `<a href="dist/tags/${tagSlug}.html" class="tag">${tag}</a>`;
+                        const tagSlug = createTagSlug(tag);
+                        return `<a href="dist/tags/${tagSlug}.html" class="tag">${escapeHtml(tag)}</a>`;
                     }).join('')}
                 </div>
             </div>
@@ -188,7 +262,7 @@ const createBlogIndexHtml = (posts) => `
         <a href="mailto:shervin.naseri@gmail.com" class="text-slate-500 hover:text-indigo-400 transition-colors text-sm tracking-wide">Email</a>
         <a href="https://github.com/shervinemp" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-indigo-400 transition-colors text-sm tracking-wide">GitHub</a>
     </div>
-    <p class="text-slate-600 text-xs tracking-wide">&copy; ${new Date().getFullYear()} Shervin Naseri. All rights reserved.</p>
+    <p class="text-slate-600 text-xs tracking-wide">&copy; <span id="current-year"></span> Shervin Naseri. All rights reserved.</p>
 </footer>
 
 <button id="back-to-top" title="Back to Top">
@@ -204,7 +278,8 @@ window.addEventListener('scroll',function(){tb.classList.toggle('hidden',window.
 tb.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
 </script>
 </body>
-</html>`;
+</html>
+`;
 
 const main = async () => {
   try {
@@ -234,13 +309,14 @@ const main = async () => {
       if (path.extname(filePath) !== '.md') continue;
       const fileContent = await fs.readFile(filePath, 'utf8');
       const { attributes, body } = fm(fileContent);
+      const normalizedAttributes = normalizeAttributes(attributes, filePath);
       const htmlContent = marked(body, { renderer });
       const slug = createSlug(path.basename(filePath));
-      posts.push({ attributes, body: htmlContent, slug, readingTime: readingTime(body) });
-      attributes.tags.forEach(tag => allTags.add(tag));
+      posts.push({ attributes: normalizedAttributes, body: htmlContent, slug, readingTime: readingTime(body) });
+      normalizedAttributes.tags.forEach(tag => allTags.add(tag));
     }
 
-    posts.sort((a, b) => new Date(b.attributes.date) - new Date(a.attributes.date));
+    posts.sort((a, b) => b.attributes.sortTime - a.attributes.sortTime);
 
     for (let i = 0; i < posts.length; i++) {
       const prev = i > 0 ? posts[i - 1] : null;
@@ -255,7 +331,7 @@ const main = async () => {
 
     for (const tag of allTags) {
       const postsWithTag = posts.filter(post => post.attributes.tags.includes(tag));
-      const tagSlug = tag.toLowerCase().replace(/\s+/g, '-');
+      const tagSlug = createTagSlug(tag);
       const tagPageHtml = createTagPageHtml(tag, postsWithTag);
       await fs.writeFile(path.join(TAGS_DIST_DIR, `${tagSlug}.html`), tagPageHtml);
       console.log(`Built tag page: ${tagSlug}.html`);
@@ -271,6 +347,7 @@ const main = async () => {
 
   } catch (error) {
     console.error("Error during build process:", error);
+    process.exitCode = 1;
   }
 };
 
