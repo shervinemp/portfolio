@@ -17,12 +17,13 @@
 
     <div id="scroll-progress"></div>
 
-    <!-- Blog Link (visible when posts exist) -->
-    <div id="blog-link-wrapper" class="fixed top-4 right-4 z-40 hidden">
+    <!-- Blog Link (desktop, visible when posts exist) -->
+    <div id="blog-link-wrapper" class="fixed top-4 right-4 z-40">
         <a href="blog.html" class="text-sm text-indigo-400 hover:text-white font-semibold transition-colors bg-slate-900/80 backdrop-blur-sm border border-slate-700/50 px-4 py-2 rounded-full shadow-lg">Blog</a>
     </div>
 
-    <div id="blog-link-wrapper-mobile" class="fixed top-4 right-4 z-30 hidden md:hidden">
+    <!-- Blog Link (mobile, visible when posts exist) -->
+    <div id="blog-link-wrapper-mobile" class="fixed top-4 right-4 z-30">
         <a href="blog.html" class="text-xs text-indigo-400 font-semibold bg-slate-900/80 backdrop-blur-sm border border-slate-700/50 px-3 py-1.5 rounded-full">Blog</a>
     </div>
 
@@ -42,17 +43,17 @@
         </div>
     </nav>
 
+    <!-- Hamburger (Mobile) -->
+    <button id="menu-toggle" class="md:hidden fixed top-4 left-4 z-40 p-2.5 bg-slate-800/90 backdrop-blur-sm border border-slate-700/50 text-white rounded-lg focus:outline-none" aria-label="Toggle Menu">
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path class="hamburger-line" d="M4 6h16" />
+            <path class="hamburger-line" d="M4 12h16" />
+            <path class="hamburger-line" d="M4 18h16" />
+        </svg>
+    </button>
+
     <!-- Main Content -->
     <main id="main-content" class="md:ml-64">
-
-        <!-- Hamburger (Mobile) -->
-        <button id="menu-toggle" class="md:hidden fixed top-4 left-4 z-30 p-2.5 bg-slate-800/90 backdrop-blur-sm border border-slate-700/50 text-white rounded-lg focus:outline-none" aria-label="Toggle Menu">
-            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path class="hamburger-line" d="M4 6h16" />
-                <path class="hamburger-line" d="M4 12h16" />
-                <path class="hamburger-line" d="M4 18h16" />
-            </svg>
-        </button>
 
         <!-- Hero -->
         <section id="hero" class="relative min-h-screen flex items-center justify-center py-24 px-6 overflow-hidden">

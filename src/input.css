@@ -112,9 +112,17 @@
 }
 
 /* ── Section Rhythm ── */
-section:nth-child(even) {
+#main-content > section:nth-child(even) {
   background: linear-gradient(180deg, transparent, rgba(30, 41, 59, 0.15), transparent);
 }
+
+/* ── Blog Link Visibility ── */
+#blog-link-wrapper { display: none; }
+#blog-link-wrapper.blog-visible { display: block; }
+@media (max-width: 767px) { #blog-link-wrapper.blog-visible { display: none; } }
+#blog-link-wrapper-mobile { display: none; }
+#blog-link-wrapper-mobile.blog-visible { display: block; }
+@media (min-width: 768px) { #blog-link-wrapper-mobile.blog-visible { display: none; } }
 
 /* ── Skill Bars ── */
 .skill-bar-track {

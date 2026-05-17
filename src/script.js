@@ -1,7 +1,7 @@
 function initBlogLink() {
-  const wrappers = document.querySelectorAll('#blog-link-wrapper, #blog-link-wrapper-mobile');
   if (typeof window.BLOG_META !== 'undefined' && window.BLOG_META.postCount > 0) {
-    wrappers.forEach(w => w.classList.remove('hidden'));
+    document.getElementById('blog-link-wrapper')?.classList.add('blog-visible');
+    document.getElementById('blog-link-wrapper-mobile')?.classList.add('blog-visible');
   }
 }
 
