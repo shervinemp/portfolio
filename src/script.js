@@ -131,18 +131,21 @@ function initScrollSpy() {
   });
   if (!sections.length) return;
 
+  const MARGIN = 200;
   const compute = () => {
     const totalH = document.documentElement.scrollHeight;
-    const h = totalH - window.innerHeight;
     sections.forEach((s, i) => {
       const nextTop = i < sections.length - 1 ? sections[i + 1].el.offsetTop : totalH + 1;
-      s.start = s.el.offsetTop;
-      s.end = nextTop;
+      s.start = s.el.offsetTop - MARGIN;
+      s.end = nextTop + MARGIN;
     });
   };
 
   let rafId = null, lastRun = 0;
-  const clear = () => sections.forEach(s => s.link.classList.remove('active', 'text-white', 'font-semibold'));
+  const clear = () => sections.forEach(s => {
+    s.link.classList.remove('active', 'text-white', 'font-semibold');
+    s.link.style.removeProperty('--bar-width');
+  });
   const update = () => {
     rafId = null;
     const totalH = document.documentElement.scrollHeight;
@@ -154,11 +157,17 @@ function initScrollSpy() {
       if (pos >= sections[i].start && pos < sections[i].end) { activeIdx = i; break; }
     }
     if (activeIdx === -1) { clear(); return; }
+    const s = sections[activeIdx];
+    const range = s.end - s.start;
+    const mid = s.start + range / 2;
+    const dist = Math.abs(pos - mid);
+    const centered = Math.max(0, 1 - dist / (range / 2));
     sections.forEach((s, i) => {
       s.link.classList.toggle('active', i === activeIdx);
       s.link.classList.toggle('text-white', i === activeIdx);
       s.link.classList.toggle('font-semibold', i === activeIdx);
     });
+    s.link.style.setProperty('--bar-width', `${centered * 100}%`);
   };
   const queue = () => {
     const now = performance.now();
