@@ -152,22 +152,19 @@ function initScrollSpy() {
     const h = totalH - window.innerHeight;
     const pct = h > 0 ? window.scrollY / h : 0;
     const pos = window.scrollY + pct * window.innerHeight;
-    let activeIdx = -1;
-    for (let i = 0; i < sections.length; i++) {
-      if (pos >= sections[i].start && pos < sections[i].end) { activeIdx = i; break; }
-    }
-    if (activeIdx === -1) { clear(); return; }
-    const s = sections[activeIdx];
-    const range = s.end - s.start;
-    const mid = s.start + range / 2;
-    const dist = Math.abs(pos - mid);
-    const centered = Math.max(0, 1 - dist / (range / 2));
-    sections.forEach((s, i) => {
-      s.link.classList.toggle('active', i === activeIdx);
-      s.link.classList.toggle('text-white', i === activeIdx);
-      s.link.classList.toggle('font-semibold', i === activeIdx);
+    sections.forEach(s => {
+      if (pos < s.start || pos >= s.end) {
+        s.link.classList.remove('active', 'text-white', 'font-semibold');
+        s.link.style.removeProperty('--bar-width');
+        return;
+      }
+      const range = s.end - s.start;
+      const mid = s.start + range / 2;
+      const dist = Math.abs(pos - mid);
+      const centered = Math.max(0, 1 - dist / (range / 2));
+      s.link.classList.add('active', 'text-white', 'font-semibold');
+      s.link.style.setProperty('--bar-width', `${centered * 100}%`);
     });
-    s.link.style.setProperty('--bar-width', `${centered * 100}%`);
   };
   const queue = () => {
     const now = performance.now();
