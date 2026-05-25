@@ -71,6 +71,7 @@
   border-radius: 1px;
 }
 .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+.nav-link:hover::after, .nav-link.active::after { width: 100%; }
 
 /* ── Mobile Overlay ── */
 #mobile-overlay {
