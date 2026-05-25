@@ -122,10 +122,9 @@ function initScrollSpy() {
   const links = document.querySelectorAll('nav a[href^="#"]');
   if (!sections.length || !links.length) return;
 
-  let rafId = null, lastUpdate = 0;
+  let rafId = null;
   const highlight = () => {
     rafId = null;
-    lastUpdate = performance.now();
     let bestId = null, bestScore = Infinity;
     const mid = window.innerHeight / 2;
     sections.forEach(s => {
@@ -140,10 +139,7 @@ function initScrollSpy() {
       if (l) l.classList.add('active', 'text-white', 'font-semibold');
     }
   };
-  const queue = () => {
-    if (rafId || performance.now() - lastUpdate < 150) return;
-    rafId = requestAnimationFrame(highlight);
-  };
+  const queue = () => { if (!rafId) rafId = requestAnimationFrame(highlight); };
   highlight();
   window.addEventListener('scroll', queue, { passive: true });
   window.addEventListener('resize', queue);

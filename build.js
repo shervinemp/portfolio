@@ -107,7 +107,7 @@ const shell = (title, desc, extraCss) => `<!DOCTYPE html>
 
 <div id="scroll-progress"></div>
 
-<header class="bg-slate-900/80 backdrop-blur-md sticky top-0 z-20 border-b border-slate-800">
+<header class="bg-slate-900/80 border-b border-slate-800/50 sticky top-0 z-20">
     <div class="container mx-auto px-6 py-4 flex justify-between items-center">
         <a href="../../index.html" class="text-2xl font-bold text-white hover:text-indigo-400 transition-colors">Shervin Naseri</a>
         <nav>
@@ -120,8 +120,10 @@ const shell = (title, desc, extraCss) => `<!DOCTYPE html>
     {{BODY}}
 </main>
 
-<footer class="text-center py-10 px-6 border-t border-slate-800/50" style="border-image: linear-gradient(90deg, transparent, rgba(99,102,241,0.15), rgba(139,92,246,0.15), transparent) 1;">
-    <p class="text-slate-600 text-xs tracking-wide">&copy; ${new Date().getFullYear()} Shervin Naseri. All rights reserved.</p>
+<footer class="text-center py-8 px-6 border-t border-slate-800/50">
+    <a href="../../blog.html" class="text-slate-500 hover:text-indigo-400 transition-colors text-xs tracking-wide">Blog</a>
+    <span class="text-slate-700 mx-3 text-xs">/</span>
+    <span class="text-slate-600 text-xs tracking-wide">&copy; ${new Date().getFullYear()} Shervin Naseri</span>
 </footer>
 
 <button id="back-to-top" class="hidden" title="Back to top" aria-label="Back to top">
@@ -257,13 +259,10 @@ const createBlogIndexHtml = (posts) => `<!DOCTYPE html>
     </div>
 </main>
 
-<footer class="text-center py-10 px-6 border-t border-slate-800/50" style="border-image: linear-gradient(90deg, transparent, rgba(99,102,241,0.15), rgba(139,92,246,0.15), transparent) 1;">
-    <div class="flex flex-wrap justify-center gap-8 mb-4">
-        <a href="index.html" class="text-slate-500 hover:text-indigo-400 transition-colors text-sm tracking-wide">Portfolio</a>
-        <a href="mailto:shervin.naseri@gmail.com" class="text-slate-500 hover:text-indigo-400 transition-colors text-sm tracking-wide">Email</a>
-        <a href="https://github.com/shervinemp" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-indigo-400 transition-colors text-sm tracking-wide">GitHub</a>
-    </div>
-    <p class="text-slate-600 text-xs tracking-wide">&copy; <span id="current-year"></span> Shervin Naseri. All rights reserved.</p>
+<footer class="text-center py-8 px-6 border-t border-slate-800/50">
+    <a href="index.html" class="text-slate-500 hover:text-indigo-400 transition-colors text-xs tracking-wide">Portfolio</a>
+    <span class="text-slate-700 mx-3 text-xs">/</span>
+    <span class="text-slate-600 text-xs tracking-wide">&copy; <span id="current-year"></span> Shervin Naseri</span>
 </footer>
 
 <button id="back-to-top" class="hidden" title="Back to top" aria-label="Back to top">
