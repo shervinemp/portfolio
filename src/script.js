@@ -139,9 +139,8 @@ function initScrollSpy() {
     });
   };
 
-  let rafId = null, lastRun = 0;
+  let lastRun = 0;
   const update = () => {
-    rafId = null;
     const totalH = document.documentElement.scrollHeight;
     const h = totalH - window.innerHeight;
     const pct = h > 0 ? window.scrollY / h : 0;
@@ -159,15 +158,10 @@ function initScrollSpy() {
       }
     });
   };
-  const queue = () => {
+  window.addEventListener('scroll', () => {
     const now = performance.now();
-    if (rafId || now - lastRun < 100) return;
-    rafId = requestAnimationFrame(() => { lastRun = performance.now(); update(); });
-  };
-
-  compute();
-  update();
-  window.addEventListener('scroll', queue, { passive: true });
+    if (now - lastRun >= 100) { lastRun = now; update(); }
+  }, { passive: true });
   window.addEventListener('resize', () => { compute(); update(); });
 }
 
