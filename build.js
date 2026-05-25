@@ -93,13 +93,17 @@ const shell = (title, desc, extraCss) => `<!DOCTYPE html>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="${desc}">
+    <meta name="color-scheme" content="dark">
+    <meta name="theme-color" content="#0f172a">
     <title>${title} - Shervin Naseri</title>
     <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../output.css">
     ${extraCss || ''}
 </head>
-<body class="bg-slate-950 text-slate-200 font-sans leading-relaxed flex flex-col min-h-screen">
+<body class="bg-slate-950 text-slate-200 font-sans leading-relaxed flex flex-col min-h-screen antialiased overflow-x-hidden">
+
+<a href="#main-content" class="skip-link">Skip to content</a>
 
 <div id="scroll-progress"></div>
 
@@ -112,7 +116,7 @@ const shell = (title, desc, extraCss) => `<!DOCTYPE html>
     </div>
 </header>
 
-<main class="container mx-auto px-6 py-12 flex-grow">
+<main id="main-content" class="container mx-auto px-6 py-12 flex-grow" tabindex="-1">
     {{BODY}}
 </main>
 
@@ -120,17 +124,11 @@ const shell = (title, desc, extraCss) => `<!DOCTYPE html>
     <p class="text-slate-600 text-xs tracking-wide">&copy; ${new Date().getFullYear()} Shervin Naseri. All rights reserved.</p>
 </footer>
 
-<button id="back-to-top" title="Back to Top">
+<button id="back-to-top" class="hidden" title="Back to top" aria-label="Back to top">
     <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" /></svg>
 </button>
 
-<script>
-var bar=document.getElementById('scroll-progress');
-window.addEventListener('scroll',function(){var h=document.documentElement.scrollHeight-window.innerHeight;bar.style.width=h>0?(window.scrollY/h*100)+'%':'0%';});
-var tb=document.getElementById('back-to-top');
-window.addEventListener('scroll',function(){tb.classList.toggle('hidden',window.scrollY<400);});
-tb.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
-</script>
+<script src="../../src/script.js"></script>
 </body>
 </html>
 `;
@@ -205,13 +203,16 @@ const createBlogIndexHtml = (posts) => `<!DOCTYPE html>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Technical blog of Shervin Naseri.">
+    <meta name="color-scheme" content="dark">
     <meta name="theme-color" content="#0f172a">
     <title>Shervin Naseri - Blog</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="dist/output.css">
 </head>
-<body class="bg-slate-950 text-slate-200 font-sans leading-relaxed flex flex-col min-h-screen">
+<body class="bg-slate-950 text-slate-200 font-sans leading-relaxed flex flex-col min-h-screen antialiased overflow-x-hidden">
+
+<a href="#main-content" class="skip-link">Skip to content</a>
 
 <div id="scroll-progress"></div>
 
@@ -224,7 +225,7 @@ const createBlogIndexHtml = (posts) => `<!DOCTYPE html>
     </div>
 </header>
 
-<main class="container mx-auto px-6 py-12 flex-grow">
+<main id="main-content" class="container mx-auto px-6 py-12 flex-grow" tabindex="-1">
     <h1 class="text-4xl font-bold text-center text-white mb-12">Technical Blog</h1>
     <div class="space-y-8 max-w-4xl mx-auto">
         ${posts.length ? posts.map(post => `
@@ -265,18 +266,11 @@ const createBlogIndexHtml = (posts) => `<!DOCTYPE html>
     <p class="text-slate-600 text-xs tracking-wide">&copy; <span id="current-year"></span> Shervin Naseri. All rights reserved.</p>
 </footer>
 
-<button id="back-to-top" title="Back to Top">
+<button id="back-to-top" class="hidden" title="Back to top" aria-label="Back to top">
     <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" /></svg>
 </button>
 
-<script>
-document.getElementById('current-year').textContent=new Date().getFullYear();
-var bar=document.getElementById('scroll-progress');
-window.addEventListener('scroll',function(){var h=document.documentElement.scrollHeight-window.innerHeight;bar.style.width=h>0?(window.scrollY/h*100)+'%':'0%';});
-var tb=document.getElementById('back-to-top');
-window.addEventListener('scroll',function(){tb.classList.toggle('hidden',window.scrollY<400);});
-tb.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
-</script>
+<script src="src/script.js"></script>
 </body>
 </html>
 `;
