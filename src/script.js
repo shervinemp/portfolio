@@ -131,13 +131,11 @@ function initScrollSpy() {
   });
   if (!sections.length) return;
 
-  const MARGIN = 200;
   const compute = () => {
     const totalH = document.documentElement.scrollHeight;
     sections.forEach((s, i) => {
       const nextTop = i < sections.length - 1 ? sections[i + 1].el.offsetTop : totalH + 1;
-      s.start = s.el.offsetTop - MARGIN;
-      s.end = nextTop + MARGIN;
+      s.mid = (s.el.offsetTop + nextTop) / 2;
     });
   };
 
@@ -154,10 +152,8 @@ function initScrollSpy() {
     const eased = (pct - 0.5) * 0.5 + 0.5;
     const pos = window.scrollY + eased * window.innerHeight;
     sections.forEach(s => {
-      const range = s.end - s.start;
-      const mid = s.start + range / 2;
-      const dist = Math.abs(pos - mid);
-      const centered = Math.max(0, 1 - dist / (range / 2));
+      const dist = Math.abs(pos - s.mid);
+      const centered = Math.max(0, 1 - dist / (window.innerHeight * 0.5));
       s.link.classList.toggle('active', centered > 0);
       s.link.classList.toggle('text-white', centered > 0);
       s.link.classList.toggle('font-semibold', centered > 0);
