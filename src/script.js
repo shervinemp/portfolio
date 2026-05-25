@@ -140,10 +140,6 @@ function initScrollSpy() {
   };
 
   let rafId = null, lastRun = 0;
-  const clear = () => sections.forEach(s => {
-    s.link.classList.remove('active', 'text-white', 'font-semibold');
-    s.link.style.removeProperty('--bar-width');
-  });
   const update = () => {
     rafId = null;
     const totalH = document.documentElement.scrollHeight;
@@ -171,9 +167,9 @@ function initScrollSpy() {
   };
 
   compute();
-  clear();
+  update();
   window.addEventListener('scroll', queue, { passive: true });
-  window.addEventListener('resize', compute);
+  window.addEventListener('resize', () => { compute(); update(); });
 }
 
 function initSmoothScroll() {
