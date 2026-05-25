@@ -160,9 +160,9 @@ function initScrollSpy() {
   };
   window.addEventListener('scroll', () => {
     const now = performance.now();
-    if (now - lastRun >= 30) { lastRun = now; update(); }
+    if (now - lastRun >= 50) { lastRun = now; update(); }
     if (debounceId) clearTimeout(debounceId);
-    debounceId = setTimeout(() => { update(); debounceId = null; }, 80);
+    debounceId = setTimeout(() => { update(); debounceId = null; }, 150);
   }, { passive: true });
   window.addEventListener('resize', () => { compute(); update(); });
   compute();
