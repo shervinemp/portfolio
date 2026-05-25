@@ -118,42 +118,58 @@ function initSectionReveal() {
 }
 
 function initScrollSpy() {
-  const sections = document.querySelectorAll('section[id]');
-  const links = document.querySelectorAll('nav a[href^="#"]');
-  if (!sections.length || !links.length) return;
+  const links = document.querySelectorAll('nav .nav-link');
+  if (!links.length) return;
 
-  const visible = new Map();
-
-  const highlight = () => {
-    let bestId = null;
-    let bestScore = Infinity;
-    const mid = window.innerHeight / 2;
-    visible.forEach((rect, id) => {
-      const score = Math.abs(rect.top + rect.height / 2 - mid);
-      if (score < bestScore) { bestScore = score; bestId = id; }
-    });
-    links.forEach(link => {
-      link.classList.remove('active', 'text-white', 'font-semibold');
-    });
-    if (bestId) {
-      const link = document.querySelector(`nav a[href="#${bestId}"]`);
-      if (link) link.classList.add('active', 'text-white', 'font-semibold');
+  const sections = [];
+  links.forEach(link => {
+    const id = link.getAttribute('href');
+    if (id && id.startsWith('#')) {
+      const el = document.getElementById(id.slice(1));
+      if (el) sections.push({ link, el });
     }
+  });
+  if (!sections.length) return;
+
+  const compute = () => {
+    const totalH = document.documentElement.scrollHeight;
+    const h = totalH - window.innerHeight;
+    sections.forEach((s, i) => {
+      const nextTop = i < sections.length - 1 ? sections[i + 1].el.offsetTop : totalH + 1;
+      s.start = s.el.offsetTop;
+      s.end = nextTop;
+    });
   };
 
-  const visObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        visible.set(entry.target.id, entry.target.getBoundingClientRect());
-      } else {
-        visible.delete(entry.target.id);
-      }
+  let rafId = null, lastRun = 0;
+  const clear = () => sections.forEach(s => s.link.classList.remove('active', 'text-white', 'font-semibold'));
+  const update = () => {
+    rafId = null;
+    const totalH = document.documentElement.scrollHeight;
+    const h = totalH - window.innerHeight;
+    const pct = h > 0 ? window.scrollY / h : 0;
+    const pos = window.scrollY + pct * window.innerHeight;
+    let activeIdx = -1;
+    for (let i = 0; i < sections.length; i++) {
+      if (pos >= sections[i].start && pos < sections[i].end) { activeIdx = i; break; }
+    }
+    if (activeIdx === -1) { clear(); return; }
+    sections.forEach((s, i) => {
+      s.link.classList.toggle('active', i === activeIdx);
+      s.link.classList.toggle('text-white', i === activeIdx);
+      s.link.classList.toggle('font-semibold', i === activeIdx);
     });
-    highlight();
-  }, { rootMargin: '-10% 0px -30% 0px', threshold: 0 });
+  };
+  const queue = () => {
+    const now = performance.now();
+    if (rafId || now - lastRun < 100) return;
+    rafId = requestAnimationFrame(() => { lastRun = performance.now(); update(); });
+  };
 
-  sections.forEach(s => visObserver.observe(s));
-  window.addEventListener('scroll', highlight);
+  compute();
+  clear();
+  window.addEventListener('scroll', queue, { passive: true });
+  window.addEventListener('resize', compute);
 }
 
 function initSmoothScroll() {
