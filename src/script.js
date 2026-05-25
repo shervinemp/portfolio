@@ -118,39 +118,35 @@ function initSectionReveal() {
 }
 
 function initScrollSpy() {
+  const sections = document.querySelectorAll('section[id]');
   const links = document.querySelectorAll('nav a[href^="#"]');
-  const sections = [];
-  links.forEach(link => {
-    const id = link.getAttribute('href');
-    if (id && id.startsWith('#')) {
-      const el = document.getElementById(id.slice(1));
-      if (el) sections.push({ el, link });
-    }
-  });
-  if (!sections.length) return;
+  if (!sections.length || !links.length) return;
 
-  let offsets = [];
-  const compute = () => {
-    offsets = sections.map(({ el }) => el.offsetTop);
-  };
-
-  const update = () => {
-    const scrollY = window.scrollY + 150;
-    let activeIdx = 0;
-    for (let i = offsets.length - 1; i >= 0; i--) {
-      if (scrollY >= offsets[i]) { activeIdx = i; break; }
-    }
-    sections.forEach((s, i) => {
-      s.link.classList.toggle('active', i === activeIdx);
-      s.link.classList.toggle('text-white', i === activeIdx);
-      s.link.classList.toggle('font-semibold', i === activeIdx);
+  let rafId = null, lastUpdate = 0;
+  const highlight = () => {
+    rafId = null;
+    lastUpdate = performance.now();
+    let bestId = null, bestScore = Infinity;
+    const mid = window.innerHeight / 2;
+    sections.forEach(s => {
+      const r = s.getBoundingClientRect();
+      if (r.bottom < 120 || r.top > window.innerHeight - 120) return;
+      const score = Math.abs(r.top + r.height / 2 - mid);
+      if (score < bestScore) { bestScore = score; bestId = s.id; }
     });
+    links.forEach(l => l.classList.remove('active', 'text-white', 'font-semibold'));
+    if (bestId) {
+      const l = document.querySelector(`nav a[href="#${bestId}"]`);
+      if (l) l.classList.add('active', 'text-white', 'font-semibold');
+    }
   };
-
-  compute();
-  update();
-  window.addEventListener('resize', compute);
-  window.addEventListener('scroll', update, { passive: true });
+  const queue = () => {
+    if (rafId || performance.now() - lastUpdate < 150) return;
+    rafId = requestAnimationFrame(highlight);
+  };
+  highlight();
+  window.addEventListener('scroll', queue, { passive: true });
+  window.addEventListener('resize', queue);
 }
 
 function initSmoothScroll() {
