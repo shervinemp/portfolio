@@ -118,31 +118,39 @@ function initSectionReveal() {
 }
 
 function initScrollSpy() {
-  const sections = document.querySelectorAll('section[id]');
   const links = document.querySelectorAll('nav a[href^="#"]');
-  if (!sections.length || !links.length) return;
+  if (!links.length) return;
 
-  let rafId = null;
-  const highlight = () => {
-    rafId = null;
-    let bestId = null, bestScore = Infinity;
-    const mid = window.innerHeight / 2;
-    sections.forEach(s => {
-      const r = s.getBoundingClientRect();
-      if (r.bottom < 120 || r.top > window.innerHeight - 120) return;
-      const score = Math.abs(r.top + r.height / 2 - mid);
-      if (score < bestScore) { bestScore = score; bestId = s.id; }
+  let lastId = null;
+  const visible = new Map();
+
+  const setActive = (id) => {
+    lastId = id;
+    links.forEach(link => {
+      const isActive = link.getAttribute('href') === `#${id}`;
+      link.classList.toggle('active', isActive);
+      link.classList.toggle('text-white', isActive);
+      link.classList.toggle('font-semibold', isActive);
     });
-    links.forEach(l => l.classList.remove('active', 'text-white', 'font-semibold'));
-    if (bestId) {
-      const l = document.querySelector(`nav a[href="#${bestId}"]`);
-      if (l) l.classList.add('active', 'text-white', 'font-semibold');
-    }
   };
-  const queue = () => { if (!rafId) rafId = requestAnimationFrame(highlight); };
-  highlight();
-  window.addEventListener('scroll', queue, { passive: true });
-  window.addEventListener('resize', queue);
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      visible.set(entry.target.id, entry.intersectionRatio);
+    });
+    let bestId = null, bestRatio = 0;
+    visible.forEach((ratio, id) => {
+      if (ratio > bestRatio) { bestRatio = ratio; bestId = id; }
+    });
+    if (bestId || lastId) setActive(bestId || lastId);
+  }, { threshold: [0, 0.25, 0.5, 0.75, 1] });
+
+  document.querySelectorAll('section[id]').forEach(s => {
+    if (document.querySelector(`nav a[href="#${s.id}"]`)) observer.observe(s);
+  });
+
+  const first = document.querySelector('nav a[href^="#"]');
+  if (first) setActive(first.getAttribute('href').slice(1));
 }
 
 function initSmoothScroll() {
