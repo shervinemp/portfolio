@@ -69,6 +69,7 @@
   background: linear-gradient(90deg, var(--accent-cyan), var(--accent-indigo));
   border-radius: 1px;
 }
+.nav-link:hover::after { width: 100% !important; }
 
 /* ── Mobile Overlay ── */
 #mobile-overlay {
