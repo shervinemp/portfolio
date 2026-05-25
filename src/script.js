@@ -139,7 +139,7 @@ function initScrollSpy() {
     });
   };
 
-  let lastRun = 0;
+  let lastRun = 0, debounceId = null;
   const update = () => {
     const totalH = document.documentElement.scrollHeight;
     const h = totalH - window.innerHeight;
@@ -160,9 +160,13 @@ function initScrollSpy() {
   };
   window.addEventListener('scroll', () => {
     const now = performance.now();
-    if (now - lastRun >= 100) { lastRun = now; update(); }
+    if (now - lastRun >= 50) { lastRun = now; update(); }
+    if (debounceId) clearTimeout(debounceId);
+    debounceId = setTimeout(() => { update(); debounceId = null; }, 150);
   }, { passive: true });
   window.addEventListener('resize', () => { compute(); update(); });
+  compute();
+  update();
 }
 
 function initSmoothScroll() {
