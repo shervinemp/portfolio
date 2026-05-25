@@ -118,31 +118,47 @@ function initSectionReveal() {
 }
 
 function initScrollSpy() {
-  const sections = document.querySelectorAll('section[id]');
   const links = document.querySelectorAll('nav a[href^="#"]');
-  if (!sections.length || !links.length) return;
+  if (!links.length) return;
+
+  const sections = [];
+  links.forEach(link => {
+    const id = link.getAttribute('href');
+    if (id && id.startsWith('#')) {
+      const el = document.getElementById(id.slice(1));
+      if (el) sections.push({ link, el, top: 0, bottom: 0 });
+    }
+  });
+  if (!sections.length) return;
+
+  const compute = () => {
+    const scrollBottom = document.documentElement.scrollHeight - window.innerHeight;
+    sections.forEach((s, i) => {
+      s.top = i === 0 ? 120 : s.el.offsetTop - 80;
+      s.bottom = i === sections.length - 1 ? scrollBottom + 80 : s.top + s.el.offsetHeight;
+    });
+  };
 
   let rafId = null;
-  const highlight = () => {
+  const update = () => {
     rafId = null;
-    let bestId = null, bestScore = Infinity;
-    const mid = window.innerHeight / 2;
-    sections.forEach(s => {
-      const r = s.getBoundingClientRect();
-      if (r.bottom < 120 || r.top > window.innerHeight - 120) return;
-      const score = Math.abs(r.top + r.height / 2 - mid);
-      if (score < bestScore) { bestScore = score; bestId = s.id; }
-    });
-    links.forEach(l => l.classList.remove('active', 'text-white', 'font-semibold'));
-    if (bestId) {
-      const l = document.querySelector(`nav a[href="#${bestId}"]`);
-      if (l) l.classList.add('active', 'text-white', 'font-semibold');
+    const viewMid = window.scrollY + window.innerHeight * 0.35;
+    let activeIdx = sections.length - 1;
+    for (let i = 0; i < sections.length; i++) {
+      if (viewMid < sections[i].bottom) { activeIdx = i; break; }
     }
+    sections.forEach((s, i) => {
+      s.link.classList.toggle('active', i === activeIdx);
+      s.link.classList.toggle('text-white', i === activeIdx);
+      s.link.classList.toggle('font-semibold', i === activeIdx);
+    });
   };
-  const queue = () => { if (!rafId) rafId = requestAnimationFrame(highlight); };
-  highlight();
+  const queue = () => { if (!rafId) rafId = requestAnimationFrame(update); };
+
+  compute();
+  update();
   window.addEventListener('scroll', queue, { passive: true });
-  window.addEventListener('resize', highlight);
+  window.addEventListener('resize', compute);
 }
 
 function initSmoothScroll() {
