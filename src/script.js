@@ -118,35 +118,39 @@ function initSectionReveal() {
 }
 
 function initScrollSpy() {
-  const sections = document.querySelectorAll('section[id]');
   const links = document.querySelectorAll('nav a[href^="#"]');
-  if (!sections.length || !links.length) return;
-
-  const highlight = () => {
-    let bestId = null;
-    let bestScore = Number.POSITIVE_INFINITY;
-    const mid = window.innerHeight / 2;
-    sections.forEach(section => {
-      const rect = section.getBoundingClientRect();
-      if (rect.bottom < 120 || rect.top > window.innerHeight - 120) return;
-      const score = Math.abs(rect.top + rect.height / 2 - mid);
-      if (score < bestScore) {
-        bestScore = score;
-        bestId = section.id;
-      }
-    });
-    links.forEach(link => {
-      link.classList.remove('active', 'text-white', 'font-semibold');
-    });
-    if (bestId) {
-      const link = document.querySelector(`nav a[href="#${bestId}"]`);
-      if (link) link.classList.add('active', 'text-white', 'font-semibold');
+  const sections = [];
+  links.forEach(link => {
+    const id = link.getAttribute('href');
+    if (id && id.startsWith('#')) {
+      const el = document.getElementById(id.slice(1));
+      if (el) sections.push({ el, link });
     }
+  });
+  if (!sections.length) return;
+
+  let offsets = [];
+  const compute = () => {
+    offsets = sections.map(({ el }) => el.offsetTop);
   };
 
-  highlight();
-  window.addEventListener('scroll', highlight, { passive: true });
-  window.addEventListener('resize', highlight);
+  const update = () => {
+    const scrollY = window.scrollY + 150;
+    let activeIdx = 0;
+    for (let i = offsets.length - 1; i >= 0; i--) {
+      if (scrollY >= offsets[i]) { activeIdx = i; break; }
+    }
+    sections.forEach((s, i) => {
+      s.link.classList.toggle('active', i === activeIdx);
+      s.link.classList.toggle('text-white', i === activeIdx);
+      s.link.classList.toggle('font-semibold', i === activeIdx);
+    });
+  };
+
+  compute();
+  update();
+  window.addEventListener('resize', compute);
+  window.addEventListener('scroll', update, { passive: true });
 }
 
 function initSmoothScroll() {

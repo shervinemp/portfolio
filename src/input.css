@@ -33,7 +33,6 @@
   position: fixed; top: 0; left: 0; height: 3px;
   background: linear-gradient(90deg, var(--accent-cyan), var(--accent-indigo), var(--accent-rose));
   z-index: 100; width: 0%;
-  transition: width 50ms linear;
 }
 
 /* ── Scrollbar ── */
@@ -113,9 +112,9 @@
   content: ''; position: absolute; inset: -3px; border-radius: 9999px;
   background: conic-gradient(from 0deg, transparent, var(--accent-cyan), var(--accent-indigo), var(--accent-rose), var(--accent-emerald), transparent);
   opacity: 0; transition: opacity 0.6s ease;
-  animation: glowRotate 4s linear infinite;
   mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #fff calc(100% - 2px));
   -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #fff calc(100% - 2px));
+  animation: glowRotate 8s linear infinite;
 }
 .profile-glow.loaded::before { opacity: 1; }
 @keyframes glowRotate { to { transform: rotate(360deg); } }
@@ -182,10 +181,12 @@
   position: absolute; inset: 0;
   background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
   transform: translateX(-100%);
-  animation: shimmer 2.5s ease-in-out infinite;
+  animation: shimmer 1.2s ease-in-out 0.3s 1 forwards;
 }
 @keyframes shimmer {
-  60%, 100% { transform: translateX(200%); }
+  0% { transform: translateX(-100%); }
+  60% { transform: translateX(200%); }
+  100% { transform: translateX(200%); opacity: 0; }
 }
 
 /* ── Section Reveal ── */
@@ -218,7 +219,8 @@
 
 /* ── Card Enhanced ── */
 .card-enhanced {
-  @apply bg-slate-900/50 backdrop-blur-md border border-slate-800/60 rounded-lg shadow-sm transition-all duration-300 ease-out;
+  @apply bg-slate-900/60 border border-slate-800/60 rounded-lg shadow-sm;
+  transition: transform 0.3s ease-out, border-color 0.3s ease-out, box-shadow 0.3s ease-out;
 }
 .card-enhanced:hover {
   @apply -translate-y-1;
@@ -366,13 +368,7 @@ footer {
   @apply w-16 h-16 mx-auto mb-6 text-slate-700;
 }
 
-/* ── Noise Texture ── */
-body::after {
-  content: ''; position: fixed; inset: 0;
-  pointer-events: none; z-index: 9999;
-  opacity: 0.02;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-}
+
 
 /* ── Reduced Motion ── */
 @media (prefers-reduced-motion: reduce) {
