@@ -140,9 +140,11 @@ function initScrollSpy() {
   };
 
   let rafId = null;
+  const clear = () => sections.forEach(s => s.link.classList.remove('active', 'text-white', 'font-semibold'));
   const update = () => {
     rafId = null;
     const viewMid = window.scrollY + window.innerHeight * 0.35;
+    if (viewMid < sections[0].top) { clear(); return; }
     let activeIdx = sections.length - 1;
     for (let i = 0; i < sections.length; i++) {
       if (viewMid < sections[i].bottom) { activeIdx = i; break; }
@@ -156,7 +158,7 @@ function initScrollSpy() {
   const queue = () => { if (!rafId) rafId = requestAnimationFrame(update); };
 
   compute();
-  update();
+  clear();
   window.addEventListener('scroll', queue, { passive: true });
   window.addEventListener('resize', compute);
 }
