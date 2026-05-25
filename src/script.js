@@ -171,9 +171,9 @@ function initScrollSpy() {
   };
 
   compute();
-  clear();
+  update();
   window.addEventListener('scroll', queue, { passive: true });
-  window.addEventListener('resize', compute);
+  window.addEventListener('resize', () => { compute(); update(); });
 }
 
 function initSmoothScroll() {
