@@ -118,55 +118,38 @@ function initSectionReveal() {
 }
 
 function initScrollSpy() {
+  const sections = document.querySelectorAll('section[id]');
   const links = document.querySelectorAll('nav .nav-link');
-  if (!links.length) return;
+  if (!sections.length || !links.length) return;
 
-  const sections = [];
-  links.forEach(link => {
-    const id = link.getAttribute('href');
-    if (id && id.startsWith('#')) {
-      const el = document.getElementById(id.slice(1));
-      if (el) sections.push({ link, el });
+  let rafId = null;
+  const highlight = () => {
+    rafId = null;
+    const atBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2;
+    if (atBottom) {
+      links.forEach(l => l.classList.remove('active', 'text-white', 'font-semibold'));
+      const last = links[links.length - 1];
+      if (last) last.classList.add('active', 'text-white', 'font-semibold');
+      return;
     }
-  });
-  if (!sections.length) return;
-
-  const compute = () => {
-    const totalH = document.documentElement.scrollHeight;
-    sections.forEach((s, i) => {
-      const nextTop = i < sections.length - 1 ? sections[i + 1].el.offsetTop : totalH + 1;
-      s.mid = (s.el.offsetTop + nextTop) / 2;
-    });
-  };
-
-  let lastRun = 0, debounceId = null;
-  const update = () => {
-    const totalH = document.documentElement.scrollHeight;
-    const h = totalH - window.innerHeight;
-    const pct = h > 0 ? window.scrollY / h : 0;
-    const pos = window.scrollY + pct * window.innerHeight;
+    let bestId = null, bestScore = Infinity;
+    const mid = window.innerHeight / 2;
     sections.forEach(s => {
-      const dist = Math.abs(pos - s.mid);
-      const centered = Math.max(0, 1 - dist / (window.innerHeight * 0.5));
-      s.link.classList.toggle('active', centered > 0);
-      s.link.classList.toggle('text-white', centered > 0);
-      s.link.classList.toggle('font-semibold', centered > 0);
-      if (centered > 0) {
-        s.link.style.setProperty('--bar-width', `${centered * 100}%`);
-      } else {
-        s.link.style.removeProperty('--bar-width');
-      }
+      const r = s.getBoundingClientRect();
+      if (r.bottom < 120 || r.top > window.innerHeight - 120) return;
+      const score = Math.abs(r.top + r.height / 2 - mid);
+      if (score < bestScore) { bestScore = score; bestId = s.id; }
     });
+    links.forEach(l => l.classList.remove('active', 'text-white', 'font-semibold'));
+    if (bestId) {
+      const l = document.querySelector(`nav a[href="#${bestId}"]`);
+      if (l) l.classList.add('active', 'text-white', 'font-semibold');
+    }
   };
-  window.addEventListener('scroll', () => {
-    const now = performance.now();
-    if (now - lastRun >= 50) { lastRun = now; update(); }
-    if (debounceId) clearTimeout(debounceId);
-    debounceId = setTimeout(() => { update(); debounceId = null; }, 150);
-  }, { passive: true });
-  window.addEventListener('resize', () => { compute(); update(); });
-  compute();
-  update();
+  const queue = () => { if (!rafId) rafId = requestAnimationFrame(highlight); };
+  highlight();
+  window.addEventListener('scroll', queue, { passive: true });
+  window.addEventListener('resize', highlight);
 }
 
 function initSmoothScroll() {
