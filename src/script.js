@@ -122,31 +122,38 @@ function initScrollSpy() {
   const links = document.querySelectorAll('nav a[href^="#"]');
   if (!sections.length || !links.length) return;
 
-  let rafId = null, lastRun = 0;
+  const visible = new Map();
+
   const highlight = () => {
-    rafId = null;
-    let bestId = null, bestScore = Infinity;
+    let bestId = null;
+    let bestScore = Infinity;
     const mid = window.innerHeight / 2;
-    sections.forEach(s => {
-      const r = s.getBoundingClientRect();
-      if (r.bottom < 120 || r.top > window.innerHeight - 120) return;
-      const score = Math.abs(r.top + r.height / 2 - mid);
-      if (score < bestScore) { bestScore = score; bestId = s.id; }
+    visible.forEach((rect, id) => {
+      const score = Math.abs(rect.top + rect.height / 2 - mid);
+      if (score < bestScore) { bestScore = score; bestId = id; }
     });
-    links.forEach(l => l.classList.remove('active', 'text-white', 'font-semibold'));
+    links.forEach(link => {
+      link.classList.remove('active', 'text-white', 'font-semibold');
+    });
     if (bestId) {
-      const l = document.querySelector(`nav a[href="#${bestId}"]`);
-      if (l) l.classList.add('active', 'text-white', 'font-semibold');
+      const link = document.querySelector(`nav a[href="#${bestId}"]`);
+      if (link) link.classList.add('active', 'text-white', 'font-semibold');
     }
   };
-  const queue = () => {
-    const now = performance.now();
-    if (rafId || now - lastRun < 100) return;
-    rafId = requestAnimationFrame(() => { lastRun = performance.now(); highlight(); });
-  };
-  highlight();
-  window.addEventListener('scroll', queue, { passive: true });
-  window.addEventListener('resize', highlight);
+
+  const visObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        visible.set(entry.target.id, entry.target.getBoundingClientRect());
+      } else {
+        visible.delete(entry.target.id);
+      }
+    });
+    highlight();
+  }, { rootMargin: '-10% 0px -30% 0px', threshold: 0 });
+
+  sections.forEach(s => visObserver.observe(s));
+  window.addEventListener('scroll', highlight);
 }
 
 function initSmoothScroll() {
