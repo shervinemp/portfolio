@@ -151,7 +151,8 @@ function initScrollSpy() {
     const totalH = document.documentElement.scrollHeight;
     const h = totalH - window.innerHeight;
     const pct = h > 0 ? window.scrollY / h : 0;
-    const pos = window.scrollY + pct * window.innerHeight;
+    const eased = (pct - 0.5) * 0.5 + 0.5;
+    const pos = window.scrollY + eased * window.innerHeight;
     sections.forEach(s => {
       const range = s.end - s.start;
       const mid = s.start + range / 2;
