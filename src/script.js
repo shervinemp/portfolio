@@ -153,17 +153,18 @@ function initScrollSpy() {
     const pct = h > 0 ? window.scrollY / h : 0;
     const pos = window.scrollY + pct * window.innerHeight;
     sections.forEach(s => {
-      if (pos < s.start || pos >= s.end) {
-        s.link.classList.remove('active', 'text-white', 'font-semibold');
-        s.link.style.removeProperty('--bar-width');
-        return;
-      }
       const range = s.end - s.start;
       const mid = s.start + range / 2;
       const dist = Math.abs(pos - mid);
       const centered = Math.max(0, 1 - dist / (range / 2));
-      s.link.classList.add('active', 'text-white', 'font-semibold');
-      s.link.style.setProperty('--bar-width', `${centered * 100}%`);
+      s.link.classList.toggle('active', centered > 0);
+      s.link.classList.toggle('text-white', centered > 0);
+      s.link.classList.toggle('font-semibold', centered > 0);
+      if (centered > 0) {
+        s.link.style.setProperty('--bar-width', `${centered * 100}%`);
+      } else {
+        s.link.style.removeProperty('--bar-width');
+      }
     });
   };
   const queue = () => {
