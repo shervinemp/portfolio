@@ -134,8 +134,8 @@ function initScrollSpy() {
   const compute = () => {
     const scrollBottom = document.documentElement.scrollHeight - window.innerHeight;
     sections.forEach((s, i) => {
-      s.top = i === 0 ? 120 : s.el.offsetTop - 80;
-      s.bottom = i === sections.length - 1 ? scrollBottom + 80 : s.top + s.el.offsetHeight;
+      s.top = i === 0 ? s.el.offsetTop : s.el.offsetTop - 80;
+      s.bottom = i === sections.length - 1 ? scrollBottom + 80 : s.el.offsetTop + s.el.offsetHeight;
     });
   };
 
