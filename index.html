@@ -3,56 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio website for Shervin Naseri, an experienced Machine Learning Engineer and Backend Developer based in Ottawa, ON. Showcasing projects in Computer Vision, NLP, and scalable systems.">
+    <meta name="description" content="Shervin Naseri, AI and software engineer in Ottawa. LLM systems, retrieval, backend services, and native Wii ports through static recompilation.">
     <meta name="color-scheme" content="dark">
-    <meta name="theme-color" content="#0f172a">
+    <meta name="theme-color" content="#020617">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Shervin Naseri - Portfolio">
-    <meta property="og:description" content="ML Engineer & Backend Developer specializing in Generative AI, LLM Systems, Computer Vision, and scalable systems.">
+    <meta property="og:title" content="Shervin Naseri - AI &amp; Software Engineer">
+    <meta property="og:description" content="LLM systems, retrieval pipelines, backend services, and systems work: from production ML to native Wii ports via static recompilation.">
     <meta property="og:image" content="https://shervinemp.github.io/portfolio/profile.jpg">
     <meta property="og:url" content="https://shervinemp.github.io/portfolio/">
     <meta name="twitter:card" content="summary">
-    <title>Shervin Naseri - Portfolio</title>
+    <title>Shervin Naseri - AI &amp; Software Engineer</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="dist/output.css">
 </head>
-<body class="bg-slate-950 text-slate-200 font-sans leading-relaxed antialiased overflow-x-hidden">
+<body class="bg-slate-950 text-slate-300 font-sans leading-relaxed antialiased overflow-x-hidden">
 
     <a href="#main-content" class="skip-link">Skip to content</a>
 
     <div id="scroll-progress"></div>
 
-    <!-- Blog Link (desktop, visible when posts exist) -->
-    <div id="blog-link-wrapper" class="fixed top-4 right-4 z-40">
-        <a href="blog.html" class="text-sm text-indigo-400 hover:text-white font-semibold transition-colors bg-slate-900/80 border border-slate-700/50 px-4 py-2 rounded-full shadow-lg">Blog</a>
+    <div class="mobile-scrim" aria-hidden="true"></div>
+
+    <!-- Blog link (desktop) -->
+    <div id="blog-link-wrapper" class="fixed top-5 right-5 z-40">
+        <a href="blog.html" class="font-mono text-[11px] uppercase tracking-[0.14em] text-slate-400 hover:text-white transition-colors bg-slate-950/80 border border-slate-800 px-3 py-1.5 rounded-full backdrop-blur">Writing</a>
     </div>
 
-    <!-- Blog Link (mobile, visible when posts exist) -->
+    <!-- Blog link (mobile) -->
     <div id="blog-link-wrapper-mobile" class="fixed top-4 right-4 z-30">
-        <a href="blog.html" class="text-xs text-indigo-400 font-semibold bg-slate-900/80 border border-slate-700/50 px-3 py-1.5 rounded-full">Blog</a>
+        <a href="blog.html" class="font-mono text-[10px] uppercase tracking-[0.14em] text-slate-400 bg-slate-950/80 border border-slate-800 px-2.5 py-1.5 rounded-full">Writing</a>
     </div>
 
-    <!-- Mobile Overlay -->
     <div id="mobile-overlay"></div>
 
     <!-- Sidebar -->
-    <nav id="sidebar" class="w-64 h-screen bg-slate-900/80 border-r border-slate-800/50 fixed top-0 left-0 p-8 flex flex-col z-20" aria-label="Primary navigation">
-        <a href="#hero" class="text-2xl font-bold text-white hover:text-indigo-400 mb-8 transition-colors">Shervin Naseri</a>
-        <div class="flex flex-col space-y-5">
-            <a href="#skills" class="nav-link">Skills</a>
-            <a href="#experience" class="nav-link">Experience</a>
-            <a href="#education" class="nav-link">Education</a>
-            <a href="#projects" class="nav-link">Projects</a>
-            <a href="#personal-projects" class="nav-link">Explorations</a>
-            <a href="#contact" class="nav-link">Contact</a>
+    <nav id="sidebar" class="w-64 h-screen bg-slate-950 border-r border-slate-800/60 fixed top-0 left-0 p-8 flex flex-col z-20" aria-label="Primary navigation">
+        <a href="#hero" class="block group">
+            <span class="font-display text-lg font-semibold text-white tracking-tight">Shervin Naseri</span>
+            <span class="mt-1.5 block font-mono text-[10px] uppercase tracking-[0.16em] text-slate-500 group-hover:text-slate-400 transition-colors">AI &amp; Software Engineer</span>
+        </a>
+
+        <div class="mt-12 flex flex-col gap-1">
+            <a href="#experience" class="nav-link"><span class="nav-num">01</span><span>Experience</span></a>
+            <a href="#projects" class="nav-link"><span class="nav-num">02</span><span>Projects</span></a>
+            <a href="#skills" class="nav-link"><span class="nav-num">03</span><span>Skills</span></a>
+            <a href="#education" class="nav-link"><span class="nav-num">04</span><span>Education</span></a>
+            <a href="#personal-projects" class="nav-link"><span class="nav-num">05</span><span>Explorations</span></a>
+            <a href="#contact" class="nav-link"><span class="nav-num">06</span><span>Contact</span></a>
+        </div>
+
+        <div class="mt-auto pt-8 border-t border-slate-800/60">
+            <p class="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.14em] text-slate-500">
+                <span class="status-dot" aria-hidden="true"></span>
+                Open to work
+            </p>
+            <p class="mt-2 text-xs text-slate-600 leading-relaxed">Ottawa, Canada. Remote or relocation.</p>
+            <div class="mt-4 flex items-center gap-4">
+                <a href="https://github.com/shervinemp" target="_blank" rel="noopener noreferrer" class="side-link">GitHub</a>
+                <a href="https://www.linkedin.com/in/shervin-naseri-b3a016b0/" target="_blank" rel="noopener noreferrer" class="side-link">LinkedIn</a>
+            </div>
         </div>
     </nav>
 
     <!-- Hamburger (Mobile) -->
-    <button id="menu-toggle" class="md:hidden fixed top-4 left-4 z-40 p-2.5 bg-slate-800/90 border border-slate-700/50 text-white rounded-lg focus:outline-none" aria-label="Toggle menu" aria-controls="sidebar" aria-expanded="false">
+    <button id="menu-toggle" class="md:hidden fixed top-4 left-4 z-40 p-2.5 bg-slate-900/90 border border-slate-800 text-white rounded-lg backdrop-blur focus:outline-none" aria-label="Toggle menu" aria-controls="sidebar" aria-expanded="false">
         <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path class="hamburger-line" d="M4 6h16" />
             <path class="hamburger-line" d="M4 12h16" />
@@ -60,322 +77,497 @@
         </svg>
     </button>
 
-    <!-- Main Content -->
     <main id="main-content" class="md:ml-64" tabindex="-1">
 
         <!-- Hero -->
-        <section id="hero" class="relative min-h-[100svh] flex items-center justify-center py-24 px-6 overflow-hidden">
-            <div class="hero-glow"></div>
-            <div class="text-center max-w-3xl relative z-10">
-                <div class="profile-glow mx-auto mb-8">
-                    <img src="profile.jpg" alt="Shervin Naseri" class="w-40 h-40 rounded-full object-cover border-2 border-slate-800 relative z-10" loading="eager" fetchpriority="high">
-                </div>
-                <h1 class="text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
-                    Shervin Naseri
-                    <span class="subtitle-reveal block mt-3">
-                        <span class="text-2xl md:text-3xl text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-indigo-300 to-rose-300">ML Engineer</span>
-                        <span class="text-2xl md:text-3xl text-slate-500 mx-2">&amp;</span>
-                        <span class="text-2xl md:text-3xl text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-cyan-300 to-indigo-300">Software Developer</span>
-                    </span>
-                </h1>
-                <p class="text-lg text-slate-400 mb-10 max-w-xl mx-auto leading-relaxed">Based in Ottawa, ON. Working across machine learning, computer vision, and scalable systems.</p>
-                <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <a href="resume.pdf" download="Shervin_Naseri_Resume.pdf" class="group inline-flex items-center justify-center gap-2 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold py-3 px-6 rounded-lg transition-all duration-300 active:scale-95 shadow-lg shadow-cyan-500/20">
-                        <svg class="w-4 h-4 transition-transform duration-300 group-hover:-translate-y-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
-                        Download CV
-                    </a>
-                    <a href="#contact" class="group inline-flex items-center justify-center gap-2 bg-slate-800/80 hover:bg-slate-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300 active:scale-95 border border-slate-700/50">
-                        <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-                        Contact
-                    </a>
-                </div>
-            </div>
-        </section>
+        <section id="hero" class="relative overflow-hidden">
+            <div class="hero-bg" aria-hidden="true"></div>
+            <div class="relative z-10 px-6 md:px-12 lg:px-16 pt-28 pb-20 md:pt-36 md:pb-28 max-w-6xl">
+                <div class="grid gap-14 lg:grid-cols-[1.3fr_0.7fr] lg:items-center">
+                    <div class="hero-in">
+                        <p class="eyebrow">Ottawa, Canada <span class="text-slate-700">/</span> Open to relocation</p>
+                        <h1 class="mt-5 font-display text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight text-white leading-[0.95]">
+                            Shervin<br>Naseri
+                        </h1>
+                        <p class="mt-6 font-display text-xl md:text-2xl text-cyan-300">AI &amp; Software Engineer</p>
+                        <p class="mt-5 max-w-xl text-base md:text-lg text-slate-400 leading-relaxed">
+                            Six years building production software: retrieval and vision pipelines at IraPardaz, backend services and CI/CD at Nikaat, and now agentic LLM systems I design, ship, and keep running.
+                        </p>
 
-        <!-- Skills -->
-        <section id="skills" class="py-20 px-6 section-reveal">
-            <div class="container mx-auto max-w-6xl">
-                <div class="gradient-divider mb-12"></div>
-                <h2 class="text-3xl font-bold text-center text-white mb-16 flex items-center justify-center gap-3">
-                    <svg class="w-6 h-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l-4.995-4.995a2.652 2.652 0 010-3.752l3.75-3.752a2.652 2.652 0 013.752 0l4.995 4.995M11.42 15.17L14.25 18l1.405-1.405" /></svg>
-                    Skills
-                </h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 stagger-children">
-                    <div class="card-enhanced p-6">
-                        <h3 class="text-lg font-semibold text-white mb-5 text-center">Languages</h3>
-                        <div class="space-y-4">
-                            <div><div class="flex justify-between text-sm text-slate-400 mb-1"><span>Python</span><span class="text-xs font-semibold text-cyan-400 bg-cyan-500/10 px-2 py-0.5 rounded">Expert</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="88%"></div></div></div>
-                            <div><div class="flex justify-between text-sm text-slate-400 mb-1"><span>JS / TS</span><span class="text-xs font-semibold text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded">Advanced</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="77%"></div></div></div>
-                            <div><div class="flex justify-between text-sm text-slate-400 mb-1"><span>C++</span><span class="text-xs font-semibold text-slate-300 bg-slate-600/20 px-2 py-0.5 rounded">Proficient</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="66%"></div></div></div>
-                            <div><div class="flex justify-between text-sm text-slate-400 mb-1"><span>Shell</span><span class="text-xs font-semibold text-slate-400 bg-slate-500/10 px-2 py-0.5 rounded">Familiar</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="60%"></div></div></div>
+                        <div class="mt-9 flex flex-wrap items-center gap-3">
+                            <a href="resume.pdf" download="Shervin_Naseri_Resume.pdf" class="btn-primary">
+                                Download CV
+                                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v12m0 0l-4-4m4 4l4-4M4 20h16"/></svg>
+                            </a>
+                            <a href="#contact" class="btn-ghost">Get in touch</a>
+                            <a href="https://github.com/shervinemp" target="_blank" rel="noopener noreferrer" class="btn-text">github.com/shervinemp</a>
                         </div>
+
+                        <dl class="mt-12 grid max-w-xl grid-cols-3 gap-6 border-t border-slate-800/70 pt-6">
+                            <div>
+                                <dt class="stat-label">Experience</dt>
+                                <dd class="stat-value">6+ yrs</dd>
+                            </div>
+                            <div>
+                                <dt class="stat-label">Peer reviewed</dt>
+                                <dd class="stat-value">2 papers</dd>
+                            </div>
+                            <div>
+                                <dt class="stat-label">Education</dt>
+                                <dd class="stat-value">MSc, uOttawa</dd>
+                            </div>
+                        </dl>
                     </div>
-                    <div class="card-enhanced p-6">
-                        <h3 class="text-lg font-semibold text-white mb-5 text-center">ML / AI</h3>
-                        <div class="space-y-4">
-                            <div><div class="flex justify-between text-sm text-slate-400 mb-1"><span>RAG & LLMs</span><span class="text-xs font-semibold text-cyan-400 bg-cyan-500/10 px-2 py-0.5 rounded">Primary</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="86%"></div></div></div>
-                            <div><div class="flex justify-between text-sm text-slate-400 mb-1"><span>NLP / Deep Learning</span><span class="text-xs font-semibold text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded">Advanced</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="84%"></div></div></div>
-                            <div><div class="flex justify-between text-sm text-slate-400 mb-1"><span>CV</span><span class="text-xs font-semibold text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded">Advanced</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="82%"></div></div></div>
-                            <div><div class="flex justify-between text-sm text-slate-400 mb-1"><span>Data & MLOps</span><span class="text-xs font-semibold text-slate-300 bg-slate-600/20 px-2 py-0.5 rounded">Proficient</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="72%"></div></div></div>
+
+                    <figure class="portrait lg:justify-self-end">
+                        <div class="portrait-media">
+                            <img src="profile.jpg" alt="Shervin Naseri" class="w-full h-full object-cover" loading="eager" fetchpriority="high">
                         </div>
-                    </div>
-                    <div class="card-enhanced p-6">
-                        <h3 class="text-lg font-semibold text-white mb-5 text-center">Backend / Infra</h3>
-                        <div class="space-y-4">
-                            <div><div class="flex justify-between text-sm text-slate-400 mb-1"><span>APIs</span><span class="text-xs font-semibold text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded">Advanced</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="80%"></div></div></div>
-                            <div><div class="flex justify-between text-sm text-slate-400 mb-1"><span>Databases</span><span class="text-xs font-semibold text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded">Advanced</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="78%"></div></div></div>
-                            <div><div class="flex justify-between text-sm text-slate-400 mb-1"><span>Docker</span><span class="text-xs font-semibold text-slate-300 bg-slate-600/20 px-2 py-0.5 rounded">Proficient</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="72%"></div></div></div>
-                            <div><div class="flex justify-between text-sm text-slate-400 mb-1"><span>AWS</span><span class="text-xs font-semibold text-slate-300 bg-slate-600/20 px-2 py-0.5 rounded">Proficient</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="72%"></div></div></div>
-                        </div>
-                    </div>
+                        <figcaption class="portrait-cap">
+                            <span>Ottawa, ON</span>
+                            <span>45.42&deg;N 75.69&deg;W</span>
+                        </figcaption>
+                    </figure>
                 </div>
             </div>
         </section>
 
         <!-- Experience -->
-        <section id="experience" class="py-20 px-6 section-reveal">
-            <div class="container mx-auto max-w-4xl">
-                <div class="gradient-divider mb-12"></div>
-                <h2 class="text-3xl font-bold text-center text-white mb-16 flex items-center justify-center gap-3">
-                    <svg class="w-6 h-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                    Experience
-                </h2>
-                <div class="space-y-10 stagger-children">
-                    <div class="flex gap-5 timeline-wrapper">
-                        <div class="flex flex-col items-center">
-                            <div class="timeline-dot border-cyan-400"></div>
-                        </div>
-                        <div class="card-enhanced p-6 flex-1 border-cyan-500/20">
-                            <div class="mb-3 flex flex-wrap justify-between items-start gap-2">
-                                <div>
-                                    <h3 class="text-xl font-semibold text-white">AI & Software Engineer</h3>
-                                    <p class="text-cyan-400 font-medium">Independent</p>
-                                </div>
-                                <span class="text-xs text-slate-500 font-mono bg-slate-900 px-2 py-1 rounded border border-slate-800">March 2025 - Present</span>
+        <section id="experience" class="section-reveal">
+            <div class="section-wrap">
+                <div class="section-head">
+                    <p class="eyebrow">01 <span class="text-slate-700">/</span> Track record</p>
+                    <h2 class="section-title">Experience</h2>
+                </div>
+
+                <div class="timeline stagger-children">
+                    <article class="timeline-item">
+                        <header class="xp-head">
+                            <div>
+                                <h3 class="xp-title">AI &amp; Software Engineer</h3>
+                                <p class="xp-org">Independent <span class="xp-sep">/</span> Ottawa, ON</p>
                             </div>
-                            <ul class="space-y-2.5 text-slate-400">
-                                <li class="flex gap-3 text-sm leading-relaxed"><span class="text-cyan-400 mt-2 w-1.5 h-1.5 rounded-full bg-cyan-400/60 shrink-0"></span>Architected RAG pipelines and LLM integrations combining vector databases with keyword search for grounded semantic retrieval.</li>
-                                <li class="flex gap-3 text-sm leading-relaxed"><span class="text-cyan-400 mt-2 w-1.5 h-1.5 rounded-full bg-cyan-400/60 shrink-0"></span>Built and refactored Node.js and Python services to support structured LLM outputs, schema validation, and tool-calling decoders.</li>
-                                <li class="flex gap-3 text-sm leading-relaxed"><span class="text-cyan-400 mt-2 w-1.5 h-1.5 rounded-full bg-cyan-400/60 shrink-0"></span>Engineered asynchronous data processing workflows and optimized PyTorch pipelines for model fine-tuning, embedding generation, and inference.</li>
-                            </ul>
+                            <p class="xp-date">Mar 2025 - Present</p>
+                        </header>
+                        <ul class="xp-list">
+                            <li>Design and ship LLM systems end to end: retrieval that fuses vector and keyword search, structured output with schema validation, and tool-calling loops behind typed interfaces.</li>
+                            <li>Built <span class="text-slate-200">voxpipe</span>, a modular voice control pipeline with streaming ASR, a configurable tool registry, and streaming TTS, running on local GGUF models or remote backends.</li>
+                            <li>Built an MCP server that walks codebases with custom AST parsers and indexes signatures into Weaviate for semantic retrieval.</li>
+                            <li>Operate the services that carry this work: containers, CI/CD, tests, and observability on AWS.</li>
+                        </ul>
+                    </article>
+
+                    <article class="timeline-item">
+                        <header class="xp-head">
+                            <div>
+                                <h3 class="xp-title">Graduate Research &amp; Teaching Assistant</h3>
+                                <p class="xp-org">University of Ottawa <span class="xp-sep">/</span> Ottawa, ON <span class="whitespace-nowrap text-slate-600">(part-time)</span></p>
+                            </div>
+                            <p class="xp-date">Jan 2022 - Dec 2024</p>
+                        </header>
+                        <ul class="xp-list">
+                            <li>Co-authored <span class="text-slate-200">Evaluating the Impact of Flaky Simulators on Testing Autonomous Driving Systems</span>, published in Empirical Software Engineering (2024).</li>
+                            <li>Built ML classifiers that identify flaky simulation-based tests from a single run, cutting the number of reruns needed to expose them.</li>
+                            <li>Supported coursework and labs as a teaching assistant alongside the research.</li>
+                        </ul>
+                    </article>
+
+                    <article class="timeline-item">
+                        <header class="xp-head">
+                            <div>
+                                <h3 class="xp-title">Senior ML Engineer</h3>
+                                <p class="xp-org">IraPardaz (Pardazesh Etelaat Kian) <span class="xp-sep">/</span> Tehran, Iran</p>
+                            </div>
+                            <p class="xp-date">Jun 2020 - Apr 2021</p>
+                        </header>
+                        <ul class="xp-list">
+                            <li>Built a large-scale image retrieval and visual search system using perceptual similarity grouping.</li>
+                            <li>Designed a CTC-based vehicle plate recognition pipeline and a perspective-robust YOLOv4 detector.</li>
+                            <li>Built a Farsi document text extraction system for complex layouts and styles.</li>
+                            <li>Engineered vehicle detection and multi-object tracking for traffic analysis.</li>
+                            <li>Led technical hiring interviews and mentored junior engineers on code quality and delivery.</li>
+                        </ul>
+                    </article>
+
+                    <article class="timeline-item">
+                        <header class="xp-head">
+                            <div>
+                                <h3 class="xp-title">Core Backend Engineer</h3>
+                                <p class="xp-org">Nikaat Corp <span class="xp-sep">/</span> Tehran, Iran</p>
+                            </div>
+                            <p class="xp-date">Dec 2016 - Apr 2020</p>
+                        </header>
+                        <ul class="xp-list">
+                            <li>Built REST services and web applications on Node.js, Express, and relational databases for Mint, Phosphor, Skenas, and Atron.</li>
+                            <li>Designed a Seq2Seq model for currency exchange rate trend forecasting.</li>
+                            <li>Set up containerized environments and CI/CD with Docker and Nginx.</li>
+                        </ul>
+                    </article>
+
+                    <article class="timeline-item">
+                        <header class="xp-head">
+                            <div>
+                                <h3 class="xp-title">Python Developer</h3>
+                                <p class="xp-org">Vestaak <span class="xp-sep">/</span> Tehran, Iran</p>
+                            </div>
+                            <p class="xp-date">Jun 2016 - Dec 2016</p>
+                        </header>
+                        <ul class="xp-list">
+                            <li>Built content recommendation algorithms on Telegram API data with Python and scikit-learn.</li>
+                            <li>Implemented collaborative and content-based filtering, plus the REST endpoints that served them.</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects -->
+        <section id="projects" class="section-reveal">
+            <div class="section-wrap">
+                <div class="section-head">
+                    <p class="eyebrow">02 <span class="text-slate-700">/</span> Selected work</p>
+                    <h2 class="section-title">Projects</h2>
+                </div>
+
+                <div class="proj-grid stagger-children">
+                    <article class="proj">
+                        <div class="proj-top">
+                            <span class="proj-index">01</span>
+                            <a href="https://github.com/shervinemp/voxpipe" target="_blank" rel="noopener noreferrer" class="proj-link" aria-label="voxpipe on GitHub">
+                                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H8m9 0v9"/></svg>
+                            </a>
                         </div>
+                        <h3 class="proj-title">voxpipe</h3>
+                        <p class="proj-desc">A modular voice control pipeline: streaming ASR, LLM tool calling, and streaming TTS behind a configurable tool system. Runs on local GGUF models or remote LLM backends.</p>
+                        <ul class="chip-row">
+                            <li class="chip">Python</li>
+                            <li class="chip">ASR</li>
+                            <li class="chip">Tool calling</li>
+                            <li class="chip">TTS</li>
+                        </ul>
+                    </article>
+
+                    <article class="proj">
+                        <div class="proj-top">
+                            <span class="proj-index">02</span>
+                            <a href="https://github.com/shervinemp/burnout3-Wii" target="_blank" rel="noopener noreferrer" class="proj-link" aria-label="Burnout 3 Wii port on GitHub">
+                                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H8m9 0v9"/></svg>
+                            </a>
+                        </div>
+                        <h3 class="proj-title">Native Wii ports</h3>
+                        <p class="proj-desc">Static recompilation of PS2 and PSP titles to native PowerPC: ahead-of-time translation of guest MIPS and a GX rendering path, with no interpreter in the hot path. Source only, no game assets.</p>
+                        <ul class="chip-row">
+                            <li class="chip">C++</li>
+                            <li class="chip">PowerPC</li>
+                            <li class="chip">GX</li>
+                            <li class="chip">AOT translation</li>
+                        </ul>
+                        <p class="proj-extra">
+                            <a href="https://github.com/shervinemp/burnout3-Wii" target="_blank" rel="noopener noreferrer">Burnout 3</a>
+                            <a href="https://github.com/shervinemp/TekkenDarkResurrection-Wii" target="_blank" rel="noopener noreferrer">Tekken: Dark Resurrection</a>
+                            <a href="https://github.com/shervinemp/Ballanced-Wii" target="_blank" rel="noopener noreferrer">Ballance</a>
+                        </p>
+                    </article>
+
+                    <article class="proj">
+                        <div class="proj-top">
+                            <span class="proj-index">03</span>
+                            <a href="https://github.com/shervinemp/CodebaseMCP" target="_blank" rel="noopener noreferrer" class="proj-link" aria-label="CodebaseMCP on GitHub">
+                                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H8m9 0v9"/></svg>
+                            </a>
+                        </div>
+                        <h3 class="proj-title">CodebaseMCP</h3>
+                        <p class="proj-desc">An MCP server for LLM-driven semantic codebase querying. Custom AST parsers feed a Weaviate index that keeps signature-level context intact instead of chunking files blindly.</p>
+                        <ul class="chip-row">
+                            <li class="chip">Python</li>
+                            <li class="chip">MCP</li>
+                            <li class="chip">Weaviate</li>
+                            <li class="chip">AST</li>
+                        </ul>
+                    </article>
+
+                    <article class="proj">
+                        <div class="proj-top">
+                            <span class="proj-index">04</span>
+                            <a href="https://github.com/shervinemp/TIDA" target="_blank" rel="noopener noreferrer" class="proj-link" aria-label="TIDA on GitHub">
+                                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H8m9 0v9"/></svg>
+                            </a>
+                        </div>
+                        <h3 class="proj-title">TIDA</h3>
+                        <p class="proj-desc">A PyTorch PEFT implementation that turns an autoregressive transformer into a micro-recurrent diffusion model, using fractional positional encoding through patched RoPE and staircase attention masks.</p>
+                        <ul class="chip-row">
+                            <li class="chip">PyTorch</li>
+                            <li class="chip">PEFT</li>
+                            <li class="chip">RoPE</li>
+                            <li class="chip">Diffusion</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills -->
+        <section id="skills" class="section-reveal">
+            <div class="section-wrap">
+                <div class="section-head">
+                    <p class="eyebrow">03 <span class="text-slate-700">/</span> Toolkit</p>
+                    <h2 class="section-title">Skills</h2>
+                </div>
+
+                <div class="grid gap-px bg-slate-800/60 border border-slate-800/60 rounded-xl overflow-hidden md:grid-cols-2">
+                    <div class="skill-card">
+                        <h3 class="skill-title">AI and retrieval</h3>
+                        <p class="skill-note">The part I spend most days in.</p>
+                        <ul class="chip-row">
+                            <li class="chip">PyTorch</li>
+                            <li class="chip">Hugging Face</li>
+                            <li class="chip">PEFT / LoRA</li>
+                            <li class="chip">RAG</li>
+                            <li class="chip">Hybrid search</li>
+                            <li class="chip">Reciprocal rank fusion</li>
+                            <li class="chip">Embeddings</li>
+                            <li class="chip">Weaviate</li>
+                            <li class="chip">Chroma</li>
+                            <li class="chip">pgvector</li>
+                            <li class="chip">LLM tool calling</li>
+                            <li class="chip">MCP</li>
+                            <li class="chip">Prompt design</li>
+                            <li class="chip">scikit-learn</li>
+                        </ul>
                     </div>
-                    <div class="flex gap-5 timeline-wrapper">
-                        <div class="flex flex-col items-center">
-                            <div class="timeline-dot"></div>
-                        </div>
-                        <div class="card-enhanced p-6 flex-1">
-                            <div class="mb-3">
-                                <h3 class="text-xl font-semibold text-white">Senior ML Engineer / Data Scientist</h3>
-                                <p class="text-indigo-400 font-medium">Pardazesh Etelaat Kian</p>
-                            </div>
-                            <ul class="space-y-2.5 text-slate-400">
-                                <li class="flex gap-3 text-sm leading-relaxed"><span class="text-indigo-400 mt-2 w-1.5 h-1.5 rounded-full bg-indigo-400/60 shrink-0"></span>Designed and deployed ML pipelines for vehicle plate recognition (CTC), achieving near SOTA results.</li>
-                                <li class="flex gap-3 text-sm leading-relaxed"><span class="text-indigo-400 mt-2 w-1.5 h-1.5 rounded-full bg-indigo-400/60 shrink-0"></span>Developed a Farsi OCR system handling complex document layouts and styles.</li>
-                                <li class="flex gap-3 text-sm leading-relaxed"><span class="text-indigo-400 mt-2 w-1.5 h-1.5 rounded-full bg-indigo-400/60 shrink-0"></span>Built a large-scale image retrieval system using perceptual similarity.</li>
-                                <li class="flex gap-3 text-sm leading-relaxed"><span class="text-indigo-400 mt-2 w-1.5 h-1.5 rounded-full bg-indigo-400/60 shrink-0"></span>Engineered car detection and multi-object tracking algorithms for traffic analysis.</li>
-                                <li class="flex gap-3 text-sm leading-relaxed"><span class="text-indigo-400 mt-2 w-1.5 h-1.5 rounded-full bg-indigo-400/60 shrink-0"></span>Implemented perspective-robust YOLOv4-based vehicle plate detection.</li>
-                                <li class="flex gap-3 text-sm leading-relaxed"><span class="text-indigo-400 mt-2 w-1.5 h-1.5 rounded-full bg-indigo-400/60 shrink-0"></span>Developed iterative watershed process for document de-warping.</li>
-                                <li class="flex gap-3 text-sm leading-relaxed"><span class="text-indigo-400 mt-2 w-1.5 h-1.5 rounded-full bg-indigo-400/60 shrink-0"></span>Led hiring processes and mentored junior data scientists.</li>
-                            </ul>
-                        </div>
+
+                    <div class="skill-card">
+                        <h3 class="skill-title">Backend and data</h3>
+                        <p class="skill-note">Services that stay up and stay debuggable.</p>
+                        <ul class="chip-row">
+                            <li class="chip">Python</li>
+                            <li class="chip">TypeScript</li>
+                            <li class="chip">Node.js</li>
+                            <li class="chip">FastAPI</li>
+                            <li class="chip">Express</li>
+                            <li class="chip">REST</li>
+                            <li class="chip">PostgreSQL</li>
+                            <li class="chip">MongoDB</li>
+                            <li class="chip">Redis</li>
+                            <li class="chip">Prisma</li>
+                            <li class="chip">SQLAlchemy</li>
+                            <li class="chip">Kafka</li>
+                            <li class="chip">Event-driven systems</li>
+                        </ul>
                     </div>
-                    <div class="flex gap-5 timeline-wrapper">
-                        <div class="flex flex-col items-center">
-                            <div class="timeline-dot"></div>
-                        </div>
-                        <div class="card-enhanced p-6 flex-1">
-                            <div class="mb-3">
-                                <h3 class="text-xl font-semibold text-white">Senior Backend Engineer / Tech Lead</h3>
-                                <p class="text-indigo-400 font-medium">Nikaat Corp</p>
-                            </div>
-                            <ul class="space-y-2.5 text-slate-400">
-                                <li class="flex gap-3 text-sm leading-relaxed"><span class="text-indigo-400 mt-2 w-1.5 h-1.5 rounded-full bg-indigo-400/60 shrink-0"></span>Contributed to design, development, deployment, and technical decisions in a fast-paced startup.</li>
-                                <li class="flex gap-3 text-sm leading-relaxed"><span class="text-indigo-400 mt-2 w-1.5 h-1.5 rounded-full bg-indigo-400/60 shrink-0"></span>Developed web services and APIs (MEAN stack) for applications like Skenas, Atron, Mint, Phosphor.</li>
-                                <li class="flex gap-3 text-sm leading-relaxed"><span class="text-indigo-400 mt-2 w-1.5 h-1.5 rounded-full bg-indigo-400/60 shrink-0"></span>Researched and developed predictive models using time-series deep learning.</li>
-                                <li class="flex gap-3 text-sm leading-relaxed"><span class="text-indigo-400 mt-2 w-1.5 h-1.5 rounded-full bg-indigo-400/60 shrink-0"></span>Managed DevOps workflows and ensured scalable system deployments.</li>
-                            </ul>
-                        </div>
+
+                    <div class="skill-card">
+                        <h3 class="skill-title">Systems and graphics</h3>
+                        <p class="skill-note">Where the performance work happens.</p>
+                        <ul class="chip-row">
+                            <li class="chip">C++</li>
+                            <li class="chip">PowerPC</li>
+                            <li class="chip">GX / graphics pipelines</li>
+                            <li class="chip">Binary translation</li>
+                            <li class="chip">Performance profiling</li>
+                            <li class="chip">Shell</li>
+                        </ul>
                     </div>
-                    <div class="flex gap-5 timeline-wrapper">
-                        <div class="flex flex-col items-center">
-                            <div class="timeline-dot"></div>
-                        </div>
-                        <div class="card-enhanced p-6 flex-1">
-                            <div class="mb-3">
-                                <h3 class="text-xl font-semibold text-white">Python Developer</h3>
-                                <p class="text-indigo-400 font-medium">Vestaak</p>
-                            </div>
-                            <ul class="space-y-2.5 text-slate-400">
-                                <li class="flex gap-3 text-sm leading-relaxed"><span class="text-indigo-400 mt-2 w-1.5 h-1.5 rounded-full bg-indigo-400/60 shrink-0"></span>Developed a personalized content recommendation engine using Telegram API data.</li>
-                                <li class="flex gap-3 text-sm leading-relaxed"><span class="text-indigo-400 mt-2 w-1.5 h-1.5 rounded-full bg-indigo-400/60 shrink-0"></span>Implemented collaborative filtering and content-based filtering algorithms.</li>
-                                <li class="flex gap-3 text-sm leading-relaxed"><span class="text-indigo-400 mt-2 w-1.5 h-1.5 rounded-full bg-indigo-400/60 shrink-0"></span>Assisted in designing and developing RESTful APIs (Python, Flask).</li>
-                            </ul>
-                        </div>
+
+                    <div class="skill-card">
+                        <h3 class="skill-title">Infrastructure and practice</h3>
+                        <p class="skill-note">Getting it from laptop to production.</p>
+                        <ul class="chip-row">
+                            <li class="chip">Docker</li>
+                            <li class="chip">Kubernetes</li>
+                            <li class="chip">AWS</li>
+                            <li class="chip">Bedrock</li>
+                            <li class="chip">Terraform</li>
+                            <li class="chip">GitHub Actions</li>
+                            <li class="chip">CI/CD</li>
+                            <li class="chip">Observability</li>
+                            <li class="chip">pytest</li>
+                            <li class="chip">Vitest</li>
+                            <li class="chip">Code review</li>
+                            <li class="chip">Mentoring</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Education -->
-        <section id="education" class="py-20 px-6 section-reveal">
-            <div class="container mx-auto max-w-5xl">
-                <div class="gradient-divider mb-12"></div>
-                <h2 class="text-3xl font-bold text-center text-white mb-16 flex items-center justify-center gap-3">
-                    <svg class="w-6 h-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 00-.491 6.347A48.62 48.62 0 0112 20.904a48.62 48.62 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.636 50.636 0 00-2.658-.813A59.906 59.906 0 0112 3.493a59.903 59.903 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5" /></svg>
-                    Education &amp; Research
-                </h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 stagger-children">
-                    <div class="space-y-6">
-                        <h3 class="text-2xl font-semibold text-white mb-4">Education</h3>
-                        <div class="card-enhanced p-6">
-                            <p class="font-semibold text-lg text-white">MSc. Computer Science</p>
-                            <p class="text-slate-300">University of Ottawa</p>
-                            <p class="text-sm text-slate-500 mt-1">Sep 2021 - Dec 2024 | GPA: 8.5/10</p>
-                            <p class="text-sm text-slate-400 mt-2">Project: Evaluating flaky simulators in autonomous driving testing.</p>
-                        </div>
-                        <div class="card-enhanced p-6">
-                            <p class="font-semibold text-lg text-white">MSc. Software Engineering</p>
-                            <p class="text-slate-300">Sharif University of Technology</p>
-                            <p class="text-sm text-slate-500 mt-1">GPA: 16.37/20</p>
-                            <p class="text-sm text-slate-400 mt-2">Thesis: Estimating Protein-Protein Interaction Network similarity.</p>
-                            <p class="text-sm text-slate-400">Project: StackOverflow response time prediction using BERT.</p>
-                        </div>
-                        <div class="card-enhanced p-6">
-                            <p class="font-semibold text-lg text-white">BSc. Computer Science</p>
-                            <p class="text-slate-300">Amirkabir University of Technology</p>
-                            <p class="text-sm text-slate-500 mt-1">GPA: 16.11/20 (3.41/4.0)</p>
-                            <p class="text-sm text-slate-400 mt-2">Project: Information Retrieval using Word2Vec/Sent2Vec.</p>
-                        </div>
+        <section id="education" class="section-reveal">
+            <div class="section-wrap">
+                <div class="section-head">
+                    <p class="eyebrow">04 <span class="text-slate-700">/</span> Foundations</p>
+                    <h2 class="section-title">Education &amp; research</h2>
+                </div>
+
+                <div class="grid gap-10 lg:grid-cols-[1.15fr_0.85fr]">
+                    <div class="space-y-px bg-slate-800/60 border border-slate-800/60 rounded-xl overflow-hidden">
+                        <article class="edu-card">
+                            <div class="edu-top">
+                                <h3 class="edu-title">MSc Computer Science</h3>
+                                <span class="edu-date">2022 - 2025</span>
+                            </div>
+                            <p class="edu-org">University of Ottawa</p>
+                            <p class="edu-note">GPA 8.5/10. Research on flaky simulators in autonomous driving testing; co-authored the EMSE 2024 paper below.</p>
+                        </article>
+                        <article class="edu-card">
+                            <div class="edu-top">
+                                <h3 class="edu-title">MSc Software Engineering</h3>
+                                <span class="edu-date">2018 - 2021</span>
+                            </div>
+                            <p class="edu-org">Sharif University of Technology</p>
+                            <p class="edu-note">GPA 16.37/20. Thesis on protein-protein interaction network similarity; project on StackOverflow response time prediction with BERT.</p>
+                        </article>
+                        <article class="edu-card">
+                            <div class="edu-top">
+                                <h3 class="edu-title">BSc Computer Science</h3>
+                                <span class="edu-date">2013 - 2018</span>
+                            </div>
+                            <p class="edu-org">Amirkabir University of Technology</p>
+                            <p class="edu-note">GPA 16.11/20 (3.41/4.0). Information retrieval with Word2Vec and Sent2Vec.</p>
+                        </article>
                     </div>
-                    <div class="space-y-6">
-                        <h3 class="text-2xl font-semibold text-white mb-4">Publications</h3>
-                        <div class="card-enhanced p-6">
-                            <p class="font-semibold text-indigo-400">EMSE 2024</p>
-                            <p class="text-sm text-slate-300 mt-1">Mohammad Hossein Amini, Shervin Naseri, Shiva Nejati: Evaluating the impact of flaky simulators on testing autonomous driving systems.</p>
+
+                    <div class="space-y-8">
+                        <div>
+                            <h3 class="side-title">Publications</h3>
+                            <ul class="space-y-4">
+                                <li class="pub">
+                                    <p class="pub-venue">Empirical Software Engineering, 2024</p>
+                                    <p class="pub-title">Evaluating the impact of flaky simulators on testing autonomous driving systems</p>
+                                    <p class="pub-authors">Mohammad Hossein Amini, Shervin Naseri, Shiva Nejati</p>
+                                </li>
+                                <li class="pub">
+                                    <p class="pub-venue">ICCG, 2019</p>
+                                    <p class="pub-title">Counting closed billiard paths</p>
+                                    <p class="pub-authors">Zahed Rahmati, Sina Farahzad, Shervin Naseri</p>
+                                </li>
+                            </ul>
                         </div>
-                        <div class="card-enhanced p-6">
-                            <p class="font-semibold text-indigo-400">ICCG 2019</p>
-                            <p class="text-sm text-slate-300 mt-1">Zahed Rahmati, Sina Farahzad and Shervin Naseri: Counting Closed Billiard Paths.</p>
+                        <div>
+                            <h3 class="side-title">Certifications</h3>
+                            <ul class="space-y-3">
+                                <li class="cert">
+                                    <span class="cert-name">AWS Certified Generative AI Developer, Professional</span>
+                                    <span class="cert-meta">Amazon Web Services, 2026</span>
+                                </li>
+                                <li class="cert">
+                                    <span class="cert-name">Databricks Certified Data Engineer Associate</span>
+                                    <span class="cert-meta">Databricks, 2026</span>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Projects -->
-        <section id="projects" class="py-20 px-6 section-reveal">
-            <div class="container mx-auto max-w-6xl">
-                <div class="gradient-divider mb-12"></div>
-                <h2 class="text-3xl font-bold text-center text-white mb-16 flex items-center justify-center gap-3">
-                    <svg class="w-6 h-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25" /></svg>
-                    Projects
-                </h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 stagger-children">
-                    <div class="card-enhanced p-6 flex flex-col">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-xl font-semibold text-white">CodebaseMCP (RAG Framework)</h3>
-                            <a href="https://github.com/shervinemp/CodebaseMCP" target="_blank" rel="noopener noreferrer" class="text-xs text-indigo-400 hover:underline flex items-center gap-1">GitHub &rarr;</a>
-                        </div>
-                        <p class="text-slate-400 mb-4 text-sm flex-grow">Engineered an MCP server for LLM-driven semantic codebase querying across local directory trees. Built custom AST parsers with a Weaviate vector engine to preserve signature-level indexing context.</p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="tag bg-blue-900/30 text-blue-300 border border-blue-800/30">Python</span>
-                            <span class="tag bg-purple-900/30 text-purple-300 border border-purple-800/30">Weaviate</span>
-                            <span class="tag bg-cyan-900/30 text-cyan-300 border border-cyan-800/30">LLM Ops</span>
-                            <span class="tag bg-emerald-900/30 text-emerald-300 border border-emerald-800/30">AST Parsing</span>
-                        </div>
-                    </div>
-                    <div class="card-enhanced p-6 flex flex-col">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-xl font-semibold text-white">Temporal-Integral Diffusion Adapter</h3>
-                            <a href="https://github.com/shervinemp/TIDA" target="_blank" rel="noopener noreferrer" class="text-xs text-indigo-400 hover:underline flex items-center gap-1">GitHub &rarr;</a>
-                        </div>
-                        <p class="text-slate-400 mb-4 text-sm flex-grow">Developed a PyTorch PEFT implementation using fractional positional encodings via patched RoPE. Engineered a training pipeline using staircase attention masking for adaptive micro-step computation.</p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="tag bg-orange-900/30 text-orange-300 border border-orange-800/30">PyTorch</span>
-                            <span class="tag bg-purple-900/30 text-purple-300 border border-purple-800/30">PEFT / RoPE</span>
-                            <span class="tag bg-slate-800 text-slate-300 border border-slate-700">Deep Learning</span>
-                        </div>
-                    </div>
+        <!-- Explorations -->
+        <section id="personal-projects" class="section-reveal">
+            <div class="section-wrap">
+                <div class="section-head">
+                    <p class="eyebrow">05 <span class="text-slate-700">/</span> Off the clock</p>
+                    <h2 class="section-title">Explorations</h2>
                 </div>
-            </div>
-        </section>
 
-        <!-- Personal Projects -->
-        <section id="personal-projects" class="py-20 px-6 section-reveal">
-            <div class="container mx-auto max-w-5xl">
-                <div class="gradient-divider mb-12"></div>
-                <h2 class="text-3xl font-bold text-center text-white mb-16 flex items-center justify-center gap-3">
-                    <svg class="w-6 h-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23-.693L4.2 15.3a2.25 2.25 0 00-1.152 1.943l-.003.012A2.25 2.25 0 004.2 19.5h15.6a2.25 2.25 0 001.153-1.943l-.003-.012a2.25 2.25 0 00-1.152-1.943M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-                    Explorations
-                </h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 stagger-children">
-                    <div class="card-enhanced p-6">
-                        <h3 class="text-lg font-semibold text-white mb-2">Texture Modding Tools</h3>
-                        <p class="text-slate-400 text-sm">Automated Binary Domain texture modding using scripting and external tools to streamline content creation.</p>
-                    </div>
-                    <div class="card-enhanced p-6">
-                        <h3 class="text-lg font-semibold text-white mb-2">Video Compression Research <span class="text-sm font-normal text-orange-400">(WIP)</span></h3>
-                        <p class="text-slate-400 text-sm">Exploring video compression techniques focusing on efficiency through temporal redundancy and bit-packing.</p>
-                    </div>
-                    <div class="card-enhanced p-6">
-                        <h3 class="text-lg font-semibold text-white mb-2">Large Model Training Research</h3>
-                        <p class="text-slate-400 text-sm">Investigating methods to enhance large model training convergence through custom layer design.</p>
-                    </div>
-                    <div class="card-enhanced p-6">
-                        <h3 class="text-lg font-semibold text-white mb-2">Agent Interaction Language Design <span class="text-sm font-normal text-orange-400">(WIP)</span></h3>
-                        <p class="text-slate-400 text-sm">Designing a domain-specific language to define virtual agent interactions for improved software interoperability.</p>
-                    </div>
-                </div>
-                <div class="text-center mt-12">
-                    <h3 class="text-xl font-semibold text-white mb-3">Core Interests</h3>
-                    <div class="flex flex-wrap justify-center gap-3">
-                        <span class="tag bg-slate-800/50 text-slate-300 border border-slate-700/50">Software Engineering</span>
-                        <span class="tag bg-slate-800/50 text-slate-300 border border-slate-700/50">Algorithms</span>
-                        <span class="tag bg-slate-800/50 text-slate-300 border border-slate-700/50">Machine Learning</span>
-                        <span class="tag bg-slate-800/50 text-slate-300 border border-slate-700/50">Computer Graphics</span>
-                        <span class="tag bg-slate-800/50 text-slate-300 border border-slate-700/50">Problem-Solving</span>
-                    </div>
-                </div>
+                <ul class="explore-grid stagger-children">
+                    <li class="explore">
+                        <div class="explore-head">
+                            <h3 class="explore-title">Wii hardware model</h3>
+                            <span class="explore-flag">Private</span>
+                        </div>
+                        <p class="explore-desc">A timing-accurate model of the console (clock, bus, CPU, GPU) built to validate the recompiled ports above, with a software GX renderer used as the reference.</p>
+                    </li>
+                    <li class="explore">
+                        <div class="explore-head">
+                            <h3 class="explore-title">Agent harness for browser work</h3>
+                            <span class="explore-flag">Private</span>
+                        </div>
+                        <p class="explore-desc">Long-running agent workflows with a typed tool registry, resumable state, and approval gates before any irreversible action. I use it daily.</p>
+                    </li>
+                    <li class="explore">
+                        <div class="explore-head">
+                            <h3 class="explore-title">Texture modding tools</h3>
+                            <span class="explore-flag">Public</span>
+                        </div>
+                        <p class="explore-desc">Automated Binary Domain texture pipeline: unpack, convert, and repack game texture archives without touching them by hand.</p>
+                    </li>
+                    <li class="explore">
+                        <div class="explore-head">
+                            <h3 class="explore-title">Large model training</h3>
+                            <span class="explore-flag">Research</span>
+                        </div>
+                        <p class="explore-desc">Convergence behaviour of custom layer designs in large transformer training runs, and what the loss curve hides.</p>
+                    </li>
+                    <li class="explore">
+                        <div class="explore-head">
+                            <h3 class="explore-title">Video compression</h3>
+                            <span class="explore-flag">WIP</span>
+                        </div>
+                        <p class="explore-desc">Temporal redundancy and bit packing, measured against what a plain codec already does well.</p>
+                    </li>
+                    <li class="explore">
+                        <div class="explore-head">
+                            <h3 class="explore-title">Agent interaction language</h3>
+                            <span class="explore-flag">WIP</span>
+                        </div>
+                        <p class="explore-desc">A small DSL for declaring agent interactions so multi-agent behaviour can be specified instead of scripted.</p>
+                    </li>
+                </ul>
+
+                <p class="mt-14 flex flex-wrap items-center gap-x-3 gap-y-2">
+                    <span class="font-mono text-[10px] uppercase tracking-[0.14em] text-slate-600">Core interests</span>
+                    <span class="text-slate-700">/</span>
+                    <span class="text-sm text-slate-500">Software engineering, algorithms, machine learning, computer graphics</span>
+                </p>
             </div>
         </section>
 
         <!-- Contact -->
-        <section id="contact" class="py-20 px-6 section-reveal">
-            <div class="container mx-auto max-w-3xl">
-                <div class="gradient-divider mb-12"></div>
-                <h2 class="text-3xl font-bold text-center text-white mb-12 flex items-center justify-center gap-3">
-                    <svg class="w-6 h-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" /></svg>
-                    Contact
-                </h2>
-                <div class="contact-card p-10 md:p-12 text-center">
-                    <p class="text-slate-400 mb-8 max-w-lg mx-auto leading-relaxed">Whether you have a project idea, a research question, or just want to connect — my inbox is open.</p>
-                    <div class="flex flex-wrap justify-center gap-4">
-                        <a href="mailto:shervin.naseri@gmail.com" class="contact-link">
-                            <svg class="ci-email w-5 h-5 text-indigo-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" /></svg>
-                            <span>Email</span>
+        <section id="contact" class="section-reveal">
+            <div class="section-wrap">
+                <div class="section-head">
+                    <p class="eyebrow">06 <span class="text-slate-700">/</span> Say hello</p>
+                    <h2 class="section-title">Contact</h2>
+                </div>
+
+                <div class="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+                    <div>
+                        <p class="font-display text-2xl md:text-3xl text-white leading-snug max-w-lg">Looking for someone who can own a system from the retrieval layer down to the deploy?</p>
+                        <p class="mt-4 text-slate-400 max-w-md">I am open to AI engineering, backend, and applied research roles. Remote, hybrid, or willing to relocate.</p>
+                    </div>
+                    <div class="space-y-px bg-slate-800/60 border border-slate-800/60 rounded-xl overflow-hidden">
+                        <a href="mailto:shervin.naseri@gmail.com" class="contact-row">
+                            <span class="contact-label">Email</span>
+                            <span class="contact-value">shervin.naseri@gmail.com</span>
                         </a>
-                        <a href="https://www.linkedin.com/in/shervin-naseri-b3a016b0/" target="_blank" rel="noopener noreferrer" class="contact-link">
-                            <svg class="ci-linkedin w-5 h-5 text-indigo-400 shrink-0" viewBox="0 0 448 512" fill="currentColor"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0153.79-54.3c29.7 0 53.79 24.7 53.79 54.3a53.79 53.79 0 01-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"/></svg>
-                            <span>LinkedIn</span>
-                         </a>
-                          <a href="https://github.com/shervinemp" target="_blank" rel="noopener noreferrer" class="contact-link">
-                              <svg class="ci-github w-5 h-5 text-indigo-400 shrink-0" viewBox="0 0 496 512" fill="currentColor"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
-                              <span>GitHub</span>
-                          </a>
+                        <a href="https://www.linkedin.com/in/shervin-naseri-b3a016b0/" target="_blank" rel="noopener noreferrer" class="contact-row">
+                            <span class="contact-label">LinkedIn</span>
+                            <span class="contact-value">/in/shervin-naseri-b3a016b0</span>
+                        </a>
+                        <a href="https://github.com/shervinemp" target="_blank" rel="noopener noreferrer" class="contact-row">
+                            <span class="contact-label">GitHub</span>
+                            <span class="contact-value">/shervinemp</span>
+                        </a>
+                        <a href="resume.pdf" download="Shervin_Naseri_Resume.pdf" class="contact-row">
+                            <span class="contact-label">Resume</span>
+                            <span class="contact-value">PDF, one page</span>
+                        </a>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Footer -->
-        <footer class="text-center py-8 px-6 border-t border-slate-800/50">
-            <a href="blog.html" class="text-slate-500 hover:text-indigo-400 transition-colors text-xs tracking-wide">Blog</a>
-            <span class="text-slate-700 mx-3 text-xs">/</span>
-            <span class="text-slate-600 text-xs tracking-wide">&copy; <span id="current-year"></span> Shervin Naseri</span>
+        <footer class="px-6 md:px-12 lg:px-16 py-10 border-t border-slate-800/60 mt-10">
+            <div class="max-w-6xl flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <p class="font-mono text-[10px] uppercase tracking-[0.14em] text-slate-600">&copy; <span id="current-year"></span> Shervin Naseri</p>
+                <div class="flex items-center gap-5">
+                    <a href="blog.html" class="font-mono text-[10px] uppercase tracking-[0.14em] text-slate-500 hover:text-slate-300 transition-colors">Writing</a>
+                    <span class="font-mono text-[10px] uppercase tracking-[0.14em] text-slate-700">Updated Nov 2026</span>
+                </div>
+            </div>
         </footer>
 
-        <!-- Back to Top -->
         <button id="back-to-top" class="hidden" title="Back to top" aria-label="Back to top">
             <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" /></svg>
         </button>

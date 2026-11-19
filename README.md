@@ -17,7 +17,8 @@ Personal portfolio and technical blog for Shervin Naseri. Built with vanilla HTM
 ├── blog.html               # blog index (auto-generated on build)
 ├── src/
 │   ├── input.css           # Tailwind source + custom design system
-│   └── script.js           # animations, scroll spy, mobile menu
+│   ├── script.js           # animations, scroll spy, mobile menu
+│   └── resume.html         # print source for resume.pdf (A4, one page)
 ├── build.js                # blog static site generator
 ├── posts/                  # markdown blog posts (front matter)
 ├── dist/
@@ -55,6 +56,16 @@ Post body in markdown. Code blocks get syntax highlighting via highlight.js.
 
 Run `npm run build:blog` to generate individual post pages, tag pages, and update the blog index.
 
+## resume
+
+`resume.pdf` is generated from `src/resume.html`:
+
+```bash
+python scripts/build_resume.py
+```
+
+The script renders with Chromium at A4 using the print stylesheet and warns if the content no longer fits on one page. Requires Playwright with Chromium installed.
+
 ## design
 
-Dark theme with indigo/purple gradient accents, glassmorphism cards, animated scroll progress, section reveal on scroll, timeline layout for experience, skill bars with shimmer animation, and a noise texture overlay. Reduced motion respected via `prefers-reduced-motion`.
+Dark slate with a single cyan to indigo accent, Space Grotesk headings, JetBrains Mono labels, a fixed sidebar with numbered sections, hairline grids, scroll progress, and section reveal on scroll. Reduced motion respected via `prefers-reduced-motion`.

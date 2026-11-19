@@ -43,6 +43,7 @@ function initMobileMenu() {
   };
 
   btn.addEventListener('click', () => {
+    document.body.classList.remove('nav-hidden');
     const isOpen = sidebar.classList.toggle('mobile-open');
     btn.classList.toggle('open', isOpen);
     btn.setAttribute('aria-expanded', String(isOpen));
@@ -65,38 +66,27 @@ function initMobileMenu() {
   });
 }
 
-function initProfileGlow() {
-  const img = document.querySelector('.profile-glow img');
-  const glow = document.querySelector('.profile-glow');
-  if (!img || !glow) return;
-  if (img.complete) {
-    glow.classList.add('loaded');
-  } else {
-    img.addEventListener('load', () => glow.classList.add('loaded'));
-  }
-}
-
-function initSkillBars() {
-  const fills = document.querySelectorAll('.skill-bar-fill');
-  if (!fills.length) return;
-  if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    fills.forEach(fill => {
-      const w = fill.getAttribute('data-width');
-      if (w) fill.style.width = w;
-    });
-    return;
-  }
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const fill = entry.target;
-        const w = fill.getAttribute('data-width');
-        if (w) fill.style.width = w;
-        observer.unobserve(fill);
+function initAutoHideChrome() {
+  let lastY = window.scrollY;
+  let rafId = null;
+  const sync = () => {
+    rafId = null;
+    const y = window.scrollY;
+    const sidebarOpen = document.getElementById('sidebar')?.classList.contains('mobile-open');
+    if (!sidebarOpen) {
+      if (y > lastY + 4 && y > 240) {
+        document.body.classList.add('nav-hidden');
+      } else if (y < lastY - 4 || y < 120) {
+        document.body.classList.remove('nav-hidden');
       }
-    });
-  }, { threshold: 0.3 });
-  fills.forEach(fill => observer.observe(fill));
+    }
+    lastY = y;
+  };
+  const queue = () => {
+    if (!rafId) rafId = window.requestAnimationFrame(sync);
+  };
+  window.addEventListener('scroll', queue, { passive: true });
+  window.addEventListener('resize', queue);
 }
 
 function initSectionReveal() {
@@ -186,8 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollProgress();
   initFooterYear();
   initMobileMenu();
-  initProfileGlow();
-  initSkillBars();
+  initAutoHideChrome();
   initSectionReveal();
   initScrollSpy();
   initSmoothScroll();
