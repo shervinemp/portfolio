@@ -68,4 +68,4 @@ The script renders with Chromium at A4 using the print stylesheet and warns if t
 
 ## design
 
-Dark slate with a single cyan to indigo accent, Space Grotesk headings, JetBrains Mono labels, a fixed sidebar with numbered sections, hairline grids, scroll progress, and section reveal on scroll. Reduced motion respected via `prefers-reduced-motion`.
+Dark slate with gradient accents, a fixed sidebar with numbered sections, a color portrait, skill bars, and a card-based experience timeline. Space Grotesk headings and JetBrains Mono labels, with scroll progress and section reveal. Reduced motion respected via `prefers-reduced-motion`.
