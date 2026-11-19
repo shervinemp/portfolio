@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Shervin Naseri, AI and software engineer in Ottawa. LLM systems, retrieval, backend services, and production infrastructure.">
     <meta name="color-scheme" content="dark">
-    <meta name="theme-color" content="#0f172a">
+    <meta name="theme-color" content="#070b14">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Shervin Naseri - AI &amp; Software Engineer">
     <meta property="og:description" content="LLM systems, retrieval pipelines, backend services, and production infrastructure.">
@@ -16,386 +16,394 @@
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="dist/output.css">
 </head>
-<body class="bg-slate-950 text-slate-200 font-sans leading-relaxed antialiased overflow-x-hidden">
+<body class="text-slate-300 font-sans leading-relaxed antialiased overflow-x-hidden">
 
     <a href="#main-content" class="skip-link">Skip to content</a>
-
     <div id="scroll-progress"></div>
-
-    <!-- Blog Link (desktop, visible when posts exist) -->
-    <div id="blog-link-wrapper" class="fixed top-4 right-4 z-40">
-        <a href="blog.html" class="text-sm text-indigo-400 hover:text-white font-semibold transition-colors bg-slate-900/80 border border-slate-700/50 px-4 py-2 rounded-full shadow-lg">Blog</a>
-    </div>
-
-    <!-- Blog Link (mobile, visible when posts exist) -->
-    <div id="blog-link-wrapper-mobile" class="fixed top-4 right-4 z-30">
-        <a href="blog.html" class="text-xs text-indigo-400 font-semibold bg-slate-900/80 border border-slate-700/50 px-3 py-1.5 rounded-full">Blog</a>
-    </div>
-
-    <!-- Mobile Overlay -->
     <div id="mobile-overlay"></div>
 
-    <!-- Sidebar -->
-    <nav id="sidebar" class="w-64 h-screen bg-slate-900/80 border-r border-slate-800/50 fixed top-0 left-0 p-8 flex flex-col z-20" aria-label="Primary navigation">
-        <a href="#hero" class="font-display text-2xl font-bold text-white hover:text-indigo-400 mb-8 transition-colors">Shervin Naseri</a>
-        <div class="flex flex-col space-y-5">
-            <a href="#skills" class="nav-link"><span class="nav-num">01</span><span>Skills</span></a>
-            <a href="#experience" class="nav-link"><span class="nav-num">02</span><span>Experience</span></a>
+    <nav id="sidebar" class="fixed top-0 left-0 z-20 flex h-screen w-64 flex-col border-r border-slate-800/60 p-8" aria-label="Primary navigation">
+        <a href="#hero" class="block">
+            <span class="font-display text-xl font-semibold text-white">Shervin Naseri</span>
+            <span class="mt-1.5 block font-mono text-[9px] uppercase tracking-[0.18em] text-slate-500">AI &amp; Software Engineer</span>
+        </a>
+        <div class="mt-10 flex flex-col gap-1">
+            <a href="#experience" class="nav-link"><span class="nav-num">01</span><span>Experience</span></a>
+            <a href="#skills" class="nav-link"><span class="nav-num">02</span><span>Skills</span></a>
             <a href="#education" class="nav-link"><span class="nav-num">03</span><span>Education</span></a>
             <a href="#projects" class="nav-link"><span class="nav-num">04</span><span>Projects</span></a>
             <a href="#contact" class="nav-link"><span class="nav-num">05</span><span>Contact</span></a>
         </div>
+        <div class="mt-auto border-t border-slate-800/60 pt-6">
+            <p class="flex items-center gap-2 font-mono text-[9px] uppercase tracking-[0.16em] text-slate-500">
+                <span class="status-dot" aria-hidden="true"></span>
+                Open to work
+            </p>
+            <p class="mt-2 text-xs leading-relaxed text-slate-600">Ottawa, Canada.<br>Remote or relocation.</p>
+            <div class="mt-4 flex gap-4">
+                <a href="https://github.com/shervinemp" target="_blank" rel="noopener noreferrer" class="side-link">GitHub</a>
+                <a href="https://www.linkedin.com/in/shervin-naseri-b3a016b0/" target="_blank" rel="noopener noreferrer" class="side-link">LinkedIn</a>
+            </div>
+        </div>
     </nav>
 
-    <!-- Hamburger (Mobile) -->
-    <button id="menu-toggle" class="md:hidden fixed top-4 left-4 z-40 p-2.5 bg-slate-800/90 border border-slate-700/50 text-white rounded-lg focus:outline-none" aria-label="Toggle menu" aria-controls="sidebar" aria-expanded="false">
-        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <button id="menu-toggle" class="fixed left-4 top-4 z-40 rounded-lg border border-slate-700/60 bg-slate-900/95 p-2.5 text-white lg:hidden" aria-label="Toggle menu" aria-controls="sidebar" aria-expanded="false">
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path class="hamburger-line" d="M4 6h16" />
             <path class="hamburger-line" d="M4 12h16" />
             <path class="hamburger-line" d="M4 18h16" />
         </svg>
     </button>
 
-    <!-- Main Content -->
-    <main id="main-content" class="md:ml-64" tabindex="-1">
+    <main id="main-content" class="lg:ml-64" tabindex="-1">
 
-        <!-- Hero -->
-        <section id="hero" class="relative min-h-[100svh] flex items-center justify-center py-24 px-6 overflow-hidden">
-            <div class="hero-glow"></div>
-            <div class="text-center max-w-3xl relative z-10">
-                <div class="profile-glow mx-auto mb-8">
-                    <img src="profile.jpg" alt="Shervin Naseri" class="w-40 h-40 rounded-full object-cover border-2 border-slate-800 relative z-10" loading="eager" fetchpriority="high">
+        <section id="hero" class="hero">
+            <div class="hero-bg" aria-hidden="true"></div>
+            <div class="hero-inner">
+                <div class="profile-glow">
+                    <img src="profile.jpg" alt="Shervin Naseri" loading="eager" fetchpriority="high">
                 </div>
-                <p class="mb-4 font-mono text-[10px] uppercase tracking-[0.18em] text-slate-500">Ottawa, Canada <span class="text-slate-700">/</span> Open to relocation</p>
-                <h1 class="font-display text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
-                    Shervin Naseri
-                    <span class="subtitle-reveal block mt-3">
-                        <span class="text-xl md:text-3xl text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-indigo-300 to-rose-300">AI Engineer</span>
-                        <span class="text-xl md:text-3xl text-slate-500 mx-2">&amp;</span>
-                        <span class="text-xl md:text-3xl text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-cyan-300 to-indigo-300">Backend Developer</span>
-                    </span>
-                </h1>
-                <p class="text-lg text-slate-400 mb-10 max-w-xl mx-auto leading-relaxed">Based in Ottawa, ON. Six years building production systems across retrieval, computer vision, and backend services, with a focus on LLM systems and the infrastructure under them.</p>
-                <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <a href="resume.pdf" download="Shervin_Naseri_Resume.pdf" class="group inline-flex items-center justify-center gap-2 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold py-3 px-6 rounded-lg transition-all duration-300 active:scale-95 shadow-lg shadow-cyan-500/20">
-                        <svg class="w-4 h-4 transition-transform duration-300 group-hover:-translate-y-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                <p class="kicker">Ottawa, Canada <span class="text-slate-700">/</span> Open to relocation</p>
+                <h1 class="hero-name">Shervin Naseri</h1>
+                <p class="hero-role">AI &amp; Software Engineer</p>
+                <p class="hero-lede">Six years building production systems across retrieval, computer vision, and backend services. I design and ship LLM systems end to end, from hybrid retrieval and tool calling to the containers, CI, and observability that keep them running.</p>
+                <div class="hero-actions">
+                    <a href="resume.pdf" download="Shervin_Naseri_Resume.pdf" class="btn-primary">
                         Download CV
+                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v12m0 0l-4-4m4 4l4-4M4 20h16"/></svg>
                     </a>
-                    <a href="#contact" class="group inline-flex items-center justify-center gap-2 bg-slate-800/80 hover:bg-slate-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300 active:scale-95 border border-slate-700/50">
-                        <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-                        Contact
-                    </a>
+                    <a href="#contact" class="btn-ghost">Get in touch</a>
                 </div>
-                <div class="mt-8 flex flex-wrap justify-center gap-x-3 gap-y-1 font-mono text-[10px] uppercase tracking-[0.14em] text-slate-500">
-                    <span>6+ years</span>
-                    <span class="hidden text-slate-700 sm:inline">/</span>
-                    <span>MSc Computer Science, uOttawa</span>
-                    <span class="hidden text-slate-700 sm:inline">/</span>
-                    <span>AWS Generative AI, Professional</span>
-                </div>
+                <ul class="facts">
+                    <li><span>Experience</span><strong>6+ years</strong></li>
+                    <li><span>Education</span><strong>MSc Computer Science</strong></li>
+                    <li><span>Certification</span><strong>AWS Generative AI</strong></li>
+                </ul>
             </div>
         </section>
 
-        <!-- Skills -->
-        <section id="skills" class="py-20 px-6 section-reveal">
-            <div class="container mx-auto max-w-6xl">
-                <div class="gradient-divider mb-12"></div>
-                <h2 class="text-3xl font-bold text-center text-white mb-16 flex items-center justify-center gap-3">
-                    <svg class="w-6 h-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l-4.995-4.995a2.652 2.652 0 010-3.752l3.75-3.752a2.652 2.652 0 013.752 0l4.995 4.995M11.42 15.17L14.25 18l1.405-1.405" /></svg>
-                    Skills
-                </h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 stagger-children">
-                    <div class="card-enhanced p-6">
-                        <h3 class="text-lg font-semibold text-white mb-5 text-center">Languages</h3>
-                        <div class="space-y-4">
-                            <div><div class="flex justify-between text-sm text-slate-400 mb-1"><span>Python</span><span class="text-xs font-semibold text-cyan-400 bg-cyan-500/10 px-2 py-0.5 rounded">Expert</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="88%"></div></div></div>
-                            <div><div class="flex justify-between text-sm text-slate-400 mb-1"><span>JS / TS</span><span class="text-xs font-semibold text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded">Advanced</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="77%"></div></div></div>
-                            <div><div class="flex justify-between text-sm text-slate-400 mb-1"><span>C++</span><span class="text-xs font-semibold text-slate-300 bg-slate-600/20 px-2 py-0.5 rounded">Proficient</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="66%"></div></div></div>
-                            <div><div class="flex justify-between text-sm text-slate-400 mb-1"><span>Shell</span><span class="text-xs font-semibold text-slate-400 bg-slate-500/10 px-2 py-0.5 rounded">Familiar</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="60%"></div></div></div>
-                        </div>
-                    </div>
-                    <div class="card-enhanced p-6">
-                        <h3 class="text-lg font-semibold text-white mb-5 text-center">ML / AI</h3>
-                        <div class="space-y-4">
-                            <div><div class="flex justify-between text-sm text-slate-400 mb-1"><span>RAG &amp; LLM systems</span><span class="text-xs font-semibold text-cyan-400 bg-cyan-500/10 px-2 py-0.5 rounded">Primary</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="86%"></div></div></div>
-                            <div><div class="flex justify-between text-sm text-slate-400 mb-1"><span>Tool calling / MCP</span><span class="text-xs font-semibold text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded">Advanced</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="84%"></div></div></div>
-                            <div><div class="flex justify-between text-sm text-slate-400 mb-1"><span>Computer Vision</span><span class="text-xs font-semibold text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded">Advanced</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="82%"></div></div></div>
-                            <div><div class="flex justify-between text-sm text-slate-400 mb-1"><span>NLP &amp; Deep Learning</span><span class="text-xs font-semibold text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded">Advanced</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="72%"></div></div></div>
-                        </div>
-                    </div>
-                    <div class="card-enhanced p-6">
-                        <h3 class="text-lg font-semibold text-white mb-5 text-center">Backend / Infra</h3>
-                        <div class="space-y-4">
-                            <div><div class="flex justify-between text-sm text-slate-400 mb-1"><span>APIs</span><span class="text-xs font-semibold text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded">Advanced</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="80%"></div></div></div>
-                            <div><div class="flex justify-between text-sm text-slate-400 mb-1"><span>Databases</span><span class="text-xs font-semibold text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded">Advanced</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="78%"></div></div></div>
-                            <div><div class="flex justify-between text-sm text-slate-400 mb-1"><span>Docker</span><span class="text-xs font-semibold text-slate-300 bg-slate-600/20 px-2 py-0.5 rounded">Proficient</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="72%"></div></div></div>
-                            <div><div class="flex justify-between text-sm text-slate-400 mb-1"><span>AWS</span><span class="text-xs font-semibold text-slate-300 bg-slate-600/20 px-2 py-0.5 rounded">Proficient</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="72%"></div></div></div>
-                        </div>
-                    </div>
+        <section id="experience" class="section section-reveal">
+            <div class="section-wrap">
+                <div class="section-head">
+                    <p class="section-kicker">01 / Track record</p>
+                    <h2 class="section-title">Experience</h2>
+                    <div class="section-rule"></div>
                 </div>
-            </div>
-        </section>
 
-        <!-- Experience -->
-        <section id="experience" class="py-20 px-6 section-reveal">
-            <div class="container mx-auto max-w-4xl">
-                <div class="gradient-divider mb-12"></div>
-                <h2 class="text-3xl font-bold text-center text-white mb-16 flex items-center justify-center gap-3">
-                    <svg class="w-6 h-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                    Experience
-                </h2>
-                <div class="space-y-10 stagger-children">
-                    <div class="flex gap-5 timeline-wrapper">
-                        <div class="flex flex-col items-center">
-                            <div class="timeline-dot border-cyan-400"></div>
-                        </div>
-                        <div class="card-enhanced p-6 flex-1 border-cyan-500/20">
-                            <div class="mb-3 flex flex-wrap justify-between items-start gap-2">
+                <div class="timeline stagger-children">
+                    <article class="job">
+                        <div class="panel job-card">
+                            <div class="job-head">
                                 <div>
-                                    <h3 class="text-xl font-semibold text-white">AI & Software Engineer</h3>
-                                    <p class="text-cyan-400 font-medium">Independent</p>
+                                    <h3 class="job-title">AI &amp; Software Engineer</h3>
+                                    <p class="job-org">Independent <span class="sep">/</span> Ottawa, ON</p>
                                 </div>
-                                <span class="text-xs text-slate-500 font-mono bg-slate-900 px-2 py-1 rounded border border-slate-800">March 2025 - Present</span>
+                                <span class="date">Mar 2025 - Present</span>
                             </div>
-                            <ul class="space-y-2.5 text-slate-400">
-                                <li class="flex gap-3 text-sm leading-relaxed"><span class="text-cyan-400 mt-2 w-1.5 h-1.5 rounded-full bg-cyan-400/60 shrink-0"></span>Architected RAG pipelines and LLM integrations combining vector databases with keyword search for grounded semantic retrieval.</li>
-                                <li class="flex gap-3 text-sm leading-relaxed"><span class="text-cyan-400 mt-2 w-1.5 h-1.5 rounded-full bg-cyan-400/60 shrink-0"></span>Built and refactored Node.js and Python services to support structured LLM outputs, schema validation, and tool-calling decoders.</li>
-                                <li class="flex gap-3 text-sm leading-relaxed"><span class="text-cyan-400 mt-2 w-1.5 h-1.5 rounded-full bg-cyan-400/60 shrink-0"></span>Engineered asynchronous data processing workflows and optimized PyTorch pipelines for model fine-tuning, embedding generation, and inference.</li>
+                            <ul class="bullets">
+                                <li>Design and ship LLM systems: retrieval that fuses vector and keyword search, structured output with schema validation, and tool-calling loops behind typed interfaces.</li>
+                                <li>Built <span class="hl">VoxPipe</span>, a voice pipeline with streaming ASR, a configurable tool registry, and streaming TTS, running on local GGUF models or remote backends.</li>
+                                <li>Built an MCP server that walks codebases with custom AST parsers and indexes signatures into Weaviate for semantic retrieval.</li>
+                                <li>Operate the services that carry this work: containers, CI/CD, tests, and observability on AWS.</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="job">
+                        <div class="panel job-card">
+                            <div class="job-head">
+                                <div>
+                                    <h3 class="job-title">Graduate Research &amp; Teaching Assistant</h3>
+                                    <p class="job-org">University of Ottawa <span class="sep">/</span> Ottawa, ON <span class="muted">(part-time)</span></p>
+                                </div>
+                                <span class="date">Jan 2022 - Dec 2024</span>
+                            </div>
+                            <ul class="bullets">
+                                <li>Co-authored <span class="hl">Evaluating the Impact of Flaky Simulators on Testing Autonomous Driving Systems</span> (Empirical Software Engineering, 2024).</li>
+                                <li>Built ML classifiers that identify flaky simulation-based tests from a single run, reducing the reruns needed to expose them.</li>
+                                <li>Supported coursework and labs as a teaching assistant alongside the research.</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="job">
+                        <div class="panel job-card">
+                            <div class="job-head">
+                                <div>
+                                    <h3 class="job-title">Senior ML Engineer</h3>
+                                    <p class="job-org">Pardazesh Etelaat Kian (IraPardaz) <span class="sep">/</span> Tehran, Iran</p>
+                                </div>
+                                <span class="date">Jun 2020 - Apr 2021</span>
+                            </div>
+                            <ul class="bullets">
+                                <li>Designed and deployed a CTC-based vehicle plate recognition pipeline.</li>
+                                <li>Built a Farsi document text extraction system for complex layouts and styles.</li>
+                                <li>Built a large-scale image retrieval system using perceptual similarity.</li>
+                                <li>Engineered car detection and multi-object tracking algorithms for traffic analysis.</li>
+                                <li>Led technical hiring interviews and mentored junior engineers on code quality and delivery.</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="job">
+                        <div class="panel job-card">
+                            <div class="job-head">
+                                <div>
+                                    <h3 class="job-title">Core Backend Engineer</h3>
+                                    <p class="job-org">Nikaat Corp <span class="sep">/</span> Tehran, Iran</p>
+                                </div>
+                                <span class="date">Dec 2016 - Apr 2020</span>
+                            </div>
+                            <ul class="bullets">
+                                <li>Built REST services for the Mint and Phosphor portfolios on Node.js, Express, and MongoDB.</li>
+                                <li>Designed a Bi-LSTM Seq2Seq model for currency exchange rate trend forecasting.</li>
+                                <li>Managed CI/CD pipelines and containerized production environments with Docker and Nginx.</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="job">
+                        <div class="panel job-card">
+                            <div class="job-head">
+                                <div>
+                                    <h3 class="job-title">Python Developer</h3>
+                                    <p class="job-org">Vestaak <span class="sep">/</span> Tehran, Iran</p>
+                                </div>
+                                <span class="date">Jun 2016 - Dec 2016</span>
+                            </div>
+                            <ul class="bullets">
+                                <li>Built a content recommendation engine in Python and scikit-learn on user interaction data from the Telegram API.</li>
+                                <li>Implemented collaborative and content-based filtering algorithms.</li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="section section-reveal">
+            <div class="section-wrap">
+                <div class="section-head">
+                    <p class="section-kicker">02 / Toolkit</p>
+                    <h2 class="section-title">Skills</h2>
+                    <div class="section-rule"></div>
+                </div>
+
+                <div class="grid gap-5 sm:grid-cols-2 md:grid-cols-3 stagger-children">
+                    <div class="panel skill-card">
+                        <h3 class="panel-title">Languages</h3>
+                        <ul class="skill-list">
+                            <li>
+                                <div class="skill-row"><span>Python</span><span class="level level-primary">Expert</span></div>
+                                <div class="meter"><div class="skill-bar-fill" data-width="88%"></div></div>
+                            </li>
+                            <li>
+                                <div class="skill-row"><span>TypeScript</span><span class="level level-advanced">Advanced</span></div>
+                                <div class="meter"><div class="skill-bar-fill" data-width="77%"></div></div>
+                            </li>
+                            <li>
+                                <div class="skill-row"><span>C++</span><span class="level">Proficient</span></div>
+                                <div class="meter"><div class="skill-bar-fill" data-width="66%"></div></div>
+                            </li>
+                            <li>
+                                <div class="skill-row"><span>Shell</span><span class="level">Familiar</span></div>
+                                <div class="meter"><div class="skill-bar-fill" data-width="60%"></div></div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="panel skill-card">
+                        <h3 class="panel-title">AI &amp; retrieval</h3>
+                        <ul class="skill-list">
+                            <li>
+                                <div class="skill-row"><span>RAG &amp; LLM systems</span><span class="level level-primary">Primary</span></div>
+                                <div class="meter"><div class="skill-bar-fill" data-width="88%"></div></div>
+                            </li>
+                            <li>
+                                <div class="skill-row"><span>Tool calling / MCP</span><span class="level level-advanced">Advanced</span></div>
+                                <div class="meter"><div class="skill-bar-fill" data-width="84%"></div></div>
+                            </li>
+                            <li>
+                                <div class="skill-row"><span>NLP &amp; deep learning</span><span class="level level-advanced">Advanced</span></div>
+                                <div class="meter"><div class="skill-bar-fill" data-width="84%"></div></div>
+                            </li>
+                            <li>
+                                <div class="skill-row"><span>Computer vision</span><span class="level level-advanced">Advanced</span></div>
+                                <div class="meter"><div class="skill-bar-fill" data-width="82%"></div></div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="panel skill-card">
+                        <h3 class="panel-title">Backend &amp; infra</h3>
+                        <ul class="skill-list">
+                            <li>
+                                <div class="skill-row"><span>APIs</span><span class="level level-advanced">Advanced</span></div>
+                                <div class="meter"><div class="skill-bar-fill" data-width="80%"></div></div>
+                            </li>
+                            <li>
+                                <div class="skill-row"><span>Databases</span><span class="level level-advanced">Advanced</span></div>
+                                <div class="meter"><div class="skill-bar-fill" data-width="78%"></div></div>
+                            </li>
+                            <li>
+                                <div class="skill-row"><span>Docker</span><span class="level">Proficient</span></div>
+                                <div class="meter"><div class="skill-bar-fill" data-width="72%"></div></div>
+                            </li>
+                            <li>
+                                <div class="skill-row"><span>AWS</span><span class="level">Proficient</span></div>
+                                <div class="meter"><div class="skill-bar-fill" data-width="72%"></div></div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="section section-reveal">
+            <div class="section-wrap">
+                <div class="section-head">
+                    <p class="section-kicker">03 / Foundations</p>
+                    <h2 class="section-title">Education &amp; research</h2>
+                    <div class="section-rule"></div>
+                </div>
+
+                <div class="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+                    <div class="space-y-4 stagger-children">
+                        <article class="panel edu-card">
+                            <div class="edu-head">
+                                <h3 class="edu-degree">MSc Computer Science</h3>
+                                <span class="date">2022 - 2025</span>
+                            </div>
+                            <p class="edu-school">University of Ottawa</p>
+                            <p class="edu-note">GPA 8.5/10. Research on flaky simulators in autonomous driving testing; co-authored the EMSE 2024 paper.</p>
+                        </article>
+                        <article class="panel edu-card">
+                            <div class="edu-head">
+                                <h3 class="edu-degree">MSc Software Engineering</h3>
+                                <span class="date">2018 - 2021</span>
+                            </div>
+                            <p class="edu-school">Sharif University of Technology</p>
+                            <p class="edu-note">GPA 16.37/20. Thesis on protein-protein interaction network similarity; project on StackOverflow response time prediction with BERT.</p>
+                        </article>
+                        <article class="panel edu-card">
+                            <div class="edu-head">
+                                <h3 class="edu-degree">BSc Computer Science</h3>
+                                <span class="date">2013 - 2018</span>
+                            </div>
+                            <p class="edu-school">Amirkabir University of Technology</p>
+                            <p class="edu-note">GPA 16.11/20 (3.41/4.0). Information retrieval with Word2Vec and Sent2Vec.</p>
+                        </article>
+                    </div>
+
+                    <div class="space-y-8">
+                        <div>
+                            <h3 class="side-title">Publications</h3>
+                            <ul class="pub-list">
+                                <li class="pub">
+                                    <p class="pub-venue">Empirical Software Engineering, 2024</p>
+                                    <p class="pub-title">Evaluating the impact of flaky simulators on testing autonomous driving systems</p>
+                                    <p class="pub-authors">Amini, Naseri, Nejati</p>
+                                </li>
+                                <li class="pub">
+                                    <p class="pub-venue">ICCG, 2019</p>
+                                    <p class="pub-title">Counting closed billiard paths</p>
+                                    <p class="pub-authors">Rahmati, Farahzad, Naseri</p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="side-title">Certifications</h3>
+                            <ul class="cert-list">
+                                <li class="cert">
+                                    <p class="cert-name">AWS Certified Generative AI Developer, Professional</p>
+                                    <p class="cert-meta">Amazon Web Services, 2026</p>
+                                </li>
+                                <li class="cert">
+                                    <p class="cert-name">Databricks Certified Data Engineer Associate</p>
+                                    <p class="cert-meta">Databricks, 2026</p>
+                                </li>
                             </ul>
                         </div>
                     </div>
-                    <div class="flex gap-5 timeline-wrapper">
-                        <div class="flex flex-col items-center">
-                            <div class="timeline-dot"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="section section-reveal">
+            <div class="section-wrap">
+                <div class="section-head">
+                    <p class="section-kicker">04 / Selected work</p>
+                    <h2 class="section-title">Projects</h2>
+                    <div class="section-rule"></div>
+                </div>
+
+                <div class="grid gap-5 md:grid-cols-2 stagger-children">
+                    <article class="panel project md:col-span-2">
+                        <div class="project-head">
+                            <h3 class="project-title">ParsiHub: Persian Business Directory</h3>
+                            <span class="project-flag">Pre-launch</span>
                         </div>
-                        <div class="card-enhanced p-6 flex-1">
-                            <div class="mb-3 flex flex-wrap justify-between items-start gap-2">
-                                <div>
-                                    <h3 class="text-xl font-semibold text-white">Graduate Research &amp; Teaching Assistant</h3>
-                                    <p class="text-indigo-400 font-medium">University of Ottawa <span class="text-slate-600">/</span> Ottawa, ON <span class="text-slate-600">(part-time)</span></p>
-                                </div>
-                                <span class="text-xs text-slate-500 font-mono bg-slate-900 px-2 py-1 rounded border border-slate-800">Jan 2022 - Dec 2024</span>
-                            </div>
-                            <ul class="space-y-2.5 text-slate-400">
-                                <li class="flex gap-3 text-sm leading-relaxed"><span class="text-indigo-400 mt-2 w-1.5 h-1.5 rounded-full bg-indigo-400/60 shrink-0"></span><span>Co-authored <span class="text-slate-200">Evaluating the Impact of Flaky Simulators on Testing Autonomous Driving Systems</span> (Empirical Software Engineering, 2024).</span></li>
-                                <li class="flex gap-3 text-sm leading-relaxed"><span class="text-indigo-400 mt-2 w-1.5 h-1.5 rounded-full bg-indigo-400/60 shrink-0"></span>Built ML classifiers that identify flaky simulation-based tests from a single run, reducing the reruns needed to expose them.</li>
-                                <li class="flex gap-3 text-sm leading-relaxed"><span class="text-indigo-400 mt-2 w-1.5 h-1.5 rounded-full bg-indigo-400/60 shrink-0"></span>Supported coursework and labs as a teaching assistant alongside the research.</li>
-                            </ul>
+                        <p class="project-desc">A trilingual (English, Persian, French) directory where people find, review, and verify Persian-owned businesses, and owners claim and manage listings. Hybrid search fuses pgvector and full-text results by reciprocal rank, with a RAG assistant behind prompt-injection and PII safeguards.</p>
+                        <p class="project-stack">Next.js 16 / React 19 / tRPC with Zod / Prisma / PostgreSQL / pgvector / Redis / BullMQ</p>
+                    </article>
+
+                    <article class="panel project">
+                        <div class="project-head">
+                            <h3 class="project-title">CodebaseMCP</h3>
+                            <a href="https://github.com/shervinemp/CodebaseMCP" target="_blank" rel="noopener noreferrer" class="project-link">GitHub &rarr;</a>
                         </div>
+                        <p class="project-desc">An MCP server for LLM-driven semantic codebase querying. Custom AST parsers feed a Weaviate index that keeps signature-level context instead of chunking files blindly.</p>
+                        <p class="project-stack">Python / MCP / Weaviate / AST</p>
+                    </article>
+
+                    <article class="panel project">
+                        <div class="project-head">
+                            <h3 class="project-title">VoxPipe</h3>
+                            <a href="https://github.com/shervinemp/voxpipe" target="_blank" rel="noopener noreferrer" class="project-link">GitHub &rarr;</a>
+                        </div>
+                        <p class="project-desc">A modular voice pipeline with streaming ASR, LLM tool calling, and streaming TTS, running on local GGUF models or remote backends behind a configurable tool registry.</p>
+                        <p class="project-stack">Python / ASR / LLM tool calling / TTS</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section section-reveal">
+            <div class="section-wrap">
+                <div class="section-head">
+                    <p class="section-kicker">05 / Say hello</p>
+                    <h2 class="section-title">Contact</h2>
+                    <div class="section-rule"></div>
+                </div>
+
+                <div class="contact-card">
+                    <p class="contact-lede">Open to AI engineering, backend, and applied research roles. Remote, hybrid, or willing to relocate.</p>
+                    <div class="contact-actions">
+                        <a href="mailto:shervin.naseri@gmail.com" class="btn-primary">shervin.naseri@gmail.com</a>
+                        <a href="resume.pdf" download="Shervin_Naseri_Resume.pdf" class="btn-ghost">Download CV</a>
                     </div>
-                    <div class="flex gap-5 timeline-wrapper">
-                        <div class="flex flex-col items-center">
-                            <div class="timeline-dot"></div>
-                        </div>
-                        <div class="card-enhanced p-6 flex-1">
-                            <div class="mb-3 flex flex-wrap justify-between items-start gap-2">
-                                <div>
-                                    <h3 class="text-xl font-semibold text-white">Senior ML Engineer</h3>
-                                    <p class="text-indigo-400 font-medium">Pardazesh Etelaat Kian (IraPardaz) <span class="text-slate-600">/</span> Tehran, Iran</p>
-                                </div>
-                                <span class="text-xs text-slate-500 font-mono bg-slate-900 px-2 py-1 rounded border border-slate-800">Jun 2020 - Apr 2021</span>
-                            </div>
-                            <ul class="space-y-2.5 text-slate-400">
-                                <li class="flex gap-3 text-sm leading-relaxed"><span class="text-indigo-400 mt-2 w-1.5 h-1.5 rounded-full bg-indigo-400/60 shrink-0"></span>Designed and deployed a CTC-based vehicle plate recognition pipeline.</li>
-                                <li class="flex gap-3 text-sm leading-relaxed"><span class="text-indigo-400 mt-2 w-1.5 h-1.5 rounded-full bg-indigo-400/60 shrink-0"></span>Built a Farsi document text extraction system for complex layouts and styles.</li>
-                                <li class="flex gap-3 text-sm leading-relaxed"><span class="text-indigo-400 mt-2 w-1.5 h-1.5 rounded-full bg-indigo-400/60 shrink-0"></span>Built a large-scale image retrieval system using perceptual similarity.</li>
-                                <li class="flex gap-3 text-sm leading-relaxed"><span class="text-indigo-400 mt-2 w-1.5 h-1.5 rounded-full bg-indigo-400/60 shrink-0"></span>Engineered car detection and multi-object tracking algorithms for traffic analysis.</li>
-                                <li class="flex gap-3 text-sm leading-relaxed"><span class="text-indigo-400 mt-2 w-1.5 h-1.5 rounded-full bg-indigo-400/60 shrink-0"></span>Led hiring processes and mentored junior data scientists.</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="flex gap-5 timeline-wrapper">
-                        <div class="flex flex-col items-center">
-                            <div class="timeline-dot"></div>
-                        </div>
-                        <div class="card-enhanced p-6 flex-1">
-                            <div class="mb-3 flex flex-wrap justify-between items-start gap-2">
-                                <div>
-                                    <h3 class="text-xl font-semibold text-white">Core Backend Engineer</h3>
-                                    <p class="text-indigo-400 font-medium">Nikaat Corp <span class="text-slate-600">/</span> Tehran, Iran</p>
-                                </div>
-                                <span class="text-xs text-slate-500 font-mono bg-slate-900 px-2 py-1 rounded border border-slate-800">Dec 2016 - Apr 2020</span>
-                            </div>
-                            <ul class="space-y-2.5 text-slate-400">
-                                <li class="flex gap-3 text-sm leading-relaxed"><span class="text-indigo-400 mt-2 w-1.5 h-1.5 rounded-full bg-indigo-400/60 shrink-0"></span>Developed web services and APIs (MEAN stack) for applications like Skenas, Atron, Mint, Phosphor.</li>
-                                <li class="flex gap-3 text-sm leading-relaxed"><span class="text-indigo-400 mt-2 w-1.5 h-1.5 rounded-full bg-indigo-400/60 shrink-0"></span>Designed a Bi-LSTM Seq2Seq model for currency exchange rate trend forecasting.</li>
-                                <li class="flex gap-3 text-sm leading-relaxed"><span class="text-indigo-400 mt-2 w-1.5 h-1.5 rounded-full bg-indigo-400/60 shrink-0"></span>Managed CI/CD pipelines and containerized production environments with Docker and Nginx.</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="flex gap-5 timeline-wrapper">
-                        <div class="flex flex-col items-center">
-                            <div class="timeline-dot"></div>
-                        </div>
-                        <div class="card-enhanced p-6 flex-1">
-                            <div class="mb-3 flex flex-wrap justify-between items-start gap-2">
-                                <div>
-                                    <h3 class="text-xl font-semibold text-white">Python Developer</h3>
-                                    <p class="text-indigo-400 font-medium">Vestaak <span class="text-slate-600">/</span> Tehran, Iran</p>
-                                </div>
-                                <span class="text-xs text-slate-500 font-mono bg-slate-900 px-2 py-1 rounded border border-slate-800">Jun 2016 - Dec 2016</span>
-                            </div>
-                            <ul class="space-y-2.5 text-slate-400">
-                                <li class="flex gap-3 text-sm leading-relaxed"><span class="text-indigo-400 mt-2 w-1.5 h-1.5 rounded-full bg-indigo-400/60 shrink-0"></span>Developed a personalized content recommendation engine using Telegram API data.</li>
-                                <li class="flex gap-3 text-sm leading-relaxed"><span class="text-indigo-400 mt-2 w-1.5 h-1.5 rounded-full bg-indigo-400/60 shrink-0"></span>Implemented collaborative filtering and content-based filtering algorithms.</li>
-                            </ul>
-                        </div>
+                    <div class="contact-links">
+                        <a href="https://www.linkedin.com/in/shervin-naseri-b3a016b0/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                        <a href="https://github.com/shervinemp" target="_blank" rel="noopener noreferrer">GitHub</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Education -->
-        <section id="education" class="py-20 px-6 section-reveal">
-            <div class="container mx-auto max-w-5xl">
-                <div class="gradient-divider mb-12"></div>
-                <h2 class="text-3xl font-bold text-center text-white mb-16 flex items-center justify-center gap-3">
-                    <svg class="w-6 h-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 00-.491 6.347A48.62 48.62 0 0112 20.904a48.62 48.62 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.636 50.636 0 00-2.658-.813A59.906 59.906 0 0112 3.493a59.903 59.903 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5" /></svg>
-                    Education &amp; Research
-                </h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 stagger-children">
-                    <div class="space-y-6">
-                        <h3 class="text-2xl font-semibold text-white mb-4">Education</h3>
-                        <div class="card-enhanced p-6">
-                            <p class="font-semibold text-lg text-white">MSc. Computer Science</p>
-                            <p class="text-slate-300">University of Ottawa</p>
-                            <p class="text-sm text-slate-500 mt-1">Jan 2022 - Mar 2025 | GPA: 8.5/10</p>
-                            <p class="text-sm text-slate-400 mt-2">Project: Evaluating flaky simulators in autonomous driving testing.</p>
-                        </div>
-                        <div class="card-enhanced p-6">
-                            <p class="font-semibold text-lg text-white">MSc. Software Engineering</p>
-                            <p class="text-slate-300">Sharif University of Technology</p>
-                            <p class="text-sm text-slate-500 mt-1">GPA: 16.37/20</p>
-                            <p class="text-sm text-slate-400 mt-2">Thesis: Estimating Protein-Protein Interaction Network similarity.</p>
-                            <p class="text-sm text-slate-400">Project: StackOverflow response time prediction using BERT.</p>
-                        </div>
-                        <div class="card-enhanced p-6">
-                            <p class="font-semibold text-lg text-white">BSc. Computer Science</p>
-                            <p class="text-slate-300">Amirkabir University of Technology</p>
-                            <p class="text-sm text-slate-500 mt-1">GPA: 16.11/20 (3.41/4.0)</p>
-                            <p class="text-sm text-slate-400 mt-2">Project: Information Retrieval using Word2Vec/Sent2Vec.</p>
-                        </div>
-                    </div>
-                    <div class="space-y-6">
-                        <h3 class="text-2xl font-semibold text-white mb-4">Publications</h3>
-                        <div class="card-enhanced p-6">
-                            <p class="font-semibold text-indigo-400">EMSE 2024</p>
-                            <p class="text-sm text-slate-300 mt-1">Mohammad Hossein Amini, Shervin Naseri, Shiva Nejati: Evaluating the impact of flaky simulators on testing autonomous driving systems.</p>
-                        </div>
-                        <div class="card-enhanced p-6">
-                            <p class="font-semibold text-indigo-400">ICCG 2019</p>
-                            <p class="text-sm text-slate-300 mt-1">Zahed Rahmati, Sina Farahzad and Shervin Naseri: Counting Closed Billiard Paths.</p>
-                        </div>
-                        <h3 class="text-2xl font-semibold text-white mb-4 pt-2">Certifications</h3>
-                        <div class="card-enhanced p-6">
-                            <p class="text-sm text-slate-300">AWS Certified Generative AI Developer, Professional</p>
-                            <p class="text-xs text-slate-500 mt-1">Amazon Web Services, 2026</p>
-                        </div>
-                        <div class="card-enhanced p-6">
-                            <p class="text-sm text-slate-300">Databricks Certified Data Engineer Associate</p>
-                            <p class="text-xs text-slate-500 mt-1">Databricks, 2026</p>
-                        </div>
-                    </div>
-                </div>
+        <footer class="site-footer">
+            <div class="footer-inner">
+                <p>&copy; <span id="current-year"></span> Shervin Naseri</p>
+                <p class="footer-meta">Updated November 2026</p>
+                <a href="blog.html" class="footer-link">Writing</a>
             </div>
-        </section>
-
-        <!-- Projects -->
-        <section id="projects" class="py-20 px-6 section-reveal">
-            <div class="container mx-auto max-w-6xl">
-                <div class="gradient-divider mb-12"></div>
-                <h2 class="text-3xl font-bold text-center text-white mb-16 flex items-center justify-center gap-3">
-                    <svg class="w-6 h-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25" /></svg>
-                    Projects
-                </h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 stagger-children">
-                    <div class="card-enhanced p-6 flex flex-col md:col-span-2">
-                        <div class="flex flex-wrap justify-between items-start gap-2 mb-2">
-                            <h3 class="text-xl font-semibold text-white">ParsiHub (Persian Business Directory)</h3>
-                            <span class="text-xs text-slate-500 font-mono bg-slate-900 px-2 py-1 rounded border border-slate-800">Pre-launch</span>
-                        </div>
-                        <p class="text-slate-400 mb-4 text-sm flex-grow">A trilingual (English, Persian, French) directory where people find, review, and verify Persian-owned businesses, and owners claim and manage listings. Hybrid search fuses pgvector and full-text results by reciprocal rank, with a RAG assistant behind prompt-injection and PII safeguards.</p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="tag bg-blue-900/30 text-blue-300 border border-blue-800/30">Next.js 16</span>
-                            <span class="tag bg-cyan-900/30 text-cyan-300 border border-cyan-800/30">React 19</span>
-                            <span class="tag bg-purple-900/30 text-purple-300 border border-purple-800/30">PostgreSQL</span>
-                            <span class="tag bg-emerald-900/30 text-emerald-300 border border-emerald-800/30">pgvector</span>
-                            <span class="tag bg-orange-900/30 text-orange-300 border border-orange-800/30">RAG</span>
-                        </div>
-                    </div>
-                    <div class="card-enhanced p-6 flex flex-col">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-xl font-semibold text-white">CodebaseMCP (RAG Framework)</h3>
-                            <a href="https://github.com/shervinemp/CodebaseMCP" target="_blank" rel="noopener noreferrer" class="text-xs text-indigo-400 hover:underline flex items-center gap-1">GitHub &rarr;</a>
-                        </div>
-                        <p class="text-slate-400 mb-4 text-sm flex-grow">An MCP server for LLM-driven semantic codebase querying. Custom AST parsers feed a Weaviate index that keeps signature-level context instead of chunking files blindly.</p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="tag bg-blue-900/30 text-blue-300 border border-blue-800/30">Python</span>
-                            <span class="tag bg-purple-900/30 text-purple-300 border border-purple-800/30">Weaviate</span>
-                            <span class="tag bg-cyan-900/30 text-cyan-300 border border-cyan-800/30">MCP</span>
-                            <span class="tag bg-emerald-900/30 text-emerald-300 border border-emerald-800/30">AST Parsing</span>
-                        </div>
-                    </div>
-                    <div class="card-enhanced p-6 flex flex-col">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-xl font-semibold text-white">VoxPipe (Voice Control Pipeline)</h3>
-                            <a href="https://github.com/shervinemp/voxpipe" target="_blank" rel="noopener noreferrer" class="text-xs text-indigo-400 hover:underline flex items-center gap-1">GitHub &rarr;</a>
-                        </div>
-                        <p class="text-slate-400 mb-4 text-sm flex-grow">A modular voice pipeline with streaming ASR, LLM tool calling, and streaming TTS, running on local GGUF models or remote backends behind a configurable tool registry.</p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="tag bg-blue-900/30 text-blue-300 border border-blue-800/30">Python</span>
-                            <span class="tag bg-cyan-900/30 text-cyan-300 border border-cyan-800/30">ASR</span>
-                            <span class="tag bg-purple-900/30 text-purple-300 border border-purple-800/30">Tool calling</span>
-                            <span class="tag bg-emerald-900/30 text-emerald-300 border border-emerald-800/30">TTS</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact -->
-        <section id="contact" class="py-20 px-6 section-reveal">
-            <div class="container mx-auto max-w-3xl">
-                <div class="gradient-divider mb-12"></div>
-                <h2 class="text-3xl font-bold text-center text-white mb-12 flex items-center justify-center gap-3">
-                    <svg class="w-6 h-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" /></svg>
-                    Contact
-                </h2>
-                <div class="contact-card p-10 md:p-12 text-center">
-                    <p class="text-slate-400 mb-8 max-w-lg mx-auto leading-relaxed">Whether you have a role in mind, a research question, or just want to connect, my inbox is open.</p>
-                    <div class="flex flex-wrap justify-center gap-4">
-                        <a href="mailto:shervin.naseri@gmail.com" class="contact-link">
-                            <svg class="ci-email w-5 h-5 text-indigo-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" /></svg>
-                            <span>Email</span>
-                        </a>
-                        <a href="https://www.linkedin.com/in/shervin-naseri-b3a016b0/" target="_blank" rel="noopener noreferrer" class="contact-link">
-                            <svg class="ci-linkedin w-5 h-5 text-indigo-400 shrink-0" viewBox="0 0 448 512" fill="currentColor"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0153.79-54.3c29.7 0 53.79 24.7 53.79 54.3a53.79 53.79 0 01-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"/></svg>
-                            <span>LinkedIn</span>
-                         </a>
-                          <a href="https://github.com/shervinemp" target="_blank" rel="noopener noreferrer" class="contact-link">
-                              <svg class="ci-github w-5 h-5 text-indigo-400 shrink-0" viewBox="0 0 496 512" fill="currentColor"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
-                              <span>GitHub</span>
-                          </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="text-center py-8 px-6 border-t border-slate-800/50">
-            <a href="blog.html" class="text-slate-500 hover:text-indigo-400 transition-colors text-xs tracking-wide">Blog</a>
-            <span class="text-slate-700 mx-3 text-xs">/</span>
-            <span class="text-slate-600 text-xs tracking-wide">&copy; <span id="current-year"></span> Shervin Naseri</span>
         </footer>
 
-        <!-- Back to Top -->
         <button id="back-to-top" class="hidden" title="Back to top" aria-label="Back to top">
-            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" /></svg>
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" /></svg>
         </button>
-
     </main>
 
     <script src="dist/blog-meta.js"></script>
