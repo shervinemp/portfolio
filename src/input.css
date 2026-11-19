@@ -177,7 +177,7 @@ body.nav-hidden #blog-link-wrapper-mobile {
   @apply font-mono text-[11px] text-slate-500 hover:text-cyan-300 transition-colors underline decoration-slate-700 underline-offset-4 hover:decoration-cyan-400/50;
 }
 
-.stat-label { @apply font-mono text-[10px] uppercase tracking-[0.14em] text-slate-600; }
+.stat-label { @apply font-mono text-[10px] uppercase tracking-[0.14em] text-slate-500; }
 .stat-value { @apply mt-1.5 font-display text-[13px] md:text-base text-slate-200; }
 
 .portrait { @apply w-full max-w-[320px]; }
@@ -197,7 +197,7 @@ body.nav-hidden #blog-link-wrapper-mobile {
 }
 .portrait:hover .portrait-media img { filter: grayscale(0.15) contrast(1.02); transform: scale(1.02); }
 .portrait-cap {
-  @apply mt-3 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.14em] text-slate-600;
+  @apply mt-3 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.14em] text-slate-500;
 }
 
 /* ── Section rhythm ── */
@@ -267,7 +267,7 @@ body.nav-hidden #blog-link-wrapper-mobile {
 }
 .proj:hover { @apply border-slate-700 bg-slate-900/50; }
 .proj-top { @apply mb-5 flex items-center justify-between; }
-.proj-index { @apply font-mono text-[10px] uppercase tracking-[0.18em] text-slate-600; }
+.proj-index { @apply font-mono text-[10px] uppercase tracking-[0.18em] text-slate-500; }
 .proj-link { @apply text-slate-500 hover:text-cyan-300 transition-colors; }
 .proj-title { @apply font-display text-xl font-semibold text-white tracking-tight; }
 .proj-desc { @apply mt-3 text-sm leading-relaxed text-slate-400; }
@@ -290,25 +290,25 @@ body.nav-hidden #blog-link-wrapper-mobile {
 .edu-card { @apply bg-slate-950 p-6; }
 .edu-top { @apply flex flex-wrap items-baseline justify-between gap-2; }
 .edu-title { @apply font-display text-base font-semibold text-white tracking-tight; }
-.edu-date { @apply font-mono text-[10px] uppercase tracking-[0.12em] text-slate-600; }
+.edu-date { @apply font-mono text-[10px] uppercase tracking-[0.12em] text-slate-500; }
 .edu-org { @apply mt-1 text-sm text-cyan-300/90; }
 .edu-note { @apply mt-2 text-sm leading-relaxed text-slate-400; }
 
 .side-title { @apply mb-4 font-mono text-[10px] uppercase tracking-[0.16em] text-slate-500; }
 .pub { @apply border-l border-slate-800 pl-4; }
-.pub-venue { @apply font-mono text-[10px] uppercase tracking-[0.1em] text-slate-600; }
+.pub-venue { @apply font-mono text-[10px] uppercase tracking-[0.1em] text-slate-500; }
 .pub-title { @apply mt-1 text-sm text-slate-200 leading-snug; }
 .pub-authors { @apply mt-1 text-xs text-slate-500; }
 .cert { @apply flex flex-col gap-0.5; }
 .cert-name { @apply text-sm text-slate-300; }
-.cert-meta { @apply font-mono text-[10px] uppercase tracking-[0.1em] text-slate-600; }
+.cert-meta { @apply font-mono text-[10px] uppercase tracking-[0.1em] text-slate-500; }
 
 /* ── Explorations ── */
 .explore-grid { @apply grid gap-x-10 md:grid-cols-2; }
 .explore { @apply border-t border-slate-800/60 py-6; }
 .explore-head { @apply flex items-baseline justify-between gap-3; }
 .explore-title { @apply font-display text-base font-semibold text-white tracking-tight; }
-.explore-flag { @apply shrink-0 font-mono text-[9px] uppercase tracking-[0.14em] text-slate-600; }
+.explore-flag { @apply shrink-0 font-mono text-[9px] uppercase tracking-[0.14em] text-slate-500; }
 .explore-desc { @apply mt-2 text-sm leading-relaxed text-slate-400; }
 
 /* ── Contact ── */
