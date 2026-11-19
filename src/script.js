@@ -1,5 +1,3 @@
-document.documentElement.classList.add('js');
-
 function initBlogLink() {
   if (typeof window.BLOG_META !== 'undefined' && window.BLOG_META.postCount > 0) {
     document.getElementById('blog-link-wrapper')?.classList.add('blog-visible');
@@ -54,7 +52,7 @@ function initMobileMenu() {
 
   sidebar.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
-      if (window.innerWidth < 1024) close();
+      if (window.innerWidth < 768) close();
     });
   });
 

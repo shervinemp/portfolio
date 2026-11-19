@@ -68,4 +68,4 @@ The script renders with Chromium at A4 using the print stylesheet and warns if t
 
 ## design
 
-Dark slate with gradient accents, a fixed sidebar with numbered sections, a color portrait, skill bars, and a card-based experience timeline. Space Grotesk headings and JetBrains Mono labels, with scroll progress and section reveal. Reduced motion respected via `prefers-reduced-motion`.
+Dark theme with indigo and purple gradient accents, glassmorphism cards, animated scroll progress, section reveal on scroll, timeline layout for experience, skill bars with shimmer animation, and a noise texture overlay. Reduced motion respected via `prefers-reduced-motion`.
