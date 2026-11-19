@@ -68,4 +68,4 @@ The script renders with Chromium at A4 using the print stylesheet and warns if t
 
 ## design
 
-Dark theme with indigo and purple gradient accents, glassmorphism cards, animated scroll progress, section reveal on scroll, timeline layout for experience, skill bars with shimmer animation, and a noise texture overlay. Reduced motion respected via `prefers-reduced-motion`.
+Graphite background with a muted teal accent. IBM Plex Sans for text and IBM Plex Mono for dates. Fixed sidebar, color portrait, and card-based experience, project, skill, and education sections. No scroll animations; reduced motion respected.
