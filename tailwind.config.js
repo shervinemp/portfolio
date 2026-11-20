@@ -4,12 +4,12 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                ink: '#121417',
-                panel: '#171a1e',
-                bone: '#e4e4df',
-                muted: '#9aa09e',
-                line: '#2a2e31',
-                accent: '#8fb8a8',
+                ink: '#111418',
+                panel: '#1a1e23',
+                bone: '#f2f0ea',
+                muted: '#adb3b0',
+                line: '#353b42',
+                accent: '#67c7b1',
             },
             fontFamily: {
                 mono: ['"IBM Plex Mono"', 'ui-monospace', 'monospace'],
